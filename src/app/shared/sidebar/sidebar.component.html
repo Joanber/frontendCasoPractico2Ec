@@ -1,0 +1,53 @@
+<aside class="left-sidebar">
+  <!-- Sidebar scroll-->
+  <div class="scroll-sidebar">
+    <!-- Sidebar navigation-->
+    <nav class="sidebar-nav">
+      <ul id="sidebarnav">
+        <li class="user-profile">
+          <a
+            class="has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+          >
+            <!-- <img [src]="usuario.imagenUrl" alt="user" /> -->
+            <img src="./assets/images/users/profile.png" alt="user" />
+            <span class="hide-menu"> Andres</span></a
+          >
+          <ul aria-expanded="false" class="collapse">
+            <li>
+              <a routerLinkActive="active" routerLink="./perfil">Mi perfil </a>
+            </li>
+            <li><a routerLink="account-settings">Temas</a></li>
+            <li><a routerLink="/login">Cerrar Sessión</a></li>
+          </ul>
+        </li>
+        <li class="nav-devider"></li>
+
+        <li *ngFor="let item of sidebarService.menu">
+          <a
+            class="has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i [class]="item.icono"></i
+            ><span class="hide-menu">{{ item.titulo }} </span></a
+          >
+          <ul aria-expanded="false" class="collapse">
+            <li *ngFor="let subMenuItem of item.submenu">
+              <a
+                [routerLink]="subMenuItem.url"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i [class]="subMenuItem.icono"></i>
+                <span class="hide-menu">{{ subMenuItem.titulo }}</span>
+              </a>
+            </li>
+          </ul>
+        </li>
+      </ul>
+    </nav>
+    <!-- End Sidebar navigation -->
+  </div>
+  <!-- End Sidebar scroll-->
+</aside>
