@@ -9,69 +9,55 @@ export class SidebarService {
     {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
-      submenu: [{ titulo: "Main", url: "/" }],
+      submenu: [{ titulo: "Convocatorias", url: "/" }],
     },
     {
-      titulo: "Ventas",
-      icono: "mdi mdi-cart",
+      titulo: "Solicitudes",
+      icono: "mdi mdi-clipboard-text",
       submenu: [
-        { titulo: "Ventas", url: "ventas", icono: "mdi mdi-cart-plus" },
+        { titulo: "Solicitud Empresa", url: "solictudempresa" },
+        { titulo: "Solicitud Alumno", url: "solicitudalumno" },
       ],
     },
 
     {
-      titulo: "Productos",
-      icono: "mdi mdi-shopping",
+      titulo: "Academico",
+      icono: "mdi mdi-account-settings",
       submenu: [
         {
-          titulo: "Productos",
-          url: "usuarios",
+          titulo: "Docentes",
+          url: "docentes",
           icono: " mdi mdi-pizza",
         },
         {
-          titulo: "Categorias",
-          url: "hospitales",
+          titulo: "Alumnos",
+          url: "alumnos",
           icono: "mdi mdi-food-fork-drink",
         },
       ],
     },
     {
-      titulo: "Inventario",
-      icono: "mdi mdi-cash-usd",
+      titulo: "Personal",
+      icono: "mdi mdi-account-multiple",
       submenu: [
         {
-          titulo: "Agregar Inventario",
-          url: "usuarios",
-          icono: "mdi mdi-folder-plus",
+          titulo: "Personas",
+          url: "personas",
         },
         {
-          titulo: "Productos bajos en stock",
-          url: "hospitales",
-          icono: "mdi mdi-arrow-down-box",
+          titulo: "Usuarios",
+          url: "usarios",
         },
       ],
     },
     {
-      titulo: "Reportes",
-      icono: "mdi mdi-file-chart",
+      titulo: "Empresas",
+      icono: "mdi mdi-account-multiple",
       submenu: [
         {
-          titulo: "Reporte de ventas",
-          url: "usuarios",
-          icono: "mdi mdi-chart-bar",
+          titulo: "Empresas",
+          url: "empresas",
         },
-        {
-          titulo: "Reporte de inventario",
-          url: "hospitales",
-          icono: "mdi mdi-lan",
-        },
-      ],
-    },
-    {
-      titulo: "Facturas",
-      icono: "mdi mdi-square-inc-cash",
-      submenu: [
-        { titulo: "Facturas", url: "usuarios", icono: "mdi mdi-cash-multiple" },
       ],
     },
   ];

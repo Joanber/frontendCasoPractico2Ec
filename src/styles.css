@@ -1,11 +1,59 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
 .fast {
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
   -webkit-animation-fill-mode: both;
   animation-fill-mode: both;
 }
+.animated {
+  -webkit-animation-duration: 1s;
+  animation-duration: 1s;
+  -webkit-animation-fill-mode: both;
+  animation-fill-mode: both;
+}
 #themecolors .selector,
 .cursor {
   cursor: pointer;
+}
+ng serve - html,
+body {
+  height: 100%;
+}
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+.table-scroll {
+  height: 460px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+thead tr:nth-child(1) th {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+.img-avatar {
+  height: 130px;
+  width: 130px;
+}
+.avatar {
+  border-radius: 100%;
+  width: 25px;
+}
+.mat-paginator {
+  color: #042331;
+  display: flex;
+  justify-content: center;
+}
+.cursor {
+  cursor: pointer;
+}
+th {
+  text-align: center;
+}
+td {
+  text-align: center;
 }
