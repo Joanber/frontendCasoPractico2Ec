@@ -1,0 +1,293 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #MyForm="ngForm" (submit)="guardarPersona(MyForm)">
+          <div class="form-body">
+            <h3 class="card-title">Persona</h3>
+            <hr />
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Primer Apellido*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="primer_apellido"
+                    #primer_apellido="ngModel"
+                    [(ngModel)]="persona.primer_apellido"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      primer_apellido.hasError('required') &&
+                      primer_apellido.touched
+                    "
+                  >
+                    Primer Apellido es requerido!
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Segundo Apellido*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="segundo_apellido"
+                    #segundo_apellido="ngModel"
+                    [(ngModel)]="persona.segundo_apellido"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      segundo_apellido.hasError('required') &&
+                      segundo_apellido.touched
+                    "
+                  >
+                    Segundo Apellido es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Primer Nombre*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="primer_nombre"
+                    #primer_nombre="ngModel"
+                    [(ngModel)]="persona.primer_nombre"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      primer_nombre.hasError('required') &&
+                      primer_nombre.touched
+                    "
+                  >
+                    Primer nombre es requerido
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Segundo Nombre*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="segundo_nombre"
+                    #segundo_nombre="ngModel"
+                    [(ngModel)]="persona.segundo_nombre"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      segundo_nombre.hasError('required') &&
+                      segundo_nombre.touched
+                    "
+                  >
+                    Segundo Nombre es requerido!
+                  </div>
+                </div>
+              </div>
+
+              <!--/span-->
+            </div>
+            <!--/row-->
+            <div class="row">
+              <!--/span-->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Identificacion*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="identificacion"
+                    #identificacion="ngModel"
+                    [(ngModel)]="persona.identificacion"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      identificacion.hasError('required') &&
+                      identificacion.touched
+                    "
+                  >
+                    Identificacion es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Celular*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="celular"
+                    #celular="ngModel"
+                    [(ngModel)]="persona.celular"
+                    required
+                  />
+
+                  <div
+                    class="text-danger"
+                    *ngIf="celular.hasError('required') && celular.touched"
+                  >
+                    Celular es requerido
+                  </div>
+                </div>
+              </div>
+
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Genero*</label>
+                  <select
+                    class="form-control"
+                    name="genero"
+                    #genero="ngModel"
+                    [(ngModel)]="persona.genero"
+                    required
+                  >
+                    <option [ngValue]="undefined">Seleccione el genero</option>
+                    <option value="MASCULINO">MASCULINO</option>
+                    <option value="FEMENINO">FEMENINO</option>
+                  </select>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="genero.hasError('required') && genero.touched"
+                  >
+                    Genero es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Fecha Nacimiento*</label>
+                  <input
+                    [matDatepicker]="myDatepicker"
+                    class="form-control"
+                    name="fecha_nacimiento"
+                    #fecha_nacimiento="ngModel"
+                    [(ngModel)]="persona.fecha_nacimiento"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    [for]="myDatepicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      fecha_nacimiento.hasError('required') &&
+                      fecha_nacimiento.touched
+                    "
+                  >
+                    Fecha Nacimiento es requerido!
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+            </div>
+            <!--/row-->
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Email*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="email"
+                    #email="ngModel"
+                    [(ngModel)]="persona.email"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="email.hasError('required') && email.touched"
+                  >
+                    Email es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Dirección*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="direccion"
+                    #direccion="ngModel"
+                    [(ngModel)]="persona.direccion"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="direccion.hasError('required') && direccion.touched"
+                  >
+                    Direccion es requerido!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Foto</label>
+                  <input
+                    type="file"
+                    class="form-control"
+                    (change)="seleccionarFotoo($event.target.files[0])"
+                  />
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="text-center">
+                  <img
+                    *ngIf="!persona.fotoHashCode"
+                    [src]="imgTemp"
+                    alt="Foto"
+                    class="img-avatar"
+                  />
+
+                  <img
+                    *ngIf="persona.fotoHashCode"
+                    [src]="
+                      bd_url +
+                      '/img/' +
+                      persona.id +
+                      '?fotoHashCode=' +
+                      persona.fotoHashCode
+                    "
+                    alt=""
+                    class="img-avatar"
+                  />
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="form-actions">
+            <button type="submit" class="btn btn-success mr-2">
+              <i class="fa fa-check"></i> Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btn-inverse"
+              (click)="irListaPersonas()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
