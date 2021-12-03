@@ -1,1 +1,50 @@
-<p>anexos works!</p>
+<div *ngIf="getAnexo() === 'a1'">
+  <h1>Solicitar Requerimiento (A1)</h1>
+</div>
+<div *ngIf="getAnexo() === 'a4'">
+  <h1>Listado de estudiantes asignados (A4)</h1>
+  <h2>Convocatoria ABC_123</h2>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th scope="col">Identificacion</th>
+        <th scope="col">Nombres</th>
+        <th scope="col">Apellidos</th>
+        <th scope="col">Correo</th>
+        <th scope="col">Telefono</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <th scope="row">0104640974</th>
+        <td>Michael</td>
+        <td>Padilla</td>
+        <td>michael.padilla.est@tecazuay.edu.ec</td>
+        <td>0996082041</td>
+      </tr>
+      <tr>
+        <th scope="row">0104640974</th>
+        <td>Michael</td>
+        <td>Padilla</td>
+        <td>michael.padilla.est@tecazuay.edu.ec</td>
+        <td>0996082041</td>
+      </tr>
+      <tr>
+        <th scope="row">0104640974</th>
+        <td>Michael</td>
+        <td>Padilla</td>
+        <td>michael.padilla.est@tecazuay.edu.ec</td>
+        <td>0996082041</td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+<div *ngIf="getAnexo() === 'a5'">
+  <h1>Designar tutor empresarial (A5)</h1>
+</div>
+<div *ngIf="getAnexo() === 'a12'">
+  <h1>Evaluacion a estudiantes (A12)</h1>
+</div>
+<div *ngIf="getAnexo() === 'a12_1'">
+  <h1>Certificado (A12.1)</h1>
+</div>
