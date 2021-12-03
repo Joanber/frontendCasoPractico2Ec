@@ -1,5 +1,6 @@
 import { Component, OnInit } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-anexos",
@@ -7,12 +8,19 @@ import { ActivatedRoute } from "@angular/router";
   styleUrls: ["./anexos.component.css"],
 })
 export class AnexosComponent implements OnInit {
+  private routeSub: Subscription;
+  private routeParam: String;
+
   constructor(private route: ActivatedRoute) {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.routeSub = this.route.params.subscribe(
+      (params) => (this.routeParam = params["anexo"])
+    );
+  }
 
   getAnexo() {
-    return this.route.url._value[1].path;
+    return this.routeParam;
   }
 
   getStudents() {
@@ -39,5 +47,9 @@ export class AnexosComponent implements OnInit {
         phone: "0996082041",
       },
     ];
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 }
