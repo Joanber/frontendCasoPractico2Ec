@@ -6,6 +6,7 @@ import { AccountSettingsComponent } from "./account-settings/account-settings.co
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
+import { AnexosComponent } from "./anexos/anexos.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,11 @@ const routes: Routes = [
         path: "empresas",
         component: ListEmpresasComponent,
         data: { titulo: "Empresas" },
+      },
+      {
+        path: "solicitar/:anexo",
+        component: AnexosComponent,
+        data: { titulo: "Anexos Gestion Empresa" },
       },
     ],
   },

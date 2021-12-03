@@ -58,6 +58,26 @@ export class SidebarService {
           titulo: "Empresas",
           url: "empresas",
         },
+        {
+          titulo: "Solicitar Requerimiento(A1)",
+          url: "solicitar/a1",
+        },
+        {
+          titulo: "Consultar Listado de estudiantes asignados(A4)",
+          url: "solicitar/a4",
+        },
+        {
+          titulo: "Designar tutor empresarial(A5)",
+          url: "solicitar/a5",
+        },
+        {
+          titulo: "Evaluación a estudiante(A12)",
+          url: "solicitar/a12",
+        },
+        {
+          titulo: "Certificado(12.1)",
+          url: "solicitar/a12_1",
+        },
       ],
     },
   ];

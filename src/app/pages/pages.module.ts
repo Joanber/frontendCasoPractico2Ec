@@ -14,6 +14,7 @@ import {
   MomentDateModule,
 } from "@angular/material-moment-adapter";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
+import { AnexosComponent } from './anexos/anexos.component';
 
 @NgModule({
   declarations: [
@@ -23,6 +24,7 @@ import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
     ListPersonasComponent,
     AddPersonaComponent,
     ListEmpresasComponent,
+    AnexosComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
