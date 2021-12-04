@@ -1,4 +1,4 @@
-import { Component, OnInit } from "@angular/core";
+import { Component, OnInit, Input } from "@angular/core";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 
@@ -9,7 +9,33 @@ import { Subscription } from "rxjs";
 })
 export class AnexosComponent implements OnInit {
   private routeSub: Subscription;
-  private routeParam: String;
+  private routeParam: string;
+  private students = [
+    {
+      id: "0104640974",
+      names: "Michael Anthony",
+      last: "Padilla Heredia",
+      email: "michael.padilla.est@tecazuay.edu.ec",
+      phone: "0996082041",
+      empTutor: "",
+    },
+    {
+      id: "0104640992",
+      names: "Jose Anthony",
+      last: "Perez Hernesto",
+      email: "michael.padilla.est@tecazuay.edu.ec",
+      phone: "0996082041",
+      empTutor: "",
+    },
+    {
+      id: "0104640982",
+      names: "Pedro Mauricio",
+      last: "Ordonez Salto",
+      email: "michael.padilla.est@tecazuay.edu.ec",
+      phone: "0996082041",
+      empTutor: "",
+    },
+  ];
 
   constructor(private route: ActivatedRoute) {}
 
@@ -23,30 +49,38 @@ export class AnexosComponent implements OnInit {
     return this.routeParam;
   }
 
-  getStudents() {
-    return [
-      {
-        id: "0104640974",
-        names: "Michael Anthony",
-        last: "Padilla Heredia",
-        email: "michael.padilla.est@tecazuay.edu.ec",
-        phone: "0996082041",
-      },
-      {
-        id: "0104640974",
-        names: "Jose Anthony",
-        last: "Perez Hernesto",
-        email: "michael.padilla.est@tecazuay.edu.ec",
-        phone: "0996082041",
-      },
-      {
-        id: "0104640974",
-        names: "Pedro Mauricio",
-        last: "Ordonez Salto",
-        email: "michael.padilla.est@tecazuay.edu.ec",
-        phone: "0996082041",
-      },
-    ];
+  downloadAnexo() {
+    //TODO: DOWNLOAD FILE
+
+    if (this.getAnexo() === "a1") {
+      console.log("DOWNLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12") {
+      console.log("DOWNLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12_1") {
+      console.log("DOWNLOADING...", this.getAnexo());
+    } else {
+      alert(this.getAnexo() + " no existe");
+    }
+  }
+
+  uploadAnexo(filePath: string) {
+    //TODO: Upload File
+    console.log("FILE PATH: ", filePath);
+
+    if (this.getAnexo() === "a1") {
+      console.log("UPLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12") {
+      console.log("UPLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12_1") {
+      console.log("UPLOADING...", this.getAnexo());
+    } else {
+      alert(this.getAnexo() + " no existe");
+    }
+  }
+
+  setTutorEmpresarial(studentId: string, tutorNombre: string) {
+    this.students.filter((student) => student.id === studentId)[0].empTutor =
+      tutorNombre;
   }
 
   ngOnDestroy() {
