@@ -12,52 +12,27 @@ export class SidebarService {
       submenu: [{ titulo: "Convocatorias", url: "/" }],
     },
     {
-      titulo: "Solicitudes",
+      titulo: "Gestión de Vinculación ",
       icono: "mdi mdi-clipboard-text",
       submenu: [
-        { titulo: "Solicitud Empresa", url: "solictudempresa" },
-        { titulo: "Solicitud Alumno", url: "solicitudalumno" },
+        { titulo: "Convenios", url: "convenios" },
+        { titulo: "Informes", url: "informes" },
+        { titulo: "Consultar Procesos", url: "consultarProcesos" },
+        { titulo: "Historial", url: "historial" },
       ],
     },
-
     {
-      titulo: "Academico",
-      icono: "mdi mdi-account-settings",
+      titulo: "Gestión de Carrera ",
+      icono: "mdi mdi-clipboard-text",
       submenu: [
-        {
-          titulo: "Docentes",
-          url: "docentes",
-          icono: " mdi mdi-pizza",
-        },
-        {
-          titulo: "Alumnos",
-          url: "alumnos",
-          icono: "mdi mdi-food-fork-drink",
-        },
+        { titulo: "Empresas", url: "empresas" },
+        { titulo: "Docentes", url: "docentes" },
       ],
     },
     {
-      titulo: "Personal",
+      titulo: "Gestion Empresa",
       icono: "mdi mdi-account-multiple",
       submenu: [
-        {
-          titulo: "Personas",
-          url: "personas",
-        },
-        {
-          titulo: "Usuarios",
-          url: "usarios",
-        },
-      ],
-    },
-    {
-      titulo: "Empresas",
-      icono: "mdi mdi-account-multiple",
-      submenu: [
-        {
-          titulo: "Empresas",
-          url: "empresas",
-        },
         {
           titulo: "Solicitar Requerimiento(A1)",
           url: "solicitar/a1",
@@ -77,6 +52,78 @@ export class SidebarService {
         {
           titulo: "Certificado(12.1)",
           url: "solicitar/a12_1",
+        },
+      ],
+    },
+    {
+      titulo: "Gestion de PPP",
+      icono: "mdi mdi-account-multiple",
+      submenu: [
+        {
+          titulo: "Convocatorias",
+          url: "convocatorias",
+        },
+        {
+          titulo: "Seleccion de estudiantes",
+          url: "seleccionestudiantes",
+        },
+        {
+          titulo: "Designar Tutor academico",
+          url: "designarTutorAcademico",
+        },
+      ],
+    },
+    {
+      titulo: "Gestion Tutor Academico",
+      icono: "mdi mdi-account-multiple",
+      submenu: [
+        {
+          titulo: "Seguimientos",
+          url: "seguimientos",
+        },
+        {
+          titulo: "Visitas",
+          url: "visitas",
+        },
+        {
+          titulo: "Evaluaciones",
+          url: "evualaciones",
+        },
+      ],
+    },
+    {
+      titulo: "Gestion Alumnos",
+      icono: "mdi mdi-account-multiple",
+      submenu: [
+        {
+          titulo: "Convocatorias",
+          url: "convocatorias",
+        },
+        {
+          titulo: "Solicitudes",
+          url: "solicitudes",
+        },
+        {
+          titulo: "Asistencias",
+          url: "asistencias",
+        },
+        {
+          titulo: "Informes",
+          url: "informes",
+        },
+      ],
+    },
+    {
+      titulo: "Personal",
+      icono: "mdi mdi-account-multiple",
+      submenu: [
+        {
+          titulo: "Personas",
+          url: "personas",
+        },
+        {
+          titulo: "Usuarios",
+          url: "usarios",
         },
       ],
     },
