@@ -1,7 +1,27 @@
-<div *ngIf="getAnexo() === 'a1'">
-  <h1>Solicitar Requerimiento (A1)</h1>
-  <h2>Anexo 1: Solicitud emitida por entidad receptora</h2>
-  <p>*Debe contener firma y sello de la entidad receptora</p>
+<div *ngIf="getAnexo() === 'a1' || getAnexo().startsWith('a12')">
+  <h1>
+    {{
+      getAnexo() === "a1"
+        ? "Solicitar Requerimiento (A1)"
+        : getAnexo() === "a12"
+        ? "Evaluacion a estudiantes (A12)"
+        : "Certificado (A12.1)"
+    }}
+  </h1>
+  <h2>
+    Anexo
+    {{
+      getAnexo() === "a1"
+        ? "1: Solicitud emitida por entidad receptora"
+        : getAnexo() === "a12"
+        ? "12: Rubrica de Evaluacion (Tutor Empresarial)"
+        : "12.1: Certificado Empresa Receptora"
+    }}
+  </h2>
+  <p>
+    *El anexo debe contener firma y sello de la entidad receptora o tutor
+    empresarial segun corresponda
+  </p>
   <hr />
   <h2 class="text-center">
     <b> Realiza la solicitud de requerimiento en tan solo 2 pasos! </b>
@@ -19,12 +39,9 @@
               Descarga el anexo pulsando el boton 'Descargar', y llenalo con los
               datos correspondientes.
             </p>
-            <a
-              href="https://www.tecazuay.edu.ec/assets/archivos/normativa/base_legal_interna/9.1%20Instructivo%20y%20formatos%20de%20Pr%C3%A1cticas%20Preprofesionales.pdf"
-              class="btn btn-primary"
-              target="_blank"
-              >Descargar</a
-            >
+            <button (click)="downloadAnexo()" class="btn btn-primary">
+              Descargar
+            </button>
           </div>
         </div>
       </div>
@@ -39,12 +56,34 @@
               Sube el anexo llenado en formato PDF, antes de subir verifica que
               los datos esten correctos.
             </p>
-            <a href="#" class="btn btn-primary">Subir</a>
+            <input
+              #anexoFile
+              class="form-control form-control-sm mb-3"
+              id="anexo"
+              type="file"
+              required
+            />
+            <button
+              (click)="uploadAnexo(anexoFile.value)"
+              class="btn btn-primary"
+            >
+              Subir
+            </button>
           </div>
         </div>
       </div>
     </div>
   </div>
+  <hr />
+  <p>
+    Necesitas mas informacion?
+    <a
+      href="https://www.tecazuay.edu.ec/assets/archivos/normativa/base_legal_interna/9.1%20Instructivo%20y%20formatos%20de%20Pr%C3%A1cticas%20Preprofesionales.pdf"
+      target="_blank"
+    >
+      Presiona el link
+    </a>
+  </p>
 </div>
 <div *ngIf="getAnexo() === 'a4'">
   <h1>Listado de estudiantes asignados (A4)</h1>
@@ -105,12 +144,4 @@
       </tr>
     </tbody>
   </table>
-</div>
-<div *ngIf="getAnexo() === 'a12'">
-  <h1>Evaluacion a estudiantes (A12)</h1>
-  <h2>Convocatoria ABC_123</h2>
-</div>
-<div *ngIf="getAnexo() === 'a12_1'">
-  <h1>Certificado (A12.1)</h1>
-  <h2>Convocatoria ABC_123</h2>
 </div>

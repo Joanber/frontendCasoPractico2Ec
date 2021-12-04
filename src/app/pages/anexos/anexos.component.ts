@@ -49,6 +49,35 @@ export class AnexosComponent implements OnInit {
     return this.routeParam;
   }
 
+  downloadAnexo() {
+    //TODO: DOWNLOAD FILE
+
+    if (this.getAnexo() === "a1") {
+      console.log("DOWNLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12") {
+      console.log("DOWNLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12_1") {
+      console.log("DOWNLOADING...", this.getAnexo());
+    } else {
+      alert(this.getAnexo() + " no existe");
+    }
+  }
+
+  uploadAnexo(filePath: string) {
+    //TODO: Upload File
+    console.log("FILE PATH: ", filePath);
+
+    if (this.getAnexo() === "a1") {
+      console.log("UPLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12") {
+      console.log("UPLOADING...", this.getAnexo());
+    } else if (this.getAnexo() === "a12_1") {
+      console.log("UPLOADING...", this.getAnexo());
+    } else {
+      alert(this.getAnexo() + " no existe");
+    }
+  }
+
   setTutorEmpresarial(studentId: string, tutorNombre: string) {
     this.students.filter((student) => student.id === studentId)[0].empTutor =
       tutorNombre;
