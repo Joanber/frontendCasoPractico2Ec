@@ -1,5 +1,50 @@
 <div *ngIf="getAnexo() === 'a1'">
   <h1>Solicitar Requerimiento (A1)</h1>
+  <h2>Anexo 1: Solicitud emitida por entidad receptora</h2>
+  <p>*Debe contener firma y sello de la entidad receptora</p>
+  <hr />
+  <h2 class="text-center">
+    <b> Realiza la solicitud de requerimiento en tan solo 2 pasos! </b>
+  </h2>
+  <div class="container">
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <b> PASO 1 </b>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Descarga el anexo</h5>
+            <p class="card-text">
+              Descarga el anexo pulsando el boton 'Descargar', y llenalo con los
+              datos correspondientes.
+            </p>
+            <a
+              href="https://www.tecazuay.edu.ec/assets/archivos/normativa/base_legal_interna/9.1%20Instructivo%20y%20formatos%20de%20Pr%C3%A1cticas%20Preprofesionales.pdf"
+              class="btn btn-primary"
+              target="_blank"
+              >Descargar</a
+            >
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="card">
+          <div class="card-header">
+            <b> PASO 2 </b>
+          </div>
+          <div class="card-body">
+            <h5 class="card-title">Sube el anexo</h5>
+            <p class="card-text">
+              Sube el anexo llenado en formato PDF, antes de subir verifica que
+              los datos esten correctos.
+            </p>
+            <a href="#" class="btn btn-primary">Subir</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 <div *ngIf="getAnexo() === 'a4'">
   <h1>Listado de estudiantes asignados (A4)</h1>
