@@ -15,26 +15,12 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">0104640974</th>
-        <td>Michael</td>
-        <td>Padilla</td>
-        <td>michael.padilla.est@tecazuay.edu.ec</td>
-        <td>0996082041</td>
-      </tr>
-      <tr>
-        <th scope="row">0104640974</th>
-        <td>Michael</td>
-        <td>Padilla</td>
-        <td>michael.padilla.est@tecazuay.edu.ec</td>
-        <td>0996082041</td>
-      </tr>
-      <tr>
-        <th scope="row">0104640974</th>
-        <td>Michael</td>
-        <td>Padilla</td>
-        <td>michael.padilla.est@tecazuay.edu.ec</td>
-        <td>0996082041</td>
+      <tr *ngFor="let student of students">
+        <th scope="row">{{ student.id }}</th>
+        <td>{{ student.names }}</td>
+        <td>{{ student.last }}</td>
+        <td>{{ student.email }}</td>
+        <td>{{ student.phone }}</td>
       </tr>
     </tbody>
   </table>
@@ -50,22 +36,26 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <th scope="row">Michael Padilla</th>
+      <tr *ngFor="let student of students">
+        <th scope="row">
+          {{ student.names }}
+          {{
+            student.empTutor ? "(" + student.empTutor + ")" : "(NO ASIGNADO)"
+          }}
+        </th>
         <td>
-          <input type="text" required />
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Juan Perez</th>
-        <td>
-          <input type="text" required />
-        </td>
-      </tr>
-      <tr>
-        <th scope="row">Pedro Jose</th>
-        <td>
-          <input type="text" required />
+          <input #tutor type="text" name="tutor" class="mx-3" required />
+          <button
+            class="btn"
+            [ngClass]="{
+              'btn-primary': !student.empTutor,
+              'btn-disabled': student.empTutor
+            }"
+            (click)="setTutorEmpresarial(student.id, tutor.value)"
+            [disabled]="student.empTutor"
+          >
+            {{ student.empTutor ? "ASIGNADO" : "ASIGNAR" }}
+          </button>
         </td>
       </tr>
     </tbody>
