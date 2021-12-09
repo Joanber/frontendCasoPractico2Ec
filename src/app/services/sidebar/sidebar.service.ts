@@ -9,10 +9,12 @@ export class SidebarService {
     {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
-      submenu: [{ titulo: "Convocatorias", url: "/" },
-      { titulo: "Procesos", url: "/" },
-      { titulo: "Informacion Carrera", url: "/" },
-      { titulo: "Instructivo/Anexos", url: "/" }],
+      submenu: [
+        { titulo: "Convocatorias", url: "/" },
+        { titulo: "Procesos", url: "/" },
+        { titulo: "Informacion Carrera", url: "/" },
+        { titulo: "Instructivo/Anexos", url: "/" },
+      ],
     },
     {
       titulo: "Gestión de Vinculación ",
@@ -30,6 +32,7 @@ export class SidebarService {
       submenu: [
         { titulo: "Empresas", url: "empresas" },
         { titulo: "Docentes", url: "docentes" },
+        { titulo: "Carreras", url: "carreras" },
       ],
     },
     {

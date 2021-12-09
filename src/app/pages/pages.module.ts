@@ -8,13 +8,22 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
-import { MatDatepickerModule, MatPaginatorModule } from "@angular/material";
+import {
+  MatAutocompleteModule,
+  MatDatepickerModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatPaginatorModule,
+} from "@angular/material";
 import {
   MatMomentDateModule,
   MomentDateModule,
 } from "@angular/material-moment-adapter";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
-import { AnexosComponent } from './anexos/anexos.component';
+import { AnexosComponent } from "./anexos/anexos.component";
+import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
+import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
+import { NgSelectModule } from "@ng-select/ng-select";
 
 @NgModule({
   declarations: [
@@ -25,6 +34,8 @@ import { AnexosComponent } from './anexos/anexos.component';
     AddPersonaComponent,
     ListEmpresasComponent,
     AnexosComponent,
+    ListCarrerasComponent,
+    AddCarreraComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
@@ -37,6 +48,10 @@ import { AnexosComponent } from './anexos/anexos.component';
     MatDatepickerModule,
     MatMomentDateModule,
     MomentDateModule,
+    MatAutocompleteModule,
+    MatFormFieldModule,
+    MatInputModule,
+    NgSelectModule,
   ],
 })
 export class PagesModule {}
