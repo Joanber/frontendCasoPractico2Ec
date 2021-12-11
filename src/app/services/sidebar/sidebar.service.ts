@@ -9,12 +9,11 @@ export class SidebarService {
     {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
-      submenu: [
-        { titulo: "Convocatorias", url: "/" },
-        { titulo: "Procesos", url: "/" },
-        { titulo: "Informacion Carrera", url: "/" },
-        { titulo: "Instructivo/Anexos", url: "/" },
-      ],
+      submenu: [{ titulo: "Convocatorias", url: "soli/convoc1" },
+               { titulo: "Procesos", url: "soli/procesos" },
+               { titulo: "Informacion Carrera", url: "soli/infocarrera" },
+               { titulo: "Instructivo/Anexos", url: "soli/instructivos" }],
+
     },
     {
       titulo: "Gestión de Vinculación ",
