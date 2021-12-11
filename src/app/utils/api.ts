@@ -1,4 +1,6 @@
+import { allNotificationsUrl } from "./../constants";
+
 export const getAllNotifications = async () => {
-  let data = await fetch("http://localhost:8081/notification/all");
+  let data = await fetch(allNotificationsUrl);
   return await data.json();
 };
