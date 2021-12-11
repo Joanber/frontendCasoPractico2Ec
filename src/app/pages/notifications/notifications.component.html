@@ -1,0 +1,21 @@
+<div class="card text-center" *ngFor="let notification of notifications">
+  <div class="card-header">{{ notification.convocatoriaId }}</div>
+  <div class="card-body">
+    <h5 class="card-title">{{ notification.title }}</h5>
+    <p class="card-text">
+      {{ notification.message }}
+    </p>
+    <div class="container mb-3" *ngIf="notification.showDescription">
+      <hr />
+      <p class="card-text">
+        {{ notification.description }}
+      </p>
+    </div>
+    <button
+      (click)="toggleDescription(notification.notificationId)"
+      class="btn btn-primary"
+    >
+      {{ !notification.showDescription ? "Ver Detalles" : "Ocultar Detalles" }}
+    </button>
+  </div>
+</div>

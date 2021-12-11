@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { getAllNotifications } from "./../../utils/api";
 
 @Component({
   selector: "app-header",
@@ -11,7 +12,7 @@ export class HeaderComponent implements OnInit {
   constructor() {}
 
   ngOnInit() {
-    this.getAllNotifications();
+    this.setAllNotifications();
   }
 
   logout() {}
@@ -22,10 +23,7 @@ export class HeaderComponent implements OnInit {
     }
   }
 
-  async getAllNotifications() {
-    let data = await fetch("http://localhost:8081/notification/all");
-    this.notifications = await data.json();
-
-    console.log(this.notifications);
+  async setAllNotifications() {
+    this.notifications = await getAllNotifications();
   }
 }

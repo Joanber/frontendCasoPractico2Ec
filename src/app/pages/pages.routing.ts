@@ -9,6 +9,7 @@ import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
 
 const routes: Routes = [
   {
@@ -61,11 +62,15 @@ const routes: Routes = [
         component: AddCarreraComponent,
         data: { titulo: "Actualizar Carrera" },
       },
-
       {
         path: "solicitar/:anexo",
         component: AnexosComponent,
         data: { titulo: "Anexos Gestion Empresa" },
+      },
+      {
+        path: "notifications",
+        component: NotificationsComponent,
+        data: { titulo: "Notificaciones" },
       },
     ],
   },

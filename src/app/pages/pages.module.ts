@@ -24,6 +24,7 @@ import { AnexosComponent } from "./anexos/anexos.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { NgSelectModule } from "@ng-select/ng-select";
+import { NotificationsComponent } from './notifications/notifications.component';
 
 @NgModule({
   declarations: [
@@ -36,6 +37,7 @@ import { NgSelectModule } from "@ng-select/ng-select";
     AnexosComponent,
     ListCarrerasComponent,
     AddCarreraComponent,
+    NotificationsComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
