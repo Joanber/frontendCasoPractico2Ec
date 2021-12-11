@@ -1,5 +1,22 @@
 <div class="card text-center" *ngFor="let notification of notifications">
-  <div class="card-header">{{ notification.convocatoriaId }}</div>
+  <div
+    class="card-header text-color"
+    [ngClass]="{
+      'bg-danger': notification.type === 'error',
+      'bg-success': notification.type === 'success',
+      'bg-info': notification.type === 'info',
+      'bg-warning': notification.type === 'warning',
+      'text-light':
+        notification.type === 'error' ||
+        notification.type === 'info' ||
+        notification.type === 'success' ||
+        notification.type === 'warning'
+    }"
+  >
+    <b>
+      {{ notification.convocatoriaId }}
+    </b>
+  </div>
   <div class="card-body">
     <h5 class="card-title">{{ notification.title }}</h5>
     <p class="card-text">
