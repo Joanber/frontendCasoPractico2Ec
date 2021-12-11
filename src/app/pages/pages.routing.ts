@@ -7,8 +7,11 @@ import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { AnexosComponent } from "./anexos/anexos.component";
+
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
+import { InformacionComponent } from "./informacion/informacion.component";
+
 
 const routes: Routes = [
   {
@@ -66,6 +69,11 @@ const routes: Routes = [
         path: "solicitar/:anexo",
         component: AnexosComponent,
         data: { titulo: "Anexos Gestion Empresa" },
+      },
+      {
+        path: "soli/:informacion",
+        component: InformacionComponent,
+        data: { titulo: "Informacion" },
       },
     ],
   },
