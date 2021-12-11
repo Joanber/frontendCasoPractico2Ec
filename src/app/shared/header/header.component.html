@@ -96,14 +96,16 @@
               <li>
                 <div class="message-center">
                   <!-- Message -->
-                  <a href="#">
+                  <a href="#" *ngFor="let notification of notifications">
                     <div class="btn btn-danger btn-circle">
                       <i class="fa fa-link"></i>
                     </div>
                     <div class="mail-contnet">
-                      <h5>Luanch Admin</h5>
-                      <span class="mail-desc">Just see the my new admin!</span>
-                      <span class="time">9:30 AM</span>
+                      <h5>{{ notification.title }}</h5>
+                      <span class="mail-desc">{{ notification.message }}</span>
+                      <span class="time">{{
+                        notification.convocatoriaId
+                      }}</span>
                     </div>
                   </a>
                 </div>
