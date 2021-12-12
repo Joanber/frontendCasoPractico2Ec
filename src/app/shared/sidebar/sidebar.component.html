@@ -11,8 +11,27 @@
             aria-expanded="false"
           >
             <!-- <img [src]="usuario.imagenUrl" alt="user" /> -->
-            <img src="./assets/images/users/profile.png" alt="user" />
-            <span class="hide-menu"> Andres</span></a
+            <img
+              *ngIf="!usuarioService.usuario.persona.fotoHashCode"
+              src="./assets/images/users/profile.png"
+              alt="user"
+            />
+            <img
+              *ngIf="usuarioService.usuario.persona.fotoHashCode"
+              [src]="
+                bd_url +
+                '/img/' +
+                usuarioService.usuario.persona.id +
+                '?fotoHashCode=' +
+                usuarioService.usuario.persona.fotoHashCode
+              "
+              alt="Foto"
+              class="avatar cursor"
+            />
+            <span class="hide-menu"
+              >{{ usuarioService.usuario.persona.primer_nombre }}
+              {{ usuarioService.usuario.persona.primer_apellido }}
+            </span></a
           >
           <ul aria-expanded="false" class="collapse">
             <li>

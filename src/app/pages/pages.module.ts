@@ -8,13 +8,7 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
-import {
-  MatAutocompleteModule,
-  MatDatepickerModule,
-  MatFormFieldModule,
-  MatInputModule,
-  MatPaginatorModule,
-} from "@angular/material";
+import { MatDatepickerModule, MatPaginatorModule } from "@angular/material";
 import {
   MatMomentDateModule,
   MomentDateModule,
@@ -48,9 +42,6 @@ import { NgSelectModule } from "@ng-select/ng-select";
     MatDatepickerModule,
     MatMomentDateModule,
     MomentDateModule,
-    MatAutocompleteModule,
-    MatFormFieldModule,
-    MatInputModule,
     NgSelectModule,
   ],
 })

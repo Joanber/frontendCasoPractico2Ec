@@ -9,11 +9,13 @@ import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
+import { AuthGuard } from "../guards/auth.guard";
 
 const routes: Routes = [
   {
     path: "dashboard",
     component: PagesComponent,
+    canActivate: [AuthGuard],
 
     children: [
       {

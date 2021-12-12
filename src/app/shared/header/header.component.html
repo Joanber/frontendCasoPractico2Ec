@@ -127,16 +127,33 @@
             aria-haspopup="true"
             aria-expanded="false"
             ><img
+              *ngIf="!usuarioService.usuario.persona.fotoHashCode"
               src="./assets/images/users/profile.png"
               alt="user"
               class="profile-pic"
-          /></a>
+            />
+            <img
+              *ngIf="usuarioService.usuario.persona.fotoHashCode"
+              [src]="
+                bd_url +
+                '/img/' +
+                usuarioService.usuario.persona.id +
+                '?fotoHashCode=' +
+                usuarioService.usuario.persona.fotoHashCode
+              "
+              alt="Foto"
+              class="avatar cursor"
+            />
+          </a>
           <div class="dropdown-menu dropdown-menu-right animated fadeIn fast">
             <ul class="dropdown-user">
               <li>
                 <div class="dw-user-box">
                   <div class="u-text">
-                    <h4>Andres</h4>
+                    <h4>
+                      {{ usuarioService.usuario.persona.primer_nombre }}
+                      {{ usuarioService.usuario.persona.primer_apellido }}
+                    </h4>
                   </div>
                 </div>
               </li>
@@ -148,13 +165,13 @@
               <li role="separator" class="divider"></li>
               <li>
                 <a routerLink="account-settings"
-                  ><i class="ti-settings"></i>Configuracion</a
+                  ><i class="ti-settings"></i> Configuracion</a
                 >
               </li>
               <li role="separator" class="divider"></li>
               <li>
                 <a (click)="logout()" class="cursor"
-                  ><i class="fa fa-power-off e"></i> Cerrar Sessión</a
+                  ><i class="fa fa-power-off e"></i> Cerrar Sesión</a
                 >
               </li>
             </ul>
