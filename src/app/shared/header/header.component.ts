@@ -3,6 +3,8 @@ import { Router } from "@angular/router";
 import { UsuarioService } from "src/app/services/services.models/usuario.service";
 import { environment } from "src/environments/environment";
 const bd_url = environment.bd_url;
+import { getAllNotifications } from "./../../utils/api";
+
 @Component({
   selector: "app-header",
   templateUrl: "./header.component.html",
@@ -11,8 +13,11 @@ const bd_url = environment.bd_url;
 export class HeaderComponent implements OnInit {
   public bd_url = bd_url + "/personas";
   constructor(public usuarioService: UsuarioService, private router: Router) {}
+  private notifications = [];
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.setAllNotifications();
+  }
 
   logout() {
     this.usuarioService.logout();
@@ -23,5 +28,9 @@ export class HeaderComponent implements OnInit {
     if (termino.length === 0) {
       return;
     }
+  }
+
+  async setAllNotifications() {
+    this.notifications = await getAllNotifications();
   }
 }

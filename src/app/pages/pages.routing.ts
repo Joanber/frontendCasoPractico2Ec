@@ -7,9 +7,16 @@ import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { AnexosComponent } from "./anexos/anexos.component";
+
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { AuthGuard } from "../guards/auth.guard";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { InformacionComponent } from "./informacion/informacion.component";
+import { ConvocatoriaComponent } from "./gestion-ppp/convocatoria/convocatoria.component";
+import { SeleccionEstudiantesComponent } from "./gestion-ppp/seleccion-estudiantes/seleccion-estudiantes.component";
+import { DesignarTutorAcademicoComponent } from "./gestion-ppp/designar-tutor-academico/designar-tutor-academico.component";
+import { GenararActaComponent } from "./gestion-ppp/genarar-acta/genarar-acta.component";
 
 const routes: Routes = [
   {
@@ -63,11 +70,40 @@ const routes: Routes = [
         component: AddCarreraComponent,
         data: { titulo: "Actualizar Carrera" },
       },
-
       {
         path: "solicitar/:anexo",
         component: AnexosComponent,
         data: { titulo: "Anexos Gestion Empresa" },
+      },
+      {
+        path: "notifications",
+        component: NotificationsComponent,
+        data: { titulo: "Notificaciones" },
+      },
+      {
+        path: "soli/:informacion",
+        component: InformacionComponent,
+        data: { titulo: "Informacion" },
+      },
+      {
+        path: "convocatorias",
+        component: ConvocatoriaComponent,
+        data: { titulo: "Convocatoria Practicas Pre Profesionales" },
+      },
+      {
+        path: "seleccionestudiantes",
+        component: SeleccionEstudiantesComponent,
+        data: { titulo: "Seleccion Estudiantes" },
+      },
+      {
+        path: "designarTutorAcademico",
+        component: DesignarTutorAcademicoComponent,
+        data: { titulo: "Designar Tutor Academico" },
+      },
+      {
+        path: "generarActa",
+        component: GenararActaComponent,
+        data: { titulo: "Acta" },
       },
     ],
   },
