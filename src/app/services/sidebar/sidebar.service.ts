@@ -76,6 +76,14 @@ export class SidebarService {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
+        {
+          titulo: "Generar Acta",
+          url: "generarActa",
+        },
+        {
+          titulo: "Reportes",
+          url: "reportes",
+        }
       ],
     },
     {
