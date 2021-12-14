@@ -3,7 +3,7 @@ import { Router } from "@angular/router";
 import { UsuarioService } from "src/app/services/services.models/usuario.service";
 import { environment } from "src/environments/environment";
 const bd_url = environment.bd_url;
-import { getAllNotifications } from "./../../utils/api";
+import { getNotificationsOfUser } from "./../../utils/api";
 
 @Component({
   selector: "app-header",
@@ -31,6 +31,6 @@ export class HeaderComponent implements OnInit {
   }
 
   async setAllNotifications() {
-    this.notifications = await getAllNotifications();
+    this.notifications = await getNotificationsOfUser();
   }
 }

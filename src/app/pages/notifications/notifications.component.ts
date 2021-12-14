@@ -1,5 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { getAllNotifications } from "./../../utils/api";
+import { getNotificationsOfUser } from "./../../utils/api";
+import { ActivatedRoute } from "@angular/router";
+import { Subscription } from "rxjs";
 
 @Component({
   selector: "app-notifications",
@@ -7,18 +9,34 @@ import { getAllNotifications } from "./../../utils/api";
   styleUrls: ["./notifications.component.css"],
 })
 export class NotificationsComponent implements OnInit {
+  private routeSub: Subscription;
+  private routeParam: string;
   private notifications = [];
 
-  constructor() {}
+  constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.setAllNotifications();
+    this.routeSub = this.route.params.subscribe(
+      (params) => (this.routeParam = params["id"])
+    );
+    if (this.routeParam) this.setSelectedNotification();
+    else this.setAllNotifications();
   }
 
   async setAllNotifications() {
-    this.notifications = await getAllNotifications();
+    this.notifications = await getNotificationsOfUser();
     this.notifications.forEach(
       (notification) => (notification.showDescription = false)
+    );
+  }
+
+  async setSelectedNotification() {
+    await this.setAllNotifications();
+    this.notifications = this.notifications.filter(
+      (notification) => notification.notificationId === this.routeParam
+    );
+    this.notifications.forEach((notification) =>
+      this.toggleDescription(notification.notificationId)
     );
   }
 
@@ -27,5 +45,9 @@ export class NotificationsComponent implements OnInit {
       (notification) => notification.notificationId === notificationId
     )[0];
     currentNotification.showDescription = !currentNotification.showDescription;
+  }
+
+  ngOnDestroy() {
+    this.routeSub.unsubscribe();
   }
 }
