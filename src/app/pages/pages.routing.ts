@@ -13,10 +13,11 @@ import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { AuthGuard } from "../guards/auth.guard";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { InformacionComponent } from "./informacion/informacion.component";
-import { DesignarTutorAcademicoComponent } from "./gestion-ppp/designar-tutor-academico/designar-tutor-academico.component";
-import { SeleccionEstudiantesComponent } from "./gestion-ppp/seleccion-estudiantes/seleccion-estudiantes.component";
-import { ConvocatoriaComponent } from "./gestion-ppp/convocatoria/convocatoria.component";
-import { GenararActaComponent } from "./gestion-ppp/genarar-acta/genarar-acta.component";
+import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
+
+import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
+import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
+import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 
 
 const routes: Routes = [
