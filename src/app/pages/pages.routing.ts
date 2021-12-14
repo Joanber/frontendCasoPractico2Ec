@@ -81,6 +81,11 @@ const routes: Routes = [
         data: { titulo: "Notificaciones" },
       },
       {
+        path: "notifications/:id",
+        component: NotificationsComponent,
+        data: { titulo: "Notificacion" },
+      },
+      {
         path: "soli/:informacion",
         component: InformacionComponent,
         data: { titulo: "Informacion" },
