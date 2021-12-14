@@ -1,5 +1,5 @@
 import { Component, OnInit } from "@angular/core";
-import { getAllNotifications } from "./../../utils/api";
+import { getNotificationsOfUser } from "./../../utils/api";
 
 @Component({
   selector: "app-notifications",
@@ -16,10 +16,12 @@ export class NotificationsComponent implements OnInit {
   }
 
   async setAllNotifications() {
-    this.notifications = await getAllNotifications();
+    this.notifications = await getNotificationsOfUser();
     this.notifications.forEach(
       (notification) => (notification.showDescription = false)
     );
+    const user = JSON.parse(localStorage.getItem("usuario"));
+    console.log(user.username);
   }
 
   toggleDescription(notificationId: string) {
