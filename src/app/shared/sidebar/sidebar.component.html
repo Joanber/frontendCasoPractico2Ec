@@ -58,8 +58,8 @@
                 routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }"
               >
-                <i></i>
-                <span class="hide-menu">{{ subMenuItem.titulo }}</span>
+                <i  [class]="subMenuItem.icono" style="font-size: 20px;"></i>
+                <span class="hide-menu m-2">{{ subMenuItem.titulo }}</span>
               </a>
             </li>
           </ul>

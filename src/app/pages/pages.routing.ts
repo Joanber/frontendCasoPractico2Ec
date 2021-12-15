@@ -1,23 +1,27 @@
-import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
-import { PagesComponent } from "./pages.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { AccountSettingsComponent } from "./account-settings/account-settings.component";
-import { ListPersonasComponent } from "./list-personas/list-personas.component";
-import { AddPersonaComponent } from "./add-persona/add-persona.component";
-import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
-import { AnexosComponent } from "./anexos/anexos.component";
-
-import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
-import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
+import { RouterModule, Routes } from "@angular/router";
 import { AuthGuard } from "../guards/auth.guard";
-import { NotificationsComponent } from "./notifications/notifications.component";
-import { InformacionComponent } from "./informacion/informacion.component";
+import { AccountSettingsComponent } from "./account-settings/account-settings.component";
+import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
-import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
+import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
+import { AddPersonaComponent } from "./add-persona/add-persona.component";
+import { AnexosComponent } from "./anexos/anexos.component";
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
+import { DashboardComponent } from "./dashboard/dashboard.component";
+import { AcreditacionPppComponent } from './gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component';
+import { EstadoProcesosPppComponent } from './gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component';
+import { HistorialProcesosPppComponent } from './gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component';
+import { RegistroConveniosComponent } from './gestion-vinculacion/registro-convenios/registro-convenios.component';
+import { InformacionComponent } from "./informacion/informacion.component";
+import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
+import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
+import { ListPersonasComponent } from "./list-personas/list-personas.component";
+import { NotificationsComponent } from "./notifications/notifications.component";
+import { PagesComponent } from "./pages.component";
+
 
 
 const routes: Routes = [
@@ -115,7 +119,33 @@ const routes: Routes = [
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
         data: { titulo: "Consultas Reportes" },
-      } ,
+      },
+      {
+        path: 'registro-convenios',
+        component: RegistroConveniosComponent,
+        data: {
+          titulo: 'Registro de Convenios'
+        }
+      },
+      {
+        path: 'acreditacion-ppp',
+        component: AcreditacionPppComponent,
+        data: {
+          titulo: 'Informe de acreditación de PPP'
+        }
+      },
+      {
+        path: 'estado-procesos-ppp',
+        component: EstadoProcesosPppComponent,
+        data: {
+          titulo: 'Estado de procesos PPP'
+        }
+      },
+      {
+        path: 'historial-procesos-ppp',
+        component: HistorialProcesosPppComponent,
+        data: { titulo: 'Historial de procesos PPP' }
+      }
     ],
   },
 ];

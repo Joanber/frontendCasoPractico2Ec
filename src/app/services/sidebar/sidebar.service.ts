@@ -10,19 +10,19 @@ export class SidebarService {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
       submenu: [{ titulo: "Convocatorias", url: "soli/convoc1" },
-               { titulo: "Procesos", url: "soli/procesos" },
-               { titulo: "Informacion Carrera", url: "soli/infocarrera" },
-               { titulo: "Instructivo/Anexos", url: "soli/instructivos" }],
+      { titulo: "Procesos", url: "soli/procesos" },
+      { titulo: "Informacion Carrera", url: "soli/infocarrera" },
+      { titulo: "Instructivo/Anexos", url: "soli/instructivos" }],
 
     },
     {
-      titulo: "Gestión de Vinculación ",
-      icono: "mdi mdi-clipboard-text",
+      titulo: 'Gestión de Vinculación ',
+      icono: 'mdi mdi-account-switch',
       submenu: [
-        { titulo: "Convenios", url: "convenios" },
-        { titulo: "Informes", url: "informes" },
-        { titulo: "Consultar Procesos", url: "consultarProcesos" },
-        { titulo: "Historial", url: "historial" },
+        { titulo: 'Convenios', icono: 'mdi  mdi-file-outline', url: 'registro-convenios' },
+        { titulo: 'Acreditacion PPP', icono: 'mdi   mdi-file-document' , url: 'acreditacion-ppp' },
+        { titulo: 'Procesos PPP', icono: 'mdi  mdi mdi-chart-line', url: 'estado-procesos-ppp' },
+        { titulo: 'Historial PPP', icono: 'mdi    mdi-archive', url: 'historial-procesos-ppp' },
       ],
     },
     {
