@@ -18,6 +18,11 @@ export class CarreraService {
     return this.http.get<Carrera>(`${bd_url}/${id}`);
   }
 
+  //CARRERAS SIN PAGINACION
+  getCarreras(): Observable<Carrera[]> {
+    return this.http.get<Carrera[]>(`${bd_url}/filtrar`);
+  }
+
   //PAGINACION DE CARRERAS
   getCarrerasPage(
     page: string,
