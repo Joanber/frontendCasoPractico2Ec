@@ -19,7 +19,7 @@ export class SidebarService {
       titulo: 'Gestión de Vinculación ',
       icono: 'mdi mdi-account-switch',
       submenu: [
-        { titulo: 'Convenios', icono: 'mdi  mdi-file-outline', url: 'registro-convenios' },
+        { titulo: 'Convenios', icono: 'mdi  mdi-file-outline', url: 'convenios' },
         { titulo: 'Acreditacion PPP', icono: 'mdi   mdi-file-document' , url: 'acreditacion-ppp' },
         { titulo: 'Procesos PPP', icono: 'mdi  mdi mdi-chart-line', url: 'estado-procesos-ppp' },
         { titulo: 'Historial PPP', icono: 'mdi    mdi-archive', url: 'historial-procesos-ppp' },
