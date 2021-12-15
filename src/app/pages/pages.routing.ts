@@ -21,6 +21,7 @@ import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
+import { ProfileComponent } from "./profile/profile.component";
 
 
 
@@ -40,6 +41,11 @@ const routes: Routes = [
         path: "account-settings",
         component: AccountSettingsComponent,
         data: { titulo: "Ajustes de cuenta" },
+      },
+      {
+        path: "perfil",
+        component: ProfileComponent,
+        data: { titulo: "Mi Perfil" },
       },
       {
         path: "personas",
@@ -95,7 +101,7 @@ const routes: Routes = [
         path: "soli/:informacion",
         component: InformacionComponent,
         data: { titulo: "Informacion" },
-      }  ,
+      },
       {
         path: "convocatorias",
         component: ConvocatoriaComponent,
@@ -115,7 +121,8 @@ const routes: Routes = [
         path: "generarActa",
         component: GenararActaComponent,
         data: { titulo: "Acta" },
-      } ,{
+      },
+      {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
         data: { titulo: "Consultas Reportes" },

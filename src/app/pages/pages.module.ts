@@ -29,9 +29,7 @@ import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
-
-
-
+import { ProfileComponent } from './profile/profile.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +53,8 @@ import { PagesComponent } from "./pages.component";
     AcreditacionPppComponent,
     EstadoProcesosPppComponent,
     HistorialProcesosPppComponent,
-    RegistroConveniosComponent
+    RegistroConveniosComponent,
+    ProfileComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
