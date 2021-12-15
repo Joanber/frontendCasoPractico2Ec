@@ -27,6 +27,7 @@ import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/selec
 import { ConsultasReportesPppComponent } from './consultas-reportes-ppp/consultas-reportes-ppp.component';
 import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
 import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
+import { ProfileComponent } from './profile/profile.component';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/
     SeleccionEstudiantesComponent,
     DesignarTutorAcademicoComponent,
     GenararActaComponent,
-    ConsultasReportesPppComponent
+    ConsultasReportesPppComponent,
+    ProfileComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

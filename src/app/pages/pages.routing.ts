@@ -1,6 +1,7 @@
 import { Routes, RouterModule } from "@angular/router";
 import { NgModule } from "@angular/core";
 import { PagesComponent } from "./pages.component";
+import { ProfileComponent } from "./profile/profile.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
@@ -19,7 +20,6 @@ import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
 
-
 const routes: Routes = [
   {
     path: "dashboard",
@@ -36,6 +36,11 @@ const routes: Routes = [
         path: "account-settings",
         component: AccountSettingsComponent,
         data: { titulo: "Ajustes de cuenta" },
+      },
+      {
+        path: "perfil",
+        component: ProfileComponent,
+        data: { titulo: "Mi Perfil" },
       },
       {
         path: "personas",
@@ -91,7 +96,7 @@ const routes: Routes = [
         path: "soli/:informacion",
         component: InformacionComponent,
         data: { titulo: "Informacion" },
-      }  ,
+      },
       {
         path: "convocatorias",
         component: ConvocatoriaComponent,
@@ -111,11 +116,12 @@ const routes: Routes = [
         path: "generarActa",
         component: GenararActaComponent,
         data: { titulo: "Acta" },
-      } ,{
+      },
+      {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
         data: { titulo: "Consultas Reportes" },
-      } ,
+      },
     ],
   },
 ];
