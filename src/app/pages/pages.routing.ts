@@ -13,11 +13,11 @@ import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { AuthGuard } from "../guards/auth.guard";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { InformacionComponent } from "./informacion/informacion.component";
-import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
-
 import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
-import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
+import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
+import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
+import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
 
 
 const routes: Routes = [
@@ -111,6 +111,10 @@ const routes: Routes = [
         path: "generarActa",
         component: GenararActaComponent,
         data: { titulo: "Acta" },
+      } ,{
+        path: "consultas-reportes",
+        component: ConsultasReportesPppComponent,
+        data: { titulo: "Consultas Reportes" },
       } ,
     ],
   },

@@ -45,10 +45,11 @@
                     <br>
                     <br> Atentamente,
                     <br>
-                    <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE <select>
-          <option>Desarrollo de Software</option>
-          <option>Analisis</option>
-        </select> <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+                    <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
+                    <select>
+                      <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+                    </select>
+                    <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
                 </div>
             </div>
         </div>

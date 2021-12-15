@@ -23,6 +23,8 @@ import { InformacionComponent } from "./informacion/informacion.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 
 import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
+
+import { ConsultasReportesPppComponent } from './consultas-reportes-ppp/consultas-reportes-ppp.component';
 import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
 import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
 
@@ -43,7 +45,8 @@ import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/
     ConvocatoriaComponent,
     SeleccionEstudiantesComponent,
     DesignarTutorAcademicoComponent,
-    GenararActaComponent
+    GenararActaComponent,
+    ConsultasReportesPppComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

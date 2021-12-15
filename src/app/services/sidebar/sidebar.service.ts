@@ -80,9 +80,10 @@ export class SidebarService {
           titulo: "Generar Acta",
           url: "generarActa",
         },
+
         {
-          titulo: "Reportes",
-          url: "reportes",
+          titulo: "Consultas Reportes",
+          url: "consultas-reportes",
         }
       ],
     },

@@ -64,9 +64,10 @@
         <option value="">3</option>
         <option value="">4</option>
         <option value="">5</option>
-      </select> ciclo de la carrera <select name="" id="">
-        <option value="">Desarrollo de software</option>
-        <option value="">Analisis</option>
+      </select> ciclo de la carrera
+
+            <select>
+        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
       </select> del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la cumplir con las <input type="text"> horas de prácticas pre profesionales.
             <table class="table table-striped">
                 <thead>
@@ -146,11 +147,11 @@
                                     Mgtr.<select>
                     <option> Aguilera</option>
                   </select> <br> Responsable de prácticas pre profesionales<br> de la carrera
+
                                     <select>
-                    <option>Sistemas</option>
-                    <option>Desarrollo</option>
-                    <option>Analisis</option>
-                  </select> <br> Instituto Superior Tecnológico del Azuay <br>
+                    <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+                  </select>
+                                    <br> Instituto Superior Tecnológico del Azuay <br>
 
                                 </div>
                             </div>

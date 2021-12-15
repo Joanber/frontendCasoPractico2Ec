@@ -9,9 +9,8 @@
         <div class="card-encabezado" style="text-align: right;">
             CONVOCATORIA
             <select>
-      <option>Desarrollo de Software</option>
-      <option>Analisis</option>
-    </select> 20xx – 00#<br /> Cuenca, de
+              <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+            </select> 20xx – 00#<br /> Cuenca, de
             <select>
       <option>Enero</option>
       <option>Analisis</option>
@@ -31,8 +30,7 @@
         <option>4</option>
       </select> ciclo de la carrera
             <select>
-        <option>Desarrollo de Software</option>
-        <option>Analisis</option>
+        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
       </select> que deseen realizar sus prácticas pre profesionales en la empresa <select>
         <option>1</option>
         <option>2</option>
@@ -62,10 +60,11 @@
 
                 Atentamente,
                 <br>
-                <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE <select>
-          <option>Desarrollo de Software</option>
-          <option>Analisis</option>
-        </select> <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+                <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
+                <select>
+                  <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+                </select>
+                <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
             </div>
         </div>
     </div>
