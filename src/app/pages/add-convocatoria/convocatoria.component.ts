@@ -10,33 +10,23 @@ import { DocenteService } from 'src/app/services/services.models/docente.service
   styleUrls: ['./convocatoria.component.css']
 })
 export class ConvocatoriaComponent implements OnInit {
-  public paginaActual = 0;
-  public totalPorPagina = 10;
 
-  //VARIABLE PARA BUSCAR
-  public busqueda: string = "";
+
   //VARIABLE DE CARRERAS
   public carreras: Carrera[] = [];
   //VARIABLE DE DOCENTES
   public docentes: Docente[] = [];
+
   constructor(private docenteService: DocenteService,
     private carreraService: CarreraService) { }
 
   ngOnInit() {
-    //this.getCarreras();
-    this.getCarrerasPage(
-      this.paginaActual.toString(),
-      this.totalPorPagina.toString(),
-      this.busqueda
-    );
+    this.getCarreras();
+
     this.getDocentes();
   }
 
-  private getCarrerasPage(page: string, size: string, busqueda: string) {
-    this.carreraService.getCarrerasPage(page, size, busqueda).subscribe((p) => {
-      this.carreras = p.content as Carrera[];
-    });
-  }
+
   private getDocentes() {
     this.docenteService.getDocentes().subscribe((docentes) => {
       this.docentes = docentes;
@@ -44,8 +34,8 @@ export class ConvocatoriaComponent implements OnInit {
   }
 
 
-  // private getCarreras() {
-  //      this.carreraService.getCarreras().subscribe((carreras)=>{
-  //       this.carreras=carreras;});
-  //   }
+  private getCarreras() {
+    this.carreraService.getCarreras().subscribe((carreras)=>{
+       this.carreras=carreras;});
+     }
 }
