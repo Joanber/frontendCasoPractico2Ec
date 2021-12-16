@@ -52,7 +52,7 @@
                     </div>
                     <mat-divider class="mb-3 mt-3"></mat-divider>
                     <section>
-                        <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" class="mr-2">
+                        <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" (click)="onSubmit()" class="mr-2">
                             Guardar
                         </button>
                         <button *ngIf="convenioForm.touched" mat-raised-button color="accent" type="reset" (click)="loadForm()" class="mr-2">Reset</button>
