@@ -24,11 +24,20 @@
         <option>Sr</option>
         <option>Dr</option>
         <option>Ing</option>
-      </select><br> GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc.<br>
-            <select>
-        <option>Nombre de la empresa </option>
-        <option>Analisis</option>
-      </select> <br> Su Despacho. -
+      </select>
+            <select class="form-control" style="width: auto;" name="empresa">
+        <option [ngValue]="undefined"> Seleccione el representante </option>
+        <option *ngFor="let empresa of empresas">{{empresa.representante}}</option>
+      </select>
+
+            <br> GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc.<br>
+
+            <select class="form-control" style="width: auto;" name="empresa">
+        <option [ngValue]="undefined"> Seleccione la empresa </option>
+        <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
+      </select>
+
+            <br> Su Despacho. -
             <div class="card-text">
 
                 <br />
@@ -70,11 +79,11 @@
 
                     Atentamente,
                     <br>
-                    <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE 
+                    <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
                     <select>
                         <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
                       </select>
-          <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+                    <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
                 </div>
             </div>
         </div>
