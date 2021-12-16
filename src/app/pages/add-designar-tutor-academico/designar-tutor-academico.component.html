@@ -19,10 +19,15 @@
         <div class="card-destinatario">
             Magíster<br>
             <select>
-      <option>Isaias</option>
-      <option>Christian</option>
+                <option *ngFor="let docente of docentes">
+                    {{ docente.persona.primer_nombre }}
+                    {{ docente.persona.segundo_nombre }}
+                    {{ docente.persona.primer_apellido }}
+                    {{ docente.persona.primer_apellido }}
 
-    </select><br> Docente
+
+                </option>
+            </select> <br> Docente
             <br> INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
             <br> Su Despacho. -
             <div class="card-text">

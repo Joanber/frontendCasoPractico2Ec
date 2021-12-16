@@ -10,65 +10,74 @@
         <div class="card-encabezado">
             Cuenca, de
             <select>
-        <option>Enero</option>
-        <option></option>
-        <option>Analisis</option>
-      </select>
+                <option>Enero</option>
+                <option></option>
+                <option>Analisis</option>
+            </select>
             <select>
-        <option>Año</option>
-        <option>2021</option>
-        <option></option>
-      </select>
+                <option>Año</option>
+                <option>2021</option>
+                <option></option>
+            </select>
         </div>
         <div class="card-asistentes">
 
-            Asistentes: - Mgtr. <select>
-        <option>Marcelo Aguilera</option>
-      </select> Responsable de Prácticas Pre Profesionales de la Carrera <select>
-        <option>Juan </option>
-        <option>Luis </option>
-        <option>Maria </option>
-      </select> del Instituto Superior Tecnológico del Azuay. <br>- Sr./Dr./Ing. <select name="" id="">
-        <option>Pedrito</option>
-        <option>Pepito</option>
-        <option>Juanita</option>
-      </select>, Tutor asignado por la empresa
+            Asistentes: - Mgtr.<select>
+                <option *ngFor="let docente of docentes">
+                    {{ docente.persona.primer_nombre }}
+                    {{ docente.persona.segundo_nombre }}
+                    {{ docente.persona.primer_apellido }}
+                    {{ docente.persona.primer_apellido }}
+
+
+                </option>
+            </select> Responsable de Prácticas Pre Profesionales de la Carrera <select>
+                <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+            </select>
+            del Instituto Superior Tecnológico del Azuay. <br>- Sr./Dr./Ing. <select name="" id="">
+                <option>Pedrito</option>
+                <option>Pepito</option>
+                <option>Juanita</option>
+            </select>, Tutor asignado por la empresa
 
             <select name="" id="">
-        <option>Coral</option>
-        <option>Etapa</option>
-        <option>Carlitos</option>
-      </select>
+                <option>Coral</option>
+                <option>Etapa</option>
+                <option>Carlitos</option>
+            </select>
 
 
-            <br> Asunto: Actividades a desarrollar en las prácticas pre profesionales por el estudiante <select name="" id="">
-        <option>Pedrito</option>
-        <option>Pepito</option>
-        <option>Juanita</option>
-      </select><br> Lugar de la reunión: <input>
+            <br> Asunto: Actividades a desarrollar en las prácticas pre profesionales por el estudiante <select name=""
+                id="">
+                <option>Pedrito</option>
+                <option>Pepito</option>
+                <option>Juanita</option>
+            </select><br> Lugar de la reunión: <input>
             <br>
             <br>
             <div class="card-titulo" style="text-align: center;">
                 <strong> Desarollo y acuerdos</strong>
             </div>
 
-            <strong> 1. Planificación de actividades a desarrollar</strong><br> Con base en la solicitud realizada por la empresa
+            <strong> 1. Planificación de actividades a desarrollar</strong><br> Con base en la solicitud realizada por
+            la empresa
             <select name="" id="">
-        <option>Coral</option>
-        <option>Etapa</option>
-        <option>Carlitos</option>
-      </select> Con base en la solicitud realizada por la empresa el/la Sr./Srta./Sra. <select name="" id="">
-        <option value="">LKSA</option>
-        <option value="">KJASBD</option>
-      </select>, estudiante de <select name="" id="">
-        <option value="">3</option>
-        <option value="">4</option>
-        <option value="">5</option>
-      </select> ciclo de la carrera
+                <option>Coral</option>
+                <option>Etapa</option>
+                <option>Carlitos</option>
+            </select> Con base en la solicitud realizada por la empresa el/la Sr./Srta./Sra. <select name="" id="">
+                <option value="">LKSA</option>
+                <option value="">KJASBD</option>
+            </select>, estudiante de <select name="" id="">
+                <option value="">3</option>
+                <option value="">4</option>
+                <option value="">5</option>
+            </select> ciclo de la carrera
 
             <select>
-        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-      </select> del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la cumplir con las <input type="text"> horas de prácticas pre profesionales.
+                <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+            </select> del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la
+            cumplir con las <input type="text"> horas de prácticas pre profesionales.
             <table class="table table-striped">
                 <thead>
                     <tr>
@@ -99,7 +108,9 @@
 
                 <br>
 
-                <strong>2. Fechas Importantes y horario de prácticas pre profesionales</strong> <br> El estudiante comenzará a desarrollar las prácticas pre profesionales a partir del <input> terminará el <input>, en un horario de <input> a <input>.
+                <strong>2. Fechas Importantes y horario de prácticas pre profesionales</strong> <br> El estudiante
+                comenzará a desarrollar las prácticas pre profesionales a partir del <input> terminará el <input>, en un
+                horario de <input> a <input>.
 
 
                 <strong>3. Cronograma de Actividades</strong>
@@ -145,12 +156,19 @@
                             <div class="card">
                                 <div class="card-body">
                                     Mgtr.<select>
-                    <option> Aguilera</option>
-                  </select> <br> Responsable de prácticas pre profesionales<br> de la carrera
+                                        <option *ngFor="let docente of docentes">
+                                            {{ docente.persona.primer_nombre }}
+                                            {{ docente.persona.segundo_nombre }}
+                                            {{ docente.persona.primer_apellido }}
+                                            {{ docente.persona.primer_apellido }}
+                        
+                        
+                                        </option>
+                                    </select>  <br> Responsable de prácticas pre profesionales<br> de la carrera
 
                                     <select>
-                    <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-                  </select>
+                                        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+                                    </select>
                                     <br> Instituto Superior Tecnológico del Azuay <br>
 
                                 </div>
@@ -160,8 +178,8 @@
                             <div class="card">
                                 <div class="card-body">
                                     /Dr./Ing..<select>
-                    <option> Aguilera</option>
-                  </select>
+                                        <option> Aguilera</option>
+                                    </select>
                                     <br> Tutor Empresarial<br> Nombre de la empresa
                                 </div>
                             </div>

@@ -7,7 +7,9 @@ import { Docente } from "src/app/models/docente.model";
 import { environment } from "src/environments/environment";
 
 import Swal from "sweetalert2";
+
 const bd_url = environment.bd_url + "/carreras";
+
 @Injectable({
   providedIn: "root",
 })
@@ -22,6 +24,7 @@ export class CarreraService {
   getCarreras(): Observable<Carrera[]> {
     return this.http.get<Carrera[]>(`${bd_url}/filtrar`);
   }
+
 
   //PAGINACION DE CARRERAS
   getCarrerasPage(
