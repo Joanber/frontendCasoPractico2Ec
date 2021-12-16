@@ -12,9 +12,10 @@ import { AnexosComponent } from "./anexos/anexos.component";
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AcreditacionPppComponent } from './gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component';
+import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
+import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-convenios/list-convenios.component";
 import { EstadoProcesosPppComponent } from './gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component';
 import { HistorialProcesosPppComponent } from './gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component';
-import { RegistroConveniosComponent } from './gestion-vinculacion/registro-convenios/registro-convenios.component';
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
@@ -128,11 +129,23 @@ const routes: Routes = [
         data: { titulo: "Consultas Reportes" },
       },
       {
-        path: 'registro-convenios',
+        path: 'convenios',
+        component: ListConveniosComponent,
+        data: {
+          titulo: 'Convenios'
+        }
+      },
+      {
+        path: 'convenios/registro-convenio',
         component: RegistroConveniosComponent,
         data: {
-          titulo: 'Registro de Convenios'
+          titulo: 'Registro de Convenio'
         }
+      },
+      {
+        path: 'registro-convenio/:id',
+        component: RegistroConveniosComponent,
+        data: { titulo: 'Actualizar convenio' },
       },
       {
         path: 'acreditacion-ppp',

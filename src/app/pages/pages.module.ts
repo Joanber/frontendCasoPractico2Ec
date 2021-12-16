@@ -6,6 +6,11 @@ import {
   MatMomentDateModule,
   MomentDateModule
 } from "@angular/material-moment-adapter";
+import { MatButtonModule } from '@angular/material/button';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatInputModule } from '@angular/material/input';
+import { MatSelectModule } from '@angular/material/select';
+import { MatTableModule } from '@angular/material/table';
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AppRoutingModule } from "../app-routing.module";
 import { SharedModule } from "../shared/shared.module";
@@ -20,9 +25,10 @@ import { AnexosComponent } from "./anexos/anexos.component";
 import { ConsultasReportesPppComponent } from './consultas-reportes-ppp/consultas-reportes-ppp.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AcreditacionPppComponent } from './gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component';
+import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
+import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-convenios/list-convenios.component";
 import { EstadoProcesosPppComponent } from './gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component';
 import { HistorialProcesosPppComponent } from './gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component';
-import { RegistroConveniosComponent } from './gestion-vinculacion/registro-convenios/registro-convenios.component';
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
@@ -30,7 +36,6 @@ import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from './profile/profile.component';
-
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -53,8 +58,8 @@ import { ProfileComponent } from './profile/profile.component';
     AcreditacionPppComponent,
     EstadoProcesosPppComponent,
     HistorialProcesosPppComponent,
-    RegistroConveniosComponent,
-    ProfileComponent
+    ProfileComponent,
+    ListConveniosComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
@@ -65,9 +70,9 @@ import { ProfileComponent } from './profile/profile.component';
     ReactiveFormsModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatMomentDateModule,
-    MomentDateModule,
-    NgSelectModule,
+    MatMomentDateModule, MatSelectModule,
+    MomentDateModule, MatDividerModule,
+    NgSelectModule, MatInputModule, MatButtonModule, MatTableModule
   ],
 })
 export class PagesModule {}
