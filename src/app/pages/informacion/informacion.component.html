@@ -1,7 +1,6 @@
 
 <div *ngIf="getInformacion() === 'convoc1'">
-    <h1>Listado de convocatorias PPP </h1>
-    <h2>Convocatoria ABC_123</h2>
+    <h1>Listado de convocatorias Practicas Preprofesionales</h1>
     <table class="table table-hover table-striped">
       <thead>
         <tr>
@@ -65,7 +64,7 @@
           <th scope="col">Empresa</th>
         </tr>
       </thead>
-     / <tbody>
+      <tbody>
           <tr *ngFor="let carreras of carrera">
           <th scope="row">{{ carreras.carrera }}</th>
           <td>{{ carreras.coordinador }}</td>
@@ -90,12 +89,7 @@
             </div>
             <div class="card-body">
               <h5 class="card-title">Ver Instructivo</h5>
-              <p class="card-text">
-                
-              </p>
-              <button (click)="downloadAnexo()" class="btn btn-primary">
-                Instructivo
-              </button>
+              <a href="https://www.tecazuay.edu.ec/assets/archivos/normativa/base_legal_interna/9.1%20Instructivo%20y%20formatos%20de%20Pr%C3%A1cticas%20Preprofesionales.pdf">Presione aqui</a>
             </div>
           </div>
         </div>
