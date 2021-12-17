@@ -34,6 +34,7 @@ import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
+import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from './profile/profile.component';
 @NgModule({
@@ -59,7 +60,8 @@ import { ProfileComponent } from './profile/profile.component';
     EstadoProcesosPppComponent,
     HistorialProcesosPppComponent,
     ProfileComponent,
-    ListConveniosComponent
+    ListConveniosComponent,
+    ListInfoCarreraComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
