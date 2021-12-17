@@ -6,6 +6,7 @@ import { Empresa } from 'src/app/models/empresa.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { DocenteService } from 'src/app/services/services.models/docente.service';
 import { EmpresaService } from 'src/app/services/services.models/empresa.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-genarar-acta',
@@ -20,12 +21,17 @@ export class GenararActaComponent implements OnInit {
   public docentes: Docente[] = [];
   //VARIABLE DE EMPRESA
   public empresas: Empresa[] = [];
+   //Variable fecha 
+   today = new Date();
+   jstoday = '';
 
   constructor(
     private docenteService: DocenteService,
     private carreraService: CarreraService,
     private empresaService: EmpresaService
-  ) { }
+  ) {
+    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+   }
 
   ngOnInit() {
     this.getCarreras();

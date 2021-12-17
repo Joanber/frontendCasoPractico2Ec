@@ -5,6 +5,7 @@ import { Empresa } from 'src/app/models/empresa.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { DocenteService } from 'src/app/services/services.models/docente.service';
 import { EmpresaService } from 'src/app/services/services.models/empresa.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-designar-tutor-academico',
@@ -20,10 +21,16 @@ export class DesignarTutorAcademicoComponent implements OnInit {
   public empresas: Empresa[] = [];
   //VARIABLE DE CARRERAS
 
+  //Variable fecha 
+  today = new Date();
+  jstoday = '';
+
   constructor(
     private empresasService: EmpresaService,
     private docenteService: DocenteService,
-    private carreraService: CarreraService) { }
+    private carreraService: CarreraService) { 
+      this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+    }
 
   ngOnInit() {
     this.getCarreras();

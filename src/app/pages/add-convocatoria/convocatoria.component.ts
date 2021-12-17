@@ -9,6 +9,12 @@ import { CarreraService } from 'src/app/services/services.models/carrera.service
 import { DocenteService } from 'src/app/services/services.models/docente.service';
 import { EmpresaService } from 'src/app/services/services.models/empresa.service';
 import Swal from 'sweetalert2';
+import * as moment from 'moment';
+import { ThrowStmt } from '@angular/compiler';
+import { formatDate } from '@angular/common';
+import { Convocatoria } from 'src/app/models/convocatoria.model';
+import { ConvocatoriasService } from 'src/app/services/services.models/convocatorias.service';
+import { Variable } from '@angular/compiler/src/render3/r3_ast';
 
 @Component({
   selector: 'app-convocatoria',
@@ -32,18 +38,31 @@ export class ConvocatoriaComponent implements OnInit {
   //VARIABLE DE CARRERAS
   //public carreras: Carrera[] = [];
 
+  //VARIABLE DE CONVOCATORIAS
+  public convocatorias: Convocatoria [] =[];
+  ultimoElemento=1;
+  //Variable fecha 
+  today = new Date();
+  jstoday = '';
 
   constructor(
     private docenteService: DocenteService,
     private carreraService: CarreraService,
     private empresaService: EmpresaService,
+    private convocatoriaService: ConvocatoriasService
 
-  ) { }
+
+  ) {
+    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+    
+  }
 
   ngOnInit() {
     this.getCarreras();
     this.getEmpresas();
     this.getDocentes();
+    this.getConvocatorias();
+   
   }
 
   private getCarreras() {
@@ -65,62 +84,16 @@ export class ConvocatoriaComponent implements OnInit {
     });
   }
 
-
+  private getConvocatorias() {
+    this.convocatoriaService.getConvocatorias().subscribe((convocatorias) => {
+      
+      this.convocatorias = convocatorias;
+      this.ultimoElemento = (convocatorias.length - 1)+1;
+      
+    });
+  }
 
   private guardarConvocatoria(form: NgForm) {
   }
-  /*  this.formSubmitted = true;
-    if (form.invalid) {
-      return;
-    }
-    if (this.carrera.id) {
-      const fechaFormateadaInicio = this.miDatePipe.transform(
-        this.carrera.fecha_inicio,
-        "yyyy-MM-dd"
-      );
-      this.carrera.fecha_inicio = fechaFormateadaInicio;
-
-      const fechaFormateadaFin = this.miDatePipe.transform(
-        this.carrera.fecha_fin,
-        "yyyy-MM-dd"
-      );
-      this.carrera.fecha_fin = fechaFormateadaFin;
-
-      this.carreraService
-        .editar(this.carrera, this.carrera.id)
-        .subscribe((carrera) => {
-          Swal.fire(
-            "Actualizar Carrera",
-            `¡${carrera.nombre} actualizada con exito!`,
-            "success"
-          );
-          this.irListaCarreras();
-        });
-    } else {
-      const fechaFormateadaInicio = this.miDatePipe.transform(
-        this.carrera.fecha_inicio,
-        "yyyy-MM-dd"
-      );
-      this.carrera.fecha_inicio = fechaFormateadaInicio;
-
-      const fechaFormateadaFin = this.miDatePipe.transform(
-        this.carrera.fecha_fin,
-        "yyyy-MM-dd"
-      );
-      this.carrera.fecha_fin = fechaFormateadaFin;
-      this.carreraService.crear(this.carrera).subscribe((carrera) => {
-        Swal.fire(
-          "Nueva Carrera",
-          `¡${carrera.nombre} creada con exito!`,
-          "success"
-        );
-        this.irListaCarreras();
-      });
-    }
-  }
-
-  irListaCarreras() {
-    this.router.navigateByUrl("/dashboard/convocatorias");
-  }
-*/
+  
 }
