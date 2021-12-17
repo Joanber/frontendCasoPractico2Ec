@@ -37,6 +37,10 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from './profile/profile.component';
+import { AddDocenteComponent } from './add-docente/add-docente.component';
+import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
+import { ListEmpresaComponent } from './list-empresa/list-empresa.component';
+import { ListDocenteComponent } from './list-docente/list-docente.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -62,6 +66,10 @@ import { ProfileComponent } from './profile/profile.component';
     ProfileComponent,
     ListConveniosComponent,
     ListInfoCarreraComponent,
+    AddDocenteComponent,
+    AddEmpresaComponent,
+    ListEmpresaComponent,
+    ListDocenteComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
