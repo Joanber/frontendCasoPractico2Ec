@@ -13,8 +13,15 @@
 
               <div class="card-encabezado" style="text-align: right;">
                 CONVOCATORIA
-                <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-                  <option [ngValue]="undefined"> Seleccione la carrera </option>
+                <select
+                class="form-control"
+                style="width: auto;"
+                name="CombocatoriaCarrera"
+                #convocatoria="ngModel"
+                    [(ngModel)]="convocatorias.carrera_id"
+                    required
+                  >
+                                  <option [ngValue]="undefined"> Seleccione la carrera </option>
                   <option *ngFor="let carrera of carreras">{{carrera.abreviatura_titulo}}</option>
 
 
@@ -83,11 +90,14 @@
             </div>
 
             <div class="card-botones" style="text-align: right;">
-
-              <button type="button" class="btn btn-primary">Guardar </button>
+              <div class="form-actions">
+                <button type="submit" class="btn btn-success mr-2">
+                  <i class="fa fa-check"></i> Guardar
+                </button>
               <button type="button" class="btn btn-success">Generar PDF</button>
             </div>
 
+          </div>
           </div>
         </form>
       </div>

@@ -1,18 +1,19 @@
 <div class="card">
-    <div>Consultar datos por:
+    <div>Consultar datos de:
+      <select class="form-control" style="width: auto;" name="empresa">
+        <option [ngValue]="undefined"> Seleccione el  parametro de busqueda </option>
+        <option>Empresas</option>
+        <option>Estudiantes</option>
+        <option>Tutores</option>
+      </select>
+
         <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
         <option [ngValue]="undefined"> Seleccione la carrera </option>
         <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
       </select>
-        <select>
-      <option>Fecha</option>
-      <option>Tutores</option>
-      <option>Estudiantes</option>
-    </select>
-        <select class="form-control" style="width: auto;" name="empresa">
-      <option [ngValue]="undefined"> Seleccione la empresa </option>
-      <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-    </select>
+      <input type="date" id="start" name="trip-start" value="2021-01-01">
+
+
 
     </div>
 
