@@ -1,12 +1,11 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { Docente } from "src/app/models/docente.model";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
 const bd_url = environment.bd_url + "/docentes";
-
 
 @Injectable({
   providedIn: "root",
@@ -23,7 +22,6 @@ export class DocenteService {
   getDocentes(): Observable<Docente[]> {
     return this.http.get<Docente[]>(`${bd_url}/filtrar`);
   }
-
 
   //PAGINACION DE CARRERAS
   getCarrerasPage(
