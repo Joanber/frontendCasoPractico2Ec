@@ -25,14 +25,33 @@ export class RegistroConveniosComponent implements OnInit {
     private router: Router) {}
 
   empresa: Empresa[] = [
-    {
-      id: 1, nombre: 'Empresa pa empresa', ruc: 'RUC0123423234',
-      direccion: 'Av. Américas y 1º de mayo',
-      telefono: '0980386885',
-      representante: 'Manolo pesantez',
-    }
-  ];
 
+  ];
+// {
+//   id: 1, nombre: 'Empresa pa empresa', ruc: 'RUC0123423234',
+//     direccion: 'Av. Américas y 1º de mayo',
+//       telefono: '0980386885',
+//         empresaPersonal: new EmpresaPersonal{
+//     id: 1,
+//       cargo: 'jefe',
+//         sueldo: '1234',
+//           persona: new Persona {
+
+//       id: 1,
+//         identificacion: '0105661524',
+//           primer_nombre: 'string',
+//             segundo_nombre: 'string',
+//               primer_apellido: 'string',
+//                 segundo_apellido: 'string',
+//                   email: 'string',
+//                     celular: 'string',
+//                       direccion: 'string',
+//                         fecha_nacimiento: 'string',
+//                           genero: 'string',
+//                             fotoHashCode: 1,
+//       },
+//   }
+// }
   carreras: Carrera[] = [];
   convenio = {} as Convenio;
   convenioForm!: FormGroup;
