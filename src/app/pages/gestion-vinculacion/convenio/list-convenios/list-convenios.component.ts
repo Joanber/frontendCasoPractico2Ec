@@ -9,7 +9,7 @@ import { ConvenioService } from './../../../../services/services.models/convenio
 })
 export class ListConveniosComponent implements OnInit {
 
-  convenios = {} as Convenio[];
+  convenios: Convenio[] = [];
   constructor(private convenioService: ConvenioService) {}
 
   ngOnInit() {

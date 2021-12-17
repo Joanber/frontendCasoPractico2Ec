@@ -149,7 +149,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'registro-convenio/:id',
+        path: 'convenio/:id',
         component: RegistroConveniosComponent,
         data: { titulo: 'Actualizar convenio' },
       },
