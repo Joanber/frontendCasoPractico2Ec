@@ -11,7 +11,7 @@ export class SidebarService {
       icono: "mdi mdi-gauge",
       submenu: [{ titulo: "Convocatorias", url: "soli/convoc1" },
       { titulo: "Procesos", url: "soli/procesos" },
-      { titulo: "Informacion Carrera", url: "soli/infocarrera" },
+      { titulo: "Informacion Carrera", url: "infocarrera" },
       { titulo: "Instructivo/Anexos", url: "soli/instructivos" }],
 
     },

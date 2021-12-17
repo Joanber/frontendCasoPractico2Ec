@@ -1,82 +1,96 @@
-<form>
-  <div class="card-body">
-    <div class="card-titulo" style="text-align: center;">
-      ANEXO 2: Convocatoria a prácticas pre profesionales
-    </div>
-    <br>
-    <br>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #MyForm="ngForm" (submit)="guardarConvocatoria(MyForm)">
+          <div class="form-body">
+            <div class="card-body">
+              <div class="card-titulo" style="text-align: center;">
+                ANEXO 2: Convocatoria a prácticas pre profesionales
+              </div>
+              <br>
+              <br>
 
-    <div class="card-encabezado" style="text-align: right;">
-      CONVOCATORIA
-      <select>
-        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-      </select> 20xx – 00#<br /> Cuenca, de
-      <select>
-        <option>Enero</option>
-        <option>Analisis</option>
-      </select> del 20xx
-    </div>
-
-
-    <div class="card-text">
+              <div class="card-encabezado" style="text-align: right;">
+                CONVOCATORIA
+                <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
+                  <option [ngValue]="undefined"> Seleccione la carrera </option>
+                  <option *ngFor="let carrera of carreras">{{carrera.abreviatura_titulo}}</option>
 
 
+                </select>
 
-      A los estudiantes Interesados:<br /> <br /> Se convoca a los estudiantes de
-      <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select> ciclo de la carrera
-      <select>
-        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-      </select> que deseen realizar sus prácticas pre profesionales en la empresa <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>, a presentar la solicitud correspondiente. Las actividades a desarrollar son:
-      <select>
-        <option>1</option>
-        <option>2</option>
-        <option>3</option>
-        <option>4</option>
-      </select>, por lo que los postulantes deberán haber aprobado las siguientes asignaturas: <select>
-        <option>web</option>
-        <option>movil</option>
-        <option>3</option>
-        <option>4</option>
-      </select> La fecha máxima en la que se receptarán las solicitudes es el <input id="date" type="date">. Para mayor
-      información contactarse con
-      <select>
-        <option *ngFor="let docente of docentes">
-          {{ docente.persona.primer_nombre }}
-          {{ docente.persona.segundo_nombre }}
-          {{ docente.persona.primer_apellido }}
-          {{ docente.persona.primer_apellido }}
+                - {{today | date:'yyyy'}} -
 
 
-        </option>
-      </select>, docente responsable de prácticas pre profesionales de la carrera.
+                {{ultimoElemento}}
+
+                <br>
+                Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today | date:'yyyy'}}
+
+              </div>
+              <div class="card-text">
+                A los estudiantes Interesados:<br /> <br /> Se convoca a los estudiantes de
+
+                <select class="form-control" style="width: auto;" name="ciclo">
+                  <option [ngValue]="undefined"> Seleccione el ciclo </option>
+                  <option *ngFor="let ciclo of ciclos">{{ciclo.nombre}}</option>
+                </select> ciclo de la carrera
+
+                <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
+                  <option [ngValue]="undefined"> Seleccione la carrera </option>
+                  <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+                </select> que deseen realizar sus prácticas pre profesionales en la empresa
+
+                <select class="form-control" style="width: auto;" name="empresa">
+                  <option [ngValue]="undefined"> Seleccione la empresa </option>
+                  <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
+                </select> , a presentar la solicitud correspondiente. Las actividades a desarrollar son:
+
+                <select class="form-control" style="width: auto;" name="actividades">
+                  <option [ngValue]="undefined"> Seleccione las actividades </option>
+                  <option *ngFor="let actividad of actividad">{{actividad.nombre}}</option>
+                </select> , por lo que los postulantes deberán haber aprobado las siguientes asignaturas:
+
+                <select class="form-control" style="width: auto;" name="asignatura">
+                  <option [ngValue]="undefined"> Seleccione las asignaturas </option>
+                  <option *ngFor="let asignatura of asignaturas">{{asignatura.nombre}}</option>
+                </select> La fecha máxima en la que se receptarán las solicitudes es el <input id="date" type="date">.
+                Para mayor información contactarse con
+                <select class="form-control" style="width: auto;" name="docente">
+                  <option>Seleccione el docente</option>
+                  <option *ngFor="let docente of docentes">
+                    {{ docente.persona.primer_nombre }}
+                    {{ docente.persona.segundo_nombre }}
+                    {{ docente.persona.primer_apellido }}
+                    {{ docente.persona.primer_apellido }} </option>
+                </select>, docente responsable de prácticas pre profesionales de la carrera.
 
 
-      <div class="card-pie">
+                <div class="card-pie">
 
-        Atentamente,
-        <br>
-        <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
-        <select>
-          <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-        </select>
-        <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+                  Atentamente,
+                  <br>
+                  <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
+                  <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
+                    <option [ngValue]="undefined"> Seleccione la carrera </option>
+                    <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+                  </select>
+
+                  <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+                </div>
+              </div>
+            </div>
+
+            <div class="card-botones" style="text-align: right;">
+
+              <button type="button" class="btn btn-primary">Guardar </button>
+              <button type="button" class="btn btn-success">Generar PDF</button>
+            </div>
+
+          </div>
+        </form>
       </div>
     </div>
   </div>
-
-</form>
-<div class="card-botones" style="text-align: right;">
-
-  <button type="button" class="btn btn-primary">Guardar </button>
-  <button type="button" class="btn btn-success">Generar PDF</button>
 </div>

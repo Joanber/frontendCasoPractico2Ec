@@ -1,8 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Docente } from 'src/app/models/docente.model';
+import { Empresa } from 'src/app/models/empresa.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { DocenteService } from 'src/app/services/services.models/docente.service';
+import { EmpresaService } from 'src/app/services/services.models/empresa.service';
+import { formatDate } from '@angular/common';
 
 @Component({
   selector: 'app-seleccion-estudiantes',
@@ -11,31 +14,50 @@ import { DocenteService } from 'src/app/services/services.models/docente.service
 })
 export class SeleccionEstudiantesComponent implements OnInit {
 
-  public paginaActual = 0;
-  public totalPorPagina = 10;
-
-  //VARIABLE PARA BUSCAR
-  public busqueda: string = "";
   //VARIABLE DE CARRERAS
   public carreras: Carrera[] = [];
   //VARIABLE DE DOCENTES
   public docentes: Docente[] = [];
-  constructor(private docenteService: DocenteService,
-    private carreraService: CarreraService) { }
+  //VARIABLE DE EMPRESA
+  public empresas: Empresa[] = [];
+  //VARIABLE DE CARRERAS
+  //public carreras: Carrera[] = [];
 
+   //Variable fecha 
+   today = new Date();
+   jstoday = '';
 
+  constructor(
+    private docenteService: DocenteService,
+    private carreraService: CarreraService,
+    private empresaService: EmpresaService,
+  ) { 
+    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+  }
   ngOnInit() {
-    this.getCarrerasPage(
-      this.paginaActual.toString(),
-      this.totalPorPagina.toString(),
-      this.busqueda
-    );
+    this.getCarreras();
+    this.getEmpresas();
+    this.getDocentes();
   }
 
-  private getCarrerasPage(page: string, size: string, busqueda: string) {
-    this.carreraService.getCarrerasPage(page, size, busqueda).subscribe((p) => {
-      this.carreras = p.content as Carrera[];
+
+  private getDocentes() {
+    this.docenteService.getDocentes().subscribe((docentes) => {
+      this.docentes = docentes;
     });
   }
 
+
+  private getCarreras() {
+    this.carreraService.getCarreras().subscribe((carreras) => {
+      this.carreras = carreras;
+    });
+  }
+
+
+  private getEmpresas() {
+    this.empresaService.getEmpresas().subscribe((empresas) => {
+      this.empresas = empresas;
+    });
+  }
 }
