@@ -49,14 +49,14 @@ export class ConvocatoriaComponent implements OnInit {
   //Variable fecha
   today = new Date();
   jstoday = '';
-
+  private miDatePipe: DatePipe;
   constructor(
     private docenteService: DocenteService,
     private carreraService: CarreraService,
     private empresaService: EmpresaService,
     private convocatoriaService: ConvocatoriasService,
-    private miDatePipe: DatePipe,
-  private router: Router,
+
+  private router: Router
 
 
   ) {
@@ -68,7 +68,7 @@ export class ConvocatoriaComponent implements OnInit {
     this.getCarreras();
     this.getEmpresas();
     this.getDocentes();
-    this.numeroconvocatoria();
+    this.getConvocatoria();
   }
 
   private getCarreras() {
@@ -90,7 +90,7 @@ export class ConvocatoriaComponent implements OnInit {
     });
   }
 
-  private numeroconvocatoria() {
+  private getConvocatoria() {
     this.convocatoriaService.getConvocatorias().subscribe((convocatorias) => {
 
       this.convocatorias = convocatorias;
@@ -101,59 +101,9 @@ export class ConvocatoriaComponent implements OnInit {
 
 
   guardarConvocatoria(form: NgForm) {
-    this.formSubmitted = true;
-    if (form.invalid) {
-      return;
-    }
-    if (this.convocatoria.id) {
-      const fechaFormateadaInicio = this.miDatePipe.transform(
-        this.convocatoria.fecha_emision,
-        "yyyy-MM-dd"
-      );
-      this.convocatoria.fecha_emision = fechaFormateadaInicio;
 
-      const fechaFormateadaFin = this.miDatePipe.transform(
-        this.convocatoria.fecha_max_recib_solic,
-        "yyyy-MM-dd"
-      );
-      this.convocatoria.fecha_max_recib_solic = fechaFormateadaFin;
-
-      this.convocatoriaService
-        .editar(this.convocatoria, this.convocatoria.id)
-        .subscribe((convocatoria) => {
-          Swal.fire(
-            "Actualizar Carrera",
-            `¡${convocatoria.id} actualizada con exito!`,
-            "success"
-          );
-          this.irListaCarreras();
-        });
-    } else {
-      const fechaFormateadaInicio = this.miDatePipe.transform(
-        this.convocatoria.fecha_emision,
-        "yyyy-MM-dd"
-      );
-      this.convocatoria.fecha_emision = fechaFormateadaInicio;
-
-      const fechaFormateadaFin = this.miDatePipe.transform(
-        this.convocatoria.fecha_max_recib_solic,
-        "yyyy-MM-dd"
-      );
-      this.convocatoria.fecha_max_recib_solic = fechaFormateadaFin;
-      this.convocatoriaService.crear(this.convocatoria).subscribe((convocatoria) => {
-        Swal.fire(
-          "Nueva Carrera",
-          `¡${convocatoria.id} creada con exito!`,
-          "success"
-        );
-        this.irListaCarreras();
-      });
-    }
   }
 
-  irListaCarreras() {
-    this.router.navigateByUrl("/dashboard/carreras");
-  }
 
 
 }

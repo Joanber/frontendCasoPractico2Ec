@@ -5,7 +5,10 @@ import { Empresa } from 'src/app/models/empresa.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { DocenteService } from 'src/app/services/services.models/docente.service';
 import { EmpresaService } from 'src/app/services/services.models/empresa.service';
+import { ConvocatoriasService } from 'src/app/services/services.models/convocatorias.service';
+
 import { formatDate } from '@angular/common';
+import { Convocatoria } from 'src/app/models/convocatoria.model';
 
 @Component({
   selector: 'app-seleccion-estudiantes',
@@ -20,24 +23,27 @@ export class SeleccionEstudiantesComponent implements OnInit {
   public docentes: Docente[] = [];
   //VARIABLE DE EMPRESA
   public empresas: Empresa[] = [];
-  //VARIABLE DE CARRERAS
+  //VARIABLE DE CONVOCATORIA
+  public convocatorias: Convocatoria[] = [];
   //public carreras: Carrera[] = [];
 
-   //Variable fecha 
-   today = new Date();
-   jstoday = '';
+  //Variable fecha
+  today = new Date();
+  jstoday = '';
 
   constructor(
     private docenteService: DocenteService,
     private carreraService: CarreraService,
     private empresaService: EmpresaService,
-  ) { 
+    private convocatoriaService: ConvocatoriasService
+  ) {
     this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
   }
   ngOnInit() {
     this.getCarreras();
     this.getEmpresas();
     this.getDocentes();
+    this.getConvocatoria();
   }
 
 
@@ -58,6 +64,11 @@ export class SeleccionEstudiantesComponent implements OnInit {
   private getEmpresas() {
     this.empresaService.getEmpresas().subscribe((empresas) => {
       this.empresas = empresas;
+    });
+  }
+  private getConvocatoria() {
+    this.convocatoriaService.getConvocatorias().subscribe((convocatorias) => {
+      this.convocatorias = convocatorias;
     });
   }
 }

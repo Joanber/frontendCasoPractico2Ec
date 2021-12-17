@@ -1,95 +1,94 @@
 <form>
-    <div class="card-body">
-        <div class="card-titulo" style="text-align: center;">
+  <div class="card-body">
+    <div class="card-titulo" style="text-align: center;">
+      ANEXO 4: Respuesta positiva a entidad receptora
+
+    </div>
+    <br>
+    <br>
+
+    <div class="card-encabezado" style="text-align: right;">
+
+      <br>
+      Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today | date:'yyyy'}}
+    </div>
 
 
-            ANEXO 4: Respuesta positiva a entidad receptora
+    <div class="card-destinatario">
 
-        </div>
-        <br>
-        <br>
-
-        <div class="card-encabezado" style="text-align: right;">
-            
-          <br>
-          Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today | date:'yyyy'}}
-        </div>
-
-
-        <div class="card-destinatario">
-
-            <select>
-        <option>Sr</option>
-        <option>Dr</option>
-        <option>Ing</option>
-      </select>
-            <select class="form-control" style="width: auto;" name="empresa">
+      <input name="abrev" title="Agregar  abreviatura (Sr./Dr.etc)" style="width:50px">
+      <select class="form-control" style="width: auto;" name="empresa">
         <option [ngValue]="undefined"> Seleccione el representante </option>
-        <option *ngFor="let empresa of empresas">{{empresa.representante}}</option>
+        <option *ngFor="let empresa of empresas">{{empresa.empresaPersonal.persona}}</option>
       </select>
 
-            <br> GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc.<br>
+      <br> GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc.<br>
 
-            <select class="form-control" style="width: auto;" name="empresa">
+      <select class="form-control" style="width: auto;" name="empresa">
         <option [ngValue]="undefined"> Seleccione la empresa </option>
         <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
       </select>
 
-            <br> Su Despacho. -
-            <div class="card-text">
+      <br> Su Despacho. -
+      <div class="card-text">
 
-                <br />
-                <br /> En respuesta a su solicitud de fecha ……………. debo indicarle que luego haber realizado el proceso de selección entre los estudiantes postulantes se ha aceptado la solicitud de los siguientes estudiantes que están interesados en realizar
-                sus prácticas pre profesionales en su prestigiosa empresa:
-
-
-
-                <table class="table table-striped">
-                    <thead>
-                        <tr>
-                            <th scope="col">Cedula</th>
-                            <th scope="col">Estuduante</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
-                            <th scope="row">1</th>
-                            <td>Mark</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">2</th>
-                            <td>Jacob</td>
-
-                        </tr>
-                        <tr>
-                            <th scope="row">3</th>
-                            <td>Larry</td>
-
-                        </tr>
-                    </tbody>
-                </table>
-                Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice las prácticas pre profesionales. Sin más
-                que informar me despido agradeciendo de antemano su colaboración.
+        <br />
+        <br /> En respuesta a su solicitud de fecha
+        <select class="form-control" style="width: auto;" name="empresa">
+          <option [ngValue]="undefined"> Seleccione fecha </option>
+          <option *ngFor="let convocatoria of convocatorias">{{convocatoria.fecha_emision}}</option>
+        </select>,
+        debo indicarle que luego haber realizado el proceso de
+        selección entre los estudiantes postulantes se ha aceptado la solicitud de los siguientes estudiantes que están
+        interesados en realizarsus prácticas pre profesionales en su prestigiosa empresa:
 
 
-                <div class="card-pie">
 
-                    Atentamente,
-                    <br>
-                    <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
-                    <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-                        <option [ngValue]="undefined"> Seleccione la carrera </option>
-                        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-                      </select>
-                    <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
-                </div>
-            </div>
+        <table class="table table-striped">
+          <thead>
+            <tr>
+              <th scope="col">Cedula</th>
+              <th scope="col">Estuduante</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            <tr *ngFor="let estudiante of estudiantes">
+
+              <td scope="row">{{estudiante.persona.cedula}}</td>
+              <td *ngFor="let estudiante of docentes">
+                {{ estudiante.persona.primer_nombre }}
+                {{ estudiante.persona.segundo_nombre }}
+                {{ estudiante.persona.primer_apellido }}
+                {{ estudiante.persona.primer_apellido }} </td>>
+
+           </tr>
+
+          </tbody>
+        </table>
+        Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los
+        estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice
+        las prácticas pre profesionales. Sin más
+        que informar me despido agradeciendo de antemano su colaboración.
+
+
+        <div class="card-pie">
+
+          Atentamente,
+          <br>
+          <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
+          <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
+            <option [ngValue]="undefined"> Seleccione la carrera </option>
+            <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+          </select>
+          <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
         </div>
+      </div>
     </div>
+  </div>
 </form>
 <div class="card-botones" style="text-align: right;">
 
-    <button type="button" class="btn btn-primary">Guardar </button>
-    <button type="button" class="btn btn-success">Generar PDF</button>
+  <button type="button" class="btn btn-primary">Guardar </button>
+  <button type="button" class="btn btn-success">Generar PDF</button>
 </div>
