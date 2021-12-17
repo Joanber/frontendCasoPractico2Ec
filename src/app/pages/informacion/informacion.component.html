@@ -51,31 +51,9 @@
     </table>
   </div>
 
-  <div *ngIf="getInformacion() === 'infocarrera'">
-    <h1>Informacion de carreras</h1>
-    <h2>Carreras</h2>
-    <table class="table table-hover table-striped">
-      <thead>
-        <tr>
-          <th scope="col">Carrera</th>
-          <th scope="col">Coordinador</th>
-          <th scope="col">Responsable de PPP</th>
-          <th scope="col">Docente Tutor</th>
-          <th scope="col">Empresa</th>
-        </tr>
-      </thead>
-      <tbody>
-          <tr *ngFor="let carreras of carrera">
-          <th scope="row">{{ carreras.carrera }}</th>
-          <td>{{ carreras.coordinador }}</td>
-          <td>{{ carreras.responsable}}</td>
-          <td>{{ carreras.tutor}}</td>
-          <td>{{ carreras.empresav }}</td>
-         
-        </tr>
-      </tbody>
-    </table>
-  </div>
+  
+
+  
   <div *ngIf="getInformacion() === 'instructivos'">
     <h2 class="text-center">
       <b> Instructivo/Anexos </b>

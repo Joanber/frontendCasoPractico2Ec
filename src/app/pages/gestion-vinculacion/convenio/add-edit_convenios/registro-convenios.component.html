@@ -8,21 +8,21 @@
                             <!-- appearance="outline" -->
                             <mat-form-field class="col-md-6 ">
                                 <mat-label>Nombre convenio</mat-label>
-                                <input type="text" matInput formControlName="nombreConvenio" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
-                                <mat-error *ngIf="formValues.nombreConvenio.errors?.pattern">
+                                <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
+                                <mat-error *ngIf="formValues.nombre.errors?.pattern">
                                     Ingrese solo valores alfabéticos
                                 </mat-error>
-                                <mat-error *ngIf="formValues.nombreConvenio.hasError('required')">
+                                <mat-error *ngIf="formValues.nombre.hasError('required')">
                                     Nombre de convenio es <strong>requerido</strong>
                                 </mat-error>
                             </mat-form-field>
                             <mat-form-field class="col-md-6 ">
                                 <mat-label>Tipo de convenio</mat-label>
-                                <input type="text" matInput formControlName="tipoConvenio" [errorStateMatcher]="matcher" placeholder="Ejemplo tipo de convenio" required>
-                                <mat-error *ngIf="formValues.tipoConvenio.errors?.pattern">
+                                <input type="text" matInput formControlName="tipo" [errorStateMatcher]="matcher" placeholder="Ejemplo tipo de convenio" required>
+                                <mat-error *ngIf="formValues.tipo.errors?.pattern">
                                     Ingrese solo valores alfabéticos
                                 </mat-error>
-                                <mat-error *ngIf="formValues.tipoConvenio.hasError('required')">
+                                <mat-error *ngIf="formValues.tipo.hasError('required')">
                                     Tipo de convenio es <strong>requerido</strong>
                                 </mat-error>
                             </mat-form-field>
@@ -30,8 +30,8 @@
                         <div class="row mt-4">
                             <mat-form-field class="col-md-6">
                                 <mat-label>Carrera</mat-label>
-                                <mat-select disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
-                                    <mat-option *ngFor="let carrera of carreras" [value]="carrera">
+                                <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
+                                    <mat-option  *ngFor="let carrera of carreras;let i = index" [value]="carrera">
                                         {{carrera?.nombre}}
                                     </mat-option>
                                 </mat-select>

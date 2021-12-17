@@ -35,7 +35,9 @@ export class ConvenioService {
     );
   }
 
-  findConvenioById() {}
+  findConvenioById(id: number) {
+    return this.httpClient.get<Convenio>(`${ url }/${ id }`);
+  }
 
   updateConvenio(convenio: Convenio, id: number): Observable<Convenio> {
     return this.httpClient.put<Convenio>(`${ url }/${ id }`, convenio).pipe(

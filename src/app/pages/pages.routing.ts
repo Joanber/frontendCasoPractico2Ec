@@ -20,6 +20,7 @@ import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
+import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
@@ -104,6 +105,11 @@ const routes: Routes = [
         data: { titulo: "Informacion" },
       },
       {
+        path: "infocarrera",
+        component: ListInfoCarreraComponent,
+        data: { titulo: "Informacion de Carreras" },
+      },
+      {
         path: "convocatorias",
         component: ConvocatoriaComponent,
         data: { titulo: "Convocatoria Practicas Pre Profesionales" },
@@ -143,7 +149,7 @@ const routes: Routes = [
         }
       },
       {
-        path: 'registro-convenio/:id',
+        path: 'convenio/:id',
         component: RegistroConveniosComponent,
         data: { titulo: 'Actualizar convenio' },
       },
