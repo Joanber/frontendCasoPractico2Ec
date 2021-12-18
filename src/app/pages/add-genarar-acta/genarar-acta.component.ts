@@ -21,7 +21,7 @@ export class GenararActaComponent implements OnInit {
   public docentes: Docente[] = [];
   //VARIABLE DE EMPRESA
   public empresas: Empresa[] = [];
-   //Variable fecha 
+   //Variable fecha
    today = new Date();
    jstoday = '';
 
@@ -29,13 +29,14 @@ export class GenararActaComponent implements OnInit {
     private docenteService: DocenteService,
     private carreraService: CarreraService,
     private empresaService: EmpresaService
+    //private miDatePipe: DatePipe,
   ) {
     this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
    }
 
   ngOnInit() {
     this.getCarreras();
-    this.getCarreras();
+    this.getEmpresas();
     this.getDocentes();
   }
 

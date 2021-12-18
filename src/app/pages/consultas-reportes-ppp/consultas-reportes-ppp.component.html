@@ -1,57 +1,126 @@
-<div class="card">
-    <div>Consultar datos por:
-        <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-        <option [ngValue]="undefined"> Seleccione la carrera </option>
-        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-      </select>
-        <select>
-      <option>Fecha</option>
-      <option>Tutores</option>
-      <option>Estudiantes</option>
-    </select>
-        <select class="form-control" style="width: auto;" name="empresa">
-      <option [ngValue]="undefined"> Seleccione la empresa </option>
-      <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-    </select>
+<div class="row" *ngIf="!cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">Listado de Tutores</h4>
+        <div class="table-responsive">
+          <div id="example23_wrapper" class="dataTables_wrapper">
 
+            <div id="example23_filter" class="dataTables_filter">
+              <label
+                >Buscar:<input
+                  type="text"
+                  placeholder=""
+                  [(ngModel)]="busqueda"
+                  #txtBusqueda
+                  (keyup)="cargarTutoresDefault(txtBusqueda.value)"
+                />
+              </label>
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="buscar(txtBusqueda.value)"
+                type="button"
+              >
+                <i class="mdi mdi-magnify"></i>
+              </button>
+            </div>
+            <div class="row" *ngIf="cargando">
+              <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                  <h4 class="alert-heading">Cargando</h4>
+                  <i class="fa fa-spin fa-refresh fa-2x"></i>
+                  <p class="mb-0">Por favor espere...</p>
+                </div>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table
+                class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                "
+              >
+                <thead>
+                  <tr>
+                    <th>Foto</th>
+                    <th>Identificación</th>
+                    <th>Apellidos y Nombres</th>
+                    <th>Email</th>
+                    <th>Celular</th>
+                    <th class="text-nowrap">Acciones</th>
+                  </tr>
+                </thead>
+
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let persona of personas">
+                    <td>
+                      <img
+                        *ngIf="!persona.fotoHashCode"
+                        src="../../../assets/imgapp/image.png"
+                        alt="Foto"
+                        class="avatar cursor"
+                      />
+                      <img
+                        *ngIf="persona.fotoHashCode"
+                        [src]="
+                          bd_url +
+                          '/img/' +
+                          persona.id +
+                          '?fotoHashCode=' +
+                          persona.fotoHashCode
+                        "
+                        alt="Foto"
+                        class="avatar cursor"
+                      />
+                    </td>
+                    <td>{{ persona.identificacion }}</td>
+                    <td>
+                      {{ persona.primer_apellido }}
+                      {{ persona.segundo_apellido }}
+                      {{ persona.primer_nombre }} {{ persona.segundo_nombre }}
+                    </td>
+                    <td>{{ persona.email }}</td>
+                    <td>{{ persona.celular }}</td>
+                    <td class="text-nowrap text-center">
+                      <a
+                        [routerLink]="[
+                          '/dashboard',
+                          'actualizar-tutor',
+                          persona.id
+                        ]"
+                        data-toggle="tooltip"
+                        data-original-title="Editar"
+                        class="cursor"
+                      >
+                        <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                      </a>
+                      <a
+                        data-toggle="tooltip"
+                        data-original-title="Borrar"
+                        class="cursor"
+                        (click)="eliminarTutor(persona)"
+                      >
+                        <i class="fa fa-close text-danger"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-
-    <div class="card-body">
-
-
-
-        <table class="table">
-            <thead>
-                <tr>
-                    <th scope="col">#</th>
-                    <th scope="col">First</th>
-                    <th scope="col">Last</th>
-                    <th scope="col">Handle</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td colspan="2">Larry the Bird</td>
-                    <td>@twitter</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
+  </div>
 </div>
-<div class="card-botones" style="text-align: right;">
-    <button class="mdi-file-document"> Genarar PDF </button>
-
-</div>
+<mat-paginator
+  [length]="totalRegistros"
+  [pageSize]="totalPorPagina"
+  [pageSizeOptions]="pageSizeOptions"
+  [pageIndex]="paginaActual"
+  (page)="paginar($event)"
+  showFirstLastButtons
+>
+</mat-paginator>
