@@ -1,1 +1,185 @@
-<p>add-docente works!</p>
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form #MyForm="ngForm" (submit)="guardarCarrera(MyForm)">
+            <div class="form-body">
+              <h3 class="card-title">Carrera</h3>
+              <hr />
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="control-label">Nombre Carrera*</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="nombre"
+                      #nombre="ngModel"
+                      [(ngModel)]="carrera.nombre"
+                      required
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="nombre.hasError('required') && nombre.touched"
+                    >
+                      Nombre Carrera es requerido!
+                    </div>
+                  </div>
+                </div>
+                <!--/span-->
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row">
+                <!--/span-->
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Abreviatura*</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="abreviatura"
+                      #abreviatura="ngModel"
+                      [(ngModel)]="carrera.abreviatura"
+                      required
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        abreviatura.hasError('required') && abreviatura.touched
+                      "
+                    >
+                      Abreviatura es requerido!
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Modalidad*</label>
+                    <select
+                      class="form-control"
+                      name="modalidad"
+                      #modalidad="ngModel"
+                      [(ngModel)]="carrera.modalidad"
+                      required
+                    >
+                      <option [ngValue]="undefined">
+                        Seleccione la modalidad
+                      </option>
+                      <option value="PRESENCIAL">PRESENCIAL</option>
+                      <option value="DUAL">DUAL</option>
+                    </select>
+  
+                    <div
+                      class="text-danger"
+                      *ngIf="modalidad.hasError('required') && modalidad.touched"
+                    >
+                      Modalidad es requerido!
+                    </div>
+                  </div>
+                </div>
+  
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label">Fecha Inicio*</label>
+                    <input
+                      [matDatepicker]="myDatepicker"
+                      class="form-control"
+                      name="fecha_inicio"
+                      #fecha_inicio="ngModel"
+                      [(ngModel)]="carrera.fecha_inicio"
+                      required
+                    />
+                    <mat-datepicker-toggle
+                      [for]="myDatepicker"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        fecha_inicio.hasError('required') && fecha_inicio.touched
+                      "
+                    >
+                      Fecha Inicio es requerido!
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-3">
+                  <div class="form-group">
+                    <label class="control-label">Fecha Fin*</label>
+                    <input
+                      [matDatepicker]="myDatepicker2"
+                      class="form-control"
+                      name="fecha_fin"
+                      #fecha_fin="ngModel"
+                      [(ngModel)]="carrera.fecha_fin"
+                      required
+                    />
+                    <mat-datepicker-toggle
+                      [for]="myDatepicker2"
+                    ></mat-datepicker-toggle>
+                    <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
+                    <div
+                      class="text-danger"
+                      *ngIf="fecha_fin.hasError('required') && fecha_fin.touched"
+                    >
+                      Fecha Fin es requerido!
+                    </div>
+                  </div>
+                </div>
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Coordinador*</label>
+                    <ng-select
+                      [compareWith]="compararCoordinador"
+                      name="docente"
+                      placeholder="Seleccione al Coordinador (a)"
+                      #docente="ngModel"
+                      [(ngModel)]="carrera.docente"
+                      required
+                    >
+                      <ng-option
+                        *ngFor="let docente of docentes"
+                        [value]="docente"
+                      >
+                        {{ docente.abreviatura_titulo }}
+                        {{ docente.persona.primer_nombre }}
+                        {{ docente.persona.segundo_nombre }}
+                        {{ docente.persona.primer_apellido }}
+                        {{ docente.persona.segundo_apellido }}
+                      </ng-option>
+                    </ng-select>
+  
+                    <div
+                      class="text-danger"
+                      *ngIf="docente.hasError('required') && docente.touched"
+                    >
+                      Coordinador es requerido!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success mr-2">
+                <i class="fa fa-check"></i> Guardar
+              </button>
+              <button
+                type="button"
+                class="btn btn-inverse"
+                (click)="irListaCarreras()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
