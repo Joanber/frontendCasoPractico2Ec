@@ -8,4 +8,5 @@ export class Carrera {
   nombre: string;
   abreviatura_titulo: string;
   docente: Docente;
+
 }
