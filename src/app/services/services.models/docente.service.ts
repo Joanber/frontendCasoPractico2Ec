@@ -24,7 +24,7 @@ export class DocenteService {
   }
 
   //PAGINACION DE CARRERAS
-  getCarrerasPage(
+  getDocentesPage(
     page: string,
     size: string,
     busqueda: string
@@ -48,7 +48,7 @@ export class DocenteService {
       );
   }
 
-  //CREAR Empresa
+  //CREAR Docente
   crear(docente: Docente): Observable<Docente> {
     return this.http.post<Docente>(`${bd_url}/`, docente).pipe(
       map((response: any) => response.docente as Docente),
@@ -62,7 +62,7 @@ export class DocenteService {
     );
   }
 
-  //EDITAR CARRERA
+  //EDITAR Docente
   editar(docente: Docente, id: number): Observable<Docente> {
     return this.http.put<Docente>(`${bd_url}/${id}`, docente).pipe(
       map((response: any) => response.docente as Docente),
@@ -75,7 +75,7 @@ export class DocenteService {
       })
     );
   }
-  //ELIMINAR UNA CARRERA
+  //ELIMINAR UN Docente
   eliminar(id: number): Observable<Docente> {
     return this.http.delete<Docente>(`${bd_url}/${id}`).pipe(
       catchError((e) => {

@@ -4,13 +4,13 @@ import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatDatepickerModule, MatPaginatorModule } from "@angular/material";
 import {
   MatMomentDateModule,
-  MomentDateModule
+  MomentDateModule,
 } from "@angular/material-moment-adapter";
-import { MatButtonModule } from '@angular/material/button';
-import { MatDividerModule } from '@angular/material/divider';
-import { MatInputModule } from '@angular/material/input';
-import { MatSelectModule } from '@angular/material/select';
-import { MatTableModule } from '@angular/material/table';
+import { MatButtonModule } from "@angular/material/button";
+import { MatDividerModule } from "@angular/material/divider";
+import { MatInputModule } from "@angular/material/input";
+import { MatSelectModule } from "@angular/material/select";
+import { MatTableModule } from "@angular/material/table";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AppRoutingModule } from "../app-routing.module";
 import { SharedModule } from "../shared/shared.module";
@@ -22,13 +22,13 @@ import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/selec
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { AnexosComponent } from "./anexos/anexos.component";
-import { ConsultasReportesPppComponent } from './consultas-reportes-ppp/consultas-reportes-ppp.component';
+import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { AcreditacionPppComponent } from './gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component';
+import { AcreditacionPppComponent } from "./gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component";
 import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
 import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-convenios/list-convenios.component";
-import { EstadoProcesosPppComponent } from './gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component';
-import { HistorialProcesosPppComponent } from './gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component';
+import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component";
+import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
@@ -36,13 +36,14 @@ import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { PagesComponent } from "./pages.component";
-import { ProfileComponent } from './profile/profile.component';
-import { AddDocenteComponent } from './add-docente/add-docente.component';
-import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
-import { ListEmpresaComponent } from './list-empresa/list-empresa.component';
-import { ListDocenteComponent } from './list-docente/list-docente.component';
-import { ListSolicitudesEmpresasRespppComponent } from './list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component';
-import { ListConvocatoriasComponent } from './list-convocatorias/list-convocatorias.component';
+import { ProfileComponent } from "./profile/profile.component";
+import { AddDocenteComponent } from "./add-docente/add-docente.component";
+import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
+import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
+import { ListDocenteComponent } from "./list-docente/list-docente.component";
+import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
+import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -84,9 +85,14 @@ import { ListConvocatoriasComponent } from './list-convocatorias/list-convocator
     ReactiveFormsModule,
     MatPaginatorModule,
     MatDatepickerModule,
-    MatMomentDateModule, MatSelectModule,
-    MomentDateModule, MatDividerModule,
-    NgSelectModule, MatInputModule, MatButtonModule, MatTableModule
+    MatMomentDateModule,
+    MatSelectModule,
+    MomentDateModule,
+    MatDividerModule,
+    NgSelectModule,
+    MatInputModule,
+    MatButtonModule,
+    MatTableModule,
   ],
 })
 export class PagesModule {}
