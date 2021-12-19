@@ -26,6 +26,9 @@ import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
+import { SolicitudComponent } from "./solicitud/solicitud.component";
+import { AsistenciasComponent } from "./asistencias/asistencias.component";
+import { InformeComponent } from "./informe/informe.component";
 
 const routes: Routes = [
   {
@@ -181,6 +184,21 @@ const routes: Routes = [
         path: "historial-procesos-ppp",
         component: HistorialProcesosPppComponent,
         data: { titulo: "Historial de procesos PPP" },
+      },
+      {
+        path: "solicitud",
+        component: SolicitudComponent,
+        data: { titulo: "Solicitud Estudiantes" }
+      },
+      {
+        path: "asistencias",
+        component: AsistenciasComponent,
+        data: { titulo: "Registro de Asistencia" }
+      },
+      {
+        path: "informe",
+        component: InformeComponent,
+        data: { titulo: "Informe Final" }
       },
       {
         path: "solicitudes_empresas",
