@@ -1,90 +1,83 @@
 <div class="row" *ngIf="!cargando1">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title text-center">Informacion de Carreras</h4>
-          <div class="table-responsive">
-            <div id="example23_wrapper" class="dataTables_wrapper">
-              <div class="dt-buttons">
-                <button >
-                  <i class="mdi mdi-plus"></i>
-                
-                </button>
-              </div>
-              <div id="example23_filter" class="dataTables_filter">
-                <label
-
-                  >Buscar:<input
-                    type="text"
-                    placeholder=""
-                    [(ngModel)]="busqueda"
-                    #txtBusqueda
-                    (keyup)="cargarCarrerasDefault(txtBusqueda.value)"
-                  />
-                </label>
-                <button
-                  class="btn btn-primary btn-sm"
-                  (click)="buscar(txtBusqueda.value)"
-                  type="button"
-                >
-                  <i class="mdi mdi-magnify"></i>
-                </button>
-              </div>
-              <div class="row" *ngIf="cargando1">
-                <div class="col-12">
-                  <div class="alert alert-info text-center" role="alert">
-                    <h4 class="alert-heading">Cargando</h4>
-                    <i class="fa fa-spin fa-refresh fa-2x"></i>
-                    <p class="mb-0">Por favor espere...</p>
-                  </div>
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">Informacion de Carreras</h4>
+        <div class="table-responsive">
+          <div id="example23_wrapper" class="dataTables_wrapper">
+            <div class="dt-buttons">
+              <button>
+                <i class="mdi mdi-plus"></i>
+              </button>
+            </div>
+            <div id="example23_filter" class="dataTables_filter">
+              <label
+                >Buscar:<input
+                  type="text"
+                  placeholder=""
+                  [(ngModel)]="busqueda"
+                  #txtBusqueda
+                  (keyup)="cargarCarrerasDefault(txtBusqueda.value)"
+                />
+              </label>
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="buscar(txtBusqueda.value)"
+                type="button"
+              >
+                <i class="mdi mdi-magnify"></i>
+              </button>
+            </div>
+            <div class="row" *ngIf="cargando1">
+              <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                  <h4 class="alert-heading">Cargando</h4>
+                  <i class="fa fa-spin fa-refresh fa-2x"></i>
+                  <p class="mb-0">Por favor espere...</p>
                 </div>
               </div>
-              <div class="table-scroll">
-                <table
-                  class="
-                    table table-bordered
-                    justify-content-center
-                    table-responsive-sm table-sm
-                    dataTable
-                  "
-                >
-                  <thead>
-                    <tr>
-                      <th>Carrera</th>
-                      <th>Modalidad</th>
-                      <th>Coordinador</th>
-                      <th>Tutor PPP</th>
-                     
-                    </tr>
-                  </thead>
-  
-                  <tbody class="animated fadeIn fast">
-                    <tr *ngFor="let carrera of carreras">
-                      <td>{{ carrera.nombre }}</td>
-                      <td>{{ carrera.modalidad }}</td>
-                      <td>
-                        {{ carrera.docente.abreviatura_titulo }}
-                        {{ carrera.docente.persona.primer_nombre }}
-                        {{ carrera.docente.persona.primer_apellido }}
-                      </td>
-                    
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+            </div>
+            <div class="table-scroll">
+              <table
+                class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                "
+              >
+                <thead>
+                  <tr>
+                    <th>Carrera</th>
+                    <th>Modalidad</th>
+                    <th>Coordinador</th>
+                    <th>Responsable PPP</th>
+                  </tr>
+                </thead>
+
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let responsablePPP of responsablesPPP">
+                    <td>{{ responsablePPP.carrera.nombre }}</td>
+                    <td>{{ responsablePPP.carrera.modalidad }}</td>
+                    <td>
+                      {{ responsablePPP.carrera.docente.abreviatura_titulo }}
+                      {{ responsablePPP.carrera.docente.persona.primer_nombre }}
+                      {{
+                        responsablePPP.carrera.docente.persona.primer_apellido
+                      }}
+                    </td>
+                    <td>
+                      {{ responsablePPP.docente.abreviatura_titulo }}
+                      {{ responsablePPP.docente.persona.primer_nombre }}
+                      {{ responsablePPP.docente.persona.primer_apellido }}
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  <mat-paginator
-    [length]="totalRegistros"
-    [pageSize]="totalPorPagina"
-    [pageSizeOptions]="pageSizeOptions"
-    [pageIndex]="paginaActual"
-    (page)="paginar($event)"
-    showFirstLastButtons
-  >
-  </mat-paginator>
-  
+</div>
