@@ -4,25 +4,25 @@
         <div class="card-body">
           <form #MyForm="ngForm" (submit)="guardarDocente(MyForm)">
             <div class="form-body">
-              <h3 class="card-title">Carrera</h3>
+              <h3 class="card-title">Docente</h3>
               <hr />
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">
-                    <label class="control-label">Nombre Carrera*</label>
+                    <label class="control-label">Titulo Docente*</label>
                     <input
                       type="text"
                       class="form-control"
-                      name="nombre"
-                      #nombre="ngModel"
-                      [(ngModel)]="docente.nombre"
+                      name="titulo_docente"
+                      #titulo_docente="ngModel"
+                      [(ngModel)]="docente.titulo_docente"
                       required
                     />
                     <div
                       class="text-danger"
-                      *ngIf="nombre.hasError('required') && nombre.touched"
+                      *ngIf="titulo_docente.hasError('required') && titulo_docente.touched"
                     >
-                      Nombre Carrera es requerido!
+                    Titulo del docente es requerido!
                     </div>
                   </div>
                 </div>
@@ -40,7 +40,7 @@
                       class="form-control"
                       name="abreviatura"
                       #abreviatura="ngModel"
-                      [(ngModel)]="carrera.abreviatura"
+                      [(ngModel)]="docente.abreviatura"
                       required
                     />
                     <div
@@ -55,110 +55,62 @@
                 </div>
                 <div class="col-md-4">
                   <div class="form-group">
-                    <label class="control-label">Modalidad*</label>
+                    <label class="control-label">Tiempo de Trabajo*</label>
                     <select
                       class="form-control"
                       name="modalidad"
                       #modalidad="ngModel"
-                      [(ngModel)]="carrera.modalidad"
+                      [(ngModel)]="docente.tipo_tiempo"
                       required
                     >
                       <option [ngValue]="undefined">
-                        Seleccione la modalidad
+                        Seleccione la Tiempo
                       </option>
-                      <option value="PRESENCIAL">PRESENCIAL</option>
-                      <option value="DUAL">DUAL</option>
+                      <option value="PRESENCIAL">COMPLETO</option>
+                      <option value="DUAL">MEDIO TIEMPO</option>
                     </select>
   
                     <div
                       class="text-danger"
-                      *ngIf="modalidad.hasError('required') && modalidad.touched"
+                      *ngIf="tipo_tiempo.hasError('required') && tipo_tiempo.touched"
                     >
-                      Modalidad es requerido!
+                    Tiempo de Trabajo!
                     </div>
                   </div>
                 </div>
   
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="control-label">Fecha Inicio*</label>
-                    <input
-                      [matDatepicker]="myDatepicker"
-                      class="form-control"
-                      name="fecha_inicio"
-                      #fecha_inicio="ngModel"
-                      [(ngModel)]="carrera.fecha_inicio"
-                      required
-                    />
-                    <mat-datepicker-toggle
-                      [for]="myDatepicker"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
-                    <div
-                      class="text-danger"
-                      *ngIf="
-                        fecha_inicio.hasError('required') && fecha_inicio.touched
-                      "
-                    >
-                      Fecha Inicio es requerido!
-                    </div>
-                  </div>
-                </div>
-                <div class="col-md-3">
-                  <div class="form-group">
-                    <label class="control-label">Fecha Fin*</label>
-                    <input
-                      [matDatepicker]="myDatepicker2"
-                      class="form-control"
-                      name="fecha_fin"
-                      #fecha_fin="ngModel"
-                      [(ngModel)]="carrera.fecha_fin"
-                      required
-                    />
-                    <mat-datepicker-toggle
-                      [for]="myDatepicker2"
-                    ></mat-datepicker-toggle>
-                    <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
-                    <div
-                      class="text-danger"
-                      *ngIf="fecha_fin.hasError('required') && fecha_fin.touched"
-                    >
-                      Fecha Fin es requerido!
-                    </div>
-                  </div>
-                </div>
+                
                 <!--/span-->
               </div>
               <!--/row-->
               <div class="row">
                 <div class="col-md-6">
                   <div class="form-group">
-                    <label class="control-label">Coordinador*</label>
+                    <label class="control-label">Persona*</label>
                     <ng-select
-                      [compareWith]="compararCoordinador"
-                      name="docente"
-                      placeholder="Seleccione al Coordinador (a)"
-                      #docente="ngModel"
-                      [(ngModel)]="carrera.docente"
+                      [compareWith]="compararDocente()"
+                      name="persona"
+                      placeholder="Seleccione al persona (a)"
+                      #persona="ngModel"
+                      [(ngModel)]="docente.persona"
                       required
                     >
                       <ng-option
-                        *ngFor="let docente of docentes"
-                        [value]="docente"
+                        *ngFor="let persona of personas"
+                        [value]="persona"
                       >
-                        {{ docente.abreviatura_titulo }}
-                        {{ docente.persona.primer_nombre }}
-                        {{ docente.persona.segundo_nombre }}
-                        {{ docente.persona.primer_apellido }}
-                        {{ docente.persona.segundo_apellido }}
+                        {{ persona.primer_nombre }}
+                        {{ persona.segundo_nombre }}
+                        {{ persona.primer_apellido }}
+                        {{ persona.segundo_apellido }}
                       </ng-option>
                     </ng-select>
   
                     <div
                       class="text-danger"
-                      *ngIf="docente.hasError('required') && docente.touched"
+                      *ngIf="persona.hasError('required') && persona.touched"
                     >
-                      Coordinador es requerido!
+                    persona es requerido!
                     </div>
                   </div>
                 </div>
@@ -172,7 +124,7 @@
               <button
                 type="button"
                 class="btn btn-inverse"
-                (click)="irListaCarreras()"
+                (click)="irListaDocentes()"
               >
                 Cancelar
               </button>

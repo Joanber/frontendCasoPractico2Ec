@@ -7,6 +7,8 @@ import { EmpresaPersonal } from 'src/app/models/empresaPersonal.model';
 import { Persona } from 'src/app/models/persona.model';
 import { PersonaService } from 'src/app/services/services.models/persona.service';
 import Swal from 'sweetalert2';
+import { environment } from "src/environments/environment";
+const bd_url = environment.bd_url;
 
 @Component({
   selector: 'app-add-empresa-personal',
