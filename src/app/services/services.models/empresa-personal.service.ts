@@ -17,11 +17,11 @@ export class EmpresaPersonalService {
   constructor(private http: HttpClient) {}
 
  //OBTENER UNA EmpresaPersonal POR ID
- getById(id: number): Observable<EmpresaPersonal> {
+ getEmpresaPersonalById(id: number): Observable<EmpresaPersonal> {
   return this.http.get<EmpresaPersonal>(`${bd_url}/${id}`);
 }
 
-//CARRERAS SIN PAGINACION
+//EmpresaPersonal SIN PAGINACION
 getEmpresaPersonal(): Observable<EmpresaPersonal[]> {
   return this.http.get<EmpresaPersonal[]>(`${bd_url}/filtrar`);
 }
@@ -52,7 +52,7 @@ getEmpresaPersonalPage(
 }
 
 //CREAR EmpresaPersonal
-crear(empresaPersonal: EmpresaPersonal): Observable<EmpresaPersonal> {
+crearEmpresaPersonal(empresaPersonal: EmpresaPersonal): Observable<EmpresaPersonal> {
   return this.http.post<EmpresaPersonal>(`${bd_url}/`, empresaPersonal).pipe(
     map((response: any) => response.empresaPersonal as EmpresaPersonal),
     catchError((e) => {

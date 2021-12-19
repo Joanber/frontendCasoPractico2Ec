@@ -2,7 +2,7 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <form #MyForm="ngForm" (submit)="guardarCarrera(MyForm)">
+          <form #MyForm="ngForm" (submit)="guardarDocente(MyForm)">
             <div class="form-body">
               <h3 class="card-title">Carrera</h3>
               <hr />
@@ -15,7 +15,7 @@
                       class="form-control"
                       name="nombre"
                       #nombre="ngModel"
-                      [(ngModel)]="carrera.nombre"
+                      [(ngModel)]="docente.nombre"
                       required
                     />
                     <div

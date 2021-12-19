@@ -3,29 +3,27 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, NgForm } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { Docente } from 'src/app/models/docente.model';
+import { EmpresaPersonal } from 'src/app/models/empresaPersonal.model';
 import { Persona } from 'src/app/models/persona.model';
-import { DocenteService } from 'src/app/services/services.models/docente.service';
 import { PersonaService } from 'src/app/services/services.models/persona.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-add-docente',
-  templateUrl: './add-docente.component.html',
-  styleUrls: ['./add-docente.component.css']
+  selector: 'app-add-empresa-personal',
+  templateUrl: './add-empresa-personal.component.html',
+  styleUrls: ['./add-empresa-personal.component.css']
 })
-export class AddDocenteComponent implements OnInit {
+export class AddEmpresaPersonalComponent implements OnInit {
 
   autocompleteControl = new FormControl();
+  public empresaPersonal= new  EmpresaPersonal();
   public formSubmitted = false;
   public bd_url = bd_url + "/personas";
-  public docente: new Docente[] = [];
-  public docentes: Docente[] = [];
   public personas: Persona[] = [];
-  public docentesFiltrados: Observable<Docente[]>;
+  public docentesFiltrados: Observable<EmpresaPersonal[]>;
+  
   constructor(
-    
-    private docenteService: DocenteService,
+    private empresaPersonalService: PersonaService,
     private personaService: PersonaService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -33,7 +31,7 @@ export class AddDocenteComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(({ id }) => this.cargarPersona(id));
+    this.activatedRoute.params.subscribe(({ id }) => this.cargarPersonalEmpresa(id));
     this.cargarPersona();
   }
 
@@ -42,47 +40,46 @@ export class AddDocenteComponent implements OnInit {
       this.personas = personas;
     });
   }
-  guardarDocente(form: NgForm) {
+  guardarEmpresaPersonal(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
     }
     else {
       
-      this.docenteService.crear(this.docente).subscribe((docentes) => {
+      this.empresaPersonalService.crearEmpresaPersonal(this.empresaPersonal).subscribe((empresaPersonal) => {
         Swal.fire(
-          "Nueva Docente",
-          `¡${docentes.titulo_docente} creada con exito!`,
+          "Nueva empresa Personal",
+          `¡${empresaPersonal.cargo} creada con exito!`,
           "success"
         );
-        this.irListaDocente();
+        this.irListaEmpresaPersonales();
       });
     }
   }
 
-  irListaDocente() {
-    this.router.navigateByUrl("/dashboard/docente");
+  irListaEmpresaPersonales() {
+    this.router.navigateByUrl("/dashboard/empresaPersonal");
   }
 
-  irListaDocentes() {
-    this.router.navigateByUrl("/dashboard/docentes");
-  }
 
-  cargarCarrera(id: number) {
+  cargarPersonalEmpresa(id: number) {
     if (!id) {
       return;
     }
-    this.carreraService.getCarreraById(id).subscribe((carrera) => {
-      if (!carrera) {
-        return this.irListaCarreras();
+    this.empresaPersonalService.get(id).subscribe((empresaPersonal) => {
+      if (!empresaPersonal) {
+        return this.irListaEmpresaPersonales();
       }
-      this.carrera = carrera;
+      this.empresaPersonal = empresaPersonal;
     });
   }
-  compararCoordinador(d1: Docente, d2: Docente) {
+  compararempresaPersonal(d1: EmpresaPersonal, d2: EmpresaPersonal) {
     if (d1 === undefined && d2 === undefined) {
       return true;
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
+
+
 }
