@@ -66,7 +66,7 @@ export class ConvocatoriaComponent implements OnInit {
         .subscribe((convocatoria) => {
           Swal.fire(
             "Nueva Convocatoria",
-            `¡ Convocatoria de ${convocatoria.carrera.abreviatura} creada con exito!`,
+            `¡ Convocatoria creada con exito!`,
             "success"
           );
           this.irListaConvocatorias();
