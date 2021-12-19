@@ -5,29 +5,6 @@
         <h4 class="card-title text-center">Informacion de Carreras</h4>
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
-            <div class="dt-buttons">
-              <button>
-                <i class="mdi mdi-plus"></i>
-              </button>
-            </div>
-            <div id="example23_filter" class="dataTables_filter">
-              <label
-                >Buscar:<input
-                  type="text"
-                  placeholder=""
-                  [(ngModel)]="busqueda"
-                  #txtBusqueda
-                  (keyup)="cargarCarrerasDefault(txtBusqueda.value)"
-                />
-              </label>
-              <button
-                class="btn btn-primary btn-sm"
-                (click)="buscar(txtBusqueda.value)"
-                type="button"
-              >
-                <i class="mdi mdi-magnify"></i>
-              </button>
-            </div>
             <div class="row" *ngIf="cargando1">
               <div class="col-12">
                 <div class="alert alert-info text-center" role="alert">
