@@ -11,11 +11,11 @@ import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
-import { AcreditacionPppComponent } from './gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component';
+import { AcreditacionPppComponent } from "./gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component";
 import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
 import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-convenios/list-convenios.component";
-import { EstadoProcesosPppComponent } from './gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component';
-import { HistorialProcesosPppComponent } from './gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component';
+import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component";
+import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
@@ -24,8 +24,8 @@ import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.co
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
-
-
+import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
+import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
 
 const routes: Routes = [
   {
@@ -110,9 +110,19 @@ const routes: Routes = [
         data: { titulo: "Informacion de Carreras" },
       },
       {
-        path: "convocatorias",
+        path: "nueva-convocatoria/:id",
+        component: ConvocatoriaComponent,
+        data: { titulo: "Nueva Convocatoria Practicas Pre Profesionales" },
+      },
+      {
+        path: "actualizar-convocatoria/:idc",
         component: ConvocatoriaComponent,
         data: { titulo: "Convocatoria Practicas Pre Profesionales" },
+      },
+      {
+        path: "convocatorias",
+        component: ListConvocatoriasComponent,
+        data: { titulo: "Convocatorias" },
       },
       {
         path: "seleccionestudiantes",
@@ -135,43 +145,48 @@ const routes: Routes = [
         data: { titulo: "Consultas Reportes" },
       },
       {
-        path: 'convenios',
+        path: "convenios",
         component: ListConveniosComponent,
         data: {
-          titulo: 'Convenios'
-        }
+          titulo: "Convenios",
+        },
       },
       {
-        path: 'convenios/registro-convenio',
+        path: "convenios/registro-convenio",
         component: RegistroConveniosComponent,
         data: {
-          titulo: 'Registro de Convenio'
-        }
+          titulo: "Registro de Convenio",
+        },
       },
       {
-        path: 'convenio/:id',
+        path: "convenio/:id",
         component: RegistroConveniosComponent,
-        data: { titulo: 'Actualizar convenio' },
+        data: { titulo: "Actualizar convenio" },
       },
       {
-        path: 'acreditacion-ppp',
+        path: "acreditacion-ppp",
         component: AcreditacionPppComponent,
         data: {
-          titulo: 'Informe de acreditación de PPP'
-        }
+          titulo: "Informe de acreditación de PPP",
+        },
       },
       {
-        path: 'estado-procesos-ppp',
+        path: "estado-procesos-ppp",
         component: EstadoProcesosPppComponent,
         data: {
-          titulo: 'Estado de procesos PPP'
-        }
+          titulo: "Estado de procesos PPP",
+        },
       },
       {
-        path: 'historial-procesos-ppp',
+        path: "historial-procesos-ppp",
         component: HistorialProcesosPppComponent,
-        data: { titulo: 'Historial de procesos PPP' }
-      }
+        data: { titulo: "Historial de procesos PPP" },
+      },
+      {
+        path: "solicitudes_empresas",
+        component: ListSolicitudesEmpresasRespppComponent,
+        data: { titulo: "Solicitudes de las empresas" },
+      },
     ],
   },
 ];

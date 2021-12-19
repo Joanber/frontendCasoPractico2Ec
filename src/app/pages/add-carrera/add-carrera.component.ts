@@ -23,6 +23,7 @@ export class AddCarreraComponent implements OnInit {
   public bd_url = bd_url + "/personas";
   public docentes: Docente[] = [];
   public docentesFiltrados: Observable<Docente[]>;
+  
   constructor(
     private carreraService: CarreraService,
     private docenteService: DocenteService,

@@ -7,4 +7,7 @@ export class Docente {
   titulo_docente: string;
   observacion: string;
   persona: Persona;
+  constructor() {
+    this.persona = new Persona();
+  }
 }

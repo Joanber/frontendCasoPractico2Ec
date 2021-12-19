@@ -1,29 +1,31 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { FormControl, NgForm } from '@angular/forms';
-import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { Docente } from 'src/app/models/docente.model';
-import { Persona } from 'src/app/models/persona.model';
-import { DocenteService } from 'src/app/services/services.models/docente.service';
-import { PersonaService } from 'src/app/services/services.models/persona.service';
-import Swal from 'sweetalert2';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { FormControl, NgForm } from "@angular/forms";
+import { ActivatedRoute, Router } from "@angular/router";
+import { Observable } from "rxjs";
+import { Docente } from "src/app/models/docente.model";
+import { Persona } from "src/app/models/persona.model";
+import { DocenteService } from "src/app/services/services.models/docente.service";
+import { PersonaService } from "src/app/services/services.models/persona.service";
+
+import { environment } from "src/environments/environment";
+import Swal from "sweetalert2";
+const bd_url = environment.bd_url;
 
 @Component({
-  selector: 'app-add-docente',
-  templateUrl: './add-docente.component.html',
-  styleUrls: ['./add-docente.component.css']
+  selector: "app-add-docente",
+  templateUrl: "./add-docente.component.html",
+  styleUrls: ["./add-docente.component.css"],
 })
 export class AddDocenteComponent implements OnInit {
-
   autocompleteControl = new FormControl();
   public formSubmitted = false;
   public bd_url = bd_url + "/personas";
-  public docente: Docente[] = [];
+  public docente = new Docente();
+  public docentes: Docente[] = [];
   public personas: Persona[] = [];
   public docentesFiltrados: Observable<Docente[]>;
   constructor(
-    
     private docenteService: DocenteService,
     private personaService: PersonaService,
     private router: Router,
@@ -32,53 +34,47 @@ export class AddDocenteComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.activatedRoute.params.subscribe(({ id }) => this.cargarPersona(id));
+    this.activatedRoute.params.subscribe(({ id }) => this.cargarDocentes(id));
     this.cargarPersona();
   }
 
   cargarPersona() {
-    this.personaService.getPersonasPage().subscribe((personas) => {
+    /*  this.personaService.getPersonasPage().subscribe((personas) => {
       this.personas = personas;
-    });
+    }); */
   }
   guardarDocente(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
-    }
-    else {
-      
-      this.docenteService.crear(this.docente).subscribe((docentes) => {
+    } else {
+      this.docenteService.crear(this.docente).subscribe((docente) => {
         Swal.fire(
           "Nueva Docente",
-          `¡${docentes.titulo_docente} creada con exito!`,
+          `¡${docente.titulo_docente} creada con exito!`,
           "success"
         );
-        this.irListaDocente();
+        this.irListaDocentes();
       });
     }
-  }
-
-  irListaDocente() {
-    this.router.navigateByUrl("/dashboard/docente");
   }
 
   irListaDocentes() {
     this.router.navigateByUrl("/dashboard/docentes");
   }
 
-  cargarCarrera(id: number) {
+  cargarDocentes(id: number) {
     if (!id) {
       return;
     }
-    this.carreraService.getCarreraById(id).subscribe((carrera) => {
-      if (!carrera) {
-        return this.irListaCarreras();
+    this.docenteService.getDocenteById(id).subscribe((docente) => {
+      if (!docente) {
+        /* return this.irListaCarreras(); */
       }
-      this.carrera = carrera;
+      this.docente = docente;
     });
   }
-  compararCoordinador(d1: Docente, d2: Docente) {
+  compararDocente(d1: Docente, d2: Docente) {
     if (d1 === undefined && d2 === undefined) {
       return true;
     }

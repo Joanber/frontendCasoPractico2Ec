@@ -6,7 +6,7 @@ export class Carrera {
   fecha_inicio: string;
   modalidad: string;
   nombre: string;
-  abreviatura_titulo: string;
+  abreviatura: string;
   docente: Docente;
 
 }

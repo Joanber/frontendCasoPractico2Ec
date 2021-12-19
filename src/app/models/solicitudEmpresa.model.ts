@@ -10,4 +10,8 @@ export class SolicitudEmpresa {
   numero_alumnos: number;
   responsablePPP: ResponsablePPP;
   empresa: Empresa;
+  constructor() {
+    this.responsablePPP = new ResponsablePPP();
+    this.empresa = new Empresa();
+  }
 }
