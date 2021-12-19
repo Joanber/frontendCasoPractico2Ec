@@ -1,27 +1,51 @@
 import { HttpClient } from "@angular/common/http";
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map } from "rxjs/operators";
-import { Convocatoria } from 'src/app/models/convocatoria.model';
-import { ConvocatoriaComponent } from 'src/app/pages/add-convocatoria/convocatoria.component';
-import { environment } from 'src/environments/environment';
+import { Injectable } from "@angular/core";
+import { Observable, throwError } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
+import { Convocatoria } from "src/app/models/convocatoria.model";
+import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
-const bd_url = environment.bd_url + "/carreras";
+const bd_url = environment.bd_url + "/convocatorias";
 @Injectable({
-
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ConvocatoriasService {
+  constructor(private http: HttpClient) {}
 
-  constructor(private http: HttpClient) { }
-
-   //CONVOCATORIAS
-   getConvocatorias(): Observable<Convocatoria[]> {
+  //CONVOCATORIAS
+  getConvocatorias(): Observable<Convocatoria[]> {
     return this.http.get<Convocatoria[]>(`${bd_url}/filtrar`);
   }
 
+  //PAGINACION DE CONVOCATORIAS
+  getConvocatoriasPage(
+    page: string,
+    size: string,
+    busqueda: string,
+    fecha: string
+  ): Observable<any> {
+    return this.http
+      .get(
+        `${bd_url}/page?page=${page}&size=${size}&busqueda=${
+          busqueda || ""
+        }&date=${fecha || ""}`
+      )
+      .pipe(
+        tap((response: any) => {
+          (response.content as Convocatoria[]).forEach((convocatoria) => {
+            return convocatoria;
+          });
+        }),
+        map((response: any) => {
+          (response.content as Convocatoria[]).map((convocatoria) => {
+            return convocatoria;
+          });
+          return response;
+        })
+      );
+  }
 
-  //CREAR Carrera SIN FOTO
+  //CREAR convocatoria
   crear(convocatoria: Convocatoria): Observable<Convocatoria> {
     return this.http.post<Convocatoria>(`${bd_url}/`, convocatoria).pipe(
       map((response: any) => response.carrera as Convocatoria),
@@ -55,5 +79,9 @@ export class ConvocatoriasService {
         return throwError(e);
       })
     );
+  }
+  //OBTENER UNA CONVOCATORIA POR ID
+  getConvocatoriaById(id: number): Observable<Convocatoria> {
+    return this.http.get<Convocatoria>(`${bd_url}/${id}`);
   }
 }

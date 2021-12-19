@@ -41,6 +41,8 @@ import { AddDocenteComponent } from './add-docente/add-docente.component';
 import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
 import { ListEmpresaComponent } from './list-empresa/list-empresa.component';
 import { ListDocenteComponent } from './list-docente/list-docente.component';
+import { ListSolicitudesEmpresasRespppComponent } from './list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component';
+import { ListConvocatoriasComponent } from './list-convocatorias/list-convocatorias.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -70,6 +72,8 @@ import { ListDocenteComponent } from './list-docente/list-docente.component';
     AddEmpresaComponent,
     ListEmpresaComponent,
     ListDocenteComponent,
+    ListSolicitudesEmpresasRespppComponent,
+    ListConvocatoriasComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

@@ -11,4 +11,9 @@ export class Convocatoria {
   estado: boolean;
   carrera: Carrera;
   solicitudEmpresa: SolicitudEmpresa;
+
+  constructor() {
+    this.carrera = new Carrera();
+    this.solicitudEmpresa = new SolicitudEmpresa();
+  }
 }

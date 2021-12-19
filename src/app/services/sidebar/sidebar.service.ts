@@ -9,20 +9,37 @@ export class SidebarService {
     {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
-      submenu: [{ titulo: "Convocatorias", url: "soli/convoc1" },
-      { titulo: "Procesos", url: "soli/procesos" },
-      { titulo: "Informacion Carrera", url: "infocarrera" },
-      { titulo: "Instructivo/Anexos", url: "soli/instructivos" }],
-
+      submenu: [
+        { titulo: "Convocatorias", url: "soli/convoc1" },
+        { titulo: "Procesos", url: "soli/procesos" },
+        { titulo: "Informacion Carrera", url: "infocarrera" },
+        { titulo: "Instructivo/Anexos", url: "soli/instructivos" },
+      ],
     },
     {
-      titulo: 'Gestión de Vinculación ',
-      icono: 'mdi mdi-account-switch',
+      titulo: "Gestión de Vinculación ",
+      icono: "mdi mdi-account-switch",
       submenu: [
-        { titulo: 'Convenios', icono: 'mdi  mdi-file-outline', url: 'convenios' },
-        { titulo: 'Acreditacion PPP', icono: 'mdi   mdi-file-document' , url: 'acreditacion-ppp' },
-        { titulo: 'Procesos PPP', icono: 'mdi  mdi mdi-chart-line', url: 'estado-procesos-ppp' },
-        { titulo: 'Historial PPP', icono: 'mdi    mdi-archive', url: 'historial-procesos-ppp' },
+        {
+          titulo: "Convenios",
+          icono: "mdi  mdi-file-outline",
+          url: "convenios",
+        },
+        {
+          titulo: "Acreditacion PPP",
+          icono: "mdi   mdi-file-document",
+          url: "acreditacion-ppp",
+        },
+        {
+          titulo: "Procesos PPP",
+          icono: "mdi  mdi mdi-chart-line",
+          url: "estado-procesos-ppp",
+        },
+        {
+          titulo: "Historial PPP",
+          icono: "mdi    mdi-archive",
+          url: "historial-procesos-ppp",
+        },
       ],
     },
     {
@@ -65,6 +82,10 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         {
+          titulo: "Solicitudes Empresas",
+          url: "solicitudes_empresas",
+        },
+        {
           titulo: "Convocatorias",
           url: "convocatorias",
         },
@@ -84,7 +105,7 @@ export class SidebarService {
         {
           titulo: "Consultas Reportes",
           url: "consultas-reportes",
-        }
+        },
       ],
     },
     {
