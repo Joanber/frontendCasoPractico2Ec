@@ -46,6 +46,7 @@ import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocator
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { InformeComponent } from './informe/informe.component';
+import { ConvocatoriasAbiertasComponent } from './convocatorias-abiertas/convocatorias-abiertas.component';
 
 @NgModule({
   declarations: [
@@ -81,6 +82,7 @@ import { InformeComponent } from './informe/informe.component';
     SolicitudComponent,
     AsistenciasComponent,
     InformeComponent,
+    ConvocatoriasAbiertasComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

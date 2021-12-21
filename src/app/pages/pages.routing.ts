@@ -29,6 +29,7 @@ import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocator
 import { SolicitudComponent } from "./solicitud/solicitud.component";
 import { AsistenciasComponent } from "./asistencias/asistencias.component";
 import { InformeComponent } from "./informe/informe.component";
+import { ConvocatoriasAbiertasComponent } from "./convocatorias-abiertas/convocatorias-abiertas.component";
 
 const routes: Routes = [
   {
@@ -189,6 +190,11 @@ const routes: Routes = [
         path: "solicitud",
         component: SolicitudComponent,
         data: { titulo: "Solicitud Estudiantes" }
+      },
+      {
+        path: "convocatoriasabiertas",
+        component: ConvocatoriasAbiertasComponent,
+        data: { titulo: "Convocatorias Abiertas" }
       },
       {
         path: "asistencias",
