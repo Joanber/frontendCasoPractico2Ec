@@ -26,6 +26,7 @@ import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
+import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 
 const routes: Routes = [
   {
@@ -108,6 +109,11 @@ const routes: Routes = [
         path: "infocarrera",
         component: ListInfoCarreraComponent,
         data: { titulo: "Informacion de Carreras" },
+      },
+      {
+        path: "infoconvocatoria",
+        component: ListInfoConvocatoriaComponent,
+        data: { titulo: "Informacion de Convocatorias" },
       },
       {
         path: "nueva-convocatoria/:id",

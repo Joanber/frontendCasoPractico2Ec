@@ -43,6 +43,7 @@ import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
 import { ListDocenteComponent } from "./list-docente/list-docente.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
+import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 
 @NgModule({
   declarations: [
@@ -75,6 +76,7 @@ import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocator
     ListDocenteComponent,
     ListSolicitudesEmpresasRespppComponent,
     ListConvocatoriasComponent,
+    ListInfoConvocatoriaComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
