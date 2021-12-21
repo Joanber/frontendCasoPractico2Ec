@@ -47,8 +47,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { InformeComponent } from './informe/informe.component';
 import { ConvocatoriasAbiertasComponent } from './convocatorias-abiertas/convocatorias-abiertas.component';
-import { ListResponsablePPPComponent } from './list-responsable-ppp/list-responsable-ppp.component';
-import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsable-ppp.component';
+
 
 @NgModule({
   declarations: [
@@ -85,8 +84,7 @@ import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsabl
     AsistenciasComponent,
     InformeComponent,
     ConvocatoriasAbiertasComponent,
-    ListResponsablePPPComponent,
-    AddResponsablePPPComponent,
+   
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

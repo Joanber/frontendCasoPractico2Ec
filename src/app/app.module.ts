@@ -14,7 +14,7 @@ import { TokenInterceptor } from "./services/interceptores/token-interceptor.ser
 
 
 @NgModule({
-  declarations: [AppComponent, NotpagefoundComponent],
+  declarations: [AppComponent, NotpagefoundComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
