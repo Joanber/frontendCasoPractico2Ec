@@ -1,0 +1,47 @@
+table {
+  width: 100%;
+}
+
+th,
+td.mat-cell {
+  padding: 10px !important;
+  text-align: center !important;
+  font-size: medium;
+}
+th {
+  font-weight: bold;
+}
+
+/* .mat-row .mat-cell {
+  border-bottom: 1px solid transparent !important;
+  border-top: 1px solid transparent !important;
+  cursor: pointer !important;
+  border-color: #E0E0E0;
+} */
+::ng-deep .mat-form-field-flex > .mat-form-field-infix {
+  padding: 0.4em 0px !important;
+}
+::ng-deep .mat-form-field-label-wrapper {
+  top: -1.5em;
+}
+
+::ng-deep
+  .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float
+  .mat-form-field-label {
+  transform: translateY(-1.1em) scale(0.75);
+  width: 133.33333%;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-icon {
+    vertical-align: middle;
+}
+
+.ic{
+    position: relative;
+    top: -5px;
+    margin-left: 5px; /* optional */
+}

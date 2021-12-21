@@ -1,12 +1,12 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable, throwError } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError, map, tap } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import { Convenio } from './../../models/convenio';
 
-const url = environment.bd_url + '/convenio';
+const url = environment.bd_url + '/convenios';
 
 @Injectable({
   providedIn: 'root'
@@ -20,7 +20,25 @@ export class ConvenioService {
     return this.httpClient.get<Convenio[]>(`${ url }/`);
   }
 
-  retrieveConveniosByPage() {}
+  retrieveConveniosByPage(page: string, size: string, busqueda: string): Observable<any> {
+    return this.httpClient
+      .get(
+        `${ url }/page?page=${ page }&size=${ size }&busqueda=${ busqueda || '' } `
+      )
+      .pipe(
+        tap((response: any) => {
+          (response.content as Convenio[]).forEach((convenio) => {
+            return convenio;
+          });
+        }),
+        map((response: any) => {
+          (response.content as Convenio[]).map((convenio) => {
+            return convenio;
+          });
+          return response;
+        })
+      );
+  }
 
   createConvenio(convenio: Convenio): Observable<Convenio> {
     return this.httpClient.post<Convenio>(`${ url }/`, convenio).pipe(
