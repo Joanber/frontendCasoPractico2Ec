@@ -30,6 +30,8 @@ import { SolicitudComponent } from "./solicitud/solicitud.component";
 import { AsistenciasComponent } from "./asistencias/asistencias.component";
 import { InformeComponent } from "./informe/informe.component";
 import { ConvocatoriasAbiertasComponent } from "./convocatorias-abiertas/convocatorias-abiertas.component";
+import { ListDocenteComponent } from "./list-docente/list-docente.component";
+import { AddDocenteComponent } from "./add-docente/add-docente.component";
 
 const routes: Routes = [
   {
@@ -194,27 +196,37 @@ const routes: Routes = [
       {
         path: "solicitud",
         component: SolicitudComponent,
-        data: { titulo: "Solicitud Estudiantes" }
+        data: { titulo: "Solicitud Estudiantes" },
       },
       {
         path: "convocatoriasabiertas",
         component: ConvocatoriasAbiertasComponent,
-        data: { titulo: "Convocatorias Abiertas" }
+        data: { titulo: "Convocatorias Abiertas" },
       },
       {
         path: "asistencias",
         component: AsistenciasComponent,
-        data: { titulo: "Registro de Asistencia" }
+        data: { titulo: "Registro de Asistencia" },
       },
       {
         path: "informe",
         component: InformeComponent,
-        data: { titulo: "Informe Final" }
+        data: { titulo: "Informe Final" },
       },
       {
         path: "solicitudes_empresas",
         component: ListSolicitudesEmpresasRespppComponent,
         data: { titulo: "Solicitudes de las empresas" },
+      },
+      {
+        path: "docentes",
+        component: ListDocenteComponent,
+        data: { titulo: "Lista de Docentes" },
+      },
+      {
+        path: "nuevo-docente",
+        component: AddDocenteComponent,
+        data: { titulo: "Nuevo Docentes" },
       },
     ],
   },
