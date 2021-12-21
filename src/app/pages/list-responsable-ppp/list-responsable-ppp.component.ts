@@ -34,24 +34,14 @@ export class ListResponsablePPPComponent implements OnInit {
   constructor(private responsablePPPService: ResponsablePPPService) {}
 
   ngOnInit() {
-    this.getResponsablePPPPage(
-      this.paginaActual.toString(),
-      this.totalPorPagina.toString(),
-      this.busqueda
-    );
+   
+    
+    
   }
 
-  public paginar(event: PageEvent): void {
-    this.paginaActual = event.pageIndex;
-    this.totalPorPagina = event.pageSize;
-    this.getResponsablePPPPage(
-      this.paginaActual.toString(),
-      this.totalPorPagina.toString(),
-      this.busqueda
-    );
-  }
+  
 
-  private getResponsablePPPPage(page: string, size: string, busqueda: string) {
+  /*private getResponsablePPPPage(page: string, size: string, busqueda: string) {
     this.cargando = true;
     this.responsablePPPService.getResponsablePPPPage(page, size, busqueda).subscribe((p) => {
       this.responsablesppp = p.content as ResponsablePPP[];
@@ -94,7 +84,7 @@ export class ListResponsablePPPComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar el Responsable de precticas ${responsablePPPP.personas.nombre} ?`,
+        text: `¿Seguro que quieres eliminar el Responsable de precticas ${personas.nombre} ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -111,11 +101,13 @@ export class ListResponsablePPPComponent implements OnInit {
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${responsablePPPP.nombre} eliminada correctamente!`,
+              `responsable ${responsablePPPP.nombre} eliminada correctamente!`,
               "success"
             );
           });
         }
       });
-  }
+  }*/
 }
+
+

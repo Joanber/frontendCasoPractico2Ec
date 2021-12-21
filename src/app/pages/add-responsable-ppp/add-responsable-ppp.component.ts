@@ -22,7 +22,7 @@ export class AddResponsablePPPComponent implements OnInit {
   autocompleteControl = new FormControl();
   public formSubmitted = false;
   public bd_url = bd_url + "/personas";
-  public responsablePPP= new ResponsablePPP[] ;
+  public responsablePPP= new ResponsablePPP ();
   public responsablesPPP: ResponsablePPP[] = [];
   public personas: Persona[] = [];
   public ResponsablePPPFiltrados: Observable<ResponsablePPP[]>;
@@ -37,14 +37,15 @@ export class AddResponsablePPPComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(({ id }) => this.cargarResponsablePPP(id));
-    this.cargarPersona();
+    //this.cargarPersona();
   }
 
-  cargarPersona() {
-    this.personaService.getPersonasPage().subscribe((personas) => {
-      this.personas = personas;
-    });
-  }
+  *//cargarPersona() {
+    //this.personaService.getPersonasPage().subscribe((personas) => {
+      ////this.personas = personas;
+   /// });
+  //}*///
+
   guardarResponsable(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {

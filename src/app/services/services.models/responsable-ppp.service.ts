@@ -22,7 +22,7 @@ export class ResponsablePPPService {
     return this.http.get<ResponsablePPP[]>(`${bd_url}/filtrar`);
   }
 
-  //PAGINACION DE CARRERAS
+  //PAGINACION DE RESPONSABLESPPP
   getResponsablePPPPage(
     page: string,
     size: string,

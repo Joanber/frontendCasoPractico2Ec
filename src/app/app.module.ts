@@ -10,12 +10,11 @@ import { AuthModule } from "./auth/auth.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./services/interceptores/token-interceptor.service";
-import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsable-ppp.component';
-import { ListResponsablePPPComponent } from './list-responsable-ppp/list-responsable-ppp.component';
+
 
 
 @NgModule({
-  declarations: [AppComponent, NotpagefoundComponent, AddResponsablePPPComponent, ListResponsablePPPComponent],
+  declarations: [AppComponent, NotpagefoundComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,
