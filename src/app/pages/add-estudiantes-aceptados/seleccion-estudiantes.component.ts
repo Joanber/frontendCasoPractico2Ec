@@ -1,19 +1,19 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
 
-import { ConvocatoriasService } from 'src/app/services/services.models/convocatorias.service';
+import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
 
-import { DatePipe, formatDate } from '@angular/common';
-import { Convocatoria } from 'src/app/models/convocatoria.model';
-import { SolicitudEmpresaService } from 'src/app/services/services.models/solicitud-empresa.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { SolicitudEmpresa } from 'src/app/models/solicitudEmpresa.model';
-import Swal from 'sweetalert2';
-import { NgForm } from '@angular/forms';
+import { DatePipe, formatDate } from "@angular/common";
+import { Convocatoria } from "src/app/models/convocatoria.model";
+import { SolicitudEmpresaService } from "src/app/services/services.models/solicitud-empresa.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { SolicitudEmpresa } from "src/app/models/solicitudEmpresa.model";
+import Swal from "sweetalert2";
+import { NgForm } from "@angular/forms";
 
 @Component({
-  selector: 'app-seleccion-estudiantes',
-  templateUrl: './seleccion-estudiantes.component.html',
-  styleUrls: ['./seleccion-estudiantes.component.css']
+  selector: "app-seleccion-estudiantes",
+  templateUrl: "./seleccion-estudiantes.component.html",
+  styleUrls: ["./seleccion-estudiantes.component.css"],
 })
 export class SeleccionEstudiantesComponent implements OnInit {
   public solicitudEmpresa = new SolicitudEmpresa();
@@ -29,8 +29,7 @@ export class SeleccionEstudiantesComponent implements OnInit {
     private solicitudEmpresaService: SolicitudEmpresaService,
     private convocatoriaService: ConvocatoriasService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
-    private miDatePipe: DatePipe
+    private router: Router
   ) {
     this.jstoday = formatDate(
       this.today,
@@ -44,19 +43,11 @@ export class SeleccionEstudiantesComponent implements OnInit {
     this.activatedRoute.params.subscribe(({ id }) =>
       this.cargarSolicitudEmpresa(id)
     );
-    this.activatedRoute.params.subscribe(({ idc }) =>
-      this.cargarConvocatoriaById(idc)
-    );
   }
 
   guardarConvocatoria(form: NgForm) {
     this.formSubmitted = true;
     if (this.convocatoria.id) {
-      const fechaFormateadaMax_recib = this.miDatePipe.transform(
-        this.convocatoria.fecha_max_recib_solic,
-        "yyyy-MM-dd"
-      );
-      this.convocatoria.fecha_max_recib_solic = fechaFormateadaMax_recib;
       this.convocatoria.solicitudEmpresa = this.solicitudEmpresa;
       this.convocatoria.carrera = this.solicitudEmpresa.responsablePPP.carrera;
       this.convocatoria.estado = true;
@@ -71,27 +62,24 @@ export class SeleccionEstudiantesComponent implements OnInit {
           this.irListaConvocatorias();
         });
     } else {
-    if (this.solicitudEmpresa.id) {
-      const fechaFormateadaMax_recib = this.miDatePipe.transform(
-        this.convocatoria.fecha_max_recib_solic,
-        "yyyy-MM-dd"
-      );
-      this.convocatoria.fecha_max_recib_solic = fechaFormateadaMax_recib;
-      this.convocatoria.solicitudEmpresa = this.solicitudEmpresa;
-      this.convocatoria.carrera = this.solicitudEmpresa.responsablePPP.carrera;
-      this.convocatoria.estado = true;
-      this.convocatoriaService
-        .crear(this.convocatoria)
-        .subscribe((convocatoria) => {
-          Swal.fire(
-            "Nueva Convocatoria",
-            `¡ Convocatoria creada con exito!`,
-            "success"
-          );
-          this.irListaConvocatorias();
-        });
+      if (this.solicitudEmpresa.id) {
+        this.convocatoria.solicitudEmpresa = this.solicitudEmpresa;
+        this.convocatoria.carrera =
+          this.solicitudEmpresa.responsablePPP.carrera;
+        this.convocatoria.estado = true;
+        this.convocatoriaService
+          .crear(this.convocatoria)
+          .subscribe((convocatoria) => {
+            Swal.fire(
+              "Nueva Convocatoria",
+              `¡ Convocatoria creada con exito!`,
+              "success"
+            );
+            this.irListaConvocatorias();
+          });
+      }
     }
-  }}
+  }
 
   cargarSolicitudEmpresa(id: number) {
     if (!id) {
@@ -114,7 +102,7 @@ export class SeleccionEstudiantesComponent implements OnInit {
       .getConvocatoriaById(idc)
       .subscribe((convocatoria) => {
         if (!convocatoria) {
-        //  return this.irListaConvocatorias();
+          //  return this.irListaConvocatorias();
         }
         this.solicitudEmpresa = convocatoria.solicitudEmpresa;
         this.convocatoria = convocatoria;
