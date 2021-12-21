@@ -42,6 +42,7 @@
                     <th>Fecha Max. R.Solicitud</th>
                     <th>Empresa</th>
                     <th>Responsable de PPP</th>
+                    <th>Estado</th>
                     <th class="text-nowrap">Acciones</th>
                   </tr>
                 </thead>
@@ -69,6 +70,7 @@
                       }}
 
                     </td>
+                    <td>{{convocatoria.estado}}</td>
                     <td class="text-nowrap text-center">
                       <a [routerLink]="[
                           '/dashboard',

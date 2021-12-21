@@ -27,6 +27,12 @@ import { ProfileComponent } from "./profile/profile.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
 import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
+import { SolicitudComponent } from "./solicitud/solicitud.component";
+import { AsistenciasComponent } from "./asistencias/asistencias.component";
+import { InformeComponent } from "./informe/informe.component";
+import { ConvocatoriasAbiertasComponent } from "./convocatorias-abiertas/convocatorias-abiertas.component";
+import { ListDocenteComponent } from "./list-docente/list-docente.component";
+import { AddDocenteComponent } from "./add-docente/add-docente.component";
 
 const routes: Routes = [
   {
@@ -131,9 +137,14 @@ const routes: Routes = [
         data: { titulo: "Convocatorias" },
       },
       {
-        path: "seleccionestudiantes",
+        path: "nueva-seleccion-estudiantes/:id",
         component: SeleccionEstudiantesComponent,
-        data: { titulo: "Seleccion Estudiantes" },
+        data: { titulo: "Nueva seleccion de estudiantes" },
+      },
+      {
+        path: "actualizar-seleccion-estudiantes/:idc",
+        component: SeleccionEstudiantesComponent,
+        data: { titulo: "Seleccion de estudiantes" },
       },
       {
         path: "designarTutorAcademico",
@@ -189,9 +200,39 @@ const routes: Routes = [
         data: { titulo: "Historial de procesos PPP" },
       },
       {
+        path: "solicitud",
+        component: SolicitudComponent,
+        data: { titulo: "Solicitud Estudiantes" },
+      },
+      {
+        path: "convocatoriasabiertas",
+        component: ConvocatoriasAbiertasComponent,
+        data: { titulo: "Convocatorias Abiertas" },
+      },
+      {
+        path: "asistencias",
+        component: AsistenciasComponent,
+        data: { titulo: "Registro de Asistencia" },
+      },
+      {
+        path: "informe",
+        component: InformeComponent,
+        data: { titulo: "Informe Final" },
+      },
+      {
         path: "solicitudes_empresas",
         component: ListSolicitudesEmpresasRespppComponent,
         data: { titulo: "Solicitudes de las empresas" },
+      },
+      {
+        path: "docentes",
+        component: ListDocenteComponent,
+        data: { titulo: "Lista de Docentes" },
+      },
+      {
+        path: "nuevo-docente",
+        component: AddDocenteComponent,
+        data: { titulo: "Nuevo Docentes" },
       },
     ],
   },

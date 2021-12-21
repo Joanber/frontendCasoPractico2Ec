@@ -91,12 +91,18 @@ export class SidebarService {
         },
         {
           titulo: "Seleccion de estudiantes",
-          url: "seleccionestudiantes",
+          url: "nueva-seleccion-estudiantes",
         },
+        {
+          titulo: "Designar Tutor academico",
+          url: "actualizar-seleccion-estudiantes",
+        },
+
         {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
+
         {
           titulo: "Generar Acta",
           url: "generarActa",
@@ -132,11 +138,11 @@ export class SidebarService {
       submenu: [
         {
           titulo: "Convocatorias",
-          url: "convocatorias",
+          url: "convocatoriasabiertas",
         },
         {
           titulo: "Solicitudes",
-          url: "solicitudes",
+          url: "solicitud",
         },
         {
           titulo: "Asistencias",
@@ -144,7 +150,7 @@ export class SidebarService {
         },
         {
           titulo: "Informes",
-          url: "informes",
+          url: "informe",
         },
       ],
     },

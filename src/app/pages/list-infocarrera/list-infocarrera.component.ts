@@ -24,7 +24,7 @@ export class ListInfoCarreraComponent implements OnInit {
   cargarResponsablesPPP() {
     this.cargando1 = true;
     this.responsablePPPService
-      .getResponsablesPPP()
+      .getResponsablePPP()
       .subscribe((responsablePPP) => {
         this.responsablesPPP = responsablePPP;
         this.cargando1 = false;

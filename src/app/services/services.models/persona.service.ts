@@ -12,6 +12,11 @@ const bd_url = environment.bd_url + "/personas";
 export class PersonaService {
   constructor(private http: HttpClient) {}
 
+  //OBTENER PERSONAS SIN PAGINACION NI PARAMETROS
+  getPersonas(): Observable<Persona[]> {
+    return this.http.get<Persona[]>(`${bd_url}/filtrar`);
+  }
+
   //OBTENER UNA PERSONA POR ID
   getPersonaById(id: number): Observable<Persona> {
     return this.http.get<Persona>(`${bd_url}/${id}`);
