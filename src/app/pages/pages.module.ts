@@ -25,7 +25,9 @@ import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/selec
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { AnexosComponent } from "./anexos/anexos.component";
+import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
+import { ConvocatoriasAbiertasComponent } from './convocatorias-abiertas/convocatorias-abiertas.component';
 import { DashboardComponent } from "./dashboard/dashboard.component";
 import { AcreditacionPppComponent } from "./gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component";
 import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
@@ -33,6 +35,7 @@ import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-conv
 import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component";
 import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
 import { InformacionComponent } from "./informacion/informacion.component";
+import { InformeComponent } from './informe/informe.component';
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
 import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
 import { ListDocenteComponent } from "./list-docente/list-docente.component";
@@ -44,6 +47,9 @@ import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empre
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
+import { SolicitudComponent } from './solicitud/solicitud.component';
+
+
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -75,6 +81,10 @@ import { ProfileComponent } from "./profile/profile.component";
     ListDocenteComponent,
     ListSolicitudesEmpresasRespppComponent,
     ListConvocatoriasComponent,
+    SolicitudComponent,
+    AsistenciasComponent,
+    InformeComponent,
+    ConvocatoriasAbiertasComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

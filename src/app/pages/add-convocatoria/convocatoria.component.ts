@@ -51,7 +51,26 @@ export class ConvocatoriaComponent implements OnInit {
 
   guardarConvocatoria(form: NgForm) {
     this.formSubmitted = true;
-
+    if (this.convocatoria.id) {
+      const fechaFormateadaMax_recib = this.miDatePipe.transform(
+        this.convocatoria.fecha_max_recib_solic,
+        "yyyy-MM-dd"
+      );
+      this.convocatoria.fecha_max_recib_solic = fechaFormateadaMax_recib;
+      this.convocatoria.solicitudEmpresa = this.solicitudEmpresa;
+      this.convocatoria.carrera = this.solicitudEmpresa.responsablePPP.carrera;
+      this.convocatoria.estado = true;
+      this.convocatoriaService
+        .editar(this.convocatoria, this.convocatoria.id)
+        .subscribe((convocatoria) => {
+          Swal.fire(
+            "Actualizar Convocatoria",
+            `¡${convocatoria.id} actualizada con exito!`,
+            "success"
+          );
+          this.irListaConvocatorias();
+        });
+    } else {
     if (this.solicitudEmpresa.id) {
       const fechaFormateadaMax_recib = this.miDatePipe.transform(
         this.convocatoria.fecha_max_recib_solic,
@@ -72,7 +91,7 @@ export class ConvocatoriaComponent implements OnInit {
           this.irListaConvocatorias();
         });
     }
-  }
+  }}
 
   cargarSolicitudEmpresa(id: number) {
     if (!id) {

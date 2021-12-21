@@ -12,8 +12,9 @@ import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { TokenInterceptor } from "./services/interceptores/token-interceptor.service";
 
 
+
 @NgModule({
-  declarations: [AppComponent, NotpagefoundComponent],
+  declarations: [AppComponent, NotpagefoundComponent,],
   imports: [
     BrowserModule,
     AppRoutingModule,
