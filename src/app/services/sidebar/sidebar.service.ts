@@ -132,7 +132,7 @@ export class SidebarService {
       submenu: [
         {
           titulo: "Convocatorias",
-          url: "convocatorias",
+          url: "convocatoriasabiertas",
         },
         {
           titulo: "Solicitudes",
