@@ -91,12 +91,18 @@ export class SidebarService {
         },
         {
           titulo: "Seleccion de estudiantes",
-          url: "seleccionestudiantes",
+          url: "nueva-seleccion-estudiantes",
         },
+        {
+          titulo: "Designar Tutor academico",
+          url: "actualizar-seleccion-estudiantes",
+        },
+
         {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
+
         {
           titulo: "Generar Acta",
           url: "generarActa",

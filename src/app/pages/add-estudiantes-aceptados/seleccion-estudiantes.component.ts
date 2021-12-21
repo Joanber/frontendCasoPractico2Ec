@@ -1,14 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { Carrera } from 'src/app/models/carrera.model';
-import { Docente } from 'src/app/models/docente.model';
-import { Empresa } from 'src/app/models/empresa.model';
-import { CarreraService } from 'src/app/services/services.models/carrera.service';
-import { DocenteService } from 'src/app/services/services.models/docente.service';
-import { EmpresaService } from 'src/app/services/services.models/empresa.service';
+
 import { ConvocatoriasService } from 'src/app/services/services.models/convocatorias.service';
 
-import { formatDate } from '@angular/common';
+import { DatePipe, formatDate } from '@angular/common';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
+import { SolicitudEmpresaService } from 'src/app/services/services.models/solicitud-empresa.service';
+import { ActivatedRoute, Router } from '@angular/router';
+import { SolicitudEmpresa } from 'src/app/models/solicitudEmpresa.model';
+import Swal from 'sweetalert2';
+import { NgForm } from '@angular/forms';
 
 @Component({
   selector: 'app-seleccion-estudiantes',
@@ -16,59 +16,115 @@ import { Convocatoria } from 'src/app/models/convocatoria.model';
   styleUrls: ['./seleccion-estudiantes.component.css']
 })
 export class SeleccionEstudiantesComponent implements OnInit {
+  public solicitudEmpresa = new SolicitudEmpresa();
+  public convocatoria = new Convocatoria();
+  public formSubmitted = false;
 
-  //VARIABLE DE CARRERAS
-  public carreras: Carrera[] = [];
-  //VARIABLE DE DOCENTES
-  public docentes: Docente[] = [];
-  //VARIABLE DE EMPRESA
-  public empresas: Empresa[] = [];
-  //VARIABLE DE CONVOCATORIA
-  public convocatorias: Convocatoria[] = [];
-  //public carreras: Carrera[] = [];
-
+  ultimoElemento = 1;
   //Variable fecha
   today = new Date();
-  jstoday = '';
+  jstoday = "";
 
   constructor(
-    private docenteService: DocenteService,
-    private carreraService: CarreraService,
-    private empresaService: EmpresaService,
-    private convocatoriaService: ConvocatoriasService
+    private solicitudEmpresaService: SolicitudEmpresaService,
+    private convocatoriaService: ConvocatoriasService,
+    private activatedRoute: ActivatedRoute,
+    private router: Router,
+    private miDatePipe: DatePipe
   ) {
-    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+    this.jstoday = formatDate(
+      this.today,
+      "dd-MM-yyyy hh:mm:ss a",
+      "en-US",
+      "+0530"
+    );
   }
+
   ngOnInit() {
-    this.getCarreras();
-    this.getEmpresas();
-    this.getDocentes();
-    this.getConvocatoria();
+    this.activatedRoute.params.subscribe(({ id }) =>
+      this.cargarSolicitudEmpresa(id)
+    );
+    this.activatedRoute.params.subscribe(({ idc }) =>
+      this.cargarConvocatoriaById(idc)
+    );
   }
 
+  guardarConvocatoria(form: NgForm) {
+    this.formSubmitted = true;
+    if (this.convocatoria.id) {
+      const fechaFormateadaMax_recib = this.miDatePipe.transform(
+        this.convocatoria.fecha_max_recib_solic,
+        "yyyy-MM-dd"
+      );
+      this.convocatoria.fecha_max_recib_solic = fechaFormateadaMax_recib;
+      this.convocatoria.solicitudEmpresa = this.solicitudEmpresa;
+      this.convocatoria.carrera = this.solicitudEmpresa.responsablePPP.carrera;
+      this.convocatoria.estado = true;
+      this.convocatoriaService
+        .editar(this.convocatoria, this.convocatoria.id)
+        .subscribe((convocatoria) => {
+          Swal.fire(
+            "Actualizar Convocatoria",
+            `¡${convocatoria.id} actualizada con exito!`,
+            "success"
+          );
+          this.irListaConvocatorias();
+        });
+    } else {
+    if (this.solicitudEmpresa.id) {
+      const fechaFormateadaMax_recib = this.miDatePipe.transform(
+        this.convocatoria.fecha_max_recib_solic,
+        "yyyy-MM-dd"
+      );
+      this.convocatoria.fecha_max_recib_solic = fechaFormateadaMax_recib;
+      this.convocatoria.solicitudEmpresa = this.solicitudEmpresa;
+      this.convocatoria.carrera = this.solicitudEmpresa.responsablePPP.carrera;
+      this.convocatoria.estado = true;
+      this.convocatoriaService
+        .crear(this.convocatoria)
+        .subscribe((convocatoria) => {
+          Swal.fire(
+            "Nueva Convocatoria",
+            `¡ Convocatoria creada con exito!`,
+            "success"
+          );
+          this.irListaConvocatorias();
+        });
+    }
+  }}
 
-  private getDocentes() {
-    this.docenteService.getDocentes().subscribe((docentes) => {
-      this.docentes = docentes;
-    });
+  cargarSolicitudEmpresa(id: number) {
+    if (!id) {
+      return;
+    }
+    this.solicitudEmpresaService
+      .getSolicitudEmpresaById(id)
+      .subscribe((solicitudEmpresa) => {
+        if (!solicitudEmpresa) {
+          return this.irListaConvocatorias();
+        }
+        this.solicitudEmpresa = solicitudEmpresa;
+      });
+  }
+  cargarConvocatoriaById(idc: number) {
+    if (!idc) {
+      return;
+    }
+    this.convocatoriaService
+      .getConvocatoriaById(idc)
+      .subscribe((convocatoria) => {
+        if (!convocatoria) {
+        //  return this.irListaConvocatorias();
+        }
+        this.solicitudEmpresa = convocatoria.solicitudEmpresa;
+        this.convocatoria = convocatoria;
+      });
   }
 
-
-  private getCarreras() {
-    this.carreraService.getCarreras().subscribe((carreras) => {
-      this.carreras = carreras;
-    });
+  irListaConvocatorias() {
+    this.router.navigateByUrl("/dashboard/convocatorias");
   }
-
-
-  private getEmpresas() {
-    this.empresaService.getEmpresas().subscribe((empresas) => {
-      this.empresas = empresas;
-    });
-  }
-  private getConvocatoria() {
-    this.convocatoriaService.getConvocatorias().subscribe((convocatorias) => {
-      this.convocatorias = convocatorias;
-    });
+  irListaSolicitudes() {
+    this.router.navigateByUrl("/dashboard/solicitudes_empresas");
   }
 }
