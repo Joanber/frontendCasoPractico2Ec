@@ -1,0 +1,138 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form #MyForm="ngForm" (submit)="guardarDocente(MyForm)">
+            <div class="form-body">
+              <h3 class="card-title"> Responsable Practicas Preprofesionales  {
+            </h3>
+              <hr />
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label class="control-label">carrera *</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="carrera"
+                      #titulo_docente="ngModel"
+                      [(ngModel)]="responsablePPP.titulo_docente"
+                      required
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="titulo_docente.hasError('required') && titulo_docente.touched"
+                    >
+                    Titulo del docente es requerido!
+                    </div>
+                  </div>
+                </div>
+                <!--/span-->
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row">
+                <!--/span-->
+                <div class="col-md-2">
+                  <div class="form-group">
+                    <label class="control-label">Abreviatura*</label>
+                    <input
+                      type="text"
+                      class="form-control"
+                      name="abreviatura"
+                      #abreviatura="ngModel"
+                      [(ngModel)]="docente.abreviatura"
+                      required
+                    />
+                    <div
+                      class="text-danger"
+                      *ngIf="
+                        abreviatura.hasError('required') && abreviatura.touched
+                      "
+                    >
+                      Abreviatura es requerido!
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group">
+                    <label class="control-label">Tiempo de Trabajo*</label>
+                    <select
+                      class="form-control"
+                      name="modalidad"
+                      #modalidad="ngModel"
+                      [(ngModel)]="docente.tipo_tiempo"
+                      required
+                    >
+                      <option [ngValue]="undefined">
+                        Seleccione la Tiempo
+                      </option>
+                      <option value="PRESENCIAL">COMPLETO</option>
+                      <option value="DUAL">MEDIO TIEMPO</option>
+                    </select>
+  
+                    <div
+                      class="text-danger"
+                      *ngIf="tipo_tiempo.hasError('required') && tipo_tiempo.touched"
+                    >
+                    Tiempo de Trabajo!
+                    </div>
+                  </div>
+                </div>
+  
+                
+                <!--/span-->
+              </div>
+              <!--/row-->
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group">
+                    <label class="control-label">Persona*</label>
+                    <ng-select
+                      [compareWith]="compararDocente()"
+                      name="persona"
+                      placeholder="Seleccione al persona (a)"
+                      #persona="ngModel"
+                      [(ngModel)]="docente.persona"
+                      required
+                    >
+                      <ng-option
+                        *ngFor="let persona of personas"
+                        [value]="persona"
+                      >
+                        {{ persona.primer_nombre }}
+                        {{ persona.segundo_nombre }}
+                        {{ persona.primer_apellido }}
+                        {{ persona.segundo_apellido }}
+                      </ng-option>
+                    </ng-select>
+  
+                    <div
+                      class="text-danger"
+                      *ngIf="persona.hasError('required') && persona.touched"
+                    >
+                    persona es requerido!
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr />
+            <div class="form-actions">
+              <button type="submit" class="btn btn-success mr-2">
+                <i class="fa fa-check"></i> Guardar
+              </button>
+              <button
+                type="button"
+                class="btn btn-inverse"
+                (click)="irListaDocentes()"
+              >
+                Cancelar
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  

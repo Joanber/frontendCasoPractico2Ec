@@ -12,12 +12,6 @@ const bd_url = environment.bd_url + "/responsablesPPP";
 export class ResponsablePPPService {
   constructor(private http: HttpClient) {}
 
-  //RESPONSABLES PPP SIN PAGINACION
-  
-  
-
-  
-
   //OBTENER UNA ResponsablePPP POR ID
   getResponsablePPPById(id: number): Observable<ResponsablePPP> {
     return this.http.get<ResponsablePPP>(`${bd_url}/${id}`);
@@ -90,6 +84,4 @@ export class ResponsablePPPService {
     );
   }
 }
-
-
 
