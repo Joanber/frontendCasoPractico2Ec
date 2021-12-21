@@ -4,6 +4,5 @@ export interface Convenio {
     id?: number;
     nombre: string;
     carrera: Carrera;
-    tipo: string;
     empresa: Empresa;
 }

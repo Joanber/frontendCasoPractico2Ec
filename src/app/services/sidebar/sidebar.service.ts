@@ -138,11 +138,11 @@ export class SidebarService {
       submenu: [
         {
           titulo: "Convocatorias",
-          url: "convocatorias",
+          url: "convocatoriasabiertas",
         },
         {
           titulo: "Solicitudes",
-          url: "solicitudes",
+          url: "solicitud",
         },
         {
           titulo: "Asistencias",
@@ -150,7 +150,7 @@ export class SidebarService {
         },
         {
           titulo: "Informes",
-          url: "informes",
+          url: "informe",
         },
       ],
     },

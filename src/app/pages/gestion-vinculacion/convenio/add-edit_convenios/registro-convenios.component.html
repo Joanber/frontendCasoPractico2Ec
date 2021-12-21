@@ -6,7 +6,7 @@
                     <div class="form-body">
                         <section class="row">
                             <!-- appearance="outline" -->
-                            <mat-form-field class="col-md-6 ">
+                            <mat-form-field class="col-md-12">
                                 <mat-label>Nombre convenio</mat-label>
                                 <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
                                 <mat-error *ngIf="formValues.nombre.errors?.pattern">
@@ -16,7 +16,7 @@
                                     Nombre de convenio es <strong>requerido</strong>
                                 </mat-error>
                             </mat-form-field>
-                            <mat-form-field class="col-md-6 ">
+                            <!-- <mat-form-field class="col-md-6 ">
                                 <mat-label>Tipo de convenio</mat-label>
                                 <input type="text" matInput formControlName="tipo" [errorStateMatcher]="matcher" placeholder="Ejemplo tipo de convenio" required>
                                 <mat-error *ngIf="formValues.tipo.errors?.pattern">
@@ -25,23 +25,23 @@
                                 <mat-error *ngIf="formValues.tipo.hasError('required')">
                                     Tipo de convenio es <strong>requerido</strong>
                                 </mat-error>
-                            </mat-form-field>
+                            </mat-form-field> -->
                         </section>
                         <div class="row mt-4">
                             <mat-form-field class="col-md-6">
                                 <mat-label>Carrera</mat-label>
                                 <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
-                                    <mat-option  *ngFor="let carrera of carreras;let i = index" [value]="carrera">
-                                        {{carrera?.nombre}}
+                                    <mat-option  *ngFor="let carrera of carreras" [value]="carrera">
+                                        {{carrera.nombre}}
                                     </mat-option>
                                 </mat-select>
                                 <mat-error *ngIf="formValues.carrera.errors?.required">Por favor escoge una carrera</mat-error>
                                 <mat-hint>{{formValues.carrera.value?.id}}</mat-hint>
                             </mat-form-field>
-                            <mat-form-field class="col-md-4">
+                            <mat-form-field class="col-md-6">
                                 <mat-label>Empresa</mat-label>
-                                <mat-select disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
-                                    <mat-option *ngFor="let empresa of empresa" [value]="empresa">
+                                <mat-select  #empresa disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
+                                    <mat-option *ngFor="let empresa of empresas" [value]="empresa">
                                         {{empresa.nombre}}
                                     </mat-option>
                                 </mat-select>
@@ -53,10 +53,10 @@
                     <mat-divider class="mb-3 mt-3"></mat-divider>
                     <section>
                         <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" (click)="onSubmit()" class="mr-2">
-                            Guardar
+                            {{btnName}}
                         </button>
                         <button *ngIf="convenioForm.touched" mat-raised-button color="accent" type="reset" (click)="loadForm()" class="mr-2">Reset</button>
-                        <button mat-raised-button color="warn" [routerLink]="'../'" type="button">
+                        <button mat-raised-button color="warn" (click)="returnToList()" type="button">
                             Cancelar
                         </button>
                     </section>

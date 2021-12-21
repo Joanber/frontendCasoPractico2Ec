@@ -1,8 +1,10 @@
 import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 import { AuthRoutingModule } from "./auth/auth.routing";
+import { SolicitudAlumno } from "./models/solicitudAlumno.model";
 import { NotpagefoundComponent } from "./notpagefound/notpagefound.component";
 import { PagesRoutingModule } from "./pages/pages.routing";
+import { SolicitudComponent } from "./pages/solicitud/solicitud.component";
 
 
 
