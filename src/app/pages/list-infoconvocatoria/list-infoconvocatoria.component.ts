@@ -1,42 +1,104 @@
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator, PageEvent } from "@angular/material";
-import { SolicitudEmpresa } from "src/app/models/solicitudEmpresa.model";
-import { SolicitudEmpresaService } from "src/app/services/services.models/solicitud-empresa.service";
-import { environment } from "src/environments/environment";
-import { CarreraService } from 'src/app/services/services.models/carrera.service';
+
+import { CarreraService } from "src/app/services/services.models/carrera.service";
 import { Carrera } from "src/app/models/carrera.model";
+import { Convocatoria } from "src/app/models/convocatoria.model";
+import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
+import { DatePipe } from "@angular/common";
 @Component({
   selector: "app-list-infoconvocatoria",
   templateUrl: "./list-infoconvocatoria.component.html",
   styleUrls: ["./list-infoconvocatoria.component.css"],
+  providers: [DatePipe],
 })
 export class ListInfoConvocatoriaComponent implements OnInit {
-  //VARIABLE DE CARRERAS
-  public solicitudesEmpresa: SolicitudEmpresa[] = [];
-  //VARIABLE DE LOADING
-  public cargando1: boolean = true;
-  //VARIABLE DE CARRERAS
-  public carreras: Carrera[] = [];
+  public totalRegistros = 0;
+  public paginaActual = 0;
+  public totalPorPagina = 10;
+  public pageSizeOptions: number[] = [10, 20, 50, 100];
+  //MATPAGINATOR
+  @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
 
-  constructor(private solicitudEmpresaService: SolicitudEmpresaService,
-              private carreraService: CarreraService) {}
+  public convocatorias: Convocatoria[] = [];
+  public carreras: Carrera[] = [];
+  //VARIABLES PARA BUSCAR
+  public carreraFiltro: string = undefined;
+  public fecha: string = "";
+
+  constructor(
+    private convocatoriaService: ConvocatoriasService,
+    private carreraService: CarreraService,
+    private miDatePipe: DatePipe
+  ) {}
+
   ngOnInit() {
-    this.cargarSolicitudesEmpresa();
-    this.getCarreras();
+    this.cargarCarreras();
+    this.getConvocatoriasPage(
+      this.paginaActual.toString(),
+      this.totalPorPagina.toString(),
+      this.carreraFiltro,
+      this.fecha
+    );
+  }
+  public paginar(event: PageEvent): void {
+    this.paginaActual = event.pageIndex;
+    this.totalPorPagina = event.pageSize;
+    this.getConvocatoriasPage(
+      this.paginaActual.toString(),
+      this.totalPorPagina.toString(),
+      this.carreraFiltro,
+      this.fecha
+    );
+  }
+  public filtarConvocatoriasPorFechaCarrera() {
+    if (this.fecha != null && this.carreraFiltro != null) {
+      const fechaFormateada = this.miDatePipe.transform(
+        this.fecha,
+        "yyyy-MM-dd"
+      );
+      this.getConvocatoriasPage(
+        this.paginaActual.toString(),
+        this.totalPorPagina.toString(),
+        this.carreraFiltro,
+        fechaFormateada
+      );
+    } else {
+      return;
+    }
+  }
+  cargarConvocatoriasDefault() {
+    this.carreraFiltro = undefined;
+    this.fecha = "";
+    return this.getConvocatoriasPage(
+      this.paginaActual.toString(),
+      this.totalPorPagina.toString(),
+      this.carreraFiltro,
+      this.fecha
+    );
   }
 
-  cargarSolicitudesEmpresa() {
-    this.cargando1 = true;
-    this.solicitudEmpresaService
-      .getSolicitudesEmpresas()
-      .subscribe((solicitudEmpresa) => {
-        this.solicitudesEmpresa = solicitudEmpresa;
-        this.cargando1 = false;
+  private getConvocatoriasPage(
+    page: string,
+    size: string,
+    carreraFiltro: string,
+    fecha: string
+  ) {
+    this.convocatoriaService
+      .getConvocatoriasPage(page, size, carreraFiltro, fecha)
+      .subscribe((p) => {
+        this.convocatorias = p.content as Convocatoria[];
+        this.totalRegistros = p.totalElements as number;
+        this.paginador._intl.itemsPerPageLabel = "Registros por página:";
+        this.paginador._intl.nextPageLabel = "Siguiente";
+        this.paginador._intl.previousPageLabel = "Previa";
+        this.paginador._intl.firstPageLabel = "Primera Página";
+        this.paginador._intl.lastPageLabel = "Última Página";
       });
   }
-  private getCarreras() {
-    this.carreraService.getCarreras().subscribe((carreras) => {
-      this.carreras = carreras;
-    });
+  cargarCarreras() {
+    this.carreraService
+      .getCarreras()
+      .subscribe((carreras) => (this.carreras = carreras));
   }
 }
