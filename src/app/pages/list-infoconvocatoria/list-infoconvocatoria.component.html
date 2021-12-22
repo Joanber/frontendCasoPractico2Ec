@@ -1,98 +1,94 @@
-<div class="row" *ngIf="!cargando1">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title text-center">Informacion de Convocatorias</h4>
-          <div class="table-responsive">
-            <div id="example23_wrapper" class="dataTables_wrapper">
-              <div class="row" *ngIf="cargando1">
-                <div class="col-12">
-                  <div class="alert alert-info text-center" role="alert">
-                    <h4 class="alert-heading">Cargando</h4>
-                    <i class="fa fa-spin fa-refresh fa-2x"></i>
-                    <p class="mb-0">Por favor espere...</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-4">
-              <select class="form-control" style="width: auto;" name="carrera">
-                <option [ngValue]="undefined"> Seleccione la carrera </option>
-                <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-              </select>
-            </div>
-              <div class="col-md-3">
-                <div class="form-group">
-                  <input
-                    [matDatepicker]="myDatepicker"
-                    class="form-control"
-                    name="fecha_inicio"
-                    #fecha_inicio="ngModel"
-                    [(ngModel)]="carreras.fecha_inicio"
-                    required
-                   
-                  />
-                  <mat-datepicker-toggle
-                    [for]="myDatepicker"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
-                  <div
-                    class="text-danger"
-                    *ngIf="
-                      fecha_inicio.hasError('required') && fecha_inicio.touched
-                    "
-                  >
-                    Fecha Inicio es requerido!
-                  </div>
-                </div>
-              </div>
-              <div class="table-scroll">
-                <table
-                  class="
-                    table table-bordered
-                    justify-content-center
-                    table-responsive-sm table-sm
-                    dataTable
-                  "
-                >
-                  <thead>
-                    <tr>
-                      <th>Empresa</th>
-                      <th>Carrera</th>
-                      <th>Fecha</th>
-                      <th>#Estudiantes</th>
-                      <th>Responsable PPP</th>
-                    </tr>
-                  </thead>
-  
-                  <tbody class="animated fadeIn fast">
-                    <tr *ngFor="let solicitudEmpresa of solicitudesEmpresa">
-                      <td>{{ solicitudEmpresa.empresa.nombre }}</td>
-                      <td>
-                        {{ solicitudEmpresa.responsablePPP.carrera.nombre }}
-                      </td>
-                      <td>{{ solicitudEmpresa.fecha_inicio}}</td>
-                      <td>{{ solicitudEmpresa.numero_alumnos}}</td>
-                      <td>
-                        {{
-                          solicitudEmpresa.responsablePPP.docente
-                            .abreviatura_titulo
-                        }}
-                        {{
-                          solicitudEmpresa.responsablePPP.docente.persona
-                            .primer_nombre
-                        }}
-                        {{
-                          solicitudEmpresa.responsablePPP.docente.persona
-                            .primer_apellido
-                        }}
-                      </td>
-                  </tbody>
-                </table>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">Convocatorias</h4>
+        <div class="row">
+          <div class="col-md-2">
+            <input
+              [matDatepicker]="myDatepicker"
+              [(ngModel)]="fecha"
+              class="form-control"
+              style="display: block"
+              name="fechaF"
+              required
+              #fechaF="ngModel"
+            />
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker
+              [touchUi]="true"
+              color="dark"
+              #myDatepicker
+            ></mat-datepicker>
+          </div>
+          <div class="col-md-5">
+            <select class="form-control" [(ngModel)]="carreraFiltro">
+              <option [ngValue]="undefined">CARRERA (TODAS)</option>
+              <option
+                *ngFor="let carrera of carreras"
+                [ngValue]="carrera.nombre"
+              >
+                {{ carrera.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-2">
+            <button
+              class="btn btn-primary"
+              (click)="filtarConvocatoriasPorFechaCarrera()"
+            >
+              <i class="mdi mdi-magnify"></i>
+              Buscar
+            </button>
+          </div>
+          <div class="col-md-3 text-right">
+            <button
+              class="btn btn-light btn-sm"
+              (click)="cargarConvocatoriasDefault()"
+            >
+              Mostrar Todas
+            </button>
+          </div>
+        </div>
+        <div class="row">
+          <div
+            class="col-lg-3 col-md-6"
+            *ngFor="let convocatoria of convocatorias"
+          >
+            <!-- Card -->
+            <div class="card border-dark">
+              <img
+                class="card-img-top img-responsive"
+                src="../assets/images/ista2.jpg"
+                style="height: 120px"
+                alt="Card image cap"
+              />
+              <div class="card-body">
+                <h4 class="card-title">
+                  Convocatoria {{ convocatoria.carrera.abreviatura }}
+                </h4>
+                <p class="card-text">
+                  Carrera:{{ convocatoria.carrera.nombre }}
+                </p>
+                <p class="card-text">
+                  Fecha Maxima:{{ convocatoria.fecha_max_recib_solic }}
+                </p>
+                <a href="#" class="btn btn-info">Ver</a>
               </div>
             </div>
+            <!-- Card -->
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>
+<mat-paginator
+  [length]="totalRegistros"
+  [pageSize]="totalPorPagina"
+  [pageSizeOptions]="pageSizeOptions"
+  [pageIndex]="paginaActual"
+  (page)="paginar($event)"
+  showFirstLastButtons
+>
+</mat-paginator>
