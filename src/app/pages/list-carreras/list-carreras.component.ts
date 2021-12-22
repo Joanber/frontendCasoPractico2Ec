@@ -4,8 +4,7 @@ import { Carrera } from "src/app/models/carrera.model";
 import { CarreraService } from "src/app/services/services.models/carrera.service";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
-
-const bd_url = environment.bd_url;
+const bd_url = environment.bd_url+"/docentes";
 @Component({
   selector: "app-list-carreras",
   templateUrl: "./list-carreras.component.html",

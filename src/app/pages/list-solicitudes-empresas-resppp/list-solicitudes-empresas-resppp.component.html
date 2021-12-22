@@ -8,16 +8,29 @@
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
             <div class="dt-buttons">
-              <button routerLink="/dashboard/nueva-carrera" class="btn btn-primary btn-sm">
+              <button
+                routerLink="/dashboard/nueva-carrera"
+                class="btn btn-primary btn-sm"
+              >
                 <i class="mdi mdi-plus"></i>
                 Nueva Carrera
               </button>
             </div>
             <div id="example23_filter" class="dataTables_filter">
-              <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
-                  (keyup)="cargarSolicitudesEmpresasDefault(txtBusqueda.value)" />
+              <label
+                >Buscar:<input
+                  type="text"
+                  placeholder=""
+                  [(ngModel)]="busqueda"
+                  #txtBusqueda
+                  (keyup)="cargarSolicitudesEmpresasDefault(txtBusqueda.value)"
+                />
               </label>
-              <button class="btn btn-primary btn-sm" (click)="buscar(txtBusqueda.value)" type="button">
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="buscar(txtBusqueda.value)"
+                type="button"
+              >
                 <i class="mdi mdi-magnify"></i>
               </button>
             </div>
@@ -31,12 +44,14 @@
               </div>
             </div>
             <div class="table-scroll">
-              <table class="
+              <table
+                class="
                   table table-bordered
                   justify-content-center
                   table-responsive-sm table-sm
                   dataTable
-                ">
+                "
+              >
                 <thead>
                   <tr>
                     <th>Empresa</th>
@@ -60,32 +75,45 @@
                     </td>
                     <td>
                       {{
-                      solicitudEmpresa.responsablePPP.docente
-                      .abreviatura_titulo
+                        solicitudEmpresa.responsablePPP.docente
+                          .abreviatura_titulo
                       }}
                       {{
-                      solicitudEmpresa.responsablePPP.docente.persona
-                      .primer_nombre
+                        solicitudEmpresa.responsablePPP.docente.persona
+                          .primer_nombre
                       }}
                       {{
-                      solicitudEmpresa.responsablePPP.docente.persona
-                      .primer_apellido
+                        solicitudEmpresa.responsablePPP.docente.persona
+                          .primer_apellido
                       }}
                     </td>
                     <td class="text-nowrap text-center">
-                      <a [routerLink]="[
+                      <a
+                        [routerLink]="[
                           '/dashboard',
                           'nueva-convocatoria',
                           solicitudEmpresa.id
-                        ]" data-toggle="tooltip" data-original-title="Crear Convocatoria" class="cursor"
-                        title="Generar Convocatoria">
+                        ]"
+                        data-toggle="tooltip"
+                        data-original-title="Crear Convocatoria"
+                        class="cursor"
+                        title="Generar Convocatoria"
+                      >
                         <i class="mdi mdi-book-open m-r-10"></i>
                       </a>
 
-                      <a  [routerLink]="['../nueva-seleccion-estudiantes', solicitudEmpresa.id]"
-                        data-toggle="tooltip" data-original-title="Seleccionar Estudiante" class="cursor"
-                        title="Seleccionar Estudiantes">
-                        <i class="mdi  mdi-account-multiple-plus m-r-10"></i>
+                      <a
+                        [routerLink]="[
+                          '/dashboard',
+                          'nueva-seleccion-estudiantes',
+                          solicitudEmpresa.id
+                        ]"
+                        data-toggle="tooltip"
+                        data-original-title="Seleccionar Estudiante"
+                        class="cursor"
+                        title="Seleccionar Estudiantes"
+                      >
+                        <i class="mdi mdi-account-multiple-plus m-r-10"></i>
                       </a>
                     </td>
                   </tr>
@@ -98,6 +126,12 @@
     </div>
   </div>
 </div>
-<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
-  [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+<mat-paginator
+  [length]="totalRegistros"
+  [pageSize]="totalPorPagina"
+  [pageSizeOptions]="pageSizeOptions"
+  [pageIndex]="paginaActual"
+  (page)="paginar($event)"
+  showFirstLastButtons
+>
 </mat-paginator>

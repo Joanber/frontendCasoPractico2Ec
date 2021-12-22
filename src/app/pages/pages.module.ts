@@ -43,12 +43,16 @@ import { ListDocenteComponent } from "./list-docente/list-docente.component";
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
+import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
+
+
+
 
 @NgModule({
   declarations: [
@@ -81,10 +85,12 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     ListDocenteComponent,
     ListSolicitudesEmpresasRespppComponent,
     ListConvocatoriasComponent,
+    ListInfoConvocatoriaComponent,
     SolicitudComponent,
     AsistenciasComponent,
     InformeComponent,
     ConvocatoriasAbiertasComponent,
+
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

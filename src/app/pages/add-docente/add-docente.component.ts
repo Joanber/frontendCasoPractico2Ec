@@ -29,8 +29,7 @@ export class AddDocenteComponent implements OnInit {
     private docenteService: DocenteService,
     private personaService: PersonaService,
     private router: Router,
-    private activatedRoute: ActivatedRoute,
-    private miDatePipe: DatePipe
+    private activatedRoute: ActivatedRoute
   ) {}
 
   ngOnInit() {
