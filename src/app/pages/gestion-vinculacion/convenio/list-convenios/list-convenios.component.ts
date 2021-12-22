@@ -1,27 +1,30 @@
+import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, MatSort, MatTableDataSource, PageEvent } from '@angular/material';
+import { FormControl } from '@angular/forms';
+import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import Swal from 'sweetalert2';
 import { Convenio } from './../../../../models/convenio';
 import { ConvenioService } from './../../../../services/services.models/convenio.service';
-
 @Component({
   selector: 'app-list-convenios',
   templateUrl: './list-convenios.component.html',
   styleUrls: ['./list-convenios.component.css']
 })
 export class ListConveniosComponent implements OnInit, AfterViewInit {
-  constructor(private convenioService: ConvenioService) {
+  constructor(private convenioService: ConvenioService, private _liveAnnouncer: LiveAnnouncer) {
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
-
+  searchInput = new FormControl('');
   displayedColumns: string[] = ['id', 'nombre', 'empresa', 'carrera', 'acciones'];
 
   public pageSizeOptions: number[] = [10, 20, 50, 100];
 
   dataSource: MatTableDataSource<Convenio>;
+
   convenios: Convenio[] = [];
+
   totalElements = 0;
   currentPage = 0;
   pageSize = 10;
@@ -90,7 +93,6 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
         this.loading = false;
       }, error: (err) => console.log(err)
     });
-
   }
 
   initPaginator() {
@@ -101,6 +103,13 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
     this.paginator._intl.lastPageLabel = 'Última Página';
     this.dataSource = new MatTableDataSource(this.convenios);
     this.dataSource.filterPredicate = (data: Convenio, filter: string) => data.carrera.nombre.indexOf(filter) !== -1;
+    this.dataSource.sortingDataAccessor = (convenio, property) => {
+      switch (property) {
+        case 'empresa': return convenio.empresa.nombre;
+        case 'carrera': return convenio.carrera.nombre;
+        default: return convenio[property];
+      }
+    };
     this.dataSource.sort = this.sort;
     this.paginator.length = this.totalElements;
   }
@@ -142,11 +151,20 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   resetSearch() {
-      this.search = false;
-      return this.retriveConveniosByPage(
-        this.currentPage,
-        this.pageSize,
-        this.sortBy
-      );
+    this.search = false;
+    this.searchInput.reset();
+    return this.retriveConveniosByPage(
+      this.currentPage,
+      this.pageSize,
+      this.sortBy
+    );
+  }
+
+  SortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${ sortState.direction }ending`);
+    } else {
+      this._liveAnnouncer.announce('Sorting cleared');
+    }
   }
 }

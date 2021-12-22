@@ -10,7 +10,7 @@ export class SidebarService {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
       submenu: [
-        { titulo: "Convocatorias", url: "soli/convoc1" },
+        { titulo: "Convocatorias", url: "infoconvocatoria" },
         { titulo: "Procesos", url: "soli/procesos" },
         { titulo: "Informacion Carrera", url: "infocarrera" },
         { titulo: "Instructivo/Anexos", url: "soli/instructivos" },
@@ -136,6 +136,12 @@ export class SidebarService {
       titulo: "Gestion Alumnos",
       icono: "mdi mdi-account-multiple",
       submenu: [
+
+        {
+          titulo: "Lista de Solicitudes",
+          url: "solicitudes_estudiantes",
+        },
+
         {
           titulo: "Convocatorias",
           url: "convocatoriasabiertas",
@@ -152,6 +158,8 @@ export class SidebarService {
           titulo: "Informes",
           url: "informe",
         },
+
+        
       ],
     },
     {
@@ -166,6 +174,9 @@ export class SidebarService {
           titulo: "Usuarios",
           url: "usarios",
         },
+
+      
+        
       ],
     },
   ];

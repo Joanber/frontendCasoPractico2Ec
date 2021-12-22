@@ -1,0 +1,98 @@
+<div class="row" *ngIf="!cargando1">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">Informacion de Convocatorias</h4>
+          <div class="table-responsive">
+            <div id="example23_wrapper" class="dataTables_wrapper">
+              <div class="row" *ngIf="cargando1">
+                <div class="col-12">
+                  <div class="alert alert-info text-center" role="alert">
+                    <h4 class="alert-heading">Cargando</h4>
+                    <i class="fa fa-spin fa-refresh fa-2x"></i>
+                    <p class="mb-0">Por favor espere...</p>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-4">
+              <select class="form-control" style="width: auto;" name="carrera">
+                <option [ngValue]="undefined"> Seleccione la carrera </option>
+                <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
+              </select>
+            </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <input
+                    [matDatepicker]="myDatepicker"
+                    class="form-control"
+                    name="fecha_inicio"
+                    #fecha_inicio="ngModel"
+                    [(ngModel)]="carreras.fecha_inicio"
+                    required
+                   
+                  />
+                  <mat-datepicker-toggle
+                    [for]="myDatepicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      fecha_inicio.hasError('required') && fecha_inicio.touched
+                    "
+                  >
+                    Fecha Inicio es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table
+                  class="
+                    table table-bordered
+                    justify-content-center
+                    table-responsive-sm table-sm
+                    dataTable
+                  "
+                >
+                  <thead>
+                    <tr>
+                      <th>Empresa</th>
+                      <th>Carrera</th>
+                      <th>Fecha</th>
+                      <th>#Estudiantes</th>
+                      <th>Responsable PPP</th>
+                    </tr>
+                  </thead>
+  
+                  <tbody class="animated fadeIn fast">
+                    <tr *ngFor="let solicitudEmpresa of solicitudesEmpresa">
+                      <td>{{ solicitudEmpresa.empresa.nombre }}</td>
+                      <td>
+                        {{ solicitudEmpresa.responsablePPP.carrera.nombre }}
+                      </td>
+                      <td>{{ solicitudEmpresa.fecha_inicio}}</td>
+                      <td>{{ solicitudEmpresa.numero_alumnos}}</td>
+                      <td>
+                        {{
+                          solicitudEmpresa.responsablePPP.docente
+                            .abreviatura_titulo
+                        }}
+                        {{
+                          solicitudEmpresa.responsablePPP.docente.persona
+                            .primer_nombre
+                        }}
+                        {{
+                          solicitudEmpresa.responsablePPP.docente.persona
+                            .primer_apellido
+                        }}
+                      </td>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

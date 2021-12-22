@@ -1,7 +1,7 @@
 import { Carrera } from "./carrera.model";
 import { Persona } from "./persona.model";
 
-export class Almuno {
+export class Alumno {
   id: number;
   tipo_bachillerato: string;
   cliclo: string;
