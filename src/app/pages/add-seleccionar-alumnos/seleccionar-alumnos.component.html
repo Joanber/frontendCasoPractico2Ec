@@ -1,0 +1,45 @@
+<div class="row">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form #MyForm="ngForm" (submit)="guardarSeleccionEstudiantes()">
+            <div class="form-body">
+              <div class="card-body">
+                <div class="card-titulo" style="text-align: center">
+                  Seleccionar Alumnos
+  
+  
+                </div>
+  
+  
+                <div class="table-scroll">
+                  <table class="
+                        table table-bordered
+                        justify-content-center
+                        table-responsive-sm table-sm
+                        dataTable
+                      ">
+                    <thead>
+                      <tr>
+                        <th >Cedula</th>
+                        <th>Estudiantes</th>
+                      </tr>
+                    </thead>
+                    <tbody class="animated fadeIn fast">
+                      <tr *ngFor="let alum of AlumnosSelect">
+  
+                        <td>{{ alum.id }}</td>
+  
+                        <td>{{ alum.id }}</td>
+  
+  
+                      </tr>
+                    </tbody>
+                  </table></div>
+                  </div>
+                </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>

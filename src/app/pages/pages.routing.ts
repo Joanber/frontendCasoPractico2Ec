@@ -33,6 +33,8 @@ import { InformeComponent } from "./informe/informe.component";
 import { ConvocatoriasAbiertasComponent } from "./convocatorias-abiertas/convocatorias-abiertas.component";
 import { ListDocenteComponent } from "./list-docente/list-docente.component";
 import { AddDocenteComponent } from "./add-docente/add-docente.component";
+import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
+import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 
 const routes: Routes = [
   {
@@ -141,6 +143,13 @@ const routes: Routes = [
         component: SeleccionEstudiantesComponent,
         data: { titulo: "Nueva seleccion de estudiantes" },
       },
+
+      {
+        path: "seleccionar-estudiantes/:id",
+        component: SeleccionarAlumnosComponent,
+        data: { titulo: "Seleccion de alumnos" },
+      },
+
       {
         path: "actualizar-seleccion-estudiantes/:idc",
         component: SeleccionEstudiantesComponent,
@@ -222,8 +231,15 @@ const routes: Routes = [
       {
         path: "solicitudes_empresas",
         component: ListSolicitudesEmpresasRespppComponent,
-        data: { titulo: "Solicitudes de las empresas" },
+        data: { titulo: "Lista solicitudes de las empresas" },
       },
+
+      {
+        path: "solicitudes_estudiantes",
+        component: ListSolicitudesAlumnosComponent,
+        data: { titulo: "Lista solicitudes de los estudiantes"},
+      },
+
       {
         path: "docentes",
         component: ListDocenteComponent,
@@ -234,7 +250,10 @@ const routes: Routes = [
         component: AddDocenteComponent,
         data: { titulo: "Nuevo Docentes" },
       },
+
+     
     ],
+
   },
 ];
 

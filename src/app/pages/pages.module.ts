@@ -50,6 +50,8 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
+import { SeleccionarAlumnosComponent } from './add-seleccionar-alumnos/seleccionar-alumnos.component';
 
 
 
@@ -90,6 +92,8 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     AsistenciasComponent,
     InformeComponent,
     ConvocatoriasAbiertasComponent,
+    ListSolicitudesAlumnosComponent,
+    SeleccionarAlumnosComponent,
 
   ],
   exports: [DashboardComponent, PagesComponent],

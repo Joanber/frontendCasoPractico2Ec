@@ -136,6 +136,12 @@ export class SidebarService {
       titulo: "Gestion Alumnos",
       icono: "mdi mdi-account-multiple",
       submenu: [
+
+        {
+          titulo: "Lista de Solicitudes",
+          url: "solicitudes_estudiantes",
+        },
+
         {
           titulo: "Convocatorias",
           url: "convocatoriasabiertas",
@@ -152,6 +158,8 @@ export class SidebarService {
           titulo: "Informes",
           url: "informe",
         },
+
+        
       ],
     },
     {
@@ -166,6 +174,9 @@ export class SidebarService {
           titulo: "Usuarios",
           url: "usarios",
         },
+
+      
+        
       ],
     },
   ];
