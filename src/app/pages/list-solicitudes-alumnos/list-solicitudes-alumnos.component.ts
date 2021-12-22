@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
 import { SolicitudAlumno } from 'src/app/models/solicitudAlumno.model';
-import { SolicitudesAlumnosService } from 'src/app/services/services.models/solicitudes-alumnos.service';
+import { SolicitudAlumnoService } from 'src/app/services/services.models/solicitudes-alumnos.service';
+
 
 @Component({
   selector: 'app-list-solicitudes-alumnos',
@@ -24,7 +25,7 @@ export class ListSolicitudesAlumnosComponent implements OnInit {
   //VARIABLE PARA BUSCAR
   public busqueda: string = "";
 
-  constructor(private solicitudAlumnosService: SolicitudesAlumnosService) {}
+  constructor(private solicitudAlumnosService: SolicitudAlumnoService) {}
   ngOnInit() {
     this.getSolicitudesAlumnosPage(
       this.paginaActual.toString(),
@@ -82,5 +83,5 @@ export class ListSolicitudesAlumnosComponent implements OnInit {
     }
   }
 }
-  
+
 

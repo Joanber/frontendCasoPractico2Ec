@@ -51,7 +51,8 @@ import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
-import { SeleccionarAlumnosComponent } from './add-seleccionar-alumnos/seleccionar-alumnos.component';
+import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
+
 
 
 
@@ -93,7 +94,7 @@ import { SeleccionarAlumnosComponent } from './add-seleccionar-alumnos/seleccion
     InformeComponent,
     ConvocatoriasAbiertasComponent,
     ListSolicitudesAlumnosComponent,
-    SeleccionarAlumnosComponent,
+   SeleccionarAlumnosComponent
 
   ],
   exports: [DashboardComponent, PagesComponent],

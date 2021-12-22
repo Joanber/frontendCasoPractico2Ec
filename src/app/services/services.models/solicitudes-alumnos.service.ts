@@ -10,7 +10,7 @@ const bd_url = environment.bd_url + "/solicitudes_alumnos";
   providedIn: 'root'
 })
 
-export class SolicitudesAlumnosService {
+export class SolicitudAlumnoService {
 
 
 

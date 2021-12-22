@@ -1,45 +1,70 @@
-<div class="row">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <form #MyForm="ngForm" (submit)="guardarSeleccionEstudiantes()">
-            <div class="form-body">
-              <div class="card-body">
-                <div class="card-titulo" style="text-align: center">
-                  Seleccionar Alumnos
-  
-  
+<div class="row" *ngIf="!cargando">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">
+         {{convocatoria.id}}
+        </h4>
+        <div class="table-responsive">
+          <div id="example23_wrapper" class="dataTables_wrapper">
+            <div class="dt-buttons">
+              <button routerLink="/dashboard/nueva-carrera" class="btn btn-primary btn-sm">
+                <i class="mdi mdi-plus"></i>
+                Nueva Carrera
+              </button>
+            </div>
+            <div id="example23_filter" class="dataTables_filter">
+              <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
+                  (keyup)="cargarSolicitudesAlumnosDefault(txtBusqueda.value)" />
+              </label>
+              <button class="btn btn-primary btn-sm" (click)="buscar(txtBusqueda.value)" type="button">
+                <i class="mdi mdi-magnify"></i>
+              </button>
+            </div>
+            <div class="row" *ngIf="cargando">
+              <div class="col-12">
+                <div class="alert alert-info text-center" role="alert">
+                  <h4 class="alert-heading">Cargando</h4>
+                  <i class="fa fa-spin fa-refresh fa-2x"></i>
+                  <p class="mb-0">Por favor espere...</p>
                 </div>
-  
-  
-                <div class="table-scroll">
-                  <table class="
-                        table table-bordered
-                        justify-content-center
-                        table-responsive-sm table-sm
-                        dataTable
-                      ">
-                    <thead>
-                      <tr>
-                        <th >Cedula</th>
-                        <th>Estudiantes</th>
-                      </tr>
-                    </thead>
-                    <tbody class="animated fadeIn fast">
-                      <tr *ngFor="let alum of AlumnosSelect">
-  
-                        <td>{{ alum.id }}</td>
-  
-                        <td>{{ alum.id }}</td>
-  
-  
-                      </tr>
-                    </tbody>
-                  </table></div>
-                  </div>
-                </div>
-          </form>
+              </div>
+            </div>
+            <div class="table-scroll">
+              <table class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                ">
+                <thead>
+                  <tr>
+                    <th>Id</th>
+                    <th>Fecha Emision</th>
+                    <th>Alumno</th>
+                    <th>Convocatoria</th>
+                    <th class="text-nowrap">Accion</th>
+
+                </thead>
+
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let solicitudesAlumnos of solicitudesAlumnos">
+                    <td>{{ solicitudesAlumnos.id }}</td>
+                    <td>{{ solicitudesAlumnos.fecha_emision }}</td>
+                    <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }} {{
+                      solicitudesAlumnos.alumno.persona.primer_apellido }}</td>
+                    <td>{{ solicitudesAlumnos.convocatoria.id }}</td>
+
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
         </div>
       </div>
     </div>
   </div>
+</div>
+<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
+  [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+</mat-paginator>

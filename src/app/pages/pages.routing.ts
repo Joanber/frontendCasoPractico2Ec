@@ -139,17 +139,15 @@ const routes: Routes = [
         data: { titulo: "Convocatorias" },
       },
       {
-        path: "nueva-seleccion-estudiantes/:id",
-        component: SeleccionEstudiantesComponent,
-        data: { titulo: "Nueva seleccion de estudiantes" },
-      },
-
-      {
         path: "seleccionar-estudiantes/:id",
         component: SeleccionarAlumnosComponent,
         data: { titulo: "Seleccion de alumnos" },
       },
-
+      {
+        path: "nueva-seleccion-estudiantes/:id",
+        component: SeleccionEstudiantesComponent,
+        data: { titulo: "Nueva seleccion de estudiantes" },
+      },
       {
         path: "actualizar-seleccion-estudiantes/:idc",
         component: SeleccionEstudiantesComponent,
@@ -251,7 +249,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
-     
+
     ],
 
   },
