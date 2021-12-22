@@ -141,10 +141,10 @@ const routes: Routes = [
       {
         path: "seleccionar-estudiantes/:id",
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Seleccion de alumnos" },
+        data: { titulo: "Solicitudes de Estudiantes " },
       },
       {
-        path: "nueva-seleccion-estudiantes/:id",
+        path: "nueva-seleccion-estudiantes",
         component: SeleccionEstudiantesComponent,
         data: { titulo: "Nueva seleccion de estudiantes" },
       },

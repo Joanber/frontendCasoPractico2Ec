@@ -95,11 +95,6 @@ export class SidebarService {
         },
         {
           titulo: "Designar Tutor academico",
-          url: "actualizar-seleccion-estudiantes",
-        },
-
-        {
-          titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
 
@@ -136,9 +131,8 @@ export class SidebarService {
       titulo: "Gestion Alumnos",
       icono: "mdi mdi-account-multiple",
       submenu: [
-
         {
-          titulo: "Lista de Solicitudes",
+          titulo: "Solicitudes Estudiantes",
           url: "solicitudes_estudiantes",
         },
 
@@ -158,8 +152,6 @@ export class SidebarService {
           titulo: "Informes",
           url: "informe",
         },
-
-        
       ],
     },
     {
@@ -174,9 +166,6 @@ export class SidebarService {
           titulo: "Usuarios",
           url: "usarios",
         },
-
-      
-        
       ],
     },
   ];
