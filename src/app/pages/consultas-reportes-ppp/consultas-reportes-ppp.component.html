@@ -1,81 +1,80 @@
-<div class="row" *ngIf="!cargando">
+<div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title text-center">Listado de Tutores</h4>
-        <div class="table-responsive">
-
-
-          <div id="example23_wrapper" class="dataTables_wrapper">
-            <div class="dt-buttons">
-              <button routerLink="/dashboard/designarTutorAcademico" class="btn btn-primary btn-sm">
-                <i class="mdi mdi-plus"></i>
-                Nueva Tutor
-              </button>
-            </div>
-            <div id="example23_filter" class="dataTables_filter">
-              <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
-                  (keyup)="cargarTutoresDefault(txtBusqueda.value)" />
-              </label>
-              <button class="btn btn-primary btn-sm" (click)="buscar(txtBusqueda.value)" type="button">
-                <i class="mdi mdi-magnify"></i>
-              </button>
-            </div>
-            <div class="row" *ngIf="cargando">
-              <div class="col-12">
-                <div class="alert alert-info text-center" role="alert">
-                  <h4 class="alert-heading">Cargando</h4>
-                  <i class="fa fa-spin fa-refresh fa-2x"></i>
-                  <p class="mb-0">Por favor espere...</p>
-                </div>
-              </div>
-            </div>
-            <div class="table-scroll">
-              <table class="
+           <div class="row">
+          <div class="col-md-3">
+            <input [matDatepicker]="myDatepicker" [(ngModel)]="fecha" class="form-control" style="width: min-content"
+              name="fechaF" #fechaF="ngModel" required />
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
+          </div>
+          <div class="col-md-5">
+            <select class="form-control" [(ngModel)]="carreraFiltro">
+              <option [ngValue]="undefined">CARRERA (TODAS)</option>
+              <option *ngFor="let carrera of carreras" [ngValue]="carrera.nombre">
+                {{ carrera.nombre }}
+              </option>
+            </select>
+          </div>
+          <div class="col-md-1">
+            <button class="btn btn-primary" (click)="filtarConvocatoriasPorFechaCarrera()">
+              <i class="mdi mdi-magnify"></i>
+              Buscar
+            </button>
+          </div>
+          <div class="col-md-3 text-right">
+            <button class="btn btn-danger " (click)="cargarTutoresDefault()">
+              Mostrar Todas
+            </button>
+          </div>
+        </div>
+        <br>
+        <div class="table-scroll">
+          <table class="
                   table table-bordered
                   justify-content-center
                   table-responsive-sm table-sm
                   dataTable
                 ">
-                <thead>
-                  <tr>
-                    <th>Foto</th>
-                    <th>Identificación</th>
-                    <th>Apellidos y Nombres</th>
-                    <th>Email</th>
-                    <th>Celular</th>
+            <thead>
+              <tr>
 
-                  </tr>
-                </thead>
+                <th>Identificación</th>
+                <th>Apellidos y Nombres</th>
+                <th>Email</th>
+                <th>Celular</th>
+                <th>Carrera</th>
 
-                <tbody class="animated fadeIn fast">
-                  <tr *ngFor="let persona of personas">
-                    <td>
-                      <img *ngIf="!persona.fotoHashCode" src="../../../assets/imgapp/image.png" alt="Foto"
-                        class="avatar cursor" />
-                      <img *ngIf="persona.fotoHashCode" [src]="
-                          bd_url +
-                          '/img/' +
-                          persona.id +
-                          '?fotoHashCode=' +
-                          persona.fotoHashCode
-                        " alt="Foto" class="avatar cursor" />
-                    </td>
-                    <td>{{ persona.identificacion }}</td>
-                    <td>
-                      {{ persona.primer_apellido }}
-                      {{ persona.segundo_apellido }}
-                      {{ persona.primer_nombre }} {{ persona.segundo_nombre }}
-                    </td>
-                    <td>{{ persona.email }}</td>
-                    <td>{{ persona.celular }}</td>
+              </tr>
+            </thead>
 
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+            <tbody class="animated fadeIn fast">
+              <tr *ngFor="let persona of personas">
+
+                <td>{{ persona.identificacion }}</td>
+                <td>
+                  {{ persona.primer_apellido }}
+                  {{ persona.segundo_apellido }}
+                  {{ persona.primer_nombre }} {{ persona.segundo_nombre }}
+                </td>
+                <td>{{ persona.email }}</td>
+                <td>{{ persona.celular }}</td>
+                <td>{{ persona.genero }}</td>
+
+              </tr>
+            </tbody>
+          </table>
+
         </div>
+      </div>
+
+
+
+      <div class="text-center">
+        <button class="btn btn-success " (click)="cargarTutoresDefault()">
+          Generar PDF
+        </button>
       </div>
     </div>
   </div>

@@ -3,14 +3,14 @@
     <div class="card">
       <div class="card-body">
         <h4 class="card-title text-center">
-         {{convocatoria.id}}
+          Listado de Solicitudes Enviadas por Alumnos
         </h4>
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
             <div class="dt-buttons">
-              <button routerLink="/dashboard/nueva-carrera" class="btn btn-primary btn-sm">
+              <button routerLink="/dashboard/convocatorias" class="btn btn-primary btn-sm">
                 <i class="mdi mdi-plus"></i>
-                Nueva Carrera
+                Convocatorias
               </button>
             </div>
             <div id="example23_filter" class="dataTables_filter">
@@ -39,21 +39,33 @@
                 ">
                 <thead>
                   <tr>
-                    <th>Id</th>
-                    <th>Fecha Emision</th>
+                    <th>Empresa</th>
+                    <th>Actividades</th>
+                    <th>Fecha Solicitud</th>
                     <th>Alumno</th>
-                    <th>Convocatoria</th>
+                    <th>Promedio</th>
                     <th class="text-nowrap">Accion</th>
 
                 </thead>
 
                 <tbody class="animated fadeIn fast">
-                  <tr *ngFor="let solicitudesAlumnos of solicitudesAlumnos">
-                    <td>{{ solicitudesAlumnos.id }}</td>
+                  <tr *ngFor="let solicitudesAlumnos of alumnosXconvocatoria">
+                    <td>{{ solicitudesAlumnos.convocatoria.solicitudEmpresa.empresa.nombre}}</td>
+                    <td>{{ solicitudesAlumnos.convocatoria.solicitudEmpresa.actividades}}</td>
                     <td>{{ solicitudesAlumnos.fecha_emision }}</td>
-                    <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }} {{
-                      solicitudesAlumnos.alumno.persona.primer_apellido }}</td>
-                    <td>{{ solicitudesAlumnos.convocatoria.id }}</td>
+                    <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }}
+                      {{ solicitudesAlumnos.alumno.persona.segundo_nombre }}
+                      {{ solicitudesAlumnos.alumno.persona.primer_apellido }}
+                      {{ solicitudesAlumnos.alumno.persona.segundo_apellido }}</td>
+                    <td>{{ solicitudesAlumnos.alumno.promedio_aprobado}}</td>
+                    <td class="text-nowrap text-center">
+                      <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id={{solicitudesAlumnos.alumno.id}}>
+                      <label class="form-check-label" for={{solicitudesAlumnos.alumno.id}} >
+                        Elegir
+                      </label>
+                    </div>
+                    </td>
 
                   </tr>
                 </tbody>

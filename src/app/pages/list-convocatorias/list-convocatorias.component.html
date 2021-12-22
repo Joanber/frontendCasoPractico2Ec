@@ -50,7 +50,7 @@
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let convocatoria of convocatorias">
-                    <td>{{ convocatoria.carrera.nombre }}</td>
+                    <td>{{ convocatoria.carrera.abreviatura }} {{convocatoria.id}}</td>
                     <td>{{ convocatoria.fecha_emision }}</td>
                     <td>{{ convocatoria.fecha_max_recib_solic }}</td>
                     <td>
@@ -73,7 +73,7 @@
                     </td>
 
                     <td>{{convocatoria.estado}}</td>
-                    
+
                     <td class="text-nowrap text-center">
                       <a [routerLink]="[
                         '/dashboard',

@@ -166,7 +166,7 @@ const routes: Routes = [
       {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
-        data: { titulo: "Consultas Reportes" },
+        data: { titulo: "Consultas Reportes Tutores" },
       },
       {
         path: "convenios",

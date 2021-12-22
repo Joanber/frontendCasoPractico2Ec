@@ -6,28 +6,27 @@ import { SolicitudAlumno } from "src/app/models/solicitudAlumno.model";
 import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
 import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
 
-
 @Component({
   selector: "app-seleccionar-alumnos",
   templateUrl: "./seleccionar-alumnos.component.html",
   styleUrls: ["./seleccionar-alumnos.component.css"],
 })
 export class SeleccionarAlumnosComponent implements OnInit {
-//VARIABLES DE PAGINACION
-public totalRegistros = 0;
-public paginaActual = 0;
-public totalPorPagina = 10;
-public pageSizeOptions: number[] = [10, 20, 50, 100];
-//MATPAGINATOR
-@ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
-//VARIABLE DE PERSONAS
-public solicitudesAlumnos: SolicitudAlumno[] = [];
-//VARIABLE DE LOADING
-public cargando: boolean = true;
-//VARIABLE PARA BUSCAR
-public busqueda: string = "";
+  //VARIABLES DE PAGINACION
+  public totalRegistros = 0;
+  public paginaActual = 0;
+  public totalPorPagina = 10;
+  public pageSizeOptions: number[] = [10, 20, 50, 100];
+  //MATPAGINATOR
+  @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
+  //VARIABLE DE PERSONAS
+  public solicitudesAlumnos: SolicitudAlumno[] = [];
 
-
+  public alumnosXconvocatoria: SolicitudAlumno[] = [];
+  //VARIABLE DE LOADING
+  public cargando: boolean = true;
+  //VARIABLE PARA BUSCAR
+  public busqueda: string = "";
 
   public convocatoria = new Convocatoria();
   constructor(
@@ -40,22 +39,23 @@ public busqueda: string = "";
     this.activatedRoute.params.subscribe(({ id }) =>
       this.cargarConvocatoria(id)
     );
-      this.getSolicitudesAlumnosPage(
-        this.paginaActual.toString(),
-        this.totalPorPagina.toString(),
-        this.busqueda
-      );
-    }
+    this.getSolicitudesAlumnosPage(
+      this.paginaActual.toString(),
+      this.totalPorPagina.toString(),
+      this.busqueda
+    );
+    this.filtrarPorCarrera();
+  }
 
-    public paginar(event: PageEvent): void {
-      this.paginaActual = event.pageIndex;
-      this.totalPorPagina = event.pageSize;
-      this.getSolicitudesAlumnosPage(
-        this.paginaActual.toString(),
-        this.totalPorPagina.toString(),
-        this.busqueda
-      );
-    }
+  public paginar(event: PageEvent): void {
+    this.paginaActual = event.pageIndex;
+    this.totalPorPagina = event.pageSize;
+    this.getSolicitudesAlumnosPage(
+      this.paginaActual.toString(),
+      this.totalPorPagina.toString(),
+      this.busqueda
+    );
+  }
 
   guardarSeleccionEstudiantes() {}
 
@@ -67,7 +67,6 @@ public busqueda: string = "";
       .getConvocatoriaById(id)
       .subscribe((convocatoria) => {
         this.convocatoria = convocatoria;
-
       });
   }
   private getSolicitudesAlumnosPage(
@@ -80,6 +79,7 @@ public busqueda: string = "";
       .getSolicitudesAlumnoPage(page, size, busqueda)
       .subscribe((p) => {
         this.solicitudesAlumnos = p.content as SolicitudAlumno[];
+
         this.totalRegistros = p.totalElements as number;
         this.paginador._intl.itemsPerPageLabel = "Registros por página:";
         this.paginador._intl.nextPageLabel = "Siguiente";
@@ -106,5 +106,15 @@ public busqueda: string = "";
         this.busqueda
       );
     }
+  }
+  filtrarPorCarrera() {
+
+      this.solicitudAlumnosService.getSolicitudesAlumnos().subscribe((solicitudes) => {
+        this.solicitudesAlumnos = solicitudes;
+    for (let i = 0; i <= this.solicitudesAlumnos.length; i++) {
+      if (this.convocatoria.id == this.solicitudesAlumnos[i].convocatoria.id) {
+        this.alumnosXconvocatoria.push(this.solicitudesAlumnos[i]);
+      }
+    }   });
   }
 }

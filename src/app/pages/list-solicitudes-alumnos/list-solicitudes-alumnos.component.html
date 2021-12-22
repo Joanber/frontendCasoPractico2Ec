@@ -8,9 +8,9 @@
           <div class="table-responsive">
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
-                <button routerLink="/dashboard/nueva-carrera" class="btn btn-primary btn-sm">
+                <button routerLink="/dashboard/convocatorias" class="btn btn-primary btn-sm">
                   <i class="mdi mdi-plus"></i>
-                  Nueva Carrera
+                  Convocatorias
                 </button>
               </div>
               <div id="example23_filter" class="dataTables_filter">
@@ -44,9 +44,9 @@
                       <th>Alumno</th>
                       <th>Convocatoria</th>
                       <th class="text-nowrap">Accion</th>
-  
+
                   </thead>
-  
+
                   <tbody class="animated fadeIn fast">
                     <tr *ngFor="let solicitudesAlumnos of solicitudesAlumnos">
                       <td>{{ solicitudesAlumnos.id }}</td>
@@ -54,7 +54,7 @@
                       <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }} {{
                         solicitudesAlumnos.alumno.persona.primer_apellido }}</td>
                       <td>{{ solicitudesAlumnos.convocatoria.id }}</td>
-  
+
                     </tr>
                   </tbody>
                 </table>

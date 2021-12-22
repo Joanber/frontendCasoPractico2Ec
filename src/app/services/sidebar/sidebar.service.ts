@@ -104,7 +104,7 @@ export class SidebarService {
         },
 
         {
-          titulo: "Consultas Reportes",
+          titulo: "Consultas Tutores",
           url: "consultas-reportes",
         },
       ],
