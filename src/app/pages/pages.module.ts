@@ -52,6 +52,8 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
+import { ListSolicitudEmpresaComponent } from './list-solicitud-empresa/list-solicitud-empresa.component';
 
 
 
@@ -92,7 +94,9 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     InformeComponent,
     ConvocatoriasAbiertasComponent,
     ListSolicitudesAlumnosComponent,
-   SeleccionarAlumnosComponent
+   SeleccionarAlumnosComponent,
+   AddSolicitudEmpresaComponent,
+   ListSolicitudEmpresaComponent
 
   ],
   exports: [DashboardComponent, PagesComponent],

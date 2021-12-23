@@ -35,6 +35,8 @@ import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
+import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
+import { ListSolicitudEmpresaComponent } from './list-solicitud-empresa/list-solicitud-empresa.component';
 
 const routes: Routes = [
   {
@@ -263,6 +265,18 @@ const routes: Routes = [
         path: "actualizar-Empresa/:id",
         component: AddEmpresaComponent,
         data: { titulo: "Actualizar Docente" },
+      },
+
+      {
+        path: "nueva-solicitud-empresa",
+        component: AddSolicitudEmpresaComponent,
+        data: { titulo: "Agregar nueva solicitud de empresa" },
+      },
+
+      {
+        path: "list-solicitud-empresa",
+        component: ListSolicitudEmpresaComponent,
+        data: { titulo: "Lista de solicitudes de empresas" },
       },
 
 
