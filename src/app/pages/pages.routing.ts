@@ -5,7 +5,6 @@ import { AccountSettingsComponent } from "./account-settings/account-settings.co
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
 import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
-import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { AnexosComponent } from "./anexos/anexos.component";
@@ -143,16 +142,7 @@ const routes: Routes = [
         component: SeleccionarAlumnosComponent,
         data: { titulo: "Solicitudes de Estudiantes " },
       },
-      {
-        path: "nueva-seleccion-estudiantes",
-        component: SeleccionEstudiantesComponent,
-        data: { titulo: "Nueva seleccion de estudiantes" },
-      },
-      {
-        path: "actualizar-seleccion-estudiantes/:idc",
-        component: SeleccionEstudiantesComponent,
-        data: { titulo: "Seleccion de estudiantes" },
-      },
+      
       {
         path: "designarTutorAcademico",
         component: DesignarTutorAcademicoComponent,

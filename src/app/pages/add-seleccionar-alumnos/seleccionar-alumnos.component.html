@@ -2,6 +2,40 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
+        <div class="card-titulo" style="text-align: center">
+          ANEXO 4: Respuesta positiva a entidad receptora
+        </div>
+        <br />
+        <br />
+
+        <div class="card-encabezado" style="text-align: right">
+
+          Cuenca, {{ today | date: "dd" }} de
+          {{ today | date: "MMMM ":"-0500" }} del
+          {{ today | date: "yyyy" }}
+        </div>
+        <br>
+
+        <div style="text-align: left">
+
+          Sr/Ing/Dr  <br>
+          GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc. <br>
+          {{this.convocatoria.carrera.nombre}} <br>
+          Su Despacho. -
+
+          <br>
+          <br>
+
+          De mi consideración: <br>
+          <br>
+          En respuesta a su solicitud de fecha ……………. debo indicarle que luego haber realizado el proceso de selección
+          entre los estudiantes postulantes se ha aceptado la solicitud de los siguientes estudiantes que están
+          interesados en realizar sus prácticas pre profesionales en su prestigiosa empresa:
+          <br>
+          <br>
+
+        </div>
+
         <h4 class="card-title text-center">
           Listado de Solicitudes Enviadas por Alumnos
         </h4>
@@ -60,11 +94,11 @@
                     <td>{{ solicitudesAlumnos.alumno.promedio_aprobado}}</td>
                     <td class="text-nowrap text-center">
                       <div class="form-check">
-                      <input class="form-check-input" type="checkbox" value="" id={{solicitudesAlumnos.alumno.id}}>
-                      <label class="form-check-label" for={{solicitudesAlumnos.alumno.id}} >
-                        Elegir
-                      </label>
-                    </div>
+                        <input class="form-check-input" type="checkbox" value="" id={{solicitudesAlumnos.alumno.id}}>
+                        <label class="form-check-label" for={{solicitudesAlumnos.alumno.id}}>
+                          Elegir
+                        </label>
+                      </div>
                     </td>
 
                   </tr>
@@ -80,3 +114,22 @@
 <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
   [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
 </mat-paginator>
+<br>
+<div class="card">
+Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los <br>
+estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice
+<br>
+las prácticas pre profesionales.
+<br>
+<br>
+Sin más que informar me despido agradeciendo de antemano su colaboración.
+<br>
+<br>
+
+Atentamente,
+
+______________________ <br>
+Responsable de Prácticas Pre Profesionales <br>
+CARRERA DE …………………….. <br>
+INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+</div>
