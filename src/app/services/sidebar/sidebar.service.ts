@@ -136,7 +136,7 @@ export class SidebarService {
         },
         {
           titulo: "Solicitudes",
-          url: "solicitud",
+          url: "convocatoriasabiertas",
         },
         {
           titulo: "Asistencias",
