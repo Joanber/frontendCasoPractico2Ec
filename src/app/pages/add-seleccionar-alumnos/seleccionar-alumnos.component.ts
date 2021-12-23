@@ -147,6 +147,6 @@ export class SeleccionarAlumnosComponent implements OnInit {
       if (this.convocatoria.id == this.solicitudesAlumnos[i].convocatoria.id) {
         this.alumnosXconvocatoria.push(this.solicitudesAlumnos[i]);
       }
-    }   });
+    }   }); 
   }
 }
