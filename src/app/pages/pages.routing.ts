@@ -143,9 +143,9 @@ const routes: Routes = [
       {
         path: "seleccionar-estudiantes/:id",
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Solicitudes de Estudiantes " },
+        data: { titulo: "Seleccionar Estudiantes" },
       },
-      
+
       {
         path: "designarTutorAcademico",
         component: DesignarTutorAcademicoComponent,
@@ -242,7 +242,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
- 
+
       {
         path: "actualizar-Docente/:id",
         component: AddDocenteComponent,
@@ -260,7 +260,7 @@ const routes: Routes = [
         data: { titulo: "Nueva Empresa" },
       },
 
- 
+
       {
         path: "actualizar-Empresa/:id",
         component: AddEmpresaComponent,

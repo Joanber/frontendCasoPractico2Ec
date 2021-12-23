@@ -90,10 +90,6 @@ export class SidebarService {
           url: "convocatorias",
         },
         {
-          titulo: "Seleccion de estudiantes",
-          url: "seleccionestudiantes",
-        },
-        {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
@@ -130,6 +126,10 @@ export class SidebarService {
       titulo: "Gestion Alumnos",
       icono: "mdi mdi-account-multiple",
       submenu: [
+        {
+          titulo: "Lista Solisitudes Alumnos",
+          url: "solicitudes_estudiantes",
+        },
         {
           titulo: "Convocatorias",
           url: "convocatoriasabiertas",
