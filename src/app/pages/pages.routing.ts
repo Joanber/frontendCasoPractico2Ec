@@ -26,12 +26,15 @@ import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
+import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 import { SolicitudComponent } from "./solicitud/solicitud.component";
 import { AsistenciasComponent } from "./asistencias/asistencias.component";
 import { InformeComponent } from "./informe/informe.component";
 import { ConvocatoriasAbiertasComponent } from "./convocatorias-abiertas/convocatorias-abiertas.component";
 import { ListDocenteComponent } from "./list-docente/list-docente.component";
 import { AddDocenteComponent } from "./add-docente/add-docente.component";
+import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
+import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 
 const routes: Routes = [
   {
@@ -116,6 +119,11 @@ const routes: Routes = [
         data: { titulo: "Informacion de Carreras" },
       },
       {
+        path: "infoconvocatoria",
+        component: ListInfoConvocatoriaComponent,
+        data: { titulo: "Informacion de Convocatorias" },
+      },
+      {
         path: "nueva-convocatoria/:id",
         component: ConvocatoriaComponent,
         data: { titulo: "Nueva Convocatoria Practicas Pre Profesionales" },
@@ -131,7 +139,12 @@ const routes: Routes = [
         data: { titulo: "Convocatorias" },
       },
       {
-        path: "nueva-seleccion-estudiantes/:id",
+        path: "seleccionar-estudiantes/:id",
+        component: SeleccionarAlumnosComponent,
+        data: { titulo: "Solicitudes de Estudiantes " },
+      },
+      {
+        path: "nueva-seleccion-estudiantes",
         component: SeleccionEstudiantesComponent,
         data: { titulo: "Nueva seleccion de estudiantes" },
       },
@@ -153,7 +166,7 @@ const routes: Routes = [
       {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
-        data: { titulo: "Consultas Reportes" },
+        data: { titulo: "Consultas Reportes Tutores" },
       },
       {
         path: "convenios",
@@ -216,8 +229,15 @@ const routes: Routes = [
       {
         path: "solicitudes_empresas",
         component: ListSolicitudesEmpresasRespppComponent,
-        data: { titulo: "Solicitudes de las empresas" },
+        data: { titulo: "Lista solicitudes de las empresas" },
       },
+
+      {
+        path: "solicitudes_estudiantes",
+        component: ListSolicitudesAlumnosComponent,
+        data: { titulo: "Lista solicitudes de los estudiantes"},
+      },
+
       {
         path: "docentes",
         component: ListDocenteComponent,
@@ -229,12 +249,16 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
+ 
       {
         path: "actualizar-Docente/:id",
         component: AddDocenteComponent,
         data: { titulo: "Actualizar Docente" },
       },
+
+
     ],
+
   },
 ];
 

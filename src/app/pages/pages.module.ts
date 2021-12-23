@@ -1,16 +1,18 @@
 import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import { MatDatepickerModule, MatPaginatorModule } from "@angular/material";
+import { MatDatepickerModule, MatPaginatorModule, MatSortModule } from "@angular/material";
 import {
   MatMomentDateModule,
   MomentDateModule
 } from "@angular/material-moment-adapter";
 import { MatButtonModule } from "@angular/material/button";
+import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from "@angular/material/table";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AppRoutingModule } from "../app-routing.module";
@@ -24,6 +26,7 @@ import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
+import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
@@ -42,12 +45,16 @@ import { ListDocenteComponent } from "./list-docente/list-docente.component";
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
 import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
+import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
+import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
+
+
 
 
 @NgModule({
@@ -81,10 +88,14 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     ListDocenteComponent,
     ListSolicitudesEmpresasRespppComponent,
     ListConvocatoriasComponent,
+    ListInfoConvocatoriaComponent,
     SolicitudComponent,
     AsistenciasComponent,
     InformeComponent,
     ConvocatoriasAbiertasComponent,
+    ListSolicitudesAlumnosComponent,
+   SeleccionarAlumnosComponent
+
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
@@ -102,7 +113,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     NgSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule, MatIconModule
+    MatTableModule, MatIconModule, MatCardModule, MatSortModule, MatSnackBarModule
   ],
 })
 export class PagesModule {}
