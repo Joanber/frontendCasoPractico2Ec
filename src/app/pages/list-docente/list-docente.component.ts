@@ -26,7 +26,6 @@ export class ListDocenteComponent implements OnInit {
   public cargando: boolean = true;
   //VARIABLE PARA BUSCAR
   public busqueda: string = "";
-  public bd_url = bd_url + "/docentes";
 
   constructor(private docenteService: DocenteService) {}
 
@@ -91,7 +90,7 @@ export class ListDocenteComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar al Docente ${docente.abreviatura} ?`,
+        text: `¿Seguro que quieres eliminar al Docente ${docente.abreviatura_titulo} ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -108,7 +107,7 @@ export class ListDocenteComponent implements OnInit {
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${docente.abreviatura} eliminada correctamente!`,
+              `Carrera ${docente.abreviatura_titulo} eliminada correctamente!`,
               "success"
             );
           });

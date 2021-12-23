@@ -2,7 +2,7 @@ import { Persona } from "./persona.model";
 
 export class Docente {
   id: number;
-  abreviatura: string;
+  abreviatura_titulo: string;
   tipo_tiempo: string;
   titulo_docente: string;
   observacion: string;

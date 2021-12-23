@@ -1,20 +1,21 @@
 <mat-card class="mat-elevation-z8">
     <div class="row">
-        <div class="col-md-9">
+        <div class="col-md-10">
             <mat-form-field>
                 <mat-label>Filtrar</mat-label>
                 <input matInput #inputFilter placeholder="Ex. Tec" #input>
             </mat-form-field>
         </div>
-        <div class="col-md-3">
-            <mat-form-field>
+        <div class="col-md-2">
+            <mat-form-field >
                 <mat-label>Estado de procesos</mat-label>
-                <mat-select (selectionChange)="changeStatus(select.value)" #select [ngStyle]="currentStatus.styleSelect" [(value)]="selected">
+                <mat-select  [ngStyle]="currentStatus.styleSelect" (selectionChange)="changeStatus(select.value)" #select [(value)]="selected">
+                    <mat-select-trigger [ngStyle]="currentStatus.styleSelect">
+                        {{currentStatus.name}}
+                    </mat-select-trigger>
                     <mat-option>Ninguno</mat-option>
-                    <mat-option [ngStyle]="estado.style" *ngFor="let estado of status" [value]='estado'>
-                        <span [ngStyle]="estado.style">
-                            {{estado.name}}
-                        </span>
+                    <mat-option *ngFor="let estado of status" [ngStyle]="estado.style" [value]='estado'>
+                            <strong>{{estado.name}}</strong>
                     </mat-option>
                 </mat-select>
             </mat-form-field>

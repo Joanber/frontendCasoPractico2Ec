@@ -239,6 +239,13 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
+ 
+      {
+        path: "actualizar-Docente/:id",
+        component: AddDocenteComponent,
+        data: { titulo: "Actualizar Docente" },
+      },
+
 
     ],
 
