@@ -26,6 +26,7 @@ import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
+import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
@@ -46,11 +47,13 @@ import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
+import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
+
 
 
 
@@ -89,7 +92,10 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     SolicitudComponent,
     AsistenciasComponent,
     InformeComponent,
-    ConvocatoriasAbiertasComponent
+    ConvocatoriasAbiertasComponent,
+    ListSolicitudesAlumnosComponent,
+   SeleccionarAlumnosComponent
+
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

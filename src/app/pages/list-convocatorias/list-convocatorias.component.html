@@ -43,13 +43,14 @@
                     <th>Empresa</th>
                     <th>Responsable de PPP</th>
                     <th>Estado</th>
+                    <th class="text-nowrap">Solicitudes</th>
                     <th class="text-nowrap">Acciones</th>
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let convocatoria of convocatorias">
-                    <td>{{ convocatoria.carrera.nombre }}</td>
+                    <td>{{ convocatoria.carrera.abreviatura }} {{convocatoria.id}}</td>
                     <td>{{ convocatoria.fecha_emision }}</td>
                     <td>{{ convocatoria.fecha_max_recib_solic }}</td>
                     <td>
@@ -70,7 +71,20 @@
                       }}
 
                     </td>
+
                     <td>{{convocatoria.estado}}</td>
+
+                    <td class="text-nowrap text-center">
+                      <a [routerLink]="[
+                        '/dashboard',
+                        'seleccionar-estudiantes',
+                        convocatoria.id
+                      ]" data-toggle="tooltip" data-original-title="Solicitudes de Estudiantes" class="cursor"
+                        title="Ver solicitudes">
+
+                        <i class="mdi mdi-format-float-left"></i>
+                      </a>
+                    </td>
                     <td class="text-nowrap text-center">
                       <a [routerLink]="[
                           '/dashboard',
