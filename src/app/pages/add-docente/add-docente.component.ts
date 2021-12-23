@@ -20,11 +20,10 @@ const bd_url = environment.bd_url;
 export class AddDocenteComponent implements OnInit {
   autocompleteControl = new FormControl();
   public formSubmitted = false;
-
   public docente = new Docente();
   public docentes: Docente[] = [];
-  
   public personas: Persona[] = [];
+
   public docentesFiltrados: Observable<Docente[]>;
   constructor(
     private docenteService: DocenteService,
@@ -49,7 +48,19 @@ export class AddDocenteComponent implements OnInit {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
-    } else {
+    } 
+    if (this.docente.id) {
+      this.docenteService
+        .editar(this.docente, this.docente.id)
+        .subscribe((docente) => {
+          Swal.fire(
+            "Actualizar Carrera",
+            `¡${docente.persona.primer_apellido} actualizado con exito!`,
+            "success"
+          );
+          this.irListaDocentes();
+        });
+      }else {
       this.docenteService.crear(this.docente).subscribe((docente) => {
         Swal.fire(
           "Nueva Docente",
@@ -71,15 +82,16 @@ export class AddDocenteComponent implements OnInit {
     }
     this.docenteService.getDocenteById(id).subscribe((docente) => {
       if (!docente) {
-        /* return this.irListaCarreras(); */
+        return this.irListaDocentes(); 
       }
       this.docente = docente;
     });
   }
-  compararDocente(d1: Docente, d2: Docente) {
+  compararPersona(d1: Docente, d2: Docente) {
     if (d1 === undefined && d2 === undefined) {
       return true;
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
+
 }

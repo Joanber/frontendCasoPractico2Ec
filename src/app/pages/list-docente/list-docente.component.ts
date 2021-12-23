@@ -90,7 +90,7 @@ export class ListDocenteComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar al Docente ${docente.abreviatura_titulo} ?`,
+        text: `¿Seguro que quieres eliminar al Docente ${docente.persona.primer_nombre} ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -107,12 +107,20 @@ export class ListDocenteComponent implements OnInit {
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${docente.abreviatura_titulo} eliminada correctamente!`,
+              `Carrera ${docente.persona.primer_nombre} eliminada correctamente!`,
               "success"
             );
           });
         }
       });
   }
+
+  compararCoordinador(d1: Docente, d2: Docente) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+
 }
 
