@@ -10,6 +10,9 @@ const bd_url = environment.bd_url + "/convocatorias";
   providedIn: "root",
 })
 export class ConvocatoriasService {
+  getTutoresPage(page: string, size: string, carreraFiltro: string, fecha: string) {
+    throw new Error('Method not implemented.');
+  }
   constructor(private http: HttpClient) {}
 
   //CONVOCATORIAS

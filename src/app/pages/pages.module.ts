@@ -23,7 +23,6 @@ import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component
 import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
 import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
-import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
@@ -71,7 +70,6 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     NotificationsComponent,
     InformacionComponent,
     ConvocatoriaComponent,
-    SeleccionEstudiantesComponent,
     DesignarTutorAcademicoComponent,
     GenararActaComponent,
     ConsultasReportesPppComponent,

@@ -89,10 +89,7 @@ export class SidebarService {
           titulo: "Convocatorias",
           url: "convocatorias",
         },
-        {
-          titulo: "Seleccion de estudiantes",
-          url: "nueva-seleccion-estudiantes",
-        },
+        
         {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
