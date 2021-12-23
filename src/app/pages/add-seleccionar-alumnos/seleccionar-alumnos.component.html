@@ -18,7 +18,10 @@
 
         <div style="text-align: left">
 
-          Sr/Ing/Dr  <br>
+          Sr/Ing/Dr {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_nombre}}
+          {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_nombre}}
+          {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_apellido}}
+          {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_apellido}}<br>
           GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc. <br>
           {{this.convocatoria.carrera.nombre}} <br>
           Su Despacho. -
@@ -28,7 +31,8 @@
 
           De mi consideración: <br>
           <br>
-          En respuesta a su solicitud de fecha ……………. debo indicarle que luego haber realizado el proceso de selección
+          En respuesta a su solicitud de fecha {{convocatoria.solicitudEmpresa.fecha_emision}} debo indicarle que luego
+          haber realizado el proceso de selección
           entre los estudiantes postulantes se ha aceptado la solicitud de los siguientes estudiantes que están
           interesados en realizar sus prácticas pre profesionales en su prestigiosa empresa:
           <br>
@@ -39,22 +43,15 @@
         <h4 class="card-title text-center">
           Listado de Solicitudes Enviadas por Alumnos
         </h4>
-        <div class="table-responsive">
+        <div class="table-responsive" style="text-align: right;">
           <div id="example23_wrapper" class="dataTables_wrapper">
-            <div class="dt-buttons">
-              <button routerLink="/dashboard/convocatorias" class="btn btn-primary btn-sm">
-                <i class="mdi mdi-plus"></i>
-                Convocatorias
-              </button>
-            </div>
-            <div id="example23_filter" class="dataTables_filter">
-              <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
-                  (keyup)="cargarSolicitudesAlumnosDefault(txtBusqueda.value)" />
-              </label>
-              <button class="btn btn-primary btn-sm" (click)="buscar(txtBusqueda.value)" type="button">
-                <i class="mdi mdi-magnify"></i>
-              </button>
-            </div>
+            <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
+                (keyup)="cargarSolicitudesAlumnosDefault(txtBusqueda.value)" />
+            </label>
+            <button class="btn btn-primary " (click)="buscar(txtBusqueda.value)" type="button">
+              <i class="mdi mdi-magnify"></i>
+            </button>
+
             <div class="row" *ngIf="cargando">
               <div class="col-12">
                 <div class="alert alert-info text-center" role="alert">
@@ -73,10 +70,9 @@
                 ">
                 <thead>
                   <tr>
-                    <th>Empresa</th>
-                    <th>Actividades</th>
-                    <th>Fecha Solicitud</th>
+                    <th>Identificacion</th>
                     <th>Alumno</th>
+                    <th>Fecha Solicitud</th>
                     <th>Promedio</th>
                     <th class="text-nowrap">Accion</th>
 
@@ -84,13 +80,12 @@
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let solicitudesAlumnos of alumnosXconvocatoria">
-                    <td>{{ solicitudesAlumnos.convocatoria.solicitudEmpresa.empresa.nombre}}</td>
-                    <td>{{ solicitudesAlumnos.convocatoria.solicitudEmpresa.actividades}}</td>
-                    <td>{{ solicitudesAlumnos.fecha_emision }}</td>
+                    <td> {{ solicitudesAlumnos.alumno.persona.identificacion }}</td>
                     <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }}
                       {{ solicitudesAlumnos.alumno.persona.segundo_nombre }}
                       {{ solicitudesAlumnos.alumno.persona.primer_apellido }}
                       {{ solicitudesAlumnos.alumno.persona.segundo_apellido }}</td>
+                    <td>{{ solicitudesAlumnos.fecha_emision }}</td>
                     <td>{{ solicitudesAlumnos.alumno.promedio_aprobado}}</td>
                     <td class="text-nowrap text-center">
                       <div class="form-check">
@@ -116,20 +111,20 @@
 </mat-paginator>
 <br>
 <div class="card">
-Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los <br>
-estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice
-<br>
-las prácticas pre profesionales.
-<br>
-<br>
-Sin más que informar me despido agradeciendo de antemano su colaboración.
-<br>
-<br>
+  Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los <br>
+  estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice
+  <br>
+  las prácticas pre profesionales.
+  <br>
+  <br>
+  Sin más que informar me despido agradeciendo de antemano su colaboración.
+  <br>
+  <br>
 
-Atentamente,
+  Atentamente,
 
-______________________ <br>
-Responsable de Prácticas Pre Profesionales <br>
-CARRERA DE …………………….. <br>
-INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+  ______________________ <br>
+  Responsable de Prácticas Pre Profesionales <br>
+  CARRERA DE …………………….. <br>
+  INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
 </div>
