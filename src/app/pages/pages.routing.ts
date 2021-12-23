@@ -200,10 +200,11 @@ const routes: Routes = [
         data: { titulo: "Historial de procesos PPP" },
       },
       {
-        path: "solicitud",
+        path: "solicitud/:id",
         component: SolicitudComponent,
-        data: { titulo: "Solicitud Estudiantes" },
+        data: { titulo: "Crear Solicitud de Estudiantes" },
       },
+
       {
         path: "convocatoriasabiertas",
         component: ConvocatoriasAbiertasComponent,
