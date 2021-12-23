@@ -1,11 +1,13 @@
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, MatSort } from '@angular/material';
 import { ColorsService } from 'src/app/services/shared/colors.service';
+
 @Component({
   selector: 'app-estado-procesos-ppp',
   templateUrl: './estado-procesos-ppp.component.html',
   styleUrls: ['./estado-procesos-ppp.component.css']
 })
+
 export class EstadoProcesosPppComponent implements OnInit, AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'progress', 'fruit'];
 

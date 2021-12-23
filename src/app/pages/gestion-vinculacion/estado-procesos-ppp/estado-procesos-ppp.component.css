@@ -12,9 +12,9 @@ table {
 }
 
 ::ng-deep .mat-sort-header-container {
-  display:flex;
-    padding: 10px !important;
-  justify-content:center;
+  display: flex;
+  padding: 10px !important;
+  justify-content: center;
 }
 
 .mat-header-cell,
@@ -150,3 +150,15 @@ td {
 ::ng-deep.mat-form-field-ripple {
   background-color: #745af2 !important;
 }
+/* .not-empty-select.mat-selected {
+    font-size: 22px !important;
+}
+
+:host/deep/.mat-select-value-text {
+  font-size: 22px !important;
+} */
+/* :host/deep/.mat-select-value-text  {
+    font-size:890px; /* NO Left and right padding*/
+    /* padding: 6px 10px 6px 10px ;   10px left and right padding
+}
+ */

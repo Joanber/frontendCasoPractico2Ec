@@ -12,6 +12,7 @@ import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from "@angular/material/input";
 import { MatSelectModule } from "@angular/material/select";
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from "@angular/material/table";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AppRoutingModule } from "../app-routing.module";
@@ -53,7 +54,6 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 
 
 
-
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -89,8 +89,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     SolicitudComponent,
     AsistenciasComponent,
     InformeComponent,
-    ConvocatoriasAbiertasComponent,
-
+    ConvocatoriasAbiertasComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
@@ -108,7 +107,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     NgSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule, MatIconModule, MatCardModule, MatSortModule
+    MatTableModule, MatIconModule, MatCardModule, MatSortModule, MatSnackBarModule
   ],
 })
 export class PagesModule {}
