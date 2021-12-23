@@ -51,6 +51,9 @@ export class ConvocatoriaComponent implements OnInit {
 
   guardarConvocatoria(form: NgForm) {
     this.formSubmitted = true;
+    if (form.invalid) {
+      return;
+    }
     if (this.convocatoria.id) {
       const fechaFormateadaMax_recib = this.miDatePipe.transform(
         this.convocatoria.fecha_max_recib_solic,
