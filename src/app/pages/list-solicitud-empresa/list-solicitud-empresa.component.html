@@ -8,7 +8,7 @@
           <div class="table-responsive">
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
-                <button routerLink="/dashboard/nueva-solicitud-empresa" class="btn btn-primary btn-sm">
+              <button routerLink="/dashboard/nueva-solicitud-empresa" class="btn btn-primary btn-sm">
                   <i class="mdi mdi-plus"></i>
                   Nueva Solicitud
                 </button>
@@ -49,7 +49,7 @@
                      <!-- <th class="text-nowrap">Accion</th> .. Aqui iría ver la solicitud completa  -->
                     </tr>
                   </thead>
-  
+
                   <tbody class="animated fadeIn fast">
                     <tr *ngFor="let solicitudEmpresa of solicitudesEmpresas">
                       <td>{{ solicitudEmpresa.empresa.id }}</td>
