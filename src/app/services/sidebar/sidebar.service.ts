@@ -127,7 +127,7 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         {
-          titulo: "Lista Solisitudes Alumnos",
+          titulo: "Lista Solicitudes Alumnos",
           url: "solicitudes_estudiantes",
         },
         {

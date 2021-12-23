@@ -41,10 +41,8 @@
 
         </div>
 
-        <h4 class="card-title text-center">
-          Listado de Solicitudes Enviadas por Alumnos
-        </h4>
-        <div class="table-responsive" style="text-align: right;">
+
+        <div class="table-responsive" style="text-align: left;">
           <div id="example23_wrapper" class="dataTables_wrapper">
 
             <div class="row" *ngIf="cargando">
@@ -57,12 +55,17 @@
               </div>
             </div>
             <div class="table-scroll">
+              <h4 class="card-title text-center">
+                Listado de Solicitudes Enviadas por Alumnos
+              </h4>
+             <strong> Numero de alumnos permitidos para esta convocatoria: {{convocatoria.solicitudEmpresa.numero_alumnos}}</strong>
               <table class="
                   table table-bordered
                   justify-content-center
                   table-responsive-sm table-sm
                   dataTable
                 ">
+
                 <thead>
                   <tr>
                     <th>Identificacion</th>
