@@ -34,6 +34,7 @@ import { ListDocenteComponent } from "./list-docente/list-docente.component";
 import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
+import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 
 const routes: Routes = [
   {
@@ -245,6 +246,25 @@ const routes: Routes = [
         component: AddDocenteComponent,
         data: { titulo: "Actualizar Docente" },
       },
+
+      {
+        path: "empresas",
+        component: ListEmpresasComponent,
+        data: { titulo: "Lista de Empresas" },
+      },
+      {
+        path: "nuevo-docente",
+        component: AddEmpresaComponent,
+        data: { titulo: "Nueva Empresa" },
+      },
+
+ 
+      {
+        path: "actualizar-Empresa/:id",
+        component: AddEmpresaComponent,
+        data: { titulo: "Actualizar Docente" },
+      },
+
 
 
     ],

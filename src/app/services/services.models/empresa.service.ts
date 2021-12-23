@@ -76,6 +76,7 @@ export class EmpresaService {
       })
     );
   }
+  
   //ELIMINAR UNA CARRERA
   eliminar(id: number): Observable<Empresa> {
     return this.http.delete<Empresa>(`${bd_url}/${id}`).pipe(

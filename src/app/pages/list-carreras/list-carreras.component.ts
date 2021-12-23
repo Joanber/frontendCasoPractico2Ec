@@ -23,7 +23,7 @@ export class ListCarrerasComponent implements OnInit {
   public cargando: boolean = true;
   //VARIABLE PARA BUSCAR
   public busqueda: string = "";
-  public bd_url = bd_url + "/carreras";
+  //public bd_url = bd_url + "/carreras";
 
   constructor(private carreraService: CarreraService) {}
 
@@ -112,4 +112,11 @@ export class ListCarrerasComponent implements OnInit {
         }
       });
   }
+  compararCoordinador(d1: Carrera, d2: Carrera) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+
 }

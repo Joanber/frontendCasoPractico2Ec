@@ -52,23 +52,24 @@
               >
                 <thead>
                   <tr>
-                    <th>abreviatura</th>
+                    <th>Nombre Docente</th>
+                    <th>Titulo del Docente</th>
                     <th>Tipo Tiempo</th>
-                    <th>Titulo Docente</th>
                     <th>observacion</th>
-
                     <th class="text-nowrap">Acciones</th>
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let docente of docentes">
-                    <td>{{ docente.abreviatura }}</td>
-                    <td>{{ docente.titulo_docente }}</td>
                     <td>
                       {{ docente.persona.primer_nombre }}
                       {{ docente.persona.primer_apellido }}
                     </td>
+                    <td>{{ docente.titulo_docente }}</td>
+                    <td>{{ docente.tipo_tiempo }}</td>
+                    <td>{{ docente.observacion }}</td>
+                    
                     <td class="text-nowrap text-center">
                       <a
                         [routerLink]="[
