@@ -20,9 +20,10 @@ const bd_url = environment.bd_url;
 export class AddDocenteComponent implements OnInit {
   autocompleteControl = new FormControl();
   public formSubmitted = false;
-  public bd_url = bd_url + "/personas";
+
   public docente = new Docente();
   public docentes: Docente[] = [];
+  
   public personas: Persona[] = [];
   public docentesFiltrados: Observable<Docente[]>;
   constructor(
@@ -38,10 +39,12 @@ export class AddDocenteComponent implements OnInit {
   }
 
   cargarPersona() {
-    /*  this.personaService.getPersonasPage().subscribe((personas) => {
+    this.personaService.getPersonas().subscribe((personas) => {
       this.personas = personas;
-    }); */
+    }); 
   }
+  
+
   guardarDocente(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {

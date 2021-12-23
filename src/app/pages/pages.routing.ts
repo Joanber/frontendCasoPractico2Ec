@@ -228,6 +228,12 @@ const routes: Routes = [
         component: AddDocenteComponent,
         data: { titulo: "Nuevo Docentes" },
       },
+
+      {
+        path: "actualizar-Docente/:id",
+        component: AddDocenteComponent,
+        data: { titulo: "Actualizar Docente" },
+      },
     ],
   },
 ];
