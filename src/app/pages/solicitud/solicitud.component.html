@@ -29,7 +29,7 @@
                 }}
   
             <br> RESPONSABLE DE PRÁCTICAS PRE PROFESIONALES DE LA CARRERA DE
-            {{convocatoria.carrera.abreviatura }}
+            {{convocatoria.carrera.nombre }}
             <br> INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
             <br> Su Despacho. -
 
@@ -37,17 +37,18 @@
 
                 <br />
                 <br /> De mi consideración: Por medio de la presente, Yo
-                <select class="form-control" style="width: auto;" name="empresa">
-                    <option [ngValue]="undefined"> Seleccione el estudiante </option>
-                    <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                </select>
-                con número de cédula
+                {{this.user.persona.primer_nombre}}
+                {{this.user.persona.segundo_nombre}}
+                {{this.user.persona.primer_apellido}}
+                {{this.user.persona.segundo_apellido}}
+                con número de cédula 
+                {{this.user.username}}
                 estudiante del
                 {{convocatoria.ciclo }}
                 ciclo paralelo
 
                 del periodo académico Abril 2020 - Octubre 2020 de la carrera de
-                {{convocatoria.carrera.abreviatura }}
+                {{convocatoria.carrera.nombre }}
                 solicito comedidamente se autorice mi postulación para realizar las 240 horas de prácticas pre
                 profesionales en la empresa
                 {{ convocatoria.solicitudEmpresa.empresa.nombre }}
@@ -70,14 +71,21 @@
                 <br>
                 <br> ______________________ 
                 <br> Nombre: 
+                {{this.user.persona.primer_nombre}}
+                {{this.user.persona.segundo_nombre}}
+                {{this.user.persona.primer_apellido}}
+                {{this.user.persona.segundo_apellido}}
                 <br> Telefono:
+                {{this.user.persona.celular}}
+                
                 <br> Correo:
+                {{this.user.persona.email}}
             </div>
         </div>
     </div>
 </form>
 <div class="card-botones" style="text-align: right;">
 
-    <button type="button" class="btn btn-primary">Crear Solicitud </button>
+    <button type="button" class="btn btn-primary" (click)="llamarUsuario()">Crear Solicitud </button>
     <button type="button" class="btn btn-inverse mr-2">Cancelar </button>
 </div>
