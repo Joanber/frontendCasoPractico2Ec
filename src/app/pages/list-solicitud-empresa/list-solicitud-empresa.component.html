@@ -3,12 +3,15 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title text-center">
-            Listado de Solicitudes de las Empresas Vinculadas
+            Listado de Solicitudes de las Empresas Vinculadas List
           </h4>
           <div class="table-responsive">
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
-              <button routerLink="/dashboard/nueva-solicitud-empresa" class="btn btn-primary btn-sm">
+                <button [routerLink]="['/dashboard','nueva-solicitud-empresa']" data-toggle="tooltip" 
+                data-original-title="Crear Nueva Solicitud"
+               class="btn btn-primary btn-sm"
+               title="Generar Nueva Solicitud">
                   <i class="mdi mdi-plus"></i>
                   Nueva Solicitud
                 </button>

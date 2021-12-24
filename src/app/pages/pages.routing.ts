@@ -38,6 +38,8 @@ import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
 import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
+import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
+import { ListSolicitudEmpresaComponent } from './list-solicitud-empresa/list-solicitud-empresa.component';
 
 
 
@@ -280,6 +282,16 @@ const routes: Routes = [
         path: "actualizar-responsablesppp/:id",
         component: AddResponsablePPPComponent,
         data: { titulo: "Actualizar responsablesppp" },
+      },
+      {
+        path: "nueva-solicitud-empresa",
+        component: AddSolicitudEmpresaComponent,
+        data: { titulo: "Nueva Solicitud" },
+      },
+      {
+        path: "list-solicitud-empresa",
+        component: ListSolicitudEmpresaComponent,
+        data: { titulo: "Lista Solicitudes Empresas" },
       },
     ],
 
