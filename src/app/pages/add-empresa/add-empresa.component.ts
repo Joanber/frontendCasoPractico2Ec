@@ -15,6 +15,7 @@ const bd_url = environment.bd_url;
 
 @Component({
   selector: 'app-add-empresa',
+  providers: [DatePipe],
   templateUrl: './add-empresa.component.html',
   styleUrls: ['./add-empresa.component.css']
 })

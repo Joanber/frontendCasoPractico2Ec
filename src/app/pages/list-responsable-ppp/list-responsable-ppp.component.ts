@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Docente } from 'src/app/models/docente.model';
+import { Empresa } from 'src/app/models/empresa.model';
 import { ResponsablePPP } from 'src/app/models/responsablePPP.model';
 import { ResponsablePPPService } from 'src/app/services/services.models/responsable-ppp.service';
 import Swal from 'sweetalert2';
@@ -23,6 +24,7 @@ export class ListResponsablePPPComponent implements OnInit {
   //VARIABLE DE responsable
   public carreras: Carrera[] = [];
   public docentes: Docente[] = [];
+  public empresas: Empresa[] = [];
   public responsablesppp: ResponsablePPP[] = [];
   //VARIABLE DE LOADING
   public cargando: boolean = true;
@@ -124,6 +126,20 @@ export class ListResponsablePPPComponent implements OnInit {
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
+
+  compararDocente(d1: Docente, d2: Docente) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+  compararEmpresa(d1: Empresa, d2: Empresa) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+
 
 
 }

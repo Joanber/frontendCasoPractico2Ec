@@ -253,43 +253,34 @@ const routes: Routes = [
       {
         path: "empresas",
         component: ListEmpresaComponent,
-        data: { titulo: "Lista de Empresa" },
+        data: { titulo: "Lista de Empresas" },
       },
       {
-        path: "nuevo-empresa",
+        path: "nueva-empresas",
         component: AddEmpresaComponent,
-        data: { titulo: "Nuevo Empresa" },
+        data: { titulo: "Nuevo Empresas" },
       },
-
-
       {
         path: "actualizar-Empresa/:id",
         component: AddEmpresaComponent,
         data: { titulo: "Actualizar Empresa" },
       },
-
       
       {
-        path: "responsableppp",
+        path: "responsablesppp",
         component: ListResponsablePPPComponent,
-        data: { titulo: "Lista de ResponsablePPP" },
+        data: { titulo: "Lista de responsablesppp" },
       },
       {
-        path: "nuevo-responsableppp",
+        path: "nuevo-responsablesppp",
         component: AddResponsablePPPComponent,
-        data: { titulo: "Nuevo ResponsablePPP" },
+        data: { titulo: "Nuevo responsablesppp" },
       },
-
- 
       {
-        path: "actualizar-Responsableppp/:id",
+        path: "actualizar-responsablesppp/:id",
         component: AddResponsablePPPComponent,
-        data: { titulo: "Actualizar ResponsablePPP" },
+        data: { titulo: "Actualizar responsablesppp" },
       },
-
-      
-
-
     ],
 
   },

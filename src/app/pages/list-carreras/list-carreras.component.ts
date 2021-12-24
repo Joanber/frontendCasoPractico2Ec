@@ -23,7 +23,7 @@ export class ListCarrerasComponent implements OnInit {
   public cargando: boolean = true;
   //VARIABLE PARA BUSCAR
   public busqueda: string = "";
-  //public bd_url = bd_url + "/carreras";
+  
 
   constructor(private carreraService: CarreraService) {}
 
