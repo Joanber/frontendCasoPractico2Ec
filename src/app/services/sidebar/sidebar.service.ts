@@ -48,6 +48,7 @@ export class SidebarService {
       submenu: [
         { titulo: "Empresas", url: "empresas" },
         { titulo: "Docentes", url: "docentes" },
+        { titulo: "ResponsablePPP", url: "responsablesppp" },
         { titulo: "Carreras", url: "carreras" },
       ],
     },
@@ -56,23 +57,23 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         {
-          titulo: "Solicitar Requerimiento(A1)",
-          url: "solicitar/a1",
+          titulo: "Solicitar Requerimiento de Empresas",
+          url: "list-solicitud-empresa",
         },
         {
-          titulo: "Consultar Listado de estudiantes asignados(A4)",
+          titulo: "Consultar Listado de estudiantes asignados",
           url: "solicitar/a4",
         },
         {
-          titulo: "Designar tutor empresarial(A5)",
+          titulo: "Designar tutor empresarial",
           url: "solicitar/a5",
         },
         {
-          titulo: "Evaluación a estudiante(A12)",
+          titulo: "Evaluación a estudiante",
           url: "solicitar/a12",
         },
         {
-          titulo: "Certificado(12.1)",
+          titulo: "Certificado",
           url: "solicitar/a12_1",
         },
       ],
@@ -89,19 +90,17 @@ export class SidebarService {
           titulo: "Convocatorias",
           url: "convocatorias",
         },
-        
         {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
-
         {
           titulo: "Generar Acta",
           url: "generarActa",
         },
 
         {
-          titulo: "Consultas Tutores",
+          titulo: "Consultas Reportes",
           url: "consultas-reportes",
         },
       ],
@@ -129,17 +128,16 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         {
-          titulo: "Solicitudes Estudiantes",
+          titulo: "Lista Solicitudes Alumnos",
           url: "solicitudes_estudiantes",
         },
-
         {
           titulo: "Convocatorias",
           url: "convocatoriasabiertas",
         },
         {
           titulo: "Solicitudes",
-          url: "solicitud",
+          url: "convocatoriasabiertas",
         },
         {
           titulo: "Asistencias",
@@ -165,5 +163,7 @@ export class SidebarService {
         },
       ],
     },
+
+    
   ];
 }

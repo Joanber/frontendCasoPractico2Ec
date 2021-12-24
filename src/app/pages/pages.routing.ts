@@ -17,7 +17,6 @@ import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-proceso
 import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
-import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
@@ -35,6 +34,13 @@ import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
+
+import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
+import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
+import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
+
+
+
 
 const routes: Routes = [
   {
@@ -73,11 +79,7 @@ const routes: Routes = [
         component: AddPersonaComponent,
         data: { titulo: "Actualizar Persona" },
       },
-      {
-        path: "empresas",
-        component: ListEmpresasComponent,
-        data: { titulo: "Empresas" },
-      },
+      
       {
         path: "carreras",
         component: ListCarrerasComponent,
@@ -141,9 +143,9 @@ const routes: Routes = [
       {
         path: "seleccionar-estudiantes/:id",
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Solicitudes de Estudiantes " },
+        data: { titulo: "Seleccionar Estudiantes" },
       },
-      
+
       {
         path: "designarTutorAcademico",
         component: DesignarTutorAcademicoComponent,
@@ -198,10 +200,11 @@ const routes: Routes = [
         data: { titulo: "Historial de procesos PPP" },
       },
       {
-        path: "solicitud",
+        path: "solicitud/:id",
         component: SolicitudComponent,
-        data: { titulo: "Solicitud Estudiantes" },
+        data: { titulo: "Crear Solicitud de Estudiantes" },
       },
+
       {
         path: "convocatoriasabiertas",
         component: ConvocatoriasAbiertasComponent,
@@ -240,7 +243,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
- 
+
       {
         path: "actualizar-Docente/:id",
         component: AddDocenteComponent,
@@ -249,24 +252,35 @@ const routes: Routes = [
 
       {
         path: "empresas",
-        component: ListEmpresasComponent,
+        component: ListEmpresaComponent,
         data: { titulo: "Lista de Empresas" },
       },
       {
-        path: "nuevo-docente",
+        path: "nueva-empresas",
         component: AddEmpresaComponent,
-        data: { titulo: "Nueva Empresa" },
+        data: { titulo: "Nuevo Empresas" },
       },
-
- 
       {
         path: "actualizar-Empresa/:id",
         component: AddEmpresaComponent,
-        data: { titulo: "Actualizar Docente" },
+        data: { titulo: "Actualizar Empresa" },
       },
-
-
-
+      
+      {
+        path: "responsablesppp",
+        component: ListResponsablePPPComponent,
+        data: { titulo: "Lista de responsablesppp" },
+      },
+      {
+        path: "nuevo-responsablesppp",
+        component: AddResponsablePPPComponent,
+        data: { titulo: "Nuevo responsablesppp" },
+      },
+      {
+        path: "actualizar-responsablesppp/:id",
+        component: AddResponsablePPPComponent,
+        data: { titulo: "Actualizar responsablesppp" },
+      },
     ],
 
   },

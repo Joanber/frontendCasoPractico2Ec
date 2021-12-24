@@ -1,5 +1,6 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
 import { Docente } from 'src/app/models/docente.model';
@@ -15,55 +16,34 @@ import { EmpresaService } from 'src/app/services/services.models/empresa.service
   styleUrls: ['./solicitud.component.css']
 })
 export class SolicitudComponent implements OnInit {
-//VARIABLE DE CARRERAS
- public carreras: Carrera[] = [];
-//VARIABLE DE DOCENTES
- public docentes: Docente[] = [];
-//VARIABLE DE EMPRESA
- public empresas: Empresa[] = [];
- //VARIABLE DE EMPRESA
- public convocatorias: Convocatoria[] = [];
-//VARIABLE DE FECHA 
-today = new Date();
-jstoday = '';
 
-  constructor(
-    private empresasService: EmpresaService,
-    private convocatoriasService: ConvocatoriasService,
-    private docenteService: DocenteService,
-    private carreraService: CarreraService) {
-    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+ //VARIABLE DE LOADING
+ public cargando: boolean = true;
+ //VARIABLE PARA BUSCAR
+ public busqueda: string = "";
 
+ public convocatoria = new Convocatoria();
+ constructor(
+   private convocatoriaService: ConvocatoriasService,
+   private activatedRoute: ActivatedRoute
+ ) {}
+
+ ngOnInit() {
+   this.activatedRoute.params.subscribe(({ id }) =>
+     this.cargarConvocatoria(id)
+   );
+ }
+
+ cargarConvocatoria(id: number) {
+   if (!id) {
+     return;
    }
-
-  ngOnInit() {
-    this.getCarreras();
-    this.getDocentes();
-    this.getEmpresas();
-    this.getConvocatorias();
-    
-  }
-  private getDocentes() {
-    this.docenteService.getDocentes().subscribe((docentes) => {
-      this.docentes = docentes;
-    });
-  }
-
-
-  private getCarreras() {
-    this.carreraService.getCarreras().subscribe((carreras) => {
-      this.carreras = carreras;
-    });
-  }
-  private getEmpresas() {
-    this.empresasService.getEmpresas().subscribe((empresas) => {
-      this.empresas = empresas;
-    });
-  }
-  private getConvocatorias() {
-    this.convocatoriasService.getConvocatorias().subscribe((convocatorias) => {
-      this.convocatorias = convocatorias;
-    });
-  }
+   this.convocatoriaService
+     .getConvocatoriaById(id)
+     .subscribe((convocatoria) => {
+       this.convocatoria = convocatoria;
+     });
+ }
+ 
 
 }

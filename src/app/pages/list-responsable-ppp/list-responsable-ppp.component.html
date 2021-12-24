@@ -2,16 +2,16 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title text-center">Listado de Empresas</h4>
+          <h4 class="card-title text-center">Listado de responsables de practicas Preprofesionales</h4>
           <div class="table-responsive">
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
                 <button
-                  routerLink="/dashboard/nueva-empresas"
+                  routerLink="/dashboard/nuevo-responsablesppp"
                   class="btn btn-primary btn-sm"
                 >
                   <i class="mdi mdi-plus"></i>
-                  Nueva Empresas
+                  Nuevo Responsables de PPP
                 </button>
               </div>
               <div id="example23_filter" class="dataTables_filter">
@@ -21,7 +21,7 @@
                     placeholder=""
                     [(ngModel)]="busqueda"
                     #txtBusqueda
-                    (keyup)="cargarEmpresaDefault(txtBusqueda.value)"
+                    (keyup)="cargarResponsablePPPPDefault(txtBusqueda.value)"
                   />
                 </label>
                 <button
@@ -32,7 +32,6 @@
                   <i class="mdi mdi-magnify"></i>
                 </button>
               </div>
-
               <div class="row" *ngIf="cargando">
                 <div class="col-12">
                   <div class="alert alert-info text-center" role="alert">
@@ -53,31 +52,26 @@
                 >
                   <thead>
                     <tr>
-                      <th>Nombre</th>
-                      <th>Ruc</th>
-                      <th>direccion</th>
-                      <th>telefono</th>
+                      <th>Carrera</th>
+                      <th>Nombre Empresa</th>
+                      <th>Representante de Practicas Preprofesionales</th>
                       <th class="text-nowrap">Acciones</th>
                     </tr>
                   </thead>
   
                   <tbody class="animated fadeIn fast">
-                    <tr *ngFor="let empresa of empresas">
+                    <tr *ngFor="let carrera of carreras">
+                      <td>{{ carrera.nombre }}</td>
                       <td>{{ empresa.nombre }}</td>
-                      <td>{{ empresa.ruc }}</td>
-                      <td>{{ empresa.direccion }}</td>
-                      <td>{{ empresa.telefono }}</td>
                       <td>
-                        {{ empresa.empresaPersonal.persona.primer_nombre  }}
-                        {{ empresa.empresaPersonal.persona.primer_apellido  }}
-                    
+                        {{ docente.persona.primer_nombre }}
+                        {{ docente.persona.primer_apellido }}
                       </td>
                       <td class="text-nowrap text-center">
                         <a
                           [routerLink]="[
-                            '/dashboard',
-                            'actualizar-Empresa',
-                            empresa.id
+                            '/dashboard', 'actualizar-responsablesppp',
+                            responsablesppp.id
                           ]"
                           data-toggle="tooltip"
                           data-original-title="Editar"
@@ -89,7 +83,7 @@
                           data-toggle="tooltip"
                           data-original-title="Borrar"
                           class="cursor"
-                          (click)="eliminarEmpresa(empresa)"
+                          (click)="eliminarResponsablePPPP(responsablesppp)"
                         >
                           <i class="fa fa-close text-danger"></i>
                         </a>
@@ -114,4 +108,3 @@
   >
   </mat-paginator>
   
-

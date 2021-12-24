@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ConvocatoriaComponent } from './convocatoria.component';
+import { ListResponsablePPPComponent } from './list-responsable-ppp.component';
 
-describe('ConvocatoriaComponent', () => {
-  let component: ConvocatoriaComponent;
-  let fixture: ComponentFixture<ConvocatoriaComponent>;
+describe('ListResponsablePPPComponent', () => {
+  let component: ListResponsablePPPComponent;
+  let fixture: ComponentFixture<ListResponsablePPPComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ ConvocatoriaComponent ]
+      declarations: [ ListResponsablePPPComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ConvocatoriaComponent);
+    fixture = TestBed.createComponent(ListResponsablePPPComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

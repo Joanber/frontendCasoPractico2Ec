@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddEmpresaPersonalComponent } from './add-empresa-personal.component';
+import { AddResponsablePPPComponent } from './add-responsable-ppp.component';
 
-describe('AddEmpresaPersonalComponent', () => {
-  let component: AddEmpresaPersonalComponent;
-  let fixture: ComponentFixture<AddEmpresaPersonalComponent>;
+describe('AddResponsablePPPComponent', () => {
+  let component: AddResponsablePPPComponent;
+  let fixture: ComponentFixture<AddResponsablePPPComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddEmpresaPersonalComponent ]
+      declarations: [ AddResponsablePPPComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddEmpresaPersonalComponent);
+    fixture = TestBed.createComponent(AddResponsablePPPComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

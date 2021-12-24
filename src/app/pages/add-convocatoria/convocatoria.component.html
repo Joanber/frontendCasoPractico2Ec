@@ -2,9 +2,9 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <form #MyForm="ngForm" (submit)="guardarConvocatoria()">
+        <form #MyForm="ngForm" (submit)="guardarConvocatoria(MyForm)">
           <div class="form-body">
-            <div class="card-body">
+
               <div class="card-titulo" style="text-align: center">
                 ANEXO 2: Convocatoria a prácticas pre profesionales
               </div>
@@ -147,6 +147,10 @@
                   Atentamente,
                   <br />
                   <br />
+                  {{ this.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}<br>
+                  {{ this.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre }}<br>
+                  {{ this.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}<br>
+                  {{ this.solicitudEmpresa.responsablePPP.docente.persona.segundo_apellido }}<br>
                   ______________________ <br />
                   Responsable de Prácticas Pre Profesionales <br />
                   CARRERA DE
@@ -155,15 +159,14 @@
                   <br />INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
                 </div>
               </div>
-            </div>
-            <div class="card-botones" style="text-align: right">
-              <div class="form-actions">
+
+              <div class="form-actions" style="text-align: right">
                 <button type="submit" class="btn btn-primary mr-2">
                   Guardar
                 </button>
                 <button
                   type="button"
-                  class="btn btn-inverse mr-2"
+                  class="btn btn-inverse "
                   (click)="irListaSolicitudes()"
                 >
                   Cancelar
@@ -174,8 +177,7 @@
                 </button>
               </div>
             </div>
-          </div>
-        </form>
+            </form>
       </div>
     </div>
   </div>
