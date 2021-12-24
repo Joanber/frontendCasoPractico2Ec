@@ -57,8 +57,6 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
-
-
 @NgModule({
   declarations: [
     DashboardComponent,
