@@ -20,7 +20,7 @@ export class ListResponsablePPPComponent implements OnInit {
   public pageSizeOptions: number[] = [10, 20, 50, 100];
   //MATPAGINATOR
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
-  //VARIABLE DE CARRERAS
+  //VARIABLE DE responsable
   public carreras: Carrera[] = [];
   public docentes: Docente[] = [];
   public responsablesppp: ResponsablePPP[] = [];
@@ -117,4 +117,13 @@ export class ListResponsablePPPComponent implements OnInit {
         }
       });
   }
+
+  compararResponsablePPP(d1: ResponsablePPP, d2: ResponsablePPP) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+
+
 }

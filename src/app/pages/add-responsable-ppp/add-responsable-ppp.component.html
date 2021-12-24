@@ -1,8 +1,8 @@
-<div class="row">
+<div class="row"   >
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <form #MyForm="ngForm" (submit)="guardarDocente(MyForm)">
+          <form #MyForm="ngForm" (submit)="guardarResponsable(MyForm)">
             <div class="form-body">
                <h3 class="card-title"> Responsable Practicas Preprofesionales </h3>
                <hr />
@@ -12,9 +12,9 @@
                   <div class="form-group">
                     <label class="control-label">Docentes *</label>
                     <ng-select
-                      [compareWith]="compararCoordinador"
+                      [compareWith]="compararDocente"
                       name="docente"
-                      placeholder="Seleccione al Coordinador (a)"
+                      placeholder="Seleccione al docente (a)"
                       #docente="ngModel"
                       [(ngModel)]="carrera.docente"
                       required
@@ -46,8 +46,8 @@
                   <ng-select
                     [compareWith]="compararCarrera"
                     name="carrera"
-                    placeholder="Seleccione la Carrera (a)"
-                    #docente="ngModel"
+                    placeholder="Seleccione la Carrera"
+                    #carrera="ngModel"
                     [(ngModel)]="carrera.nombre"
                     required
                   >
@@ -65,73 +65,10 @@
                 </div>
               </div>
             </div>
-                <!--/row-->
-              <div class="row">
-                <div class="col-md-12">
-                  <div class="form-group">
-                    <label class="control-label">carrera *</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="carrera"
-                      #carrera="ngModel"
-                      [(ngModel)]="responsablePPP.carrera.nombre"
-                      required
-                    />
-                    <div  class="text-danger"  *ngIf="carrera.hasError('required') && carrera.touched"> 
-                    nombre de la carrera es requerido!
-                    </div>
-                  </div>
-                </div>
-              </div>
-              <!--/row-->
-
-              <div class="row">
-                <!--/span-->
-                <div class="col-md-2">
-                  <div class="form-group">
-                    <label class="control-label">Abreviatura*</label>
-                    <input
-                      type="text"
-                      class="form-control"
-                      name="abreviatura"
-                      #abreviatura="ngModel"
-                      [(ngModel)]="docente.abreviatura"
-                      required
-                    />
-                    <div class="text-danger" *ngIf=" abreviatura.hasError('required') && abreviatura.touched" >
-                      Abreviatura es requerido!
-                    </div>
-                  </div>
-                </div>
-                <!--/row-->
-                <div class="col-md-4">
-                  <div class="form-group">
-                    <label class="control-label">Tiempo de Trabajo*</label>
-                    <select
-                      class="form-control"
-                      name="modalidad"
-                      #modalidad="ngModel"
-                      [(ngModel)]="docente.tipo_tiempo"
-                      required
-                    >
-                      <option [ngValue]="undefined">
-                        Seleccione la Tiempo
-                      </option>
-                      <option value="PRESENCIAL">COMPLETO</option>
-                      <option value="DUAL">MEDIO TIEMPO</option>
-                    </select>
-  
-                    <div class="text-danger"  *ngIf="tipo_tiempo.hasError('required') && tipo_tiempo.touched" >
-                    Tiempo de Trabajo!
-                    </div>
-                  </div>
-                </div>
-            </div>
             <hr />
             <div class="form-actions">
               <button type="submit" class="btn btn-success mr-2"><i class="fa fa-check"></i> Guardar </button>
-              <button type="button" class="btn btn-inverse" (click)="irListaDocentes()"> Cancelar </button>
+              <button type="button" class="btn btn-inverse" (click)="irListaResponsablePPP()"> Cancelar </button>
             </div>
           </div>
           </form>
@@ -139,3 +76,12 @@
       </div>
     </div>
  </div>
+ <mat-paginator
+ [length]="totalRegistros"
+ [pageSize]="totalPorPagina"
+ [pageSizeOptions]="pageSizeOptions"
+ [pageIndex]="paginaActual"
+ (page)="paginar($event)"
+ showFirstLastButtons
+>
+</mat-paginator>

@@ -19,6 +19,7 @@ import Swal from 'sweetalert2';
 })
 export class AddResponsablePPPComponent implements OnInit {
 
+  
   autocompleteControl = new FormControl();
   public formSubmitted = false;
   public responsablePPP= new ResponsablePPP() ;

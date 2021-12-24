@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!cargando">
+<div class="row" >
     <div class="col-12">
       <div class="card">
         <div class="card-body">
@@ -7,7 +7,7 @@
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
                 <button
-                  routerLink="/dashboard/nueva-carrera"
+                  routerLink="/dashboard/nuevo-responsableppp"
                   class="btn btn-primary btn-sm"
                 >
                   <i class="mdi mdi-plus"></i>
@@ -53,7 +53,7 @@
                   <thead>
                     <tr>
                       <th>Carrera</th>
-                      <th>Docente</th>
+                      <th>Representante de Practicas Preprofesionales</th>
                       <th class="text-nowrap">Acciones</th>
                     </tr>
                   </thead>
@@ -61,17 +61,15 @@
                   <tbody class="animated fadeIn fast">
                     <tr *ngFor="let carrera of carreras">
                       <td>{{ carrera.nombre }}</td>
-                      <td>{{ carrera.modalidad }}</td>
                       <td>
-                        {{ carrera.docente.abreviatura_titulo }}
-                        {{ carrera.docente.persona.primer_nombre }}
-                        {{ carrera.docente.persona.primer_apellido }}
+                        {{ docente.persona.primer_nombre }}
+                        {{ docente.persona.primer_apellido }}
                       </td>
                       <td class="text-nowrap text-center">
                         <a
                           [routerLink]="[
                             '/dashboard',
-                            'actualizar-representante',
+                            'actualizar-Responsableppp',
                             responsablesppp.id
                           ]"
                           data-toggle="tooltip"

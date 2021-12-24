@@ -29,7 +29,7 @@ export class ListEmpresaComponent implements OnInit {
   constructor(private empresaService: EmpresaService) {}
 
   ngOnInit() {
-    this.getEmpresasPage(
+    this.getEmpresaPage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.busqueda
@@ -39,14 +39,14 @@ export class ListEmpresaComponent implements OnInit {
   public paginar(event: PageEvent): void {
     this.paginaActual = event.pageIndex;
     this.totalPorPagina = event.pageSize;
-    this.getEmpresasPage(
+    this.getEmpresaPage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.busqueda
     );
   }
 
-  private getEmpresasPage(page: string, size: string, busqueda: string) {
+  private getEmpresaPage(page: string, size: string, busqueda: string) {
     this.cargando = true;
     this.empresaService.getEmpresaPage(page, size, busqueda).subscribe((p) => {
       this.empresas = p.content as Empresa[];
@@ -61,7 +61,7 @@ export class ListEmpresaComponent implements OnInit {
   }
   buscar(txtBusqueda: string) {
     if (txtBusqueda.length > 0) {
-      this.getEmpresasPage(
+      this.getEmpresaPage(
         this.paginaActual.toString(),
         this.totalPorPagina.toString(),
         txtBusqueda
@@ -70,14 +70,14 @@ export class ListEmpresaComponent implements OnInit {
   }
   cargarEmpresaDefault(txtBusqueda: string) {
     if (txtBusqueda.length === 0) {
-      return this.getEmpresasPage(
+      return this.getEmpresaPage(
         this.paginaActual.toString(),
         this.totalPorPagina.toString(),
         this.busqueda
       );
     }
   }
-  eliminarEmpresa(empresas: Empresa) {
+  eliminarEmpresa(empresa: Empresa) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -89,7 +89,7 @@ export class ListEmpresaComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar la carrera ${empresas.nombre} ?`,
+        text: `¿Seguro que quieres eliminar la Empresa ${empresa.nombre} ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -98,20 +98,28 @@ export class ListEmpresaComponent implements OnInit {
       })
       .then((result) => {
         if (result.value) {
-          this.empresaService.eliminar(empresas.id).subscribe((resp) => {
-            this.getEmpresasPage(
+          this.empresaService.eliminar(empresa.id).subscribe((resp) => {
+            this.getEmpresaPage(
               this.paginaActual.toString(),
               this.totalPorPagina.toString(),
               this.busqueda
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${empresas.nombre} eliminada correctamente!`,
+              `Empresa ${empresa.nombre} eliminada correctamente!`,
               "success"
             );
           });
         }
       });
   }
+
+  compararEmpleadoEmpresa(d1: Empresa, d2: Empresa) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+
 }
 
