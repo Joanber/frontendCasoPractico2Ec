@@ -10,6 +10,7 @@ import { Persona } from 'src/app/models/persona.model';
 import { ResponsablePPP } from 'src/app/models/responsablePPP.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { DocenteService } from 'src/app/services/services.models/docente.service';
+import { EmpresaService } from 'src/app/services/services.models/empresa.service';
 import { PersonaService } from 'src/app/services/services.models/persona.service';
 import { ResponsablePPPService } from 'src/app/services/services.models/responsable-ppp.service';
 import Swal from 'sweetalert2';
@@ -26,26 +27,48 @@ export class AddResponsablePPPComponent implements OnInit {
   public responsableppp= new ResponsablePPP() ;
   public responsablesPPP: ResponsablePPP[] = [];
   public docentes: Docente[] = [];
+  public empresas: Empresa[] = [];
+  public carreras: Carrera[] = [];
+  public docente= new Docente();
+  public carrera= new Carrera();
+  public empresa= new Empresa();
   public ResponsablePPPFiltrados: Observable<ResponsablePPP[]>;
   public docentesFiltrados: Observable<Docente[]>;
   public empresaFiltrados: Observable<Empresa[]>;
+
   constructor(
     private responsableService: ResponsablePPPService,
     private docenteService: DocenteService,
+    private empresaService: EmpresaService,
     private carreraService: CarreraService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private miDatePipe: DatePipe
   ) {}
 
+
   ngOnInit() {
     this.activatedRoute.params.subscribe(({ id }) => this.cargarResponsablePPP(id));
     this.cargarDocentes();
+    this.cargarEmpresa();
+    this.cargarCarreras();
+
   }
 
   cargarDocentes() {
     this.docenteService.getDocentes().subscribe((docentes) => {
       this.docentes = docentes;
+    });
+  }
+
+  cargarEmpresa() {
+    this.empresaService.getEmpresas().subscribe((empresas) => {
+      this.empresas = empresas;
+    });
+  }
+  cargarCarreras() {
+    this.carreraService.getCarreras().subscribe((carreras) => {
+      this.carreras= carreras;
     });
   }
 
@@ -70,7 +93,7 @@ export class AddResponsablePPPComponent implements OnInit {
       this.responsableService.crear(this.responsableppp).subscribe((responsableppp) => {
         Swal.fire(
           "Nuevo (a) responsablePPP",
-          `¡${responsableppp.docente.persona.primer_nombre} creada con exito!`,
+          `¡${this.responsableppp.docente.persona.primer_nombre} creada con exito!`,
           "success"
         );
         this.irListaResponsablePPP();
@@ -80,11 +103,8 @@ export class AddResponsablePPPComponent implements OnInit {
 
 
   irListaResponsablePPP() {
-    this.router.navigateByUrl("/dashboard/responsablePPP");
+    this.router.navigateByUrl("/dashboard/responsablesppp");
   }
-
- 
-  
 
   cargarResponsablePPP(id: number) {
     if (!id) {
@@ -119,6 +139,12 @@ export class AddResponsablePPPComponent implements OnInit {
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
 
+  compararEmpresa(d1: Empresa, d2: Empresa) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
 
 }
 
