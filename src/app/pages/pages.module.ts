@@ -51,8 +51,6 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
-import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsable-ppp.component';
-import { ListResponsablePPPComponent } from './list-responsable-ppp/list-responsable-ppp.component';
 
 
 
@@ -93,8 +91,7 @@ import { ListResponsablePPPComponent } from './list-responsable-ppp/list-respons
     ConvocatoriasAbiertasComponent,
     ListSolicitudesAlumnosComponent,
    SeleccionarAlumnosComponent,
-   AddResponsablePPPComponent,
-   ListResponsablePPPComponent
+
 
   ],
   exports: [DashboardComponent, PagesComponent],

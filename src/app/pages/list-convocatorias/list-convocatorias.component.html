@@ -1,113 +1,146 @@
-<div class="row" *ngIf="!cargando">
+<div class="row">
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <h4 class="card-title text-center">Listado de Convocatorias</h4>
-        <div class="table-responsive">
-          <div id="example23_wrapper" class="dataTables_wrapper">
-            <div class="dt-buttons">
-              <button routerLink="/dashboard/solicitudes_empresas" class="btn btn-primary btn-sm">
-                <i class="mdi mdi-plus"></i>
-                Nueva Convocatoria
-              </button>
+           <div class="row">
+            <div class="col-md-3">
+              Buscar por fecha
+              <br>
+              <input
+              aria-placeholder="Seleccioanr fecha"
+
+                [matDatepicker]="myDatepicker"
+                [(ngModel)]="fecha"
+                class="form-control"
+                style="width: min-content"
+                name="fechaF"
+                required
+                #fechaF="ngModel"
+              />
+              <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+              <mat-datepicker
+                [touchUi]="true"
+                color="dark"
+                #myDatepicker
+              ></mat-datepicker>
             </div>
-            <div id="example23_filter" class="dataTables_filter">
-              <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
-                  (keyup)="cargarConvocatoriasDefault(txtBusqueda.value)" />
-              </label>
-              <button class="btn btn-primary btn-sm" (click)="buscar(txtBusqueda.value)" type="button">
-                <i class="mdi mdi-magnify"></i>
-              </button>
-            </div>
-            <div class="row" *ngIf="cargando">
-              <div class="col-12">
-                <div class="alert alert-info text-center" role="alert">
-                  <h4 class="alert-heading">Cargando</h4>
-                  <i class="fa fa-spin fa-refresh fa-2x"></i>
-                  <p class="mb-0">Por favor espere...</p>
-                </div>
-              </div>
-            </div>
-            <div class="table-scroll">
-              <table class="
+          <div class="col-md-5">
+            Buscar por carrera<br>
+            <select class="form-control" [(ngModel)]="carreraFiltro">
+              <option [ngValue]="undefined">CARRERA (TODAS)</option>
+              <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
+                {{ carreras.nombre }}
+              </option>
+            </select>
+          </div>
+          <br>
+          <br><br>
+          <div class="col-md-1">
+            <br>
+            <button class="btn btn-primary" (click)="filtarConvocatoriasPorFechaCarrera()">
+              <i class="mdi mdi-magnify"></i>
+              Buscar
+            </button>
+          </div>
+          <div class="col-md-2 text-right"><br>
+            <button class="btn btn-danger " (click)="cargarConvocatoriasDefault()">
+              Mostrar Todas
+            </button>
+          </div>
+        </div>
+       <div>
+             <button routerLink="/dashboard/solicitudes_empresas" class="btn btn-primary">
+          <i class="mdi mdi-plus"></i>
+          Nueva Convocatoria
+        </button>
+        <br>
+        <br>
+
+        </div>
+        <div class="table-scroll">
+          <table class="
                   table table-bordered
                   justify-content-center
                   table-responsive-sm table-sm
                   dataTable
                 ">
-                <thead>
-                  <tr>
-                    <th>Codigo  </th>
-                    <th>Fecha Emision</th>
-                    <th>Fecha Max. R.Solicitud</th>
-                    <th>Empresa</th>
-                    <th>Responsable de PPP</th>
-                    <th>Estado</th>
-                    <th class="text-nowrap">Solicitudes</th>
-                    <th class="text-nowrap">Acciones</th>
-                  </tr>
-                </thead>
+            <thead>
+              <tr>
+                <th>Codigo </th>
+                <th>Fecha Emision</th>
+                <th>Fecha Max. R.Solicitud</th>
+                <th>Empresa</th>
+                <th>Responsable de PPP</th>
+                <th>Estado</th>
+                <th class="text-nowrap">Solicitudes</th>
+                <th class="text-nowrap">Acciones</th>
+              </tr>
+            </thead>
 
-                <tbody class="animated fadeIn fast">
-                  <tr *ngFor="let convocatoria of convocatorias">
-                    <td>{{ convocatoria.carrera.abreviatura }} {{convocatoria.id}}</td>
-                    <td>{{ convocatoria.fecha_emision }}</td>
-                    <td>{{ convocatoria.fecha_max_recib_solic }}</td>
-                    <td>
-                      {{ convocatoria.solicitudEmpresa.empresa.nombre }}
-                    </td>
-                    <td>
-                      {{
-                        convocatoria.solicitudEmpresa.responsablePPP.docente
-                      .abreviatura_titulo
-                      }}
-                      {{
-                      convocatoria.solicitudEmpresa.responsablePPP.docente.persona
-                      .primer_nombre
-                      }}
-                      {{
-                        convocatoria.solicitudEmpresa.responsablePPP.docente.persona
-                      .primer_apellido
-                      }}
+            <tbody class="animated fadeIn fast">
+              <tr *ngFor="let convocatoria of convocatorias">
+                <td>{{ convocatoria.carrera.abreviatura }} {{convocatoria.id}}</td>
+                <td>{{ convocatoria.fecha_emision }}</td>
+                <td>{{ convocatoria.fecha_max_recib_solic }}</td>
+                <td>
+                  {{ convocatoria.solicitudEmpresa.empresa.nombre }}
+                </td>
+                <td>
+                  {{
+                  convocatoria.solicitudEmpresa.responsablePPP.docente
+                  .abreviatura_titulo
+                  }}
+                  {{
+                  convocatoria.solicitudEmpresa.responsablePPP.docente.persona
+                  .primer_nombre
+                  }}
+                  {{
+                  convocatoria.solicitudEmpresa.responsablePPP.docente.persona
+                  .primer_apellido
+                  }}
 
-                    </td>
+                </td>
 
-                    <td>{{convocatoria.estado}}</td>
+                <td>{{convocatoria.estado}}</td>
 
-                    <td class="text-nowrap text-center">
-                      <a [routerLink]="[
+                <td class="text-nowrap text-center">
+                  <a [routerLink]="[
                         '/dashboard',
                         'seleccionar-estudiantes',
                         convocatoria.id
-                      ]" data-toggle="tooltip" data-original-title="Solicitudes de Estudiantes" class="cursor"
-                        title="Ver solicitudes">
-
-                        <i class="mdi mdi-format-float-left"></i>
-                      </a>
-                    </td>
-                    <td class="text-nowrap text-center">
-                      <a [routerLink]="[
+                      ]" data-toggle="tooltip" data-original-title="Ver solicitudes" class="cursor">
+                    <i class="fa fa-file-text-o"></i>
+                  </a>
+                </td>
+                <td class="text-nowrap text-center">
+                  <a [routerLink]="[
                           '/dashboard',
                           'actualizar-convocatoria',
                           convocatoria.id
-                        ]" data-toggle="tooltip" data-original-title="Editar" class="cursor">
-                        <i class="fa fa-pencil text-inverse m-r-10"> </i>
-                      </a>
-                      <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
-                        (click)="eliminarConvocatoria(convocatoria)">
-                        <i class="fa fa-close text-danger"></i>
-                      </a>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
+                        ]" data-toggle="tooltip" data-original-title="Generar PDF " class="cursor">
+                    <i class="mdi mdi-file-pdf m-r-10"> </i>
+                  </a>
+                  <a [routerLink]="[
+                      '/dashboard',
+                      'actualizar-convocatoria',
+                      convocatoria.id
+                    ]" data-toggle="tooltip" data-original-title="Editar" class="cursor">
+                    <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                  </a>
+                  <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
+                    (click)="eliminarConvocatoria(convocatoria)">
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         </div>
       </div>
     </div>
   </div>
 </div>
+
 <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
   [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
 </mat-paginator>

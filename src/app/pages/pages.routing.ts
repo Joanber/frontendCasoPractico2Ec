@@ -34,9 +34,13 @@ import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
+
 import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
 import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
+
+
+
 
 const routes: Routes = [
   {
@@ -139,9 +143,9 @@ const routes: Routes = [
       {
         path: "seleccionar-estudiantes/:id",
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Solicitudes de Estudiantes " },
+        data: { titulo: "Seleccionar Estudiantes" },
       },
-      
+
       {
         path: "designarTutorAcademico",
         component: DesignarTutorAcademicoComponent,
@@ -196,10 +200,11 @@ const routes: Routes = [
         data: { titulo: "Historial de procesos PPP" },
       },
       {
-        path: "solicitud",
+        path: "solicitud/:id",
         component: SolicitudComponent,
-        data: { titulo: "Solicitud Estudiantes" },
+        data: { titulo: "Crear Solicitud de Estudiantes" },
       },
+
       {
         path: "convocatoriasabiertas",
         component: ConvocatoriasAbiertasComponent,
@@ -238,6 +243,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
+
       {
         path: "actualizar-Docente/:id",
         component: AddDocenteComponent,
@@ -255,7 +261,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo Empresa" },
       },
 
- 
+
       {
         path: "actualizar-Empresa/:id",
         component: AddEmpresaComponent,
@@ -281,6 +287,7 @@ const routes: Routes = [
         data: { titulo: "Actualizar ResponsablePPP" },
       },
 
+      
 
 
     ],
