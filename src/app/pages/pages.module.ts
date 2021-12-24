@@ -11,6 +11,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from "@angular/material/input";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from "@angular/material/table";
@@ -25,6 +27,7 @@ import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
+import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { AsistenciasComponent } from './asistencias/asistencias.component';
@@ -45,14 +48,13 @@ import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
+import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
 import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
-
-
 
 
 @NgModule({
@@ -90,8 +92,8 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     InformeComponent,
     ConvocatoriasAbiertasComponent,
     ListSolicitudesAlumnosComponent,
-   SeleccionarAlumnosComponent,
-
+    SeleccionarAlumnosComponent,
+    ListResponsablePPPComponent, AddResponsablePPPComponent
 
   ],
   exports: [DashboardComponent, PagesComponent],
@@ -110,7 +112,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     NgSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule, MatIconModule, MatCardModule, MatSortModule, MatSnackBarModule
-  ],
+    MatTableModule, MatIconModule, MatCardModule, MatSortModule, MatSnackBarModule, MatProgressBarModule, MatProgressSpinnerModule
+  ]
 })
 export class PagesModule {}

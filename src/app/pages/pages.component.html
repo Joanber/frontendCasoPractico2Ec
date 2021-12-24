@@ -2,6 +2,9 @@
   <app-header></app-header>
   <app-sidebar></app-sidebar>
   <div class="page-wrapper">
+    <div *ngIf="loaderService.isLoading | async" class="loader-container">
+    <mat-progress-bar mode="indeterminate"></mat-progress-bar>
+    </div>
     <div class="container-fluid">
       <!-- MI SISTEMA DE RUTAS -->
       <app-breadcrumbs></app-breadcrumbs>

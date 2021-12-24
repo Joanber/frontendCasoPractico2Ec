@@ -2,6 +2,7 @@ import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
+import { LoaderService } from 'src/app/services/interceptores/loader.service';
 import Swal from 'sweetalert2';
 import { Convenio } from './../../../../models/convenio';
 import { ConvenioService } from './../../../../services/services.models/convenio.service';
@@ -11,7 +12,7 @@ import { ConvenioService } from './../../../../services/services.models/convenio
   styleUrls: ['./list-convenios.component.css']
 })
 export class ListConveniosComponent implements OnInit, AfterViewInit {
-  constructor(private convenioService: ConvenioService, private _liveAnnouncer: LiveAnnouncer) {
+  constructor(private convenioService: ConvenioService, private _liveAnnouncer: LiveAnnouncer,public loaderService: LoaderService) {
   }
 
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
