@@ -124,8 +124,8 @@ export class RegistroConveniosComponent implements OnInit {
     this.convenioForm.setValue({
       id: convenio.id,
       nombre: convenio.nombre,
-      empresa: this.empresas.find(empresa => convenio.empresa !== undefined || convenio.empresa !== empresa),
-      carrera: this.carreras.find(carrera => convenio.carrera !== undefined || convenio.carrera !== carrera)
+      empresa: this.empresas.find(empresa => convenio.empresa !== undefined || convenio.empresa !== null),
+      carrera: this.carreras.find(carrera => convenio.carrera !== undefined || convenio.carrera !== null)
     });
 
     this.btnName = 'Editar';
