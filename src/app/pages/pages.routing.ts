@@ -238,7 +238,7 @@ const routes: Routes = [
         data: { titulo: "Lista de Docentes" },
       },
       {
-        path: "nuevo-docente",
+        path: "nuevo-docentes",
         component: AddDocenteComponent,
         data: { titulo: "Nuevo Docentes" },
       },
