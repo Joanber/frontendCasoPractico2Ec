@@ -14,6 +14,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-responsable-ppp',
+  providers: [DatePipe],
   templateUrl: './add-responsable-ppp.component.html',
   styleUrls: ['./add-responsable-ppp.component.css']
 })
