@@ -10,7 +10,7 @@ export class SidebarService {
       titulo: "Dashboard",
       icono: "mdi mdi-gauge",
       submenu: [
-        { titulo: "Convocatorias", url: "soli/convoc1" },
+        { titulo: "Convocatorias", url: "infoconvocatoria" },
         { titulo: "Procesos", url: "soli/procesos" },
         { titulo: "Informacion Carrera", url: "infocarrera" },
         { titulo: "Instructivo/Anexos", url: "soli/instructivos" },
@@ -48,6 +48,7 @@ export class SidebarService {
       submenu: [
         { titulo: "Empresas", url: "empresas" },
         { titulo: "Docentes", url: "docentes" },
+        { titulo: "ResponsablePPP", url: "responsablesppp" },
         { titulo: "Carreras", url: "carreras" },
       ],
     },
@@ -90,10 +91,6 @@ export class SidebarService {
           url: "convocatorias",
         },
         {
-          titulo: "Seleccion de estudiantes",
-          url: "seleccionestudiantes",
-        },
-        {
           titulo: "Designar Tutor academico",
           url: "designarTutorAcademico",
         },
@@ -131,12 +128,16 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         {
+          titulo: "Lista Solicitudes Alumnos",
+          url: "solicitudes_estudiantes",
+        },
+        {
           titulo: "Convocatorias",
           url: "convocatoriasabiertas",
         },
         {
           titulo: "Solicitudes",
-          url: "solicitud",
+          url: "convocatoriasabiertas",
         },
         {
           titulo: "Asistencias",
@@ -162,5 +163,7 @@ export class SidebarService {
         },
       ],
     },
+
+    
   ];
 }

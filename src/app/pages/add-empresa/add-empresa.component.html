@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <form #MyForm="ngForm" (submit)="guardarEmpresa(MyForm)">
+        <form #MyForm="ngForm" (submit)="GuardarEmpresa(MyForm)">
           <div class="form-body">
             <h3 class="card-title">Empresa</h3>
             <hr />
@@ -26,15 +26,10 @@
                   </div>
                 </div>
               </div>
-              <!--/span-->
-              <!--/span-->
             </div>
-
-            
 
             <!--/row-->
             <div class="row">
-              <!--/span-->
               <div class="col-md-2">
                 <div class="form-group">
                   <label class="control-label">Ruc*</label>
@@ -57,6 +52,7 @@
                 </div>
               </div>
 
+              <!--/row-->
               <div class="row">
                   <div class="col-md-12">
                     <div class="form-group">
@@ -77,11 +73,30 @@
                       </div>
                     </div>
                   </div>
-                  <!--/span-->
-                  <!--/span-->
                 </div>
-
-                
+        
+                <!--/span-->
+                <div class="row">
+                  <div class="col-md-12">
+                    <div class="form-group">
+                      <label class="control-label">Direccion*</label>
+                      <input
+                        type="text"
+                        class="form-control"
+                        name="direccion"
+                        #direccion="ngModel"
+                        [(ngModel)]="empresa.direccion"
+                        required
+                      />
+                      <div
+                        class="text-danger"
+                        *ngIf="direccion.hasError('required') && direccion.touched"
+                      >
+                      direccion es requerido!
+                      </div>
+                    </div>
+                  </div>
+                </div>
               <!--/span-->
             </div>
             <!--/row-->

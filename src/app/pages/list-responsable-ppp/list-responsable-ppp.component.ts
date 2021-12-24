@@ -1,15 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
+import { Carrera } from 'src/app/models/carrera.model';
+import { Docente } from 'src/app/models/docente.model';
 import { Empresa } from 'src/app/models/empresa.model';
-import { EmpresaService } from 'src/app/services/services.models/empresa.service';
+import { ResponsablePPP } from 'src/app/models/responsablePPP.model';
+import { ResponsablePPPService } from 'src/app/services/services.models/responsable-ppp.service';
 import Swal from 'sweetalert2';
 
 @Component({
-  selector: 'app-list-empresa',
-  templateUrl: './list-empresa.component.html',
-  styleUrls: ['./list-empresa.component.css']
+  selector: 'app-list-responsable-ppp',
+  templateUrl: './list-responsable-ppp.component.html',
+  styleUrls: ['./list-responsable-ppp.component.css']
 })
-export class ListEmpresaComponent implements OnInit {
+export class ListResponsablePPPComponent implements OnInit {
 
  
   public totalRegistros = 0;
@@ -18,18 +21,21 @@ export class ListEmpresaComponent implements OnInit {
   public pageSizeOptions: number[] = [10, 20, 50, 100];
   //MATPAGINATOR
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
-  //VARIABLE DE Empresa
+  //VARIABLE DE responsable
+  public carreras: Carrera[] = [];
+  public docentes: Docente[] = [];
   public empresas: Empresa[] = [];
+  public responsablesppp: ResponsablePPP[] = [];
   //VARIABLE DE LOADING
   public cargando: boolean = true;
   //VARIABLE PARA BUSCAR
   public busqueda: string = "";
 
 
-  constructor(private empresaService: EmpresaService) {}
+  constructor(private responsablePPPService: ResponsablePPPService) {}
 
   ngOnInit() {
-    this.getEmpresaPage(
+    this.getResponsablePPPPage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.busqueda
@@ -39,17 +45,17 @@ export class ListEmpresaComponent implements OnInit {
   public paginar(event: PageEvent): void {
     this.paginaActual = event.pageIndex;
     this.totalPorPagina = event.pageSize;
-    this.getEmpresaPage(
+    this.getResponsablePPPPage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.busqueda
     );
   }
 
-  private getEmpresaPage(page: string, size: string, busqueda: string) {
+  private getResponsablePPPPage(page: string, size: string, busqueda: string) {
     this.cargando = true;
-    this.empresaService.getEmpresaPage(page, size, busqueda).subscribe((p) => {
-      this.empresas = p.content as Empresa[];
+    this.responsablePPPService.getResponsablePPPPage(page, size, busqueda).subscribe((p) => {
+      this.responsablesppp = p.content as ResponsablePPP[];
       this.totalRegistros = p.totalElements as number;
       this.paginador._intl.itemsPerPageLabel = "Registros por página:";
       this.paginador._intl.nextPageLabel = "Siguiente";
@@ -61,23 +67,23 @@ export class ListEmpresaComponent implements OnInit {
   }
   buscar(txtBusqueda: string) {
     if (txtBusqueda.length > 0) {
-      this.getEmpresaPage(
+      this.getResponsablePPPPage(
         this.paginaActual.toString(),
         this.totalPorPagina.toString(),
         txtBusqueda
       );
     }
   }
-  cargarEmpresaDefault(txtBusqueda: string) {
+  cargarResponsablePPPPDefault(txtBusqueda: string) {
     if (txtBusqueda.length === 0) {
-      return this.getEmpresaPage(
+      return this.getResponsablePPPPage(
         this.paginaActual.toString(),
         this.totalPorPagina.toString(),
         this.busqueda
       );
     }
   }
-  eliminarEmpresa(empresa: Empresa) {
+  eliminarResponsablePPPP(responsablePPPP: ResponsablePPP) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -89,7 +95,7 @@ export class ListEmpresaComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar la Empresa ${empresa.nombre} ?`,
+        text: `¿Seguro que quieres eliminar el Responsable de precticas ${responsablePPPP.docente.persona.primer_nombre} ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -98,15 +104,15 @@ export class ListEmpresaComponent implements OnInit {
       })
       .then((result) => {
         if (result.value) {
-          this.empresaService.eliminar(empresa.id).subscribe((resp) => {
-            this.getEmpresaPage(
+          this.responsablePPPService.eliminar(responsablePPPP.id).subscribe((resp) => {
+            this.getResponsablePPPPage(
               this.paginaActual.toString(),
               this.totalPorPagina.toString(),
               this.busqueda
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Empresa ${empresa.nombre} eliminada correctamente!`,
+              `Carrera ${responsablePPPP.docente.persona.primer_nombre} eliminada correctamente!`,
               "success"
             );
           });
@@ -114,12 +120,26 @@ export class ListEmpresaComponent implements OnInit {
       });
   }
 
-  compararEmpleadoEmpresa(d1: Empresa, d2: Empresa) {
+  compararResponsablePPP(d1: ResponsablePPP, d2: ResponsablePPP) {
     if (d1 === undefined && d2 === undefined) {
       return true;
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
 
-}
+  compararDocente(d1: Docente, d2: Docente) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
+  compararEmpresa(d1: Empresa, d2: Empresa) {
+    if (d1 === undefined && d2 === undefined) {
+      return true;
+    }
+    return d1 == null || d2 == null ? false : d1.id === d2.id;
+  }
 
+
+
+}

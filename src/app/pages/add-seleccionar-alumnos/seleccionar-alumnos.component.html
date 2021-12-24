@@ -19,11 +19,12 @@
         <div style="text-align: left">
 
           Sr/Ing/Dr {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_nombre}}
-          {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_nombre}}
-          {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_apellido}}
-          {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_apellido}}<br>
-          GERENTE/PROPIETARIO/JEFE DE PERSONAL, etc. <br>
-          {{this.convocatoria.carrera.nombre}} <br>
+          {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_nombre}}
+          {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_apellido}}
+          {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_apellido}}<br>
+          {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.cargo}}
+          <br>
+          {{this.convocatoria.solicitudEmpresa.empresa.nombre}} <br>
           Su Despacho. -
 
           <br>
@@ -40,17 +41,9 @@
 
         </div>
 
-        <h4 class="card-title text-center">
-          Listado de Solicitudes Enviadas por Alumnos
-        </h4>
-        <div class="table-responsive" style="text-align: right;">
+
+        <div class="table-responsive" style="text-align: left;">
           <div id="example23_wrapper" class="dataTables_wrapper">
-            <label>Buscar:<input type="text" placeholder="" [(ngModel)]="busqueda" #txtBusqueda
-                (keyup)="cargarSolicitudesAlumnosDefault(txtBusqueda.value)" />
-            </label>
-            <button class="btn btn-primary " (click)="buscar(txtBusqueda.value)" type="button">
-              <i class="mdi mdi-magnify"></i>
-            </button>
 
             <div class="row" *ngIf="cargando">
               <div class="col-12">
@@ -62,12 +55,17 @@
               </div>
             </div>
             <div class="table-scroll">
+              <h4 class="card-title text-center">
+                Listado de Solicitudes Enviadas por Alumnos
+              </h4>
+             <strong> Numero de alumnos permitidos para esta convocatoria: {{convocatoria.solicitudEmpresa.numero_alumnos}}</strong>
               <table class="
                   table table-bordered
                   justify-content-center
                   table-responsive-sm table-sm
                   dataTable
                 ">
+
                 <thead>
                   <tr>
                     <th>Identificacion</th>
@@ -79,7 +77,7 @@
                 </thead>
 
                 <tbody class="animated fadeIn fast">
-                  <tr *ngFor="let solicitudesAlumnos of alumnosXconvocatoria">
+                  <tr *ngFor="let solicitudesAlumnos of this.alumnosXconvocatoria">
                     <td> {{ solicitudesAlumnos.alumno.persona.identificacion }}</td>
                     <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }}
                       {{ solicitudesAlumnos.alumno.persona.segundo_nombre }}
@@ -111,7 +109,7 @@
 </mat-paginator>
 <br>
 <div class="card">
-  Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los <br>
+  Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los
   estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice
   <br>
   las prácticas pre profesionales.
@@ -121,10 +119,15 @@
   <br>
   <br>
 
-  Atentamente,
-
-  ______________________ <br>
+  Atentamente,<br>
+  <br>
+  {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}<br>
+  {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre }}<br>
+  {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}<br>
+  {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_apellido }}<br>
+  ______________________
+  <br>
   Responsable de Prácticas Pre Profesionales <br>
-  CARRERA DE …………………….. <br>
+  CARRERA DE {{this.convocatoria.carrera.nombre}}. <br>
   INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
 </div>

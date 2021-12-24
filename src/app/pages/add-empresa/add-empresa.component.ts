@@ -15,6 +15,7 @@ const bd_url = environment.bd_url;
 
 @Component({
   selector: 'app-add-empresa',
+  providers: [DatePipe],
   templateUrl: './add-empresa.component.html',
   styleUrls: ['./add-empresa.component.css']
 })
@@ -47,7 +48,7 @@ export class AddEmpresaComponent implements OnInit {
       this.empresapersonal = empresapersonal;
     });
   }
-  guardarEmpresa(form: NgForm) {
+  GuardarEmpresa(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
