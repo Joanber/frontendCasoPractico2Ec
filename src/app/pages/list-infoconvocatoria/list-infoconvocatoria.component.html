@@ -7,12 +7,11 @@
           <div class="col-md-2">
             <input
               [matDatepicker]="myDatepicker"
-              [(ngModel)]="fecha"
+              [formControl]="fechaControl"
               class="form-control"
               style="display: block"
               name="fechaF"
               required
-              #fechaF="ngModel"
             />
             <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
             <mat-datepicker
