@@ -151,3 +151,169 @@ td {
 ::ng-deep.mat-form-field-ripple {
   background-color: #745af2 !important;
 }
+
+.spinner-container {
+  display: flex !important;
+  justify-content: center!important;
+  align-items: center!important;
+  background-color: #fafafa28!important;
+  box-shadow:0 5px 5px -3px rgba(0,0,0,.2), 0 8px 10px 1px rgba(0,0,0,.14), 0 3px 14px 2px rgba(0,0,0,.12) !important;
+}
+
+/*
+.loader-container{
+  position: fixed;
+  width: 100%;
+  z-index: 99;
+}
+
+::ng-deep.mat-progress-spinner{
+    position: absolute !important;
+  width: 100% !important;
+  height: 100% !important;
+  background: #5a48be41 !important;
+  top: 50% !important;
+  left: 50% !important;
+  z-index: 99 !important;
+} */
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+body {
+  margin: 0;
+  font-family: Segoe UI;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disp-non {
+  display: none;
+}
+
+div.table-container {
+  margin: auto;
+  margin-top: 20px;
+  display: block;
+  width: 90%;
+  height: 400px;
+  overflow: auto;
+  border: 1px solid;
+}
+
+.top-inertia .prcs {
+  padding: 0px;
+  transition: margin 1s;
+}
+
+#jobs_table_length,
+#jobs_table_filter {
+  display: none;
+}
+
+#jobs_table {
+  border-bottom: none;
+}
+
+/* Loading Spinner CSS Rules Start */
+@keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@-webkit-keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.lds-rolling {
+  position: relative;
+}
+
+.lds-rolling div,
+.lds-rolling div:after {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border: 8px solid #0082bd;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
+.lds-rolling div {
+  -webkit-animation: lds-rolling 2s linear infinite;
+  animation: lds-rolling 2s linear infinite;
+  top: 100px;
+  left: 100px;
+}
+
+.lds-rolling div:after {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.lds-rolling {
+  width: 100px !important;
+  height: 100px !important;
+  -webkit-transform: translate(-50px, -50px) scale(0.5) translate(50px, 50px);
+  transform: translate(-50px, -50px) scale(0.5) translate(50px, 50px);
+}
+
+.lds-overlay {
+  width: 100%;
+  height: 100%;
+}
+
+.lds-container {
+  width: 50px;
+  height: 50px;
+}
+
+.prcs {
+  padding: 30px 0;
+}
+
+.prcs-lbl-container {
+  margin-left: 12px;
+}
+
+.prcs-lbl {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: left;
+  color: #888888;
+}
+/* Loading Spinner CSS Rules End */

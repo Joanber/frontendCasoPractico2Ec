@@ -1,4 +1,5 @@
 import { CommonModule } from "@angular/common";
+import { HTTP_INTERCEPTORS } from "@angular/common/http";
 import { NgModule } from "@angular/core";
 import { FormsModule, ReactiveFormsModule } from "@angular/forms";
 import { MatDatepickerModule, MatPaginatorModule, MatSortModule } from "@angular/material";
@@ -11,11 +12,14 @@ import { MatCardModule } from '@angular/material/card';
 import { MatDividerModule } from "@angular/material/divider";
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from "@angular/material/input";
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSelectModule } from "@angular/material/select";
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatTableModule } from "@angular/material/table";
 import { NgSelectModule } from "@ng-select/ng-select";
 import { AppRoutingModule } from "../app-routing.module";
+import { InterceptorServiceService } from "../services/interceptores/interceptor-service.service";
 import { SharedModule } from "../shared/shared.module";
 import { AccountSettingsComponent } from "./account-settings/account-settings.component";
 import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
@@ -52,8 +56,6 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
-
-
 
 
 @NgModule({
@@ -111,7 +113,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     NgSelectModule,
     MatInputModule,
     MatButtonModule,
-    MatTableModule, MatIconModule, MatCardModule, MatSortModule, MatSnackBarModule
-  ],
+    MatTableModule, MatIconModule, MatCardModule, MatSortModule, MatSnackBarModule, MatProgressBarModule, MatProgressSpinnerModule
+  ]
 })
 export class PagesModule {}
