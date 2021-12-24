@@ -25,7 +25,7 @@ public solicitudesEmpresas: SolicitudEmpresa[] = [];
 public cargando: boolean = true;
 //VARIABLE PARA BUSCAR
 public busqueda: string = "";
-public bd_url = bd_url + "/solicitudes_empresas";
+public bd_url = bd_url + "/list-solicitud-empresa";
 constructor(private solicitudEmpresaService: SolicitudEmpresaService) {}
 ngOnInit() {
   this.getSolicitudesEmpresasPage(

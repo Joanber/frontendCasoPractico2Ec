@@ -55,7 +55,8 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
-
+import { AddSolicitudEmpresaComponent } from "./add-solicitud-empresa/add-solicitud-empresa.component";
+import { ListSolicitudEmpresaComponent } from "./list-solicitud-empresa/list-solicitud-empresa.component";
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     ConvocatoriasAbiertasComponent,
     ListSolicitudesAlumnosComponent,
     SeleccionarAlumnosComponent,
-    ListResponsablePPPComponent, AddResponsablePPPComponent
+    ListResponsablePPPComponent, AddResponsablePPPComponent,
+    AddSolicitudEmpresaComponent, ListSolicitudEmpresaComponent
 
   ],
   exports: [DashboardComponent, PagesComponent],
