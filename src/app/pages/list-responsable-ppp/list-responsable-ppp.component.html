@@ -2,16 +2,16 @@
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title text-center">Listado de Empresas</h4>
+          <h4 class="card-title text-center">Listado de responsables de practicas Preprofesionales</h4>
           <div class="table-responsive">
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
                 <button
-                  routerLink="/dashboard/nueva-empresas"
+                  routerLink="/dashboard/nueva-carrera"
                   class="btn btn-primary btn-sm"
                 >
                   <i class="mdi mdi-plus"></i>
-                  Nueva Empresas
+                  Responsables de practicas Preprofesionales
                 </button>
               </div>
               <div id="example23_filter" class="dataTables_filter">
@@ -21,7 +21,7 @@
                     placeholder=""
                     [(ngModel)]="busqueda"
                     #txtBusqueda
-                    (keyup)="cargarEmpresaDefault(txtBusqueda.value)"
+                    (keyup)="cargarResponsablePPPPDefault(txtBusqueda.value)"
                   />
                 </label>
                 <button
@@ -52,32 +52,27 @@
                 >
                   <thead>
                     <tr>
-                      <th>Nombre</th>
-                      <th>Ruc</th>
-                      <th>direccion</th>
-                      <th>telefono</th>
-                      
+                      <th>Carrera</th>
+                      <th>Docente</th>
                       <th class="text-nowrap">Acciones</th>
                     </tr>
                   </thead>
   
                   <tbody class="animated fadeIn fast">
-                    <tr *ngFor="let empresa of empresas">
-                      <td>{{ empresa.nombre }}</td>
-                      <td>{{ empresa.ruc }}</td>
-                      <td>{{ empresa.direccion }}</td>
-                      <td>{{ empresa.telefono }}</td>
+                    <tr *ngFor="let carrera of carreras">
+                      <td>{{ carrera.nombre }}</td>
+                      <td>{{ carrera.modalidad }}</td>
                       <td>
-                        {{ empresas.empresaPersonal.persona.primer_nombre  }}
-                        {{ empresas.empresaPersonal.persona.primer_apellido  }}
-                    
+                        {{ carrera.docente.abreviatura_titulo }}
+                        {{ carrera.docente.persona.primer_nombre }}
+                        {{ carrera.docente.persona.primer_apellido }}
                       </td>
                       <td class="text-nowrap text-center">
                         <a
                           [routerLink]="[
                             '/dashboard',
-                            'actualizar-empresa',
-                            empresa.id
+                            'actualizar-representante',
+                            responsablesppp.id
                           ]"
                           data-toggle="tooltip"
                           data-original-title="Editar"
@@ -89,7 +84,7 @@
                           data-toggle="tooltip"
                           data-original-title="Borrar"
                           class="cursor"
-                          (click)="eliminarEmpresa(empresa)"
+                          (click)="eliminarResponsablePPPP(responsablesppp)"
                         >
                           <i class="fa fa-close text-danger"></i>
                         </a>
@@ -114,4 +109,3 @@
   >
   </mat-paginator>
   
-

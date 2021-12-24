@@ -48,6 +48,7 @@ export class SidebarService {
       submenu: [
         { titulo: "Empresas", url: "empresas" },
         { titulo: "Docentes", url: "docentes" },
+        { titulo: "Responsables PPP", url: "responsableppp" },
         { titulo: "Carreras", url: "carreras" },
       ],
     },
@@ -165,5 +166,7 @@ export class SidebarService {
         },
       ],
     },
+
+    
   ];
 }

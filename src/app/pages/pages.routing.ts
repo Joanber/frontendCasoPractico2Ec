@@ -17,7 +17,6 @@ import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-proceso
 import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
-import { ListEmpresasComponent } from "./list-empresas/list-empresas.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
@@ -35,6 +34,9 @@ import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
+import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
+import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
+import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
 
 const routes: Routes = [
   {
@@ -73,11 +75,7 @@ const routes: Routes = [
         component: AddPersonaComponent,
         data: { titulo: "Actualizar Persona" },
       },
-      {
-        path: "empresas",
-        component: ListEmpresasComponent,
-        data: { titulo: "Empresas" },
-      },
+      
       {
         path: "carreras",
         component: ListCarrerasComponent,
@@ -240,7 +238,6 @@ const routes: Routes = [
         data: { titulo: "Nuevo Docentes" },
       },
 
- 
       {
         path: "actualizar-Docente/:id",
         component: AddDocenteComponent,
@@ -249,20 +246,39 @@ const routes: Routes = [
 
       {
         path: "empresas",
-        component: ListEmpresasComponent,
-        data: { titulo: "Lista de Empresas" },
+        component: ListEmpresaComponent,
+        data: { titulo: "Lista de Empresa" },
       },
       {
-        path: "nuevo-docente",
+        path: "nuevo-empresa",
         component: AddEmpresaComponent,
-        data: { titulo: "Nueva Empresa" },
+        data: { titulo: "Nuevo Empresa" },
       },
 
  
       {
         path: "actualizar-Empresa/:id",
         component: AddEmpresaComponent,
-        data: { titulo: "Actualizar Docente" },
+        data: { titulo: "Actualizar Empresa" },
+      },
+
+      
+      {
+        path: "responsableppp",
+        component: ListResponsablePPPComponent,
+        data: { titulo: "Lista de ResponsablePPP" },
+      },
+      {
+        path: "nuevo-responsableppp",
+        component: AddResponsablePPPComponent,
+        data: { titulo: "Nuevo ResponsablePPP" },
+      },
+
+ 
+      {
+        path: "actualizar-Responsableppp/:id",
+        component: AddResponsablePPPComponent,
+        data: { titulo: "Actualizar ResponsablePPP" },
       },
 
 

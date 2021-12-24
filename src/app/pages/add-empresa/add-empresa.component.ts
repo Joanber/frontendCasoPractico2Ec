@@ -47,7 +47,7 @@ export class AddEmpresaComponent implements OnInit {
       this.empresapersonal = empresapersonal;
     });
   }
-  guardarEmpresa(form: NgForm) {
+  GuardarEmpresa(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
