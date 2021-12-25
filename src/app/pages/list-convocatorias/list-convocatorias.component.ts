@@ -1,13 +1,15 @@
 import { DatePipe } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator, PageEvent } from "@angular/material";
+import { TouchSequence } from "selenium-webdriver";
 import { Carrera } from "src/app/models/carrera.model";
 import { Convocatoria } from "src/app/models/convocatoria.model";
+import { SolicitudAlumno } from "src/app/models/solicitudAlumno.model";
 import { CarreraService } from "src/app/services/services.models/carrera.service";
 import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
+import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
-
 
 @Component({
   selector: "app-list-convocatorias",
@@ -23,10 +25,9 @@ export class ListConvocatoriasComponent implements OnInit {
   //MATPAGINATOR
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
 
-
   //VARIABLE DE CONVOCATORIAS
   public convocatorias: Convocatoria[] = [];
-
+  public solicitudAlumno: SolicitudAlumno[] = [];
   public carreras: Carrera[] = [];
   //VARIABLES PARA BUSCAR
   public carreraFiltro: string = undefined;
@@ -34,6 +35,7 @@ export class ListConvocatoriasComponent implements OnInit {
 
   constructor(
     private convocatoriaService: ConvocatoriasService,
+    private solicitudAlumnoService: SolicitudAlumnoService,
     private carreraService: CarreraService,
     private miDatePipe: DatePipe
   ) {}
@@ -45,6 +47,8 @@ export class ListConvocatoriasComponent implements OnInit {
       this.carreraFiltro,
       this.fecha
     );
+    this.getSolicitudAlumno();
+
   }
 
   public paginar(event: PageEvent): void {
@@ -103,16 +107,30 @@ export class ListConvocatoriasComponent implements OnInit {
       });
   }
 
-
   cargarCarreras() {
     this.carreraService
       .getCarreras()
       .subscribe((carreras) => (this.carreras = carreras));
   }
 
+  getSolicitudAlumno() {
+    this.solicitudAlumnoService
+      .getSolicitudesAlumnos()
+      .subscribe(
+        (solicitudAlumnos) => (this.solicitudAlumno = solicitudAlumnos)
+      );
+  }
 
+  cargarNumeroSolicitudAlumno(id: number) {
+    let cont = 0;
+    for (var i = 0; i < this.solicitudAlumno.length; i++) {
+      if ((id === this.solicitudAlumno[i].convocatoria.id)) {
+        cont ++;
 
-
+      }
+    }
+    return cont;
+  }
 
   eliminarConvocatoria(convocatoria: Convocatoria) {
     const swalWithBootstrapButtons = Swal.mixin({

@@ -1,7 +1,8 @@
+
 import { formatDate } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator, PageEvent } from "@angular/material";
-import { ActivatedRoute, Router } from "@angular/router";
+import { ActivatedRoute } from "@angular/router";
 import { Convocatoria } from "src/app/models/convocatoria.model";
 import { SolicitudAlumno } from "src/app/models/solicitudAlumno.model";
 import { SolicitudEmpresa } from "src/app/models/solicitudEmpresa.model";
@@ -11,12 +12,17 @@ import { EmpresaService } from "src/app/services/services.models/empresa.service
 import { PersonaService } from "src/app/services/services.models/persona.service";
 import { SolicitudEmpresaService } from "src/app/services/services.models/solicitud-empresa.service";
 import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
+
 @Component({
-  selector: "app-seleccionar-alumnos",
-  templateUrl: "./seleccionar-alumnos.component.html",
-  styleUrls: ["./seleccionar-alumnos.component.css"],
+  selector: 'app-add-validacion-seleccion',
+  templateUrl: './add-validacion-seleccion.component.html',
+  styleUrls: ['./add-validacion-seleccion.component.css']
 })
-export class SeleccionarAlumnosComponent implements OnInit {
+export class AddValidacionSeleccionComponent implements OnInit {
+  parentSelector: boolean = false;
+
+
+
   public solicitudEmpresa = new SolicitudEmpresa();
   //VARIABLES DE PAGINACION
   public totalRegistros = 0;
@@ -142,4 +148,6 @@ export class SeleccionarAlumnosComponent implements OnInit {
         }
       });
   }
+
+
 }

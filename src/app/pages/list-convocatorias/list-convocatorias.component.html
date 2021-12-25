@@ -2,28 +2,15 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-           <div class="row">
-            <div class="col-md-3">
-              Buscar por fecha
-              <br>
-              <input
-              aria-placeholder="Seleccioanr fecha"
-
-                [matDatepicker]="myDatepicker"
-                [(ngModel)]="fecha"
-                class="form-control"
-                style="width: min-content"
-                name="fechaF"
-                required
-                #fechaF="ngModel"
-              />
-              <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-              <mat-datepicker
-                [touchUi]="true"
-                color="dark"
-                #myDatepicker
-              ></mat-datepicker>
-            </div>
+        <div class="row">
+          <div class="col-md-3">
+            Buscar por fecha
+            <br>
+            <input aria-placeholder="Seleccioanr fecha" [matDatepicker]="myDatepicker" [(ngModel)]="fecha"
+              class="form-control" style="width: min-content" name="fechaF" required #fechaF="ngModel" />
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
+          </div>
           <div class="col-md-5">
             Buscar por carrera<br>
             <select class="form-control" [(ngModel)]="carreraFiltro">
@@ -48,13 +35,13 @@
             </button>
           </div>
         </div>
-       <div>
-             <button routerLink="/dashboard/solicitudes_empresas" class="btn btn-primary">
-          <i class="mdi mdi-plus"></i>
-          Nueva Convocatoria
-        </button>
-        <br>
-        <br>
+        <div>
+          <button routerLink="/dashboard/solicitudes_empresas" class="btn btn-primary">
+            <i class="mdi mdi-plus"></i>
+            Nueva Convocatoria
+          </button>
+          <br>
+          <br>
 
         </div>
         <div class="table-scroll">
@@ -72,8 +59,11 @@
                 <th>Empresa</th>
                 <th>Responsable de PPP</th>
                 <th>Estado</th>
-                <th class="text-nowrap">Solicitudes</th>
-                <th class="text-nowrap">Acciones</th>
+                <th>Recibidas</th>
+
+                <th>Responder</th>
+
+                <th>Acciones</th>
               </tr>
             </thead>
 
@@ -103,12 +93,25 @@
 
                 <td>{{convocatoria.estado}}</td>
 
+                <td>{{cargarNumeroSolicitudAlumno(convocatoria.id)}}
+
+                  <a [routerLink]="[
+                        '/dashboard',
+                        'Seleccion-estudiantes-convocatorias',
+                        convocatoria.id
+                      ]" data-toggle="tooltip" data-original-title="Ver solicitudes" class="cursor">
+                    <i class="fa fa-file-text-o"></i>
+                  </a>
+                </td>
+
+
                 <td class="text-nowrap text-center">
+
                   <a [routerLink]="[
                         '/dashboard',
                         'seleccionar-estudiantes',
                         convocatoria.id
-                      ]" data-toggle="tooltip" data-original-title="Ver solicitudes" class="cursor">
+                      ]" data-toggle="tooltip" data-original-title="Responder a Empresa" class="cursor">
                     <i class="fa fa-file-text-o"></i>
                   </a>
                 </td>

@@ -21,14 +21,14 @@ export class DesignarTutorAcademicoComponent implements OnInit {
   public empresas: Empresa[] = [];
   //VARIABLE DE CARRERAS
 
-  //Variable fecha 
+  //Variable fecha
   today = new Date();
   jstoday = '';
 
   constructor(
     private empresasService: EmpresaService,
     private docenteService: DocenteService,
-    private carreraService: CarreraService) { 
+    private carreraService: CarreraService) {
       this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
     }
 
@@ -56,4 +56,5 @@ export class DesignarTutorAcademicoComponent implements OnInit {
       this.empresas = empresas;
     });
   }
+  guardarDTA(){}
 }
