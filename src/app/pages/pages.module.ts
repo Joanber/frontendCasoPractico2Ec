@@ -29,6 +29,7 @@ import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component"
 import { AddPersonaComponent } from "./add-persona/add-persona.component";
 import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
 import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
+import { AddSolicitudEmpresaComponent } from "./add-solicitud-empresa/add-solicitud-empresa.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { AsistenciasComponent } from './asistencias/asistencias.component';
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
@@ -49,16 +50,13 @@ import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.co
 import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
 import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
+import { ListSolicitudEmpresaComponent } from "./list-solicitud-empresa/list-solicitud-empresa.component";
 import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from './solicitud/solicitud.component';
-import { AddSolicitudEmpresaComponent } from "./add-solicitud-empresa/add-solicitud-empresa.component";
-import { ListSolicitudEmpresaComponent } from "./list-solicitud-empresa/list-solicitud-empresa.component";
-import { AddValidacionSeleccionComponent } from './add-validacion-seleccion/add-validacion-seleccion.component';
-
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -96,8 +94,7 @@ import { AddValidacionSeleccionComponent } from './add-validacion-seleccion/add-
     ListSolicitudesAlumnosComponent,
     SeleccionarAlumnosComponent,
     ListResponsablePPPComponent, AddResponsablePPPComponent,
-    AddSolicitudEmpresaComponent, ListSolicitudEmpresaComponent, AddValidacionSeleccionComponent
-
+    AddSolicitudEmpresaComponent, ListSolicitudEmpresaComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
