@@ -4,7 +4,7 @@ import { Persona } from "./persona.model";
 export class Alumno {
   id: number;
   tipo_bachillerato: string;
-  cliclo: string;
+  ciclo: string;
   paralelo: string;
   egresado: boolean;
   observacion: string;

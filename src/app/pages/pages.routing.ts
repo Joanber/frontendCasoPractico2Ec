@@ -144,14 +144,14 @@ const routes: Routes = [
         data: { titulo: "Convocatorias" },
       },
       {
-        path: "seleccionar-estudiantes/:id",
+        path: "solicitudes-recibidas/:id",
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Seleccionar Estudiantes" },
+        data: { titulo: "Solicitudes recibidas de estudiantes" },
       },
       {
-        path: "Seleccion-estudiantes-convocatorias/:id",
+        path: "seleccion-estudiantes-convocatorias/:id",
         component: AddValidacionSeleccionComponent,
-        data: { titulo: "Seleccionar Estudiantes" },
+        data: { titulo: "Responder a empresa eleccion estudiantes " },
       },
       {
         path: "designarTutorAcademico",

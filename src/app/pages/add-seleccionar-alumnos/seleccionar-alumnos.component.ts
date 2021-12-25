@@ -78,7 +78,7 @@ export class SeleccionarAlumnosComponent implements OnInit {
     );
   }
 
-  guardarSeleccionEstudiantes() {}
+
 
   cargarConvocatoria(id: number) {
     if (!id) {
