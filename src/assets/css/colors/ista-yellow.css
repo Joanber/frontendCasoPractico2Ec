@@ -1,0 +1,226 @@
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+/*******************
+/*Top bar
+*******************/
+.topbar {
+  background: var(--color-warn);
+}
+.topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+  display: none;
+}
+.topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+  display: inline-block;
+  color: #ffffff;
+}
+.topbar .navbar-nav .nav-item > a.nav-link {
+  color: #ffffff;
+}
+.topbar .navbar-nav .nav-item > a.nav-link:hover,
+.topbar .navbar-nav .nav-item > a.nav-link:focus {
+  color: #ffffff !important;
+}
+.topbar .top-navbar .navbar-nav > .nav-item > span {
+  color: #ffffff;
+}
+.topbar .navbar-header {
+  background: #ffffff;
+}
+
+.logo-center .topbar .navbar-header {
+  background: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+  display: none;
+}
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+  display: inline-block;
+  color: #ffffff;
+}
+
+/*******************
+/*General Elements
+*******************/
+a {
+  color: #0056b3;
+}
+
+a.link:hover,
+a.link:focus {
+  color: #42678f !important;
+}
+
+.bg-theme {
+  background-color: #ebbf1f !important;
+}
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #ebbf1f;
+  border-color: #ebbf1f;
+}
+
+.right-sidebar .rpanel-title {
+  background: #b3921c;
+}
+
+.stylish-table tbody tr:hover,
+.stylish-table tbody tr.active {
+  border-left: 4px solid #ebbf1f;
+}
+::ng-deep .mat-progress-bar-fill::after {
+  background-color: #0b2b5d;
+}
+
+.notify .heartbit {
+  position: absolute;
+  top: -20px;
+  right: -4px;
+  height: 25px;
+  width: 25px;
+  z-index: 10;
+  border: 5px solid #023469;
+  border-radius: 70px;
+  -moz-animation: heartbit 1s ease-out;
+  -moz-animation-iteration-count: infinite;
+  -o-animation: heartbit 1s ease-out;
+  -o-animation-iteration-count: infinite;
+  -webkit-animation: heartbit 1s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.notify .point {
+  width: 6px;
+  height: 6px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: #023469;
+  position: absolute;
+  right: 6px;
+  top: -10px;
+}
+
+.text-themecolor {
+  color: #ebbf1f !important;
+}
+
+.profile-tab li a.nav-link.active,
+.customtab li a.nav-link.active {
+  border-bottom: 2px solid #0b2b5d;
+  color: #0b2b5d;
+}
+
+.profile-tab li a.nav-link:hover,
+.customtab li a.nav-link:hover {
+  color: #0b2b5d;
+}
+
+/*******************
+/*Buttons
+*******************/
+.btn-themecolor,
+.btn-themecolor.disabled {
+  background: #0b2b5d;
+  color: #ffffff;
+  border: 1px solid #0b2b5d;
+}
+.btn-themecolor:hover,
+.btn-themecolor.disabled:hover {
+  background: #0b2b5d;
+  opacity: 0.7;
+  border: 1px solid #0b2b5d;
+}
+.btn-themecolor.active,
+.btn-themecolor:focus,
+.btn-themecolor.disabled.active,
+.btn-themecolor.disabled:focus {
+  background: #0b2b5d;
+}
+
+/*******************
+/*sidebar navigation
+*******************/
+.card-no-border .left-sidebar,
+.card-no-border .sidebar-nav {
+  background: #ffffff;
+}
+
+.mini-sidebar .sidebar-nav {
+  background: transparent;
+}
+
+@media (min-width: 768px) {
+  .mini-sidebar .sidebar-nav #sidebarnav > li > ul {
+    background: #ffffff;
+  }
+}
+
+.sidebar-nav {
+  background: #ffffff;
+}
+
+.user-profile .profile-text a {
+  color: #F4F6F9 !important;
+}
+
+.card-no-border .sidebar-footer {
+  background: #ffffff;
+}
+
+.label-themecolor {
+  background: #0b2b5d;
+}
+
+.sidebar-nav > ul > li.active > a {
+  color: #ebbf1f;
+  border-color: #ebbf1f;
+}
+.sidebar-nav > ul > li.active > a i {
+  color: #ebbf1f;
+}
+
+.sidebar-nav ul li a.active,
+.sidebar-nav ul li a:hover {
+  color: #ebbf1f;
+}
+.sidebar-nav ul li a.active i,
+.sidebar-nav ul li a:hover i {
+  color: #ebbf1f;
+}
+
+.sidebar-nav ul li.nav-small-cap {
+  color: #F4F6F9; }
+
+
+.sidebar-nav > ul > li > a i {
+  color: #a6b7bf; }
+
+@media (min-width: 768px) {
+  .mini-sidebar .sidebar-nav #sidebarnav > li:hover > a {
+    background: #ffffff;
+  }
+}

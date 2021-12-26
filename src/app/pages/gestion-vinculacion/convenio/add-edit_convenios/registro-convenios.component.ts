@@ -2,8 +2,6 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angu
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
-import { Observable } from 'rxjs';
-import { map, take } from 'rxjs/operators';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Empresa } from 'src/app/models/empresa.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
@@ -34,7 +32,7 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     return this.convenioForm.controls;
   }
 
-  carreras: Observable<Carrera[]>;
+  carreras: Carrera[] = [];
   empresas: Empresa[] = [];
 
   carrera = new Carrera();
@@ -66,7 +64,7 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   }
 
   retrieveCarreras() {
-    this.carreras = this.carreraService.getCarreras();
+    this.carreraService.getCarreras().subscribe(c => this.carreras = c);
   }
 
   retrieveEmpresas() {
@@ -127,26 +125,43 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       });
   }
 
-  getMovies(c: Carrera) {
-    return new Promise<Carrera>(resolve => {
-      this.carreras.pipe(map(carreras => carreras.find(() => c !== undefined || c !== null)),
-        take(1)
-      )
-        .subscribe(
-          (data: Carrera) => {
-            resolve(data);
-          });
-    });
-  }
-
   patchForm(convenio: Convenio) {
 
-    const convenioObj = Object.keys(convenio).filter(c => convenio[c] !== undefined || convenio[c] != null);
-    const newConvenioObject = {};
-    convenioObj.forEach(item => Object.assign(newConvenioObject, {
-      [item]: convenio[item]
-    }));
-    console.log(newConvenioObject);
+    this.convenioForm.patchValue({
+      id: convenio.id,
+      nombre: convenio.nombre,
+      carrera: this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null),
+      empresa: this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null)
+    });
+
+  }
+}
+
+// carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
+// this.empresas.pipe(map(txs => txs.findIndex(txn => txn.id === convenio.empresa.id))).subscribe(e => this.empresaIndex = e)
+// carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
+// carrera: this.carreras.filter(carrera => carrera.id = convenio.carrera.id)[0],
+// empresa: this.empresas[this.empresas.map((empresa) => empresa.id).indexOf(convenio.empresa.id)],
+
+// getC(c: Carrera) {
+//   return new Promise<Carrera>(resolve => {
+//     this.carreras.pipe(map(carreras => carreras.find(() => c !== undefined || c !== null)),
+//       take(1)
+//     )
+//       .subscribe(
+//         (data: Carrera) => {
+//           resolve(data);
+//         });
+//   });
+// }
+
+
+    // const convenioObj = Object.keys(convenio).filter(c => convenio[c] !== undefined || convenio[c] != null);
+    // const newConvenioObject = {};
+    // convenioObj.forEach(item => Object.assign(newConvenioObject, {
+    //   [item]: convenio[item]
+    // }));
+    // console.log(newConvenioObject);
 
     // this.carreras.Where(x => x.Title == title)
     // // this.convenioForm.setValue({
@@ -160,19 +175,3 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     // this.btnName = 'Editar';
     // this.carreras.pipe(map(carreras => carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)))
     //   .subscribe(e => this.carrera = e);
-
-    this.convenioForm.patchValue({
-      id: convenio.id,
-      nombre: convenio.nombre,
-      carrera: !!convenio.carrera ? convenio.carrera : '',
-      empresa: this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null)
-    });
-
-  }
-}
-
-// carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
-// this.empresas.pipe(map(txs => txs.findIndex(txn => txn.id === convenio.empresa.id))).subscribe(e => this.empresaIndex = e)
-// carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
-// carrera: this.carreras.filter(carrera => carrera.id = convenio.carrera.id)[0],
-// empresa: this.empresas[this.empresas.map((empresa) => empresa.id).indexOf(convenio.empresa.id)],

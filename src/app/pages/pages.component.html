@@ -2,10 +2,10 @@
   <app-header></app-header>
   <app-sidebar></app-sidebar>
   <div class="page-wrapper">
-    <div *ngIf="loaderService.isLoading | async" class="loader-container">
+    <div *ngIf="loaderService.isLoading | async" class="loader-container mt-2">
     <mat-progress-bar mode="indeterminate"></mat-progress-bar>
     </div>
-    <div class="container-fluid">
+    <div class="container-fluid mt-3">
       <!-- MI SISTEMA DE RUTAS -->
       <app-breadcrumbs></app-breadcrumbs>
       <!-- Start Page Content -->
