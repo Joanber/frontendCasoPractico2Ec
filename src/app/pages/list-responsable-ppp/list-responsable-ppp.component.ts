@@ -134,13 +134,7 @@ export class ListResponsablePPPComponent implements OnInit {
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
-  compararEmpresa(d1: Empresa, d2: Empresa) {
-    if (d1 === undefined && d2 === undefined) {
-      return true;
-    }
-    return d1 == null || d2 == null ? false : d1.id === d2.id;
-  }
-
+ 
 
 
 }

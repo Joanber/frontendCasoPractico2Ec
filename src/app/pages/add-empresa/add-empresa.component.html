@@ -7,7 +7,7 @@
             <h3 class="card-title">Empresa</h3>
             <hr />
             <div class="row">
-              <div class="col-md-12">
+              <div class="col-md-7">
                 <div class="form-group">
                   <label class="control-label">Nombre Empresa*</label>
                   <input
@@ -30,7 +30,7 @@
 
             <!--/row-->
             <div class="row">
-              <div class="col-md-2">
+              <div class="col-md-7">
                 <div class="form-group">
                   <label class="control-label">Ruc*</label>
                   <input
@@ -54,7 +54,7 @@
 
               <!--/row-->
               <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-7">
                     <div class="form-group">
                       <label class="control-label">Telefono*</label>
                       <input
@@ -77,7 +77,7 @@
         
                 <!--/span-->
                 <div class="row">
-                  <div class="col-md-12">
+                  <div class="col-md-7">
                     <div class="form-group">
                       <label class="control-label">Direccion*</label>
                       <input
@@ -101,11 +101,11 @@
             </div>
             <!--/row-->
             <div class="row">
-              <div class="col-md-6">
+              <div class="col-md-7">
                 <div class="form-group">
                   <label class="control-label">Representante de la Empresa*</label>
                   <ng-select
-                    [compareWith]="representante"
+                    [compareWith]="empresaPersonal"
                     name="empresaPersonal"
                     placeholder="Seleccione al Representante de Empresa (a)"
                     #empresaPersonal="ngModel"
@@ -113,7 +113,7 @@
                     required
                   >
                     <ng-option
-                      *ngFor="let empresaPersonal of empresaPersonal"
+                      *ngFor="let empresaPersonal of empresaPersonales"
                       [value]="empresaPersonal"
                     >
                       

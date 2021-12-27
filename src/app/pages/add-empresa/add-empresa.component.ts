@@ -11,6 +11,7 @@ import { EmpresaService } from 'src/app/services/services.models/empresa.service
 import Swal from 'sweetalert2';
 import { environment } from "src/environments/environment";
 import { EmpresaPersonal } from 'src/app/models/empresaPersonal.model';
+import { Persona } from 'src/app/models/persona.model';
 const bd_url = environment.bd_url;
 
 @Component({
@@ -27,12 +28,13 @@ export class AddEmpresaComponent implements OnInit {
   public bd_url = bd_url + "/personas";
   public empresas: Empresa[] = [];
   public docentes: Docente[] = [];
+  public empresaPersonales: EmpresaPersonal[] = [];
+
   public empresapersonal: EmpresaPersonal[] = [];
   public representanteFiltrados: Observable<Empresa[]>;
   constructor(
     private empresaService: EmpresaService,
     private docenteService: DocenteService,
-    private empresapersonalService: EmpresaPersonalService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
     private miDatePipe: DatePipe
@@ -44,10 +46,11 @@ export class AddEmpresaComponent implements OnInit {
   }
 
   cargarRepresentante() {
-    this.empresapersonalService.getEmpresaPersonal().subscribe((empresapersonal) => {
+    this.empresaService.getEmpresaPersonal().subscribe((empresapersonal) => {
       this.empresapersonal = empresapersonal;
     });
   }
+
   GuardarEmpresa(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {
@@ -67,7 +70,7 @@ export class AddEmpresaComponent implements OnInit {
   }
 
   irListaEmpresa() {
-    this.router.navigateByUrl("/dashboard/empresa");
+    this.router.navigateByUrl("/dashboard/empresas");
   }
 
   cargarEmpresa(id: number) {
@@ -81,7 +84,10 @@ export class AddEmpresaComponent implements OnInit {
       this.empresa = empresa;
     });
   }
-  representante(d1: Docente, d2: Docente) {
+
+
+
+  CompararPersonalEmpresa(d1: EmpresaPersonal, d2: EmpresaPersonal) {
     if (d1 === undefined && d2 === undefined) {
       return true;
     }

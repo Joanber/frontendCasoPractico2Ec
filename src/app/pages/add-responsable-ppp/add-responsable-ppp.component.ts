@@ -31,7 +31,7 @@ export class AddResponsablePPPComponent implements OnInit {
   public carreras: Carrera[] = [];
   public docente= new Docente();
   public carrera= new Carrera();
-  public empresa= new Empresa();
+
   public ResponsablePPPFiltrados: Observable<ResponsablePPP[]>;
   public docentesFiltrados: Observable<Docente[]>;
   public empresaFiltrados: Observable<Empresa[]>;
@@ -39,7 +39,6 @@ export class AddResponsablePPPComponent implements OnInit {
   constructor(
     private responsableService: ResponsablePPPService,
     private docenteService: DocenteService,
-    private empresaService: EmpresaService,
     private carreraService: CarreraService,
     private router: Router,
     private activatedRoute: ActivatedRoute,
@@ -50,7 +49,6 @@ export class AddResponsablePPPComponent implements OnInit {
   ngOnInit() {
     this.activatedRoute.params.subscribe(({ id }) => this.cargarResponsablePPP(id));
     this.cargarDocentes();
-    this.cargarEmpresa();
     this.cargarCarreras();
 
   }
@@ -61,11 +59,7 @@ export class AddResponsablePPPComponent implements OnInit {
     });
   }
 
-  cargarEmpresa() {
-    this.empresaService.getEmpresas().subscribe((empresas) => {
-      this.empresas = empresas;
-    });
-  }
+
   cargarCarreras() {
     this.carreraService.getCarreras().subscribe((carreras) => {
       this.carreras= carreras;
@@ -139,12 +133,7 @@ export class AddResponsablePPPComponent implements OnInit {
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
 
-  compararEmpresa(d1: Empresa, d2: Empresa) {
-    if (d1 === undefined && d2 === undefined) {
-      return true;
-    }
-    return d1 == null || d2 == null ? false : d1.id === d2.id;
-  }
+ 
 
 }
 
