@@ -79,7 +79,20 @@
                               class="cursor"
                               title="Designar Tutor Empresarial"
                             >
-                              <i class="mdi mdi-account-switch"></i>
+                              <i class="mdi mdi-account-switch m-r-10"></i>
+                            </a>
+                            <a
+                              [routerLink]="[
+                                '/dashboard',
+                                'actualizar-designacion-te',
+                                alumno.id
+                              ]"
+                              data-toggle="tooltip"
+                              data-original-title="Editar Tutor Empresarial"
+                              class="cursor"
+                              title="Editar Tutor Empresarial"
+                            >
+                              <i class="fa fa-pencil text-inverse m-r-10"> </i>
                             </a>
                           </td>
                         </tr>

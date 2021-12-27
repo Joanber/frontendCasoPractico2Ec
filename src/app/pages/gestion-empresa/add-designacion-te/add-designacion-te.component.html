@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <form #MyForm="ngForm" (submit)="guardarConvocatoria(MyForm)">
+        <form #MyForm="ngForm" (submit)="guardarDesignacionTE(MyForm)">
           <div class="form-body">
             <div class="card-titulo" style="text-align: center">
               ANEXO 5:Designacion Tutor Empresarial
@@ -75,8 +75,18 @@
                   {{ empresaPersonal.persona?.segundo_nombre }}
                   {{ empresaPersonal.persona?.primer_apellido }}
                   {{ empresaPersonal.persona?.segundo_apellido }}
-                </ng-option> </ng-select
-              >con <br />
+                </ng-option>
+              </ng-select>
+              <div
+                class="text-danger"
+                *ngIf="
+                  empresaPersonal.hasError('required') &&
+                  empresaPersonal.touched
+                "
+              >
+                Personal Empresa es requerido!
+              </div>
+              con <br />
               cedula de identidad numero <strong>{{ identificacion }} </strong>
               {{ empresaPersonal.persona?.identificacion }} ha sido designado
               como TUTOR EMPRESARIAL del estudiante
