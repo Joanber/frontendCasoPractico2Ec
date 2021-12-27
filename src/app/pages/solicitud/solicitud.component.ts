@@ -1,10 +1,12 @@
 import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Alumno } from 'src/app/models/alumno.model';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
 import { Docente } from 'src/app/models/docente.model';
 import { Empresa } from 'src/app/models/empresa.model';
+import { AlumnoService } from 'src/app/services/services.models/alumno.service';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { ConvocatoriasService } from 'src/app/services/services.models/convocatorias.service';
 import { DocenteService } from 'src/app/services/services.models/docente.service';
@@ -17,6 +19,7 @@ const loggedUser = localStorage.getItem("usuario");
 })
 export class SolicitudComponent implements OnInit {
   user:any;
+  public alumno: Alumno;
  //VARIABLE DE LOADING
  public cargando: boolean = true;
  //VARIABLE PARA BUSCAR
@@ -25,7 +28,8 @@ export class SolicitudComponent implements OnInit {
  public convocatoria = new Convocatoria();
  constructor(
    private convocatoriaService: ConvocatoriasService,
-   private activatedRoute: ActivatedRoute
+   private activatedRoute: ActivatedRoute,
+   private alumnoService: AlumnoService
   
  ) {}
 
@@ -34,12 +38,11 @@ export class SolicitudComponent implements OnInit {
      this.cargarConvocatoria(id)
    );
    this.user =JSON.parse(loggedUser);
+   /*this.alumnoService.getById(this.user.username).subscribe(data =>{
+    this.alumno=data;
+    console.log(this.alumno.paralelo);
+   });*/
  }
-
-
- 
-
-
 
  cargarConvocatoria(id: number) {
    if (!id) {
@@ -51,6 +54,8 @@ export class SolicitudComponent implements OnInit {
        this.convocatoria = convocatoria;
      });
  }
+
+
  llamarUsuario() {
   let user =JSON.parse(loggedUser)
  console.log( user.username);
