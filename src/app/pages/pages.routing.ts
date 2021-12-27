@@ -299,7 +299,7 @@ const routes: Routes = [
       {
         path: "convocatorias-aprobadas",
         component: ListConvocatoriasValidasComponent,
-        data: { titulo: "Convocatorias Aprobadas" },
+        data: { titulo: "Designacion de Tutores Empresariales" },
       },
       {
         path: "nueva-designacion-te/:id/:ida",

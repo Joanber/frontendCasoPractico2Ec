@@ -70,8 +70,9 @@ export class AddDesignacionTeComponent implements OnInit {
     if (!idd) {
       return;
     } else {
-      this.designacionTEService.getDesignacionTEByAlumnoId(idd).subscribe(
-        (designacionTE) => {
+      this.designacionTEService
+        .getDesignacionTEByAlumnoId(idd)
+        .subscribe((designacionTE) => {
           this.designacionte = designacionTE;
           this.identificacion =
             this.designacionte.empresaPersonal.persona.identificacion;
@@ -79,13 +80,10 @@ export class AddDesignacionTeComponent implements OnInit {
             this.designacionte.empresaPersonal.persona.primer_nombre.concat(
               " "
             ) + this.designacionte.empresaPersonal.persona.primer_apellido;
-        },
-        (err) => {
-          if ((err.status = 404)) {
-            return this.irListaConvocatoriasValidas();
-          }
-        }
-      );
+          this.validacionesSacService
+            .getValidacionSacByAlumnoId(idd)
+            .subscribe((validacionSac) => (this.validacionSac = validacionSac));
+        });
     }
   }
 

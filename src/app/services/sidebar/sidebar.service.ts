@@ -65,7 +65,7 @@ export class SidebarService {
           url: "solicitar/a4",
         },
         {
-          titulo: "Convocatorias Aprobadas Designacion TE",
+          titulo: "Designar Tutor Empresarial",
           url: "convocatorias-aprobadas",
         },
         {
