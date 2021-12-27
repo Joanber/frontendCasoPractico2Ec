@@ -1,0 +1,97 @@
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-center">Listado de Convocatorias</h4>
+      <div class="table-responsive">
+        <div id="example23_wrapper" class="dataTables_wrapper">
+          <div class="dt-buttons">
+            <div id="example23_filter" class="dataTables_filter">
+              <label
+                >Buscar:<input
+                  type="text"
+                  placeholder=""
+                  [(ngModel)]="busqueda"
+                  #txtBusqueda
+                />
+              </label>
+              <button class="btn btn-primary btn-sm" type="button">
+                <i class="mdi mdi-magnify"></i>
+              </button>
+            </div>
+          </div>
+
+          <div class="table-scroll">
+            <table
+              class="
+                table table-bordered
+                justify-content-center
+                table-responsive-sm table-sm
+                dataTable
+              "
+            >
+              <thead>
+                <tr>
+                  <th>Convocatoria</th>
+                  <th>Alumnos</th>
+                </tr>
+              </thead>
+
+              <tbody class="animated fadeIn fast">
+                <tr *ngFor="let validacionesSac of validacionesSac">
+                  <td>
+                    {{ validacionesSac.convocatoria.carrera.abreviatura }}
+                  </td>
+                  <td>
+                    <table
+                      class="
+                        table table-bordered table-responsive-sm table-sm
+                        text-center
+                      "
+                    >
+                      <thead class="bg-pri white">
+                        <tr>
+                          <th>C.I</th>
+                          <th>Apellidos y Nombres</th>
+                          <th>Tutor Empresarial</th>
+                          <th>Designar T Empresarial</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let alumno of validacionesSac.alumnos">
+                          <td>{{ alumno.persona.identificacion }}</td>
+                          <td>
+                            {{ alumno.persona.primer_apellido }}
+                            {{ alumno.persona.segundo_apellido }}
+                            {{ alumno.persona.primer_nombre }}
+                            {{ alumno.persona.segundo_nombre }}
+                          </td>
+                          <td></td>
+                          <td class="text-nowrap text-center">
+                            <a
+                              [routerLink]="[
+                                '/dashboard',
+                                'nueva-designacion-te',
+                                validacionesSac.id,
+                                alumno.id
+                              ]"
+                              data-toggle="tooltip"
+                              data-original-title="Designar Tutor Empresarial"
+                              class="cursor"
+                              title="Designar Tutor Empresarial"
+                            >
+                              <i class="mdi mdi-account-switch"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

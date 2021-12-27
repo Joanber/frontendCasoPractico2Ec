@@ -38,12 +38,11 @@ import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
 import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
-import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
-import { ListSolicitudEmpresaComponent } from './list-solicitud-empresa/list-solicitud-empresa.component';
+import { AddSolicitudEmpresaComponent } from "./add-solicitud-empresa/add-solicitud-empresa.component";
+import { ListSolicitudEmpresaComponent } from "./list-solicitud-empresa/list-solicitud-empresa.component";
 import { AddValidacionSeleccionComponent } from "./add-validacion-seleccion/add-validacion-seleccion.component";
-
-
-
+import { ListConvocatoriasValidasComponent } from "./gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component";
+import { AddDesignacionTeComponent } from "./gestion-empresa/add-designacion-te/add-designacion-te.component";
 
 const routes: Routes = [
   {
@@ -236,7 +235,7 @@ const routes: Routes = [
       {
         path: "solicitudes_estudiantes",
         component: ListSolicitudesAlumnosComponent,
-        data: { titulo: "Lista solicitudes de los estudiantes"},
+        data: { titulo: "Lista solicitudes de los estudiantes" },
       },
 
       {
@@ -249,7 +248,6 @@ const routes: Routes = [
         component: AddDocenteComponent,
         data: { titulo: "Nuevo Docentes" },
       },
-
 
       {
         path: "actualizar-Docente/:id",
@@ -298,8 +296,22 @@ const routes: Routes = [
         component: ListSolicitudEmpresaComponent,
         data: { titulo: "Lista Solicitudes Empresas" },
       },
+      {
+        path: "convocatorias-aprobadas",
+        component: ListConvocatoriasValidasComponent,
+        data: { titulo: "Convocatorias Aprobadas" },
+      },
+      {
+        path: "nueva-designacion-te/:id/:ida",
+        component: AddDesignacionTeComponent,
+        data: { titulo: " Nueva Designacion de Tutor Empresarial" },
+      },
+      {
+        path: "actualizar-designacion-te/:idv",
+        component: AddDesignacionTeComponent,
+        data: { titulo: "Actualizar la Designacion de Tutor Empresarial" },
+      },
     ],
-
   },
 ];
 
