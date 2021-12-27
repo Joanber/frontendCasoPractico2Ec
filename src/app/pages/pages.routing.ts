@@ -307,7 +307,7 @@ const routes: Routes = [
         data: { titulo: " Nueva Designacion de Tutor Empresarial" },
       },
       {
-        path: "actualizar-designacion-te/:idv",
+        path: "actualizar-designacion-te/:idd",
         component: AddDesignacionTeComponent,
         data: { titulo: "Actualizar la Designacion de Tutor Empresarial" },
       },

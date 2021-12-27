@@ -1,7 +1,7 @@
 import { Component, OnInit } from "@angular/core";
-import { Alumno } from "src/app/models/alumno.model";
-import { Convocatoria } from "src/app/models/convocatoria.model";
+import { DesignacionTE } from "src/app/models/designacionte.model";
 import { ValidacionSAC } from "src/app/models/validaciones_sac.model";
+import { DesignacionTEService } from "src/app/services/services.models/designacion-te.service";
 import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
 
 @Component({
@@ -22,8 +22,6 @@ export class ListConvocatoriasValidasComponent implements OnInit {
       .getValidaciones()
       .subscribe((validacionesSac) => {
         this.validacionesSac = validacionesSac;
-
-        console.log(this.validacionesSac);
       });
   }
 }
