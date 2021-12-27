@@ -46,8 +46,8 @@ File: scss
  *  8. Custom Templates
  */
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
-/******************* 
-Global Styles 
+/*******************
+Global Styles
 *******************/
 @import url(../scss/icons/font-awesome/css/font-awesome.min.css);
 @import url(../scss/icons/simple-line-icons/css/simple-line-icons.css);
@@ -61,10 +61,15 @@ Global Styles
 * {
   outline: none;
 }
-
+:root {
+  --color-primary: #0B2B5D;
+  --color-secondary: #00356C;
+  --color-warn: #EBBF1F;
+  --bg-secondary: #EDF0F5;
+}
 body {
   background: #fff;
-  font-family: "Montserrat", sans-serif;
+ font-family: 'Roboto', sans-serif;
   margin: 0;
   overflow-x: hidden;
   color: #67757c;
@@ -117,7 +122,7 @@ h4,
 h5,
 h6 {
   color: #455a64;
-  font-family: "Montserrat", sans-serif;
+ font-family: 'Roboto', sans-serif;
   font-weight: 400;
 }
 
@@ -1012,7 +1017,7 @@ sidebar navigation
 }
 .sidebar-nav ul li a.active {
   font-weight: 500;
-  color: #263238;
+  color: #F4F6F9;
 }
 .sidebar-nav ul li ul {
   padding-left: 28px;
@@ -1027,21 +1032,25 @@ sidebar navigation
   font-size: 12px;
   margin-bottom: 0px;
   padding: 14px 14px 14px 20px;
-  color: #263238;
+  color: #F4F6F9;
   font-weight: 500;
 }
 .sidebar-nav ul li.nav-devider {
   height: 1px;
   background: rgba(120, 130, 140, 0.13);
   display: block;
-  margin: 15px 0;
+margin: .25rem !important;
+    margin-top: 0.25rem !important;
+    margin-right: 0.25rem !important;
+    margin-bottom: 0.25rem !important;
+    margin-left: 0.25rem !important;
 }
 .sidebar-nav > ul > li > a i {
   width: 31px;
   font-size: 24px;
   display: inline-block;
   vertical-align: middle;
-  color: #555f6d;
+  color: #67757C;
 }
 .sidebar-nav > ul > li > a .label {
   float: right;
@@ -1161,7 +1170,7 @@ When click on sidebar toggler and also for tablet
     display: none;
   }
   .mini-sidebar .nav-devider {
-    width: 70px;
+    width: 64px;
   }
   .mini-sidebar .sidebar-nav {
     background: transparent;
@@ -1213,8 +1222,8 @@ File: scss
 /*Light colors*/
 /*Normal Color*/
 /*Extra Variable*/
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%;
@@ -1455,35 +1464,6 @@ Notify
   top: -28px;
   right: -7px;
 }
-.notify .heartbit {
-  position: absolute;
-  top: -20px;
-  right: -4px;
-  height: 25px;
-  width: 25px;
-  z-index: 10;
-  border: 5px solid #ef5350;
-  border-radius: 70px;
-  -moz-animation: heartbit 1s ease-out;
-  -moz-animation-iteration-count: infinite;
-  -o-animation: heartbit 1s ease-out;
-  -o-animation-iteration-count: infinite;
-  -webkit-animation: heartbit 1s ease-out;
-  -webkit-animation-iteration-count: infinite;
-  animation-iteration-count: infinite;
-}
-.notify .point {
-  width: 6px;
-  height: 6px;
-  -webkit-border-radius: 30px;
-  -moz-border-radius: 30px;
-  border-radius: 30px;
-  background-color: #ef5350;
-  position: absolute;
-  right: 6px;
-  top: -10px;
-}
-
 @-moz-keyframes heartbit {
   0% {
     -moz-transform: scale(0);
@@ -1993,6 +1973,52 @@ ul#themecolors li a.working:before {
     #263238 23%,
     #398bf7 23%,
     #398bf7 99%
+  );
+}
+.ista-yellow-theme {
+  background:  var(--color-warn) ;
+}
+.ista-theme {
+  background: #F4F6F9;
+  /* Old browsers */
+  background: -moz-linear-gradient(
+    left,
+    #F4F6F9 0%,
+    #F4F6F9 23%,
+    #0B2B5D 23%,
+    #0B2B5D 99%
+  );
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(
+    left,
+    #F4F6F9 0%,
+    #F4F6F9 23%,
+    #0B2B5D 23%,
+    #0B2B5D 99%
+  );
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(
+    linear,
+    left top,
+    right top,
+    from(#F4F6F9),
+    color-stop(23%, #F4F6F9),
+    color-stop(23%, #398bf7),
+    color-stop(99%, #0B2B5D)
+  );
+  background: -o-linear-gradient(
+    left,
+    #F4F6F9 0%,
+    #F4F6F9 23%,
+    #0B2B5D 23%,
+    #0B2B5D 99%
+  );
+  background: linear-gradient(
+    to right,
+    #F4F6F9 0%,
+    #F4F6F9 23%,
+    #0B2B5D 23%,
+    #0B2B5D 99%
   );
 }
 
@@ -3371,7 +3397,7 @@ Buttons
   background-color: #171515;
 }
 
-/*============================================================== 
+/*==============================================================
  Buttons page
  ============================================================== */
 .button-group .btn {
@@ -3553,7 +3579,7 @@ Form summernote
   display: inline-block;
 }
 
-/*============================================================== 
+/*==============================================================
 Form addons page
 ============================================================== */
 /*Bootstrap select*/
@@ -3620,7 +3646,7 @@ Form addons page
   padding: 8px 12px;
 }
 
-/*============================================================== 
+/*==============================================================
 Form Material page
  ============================================================== */
 /*Material inputs*/
@@ -3687,14 +3713,14 @@ Form Material page
 }
 
 /*******************
-Form validation error 
+Form validation error
 ******************/
 .error .help-block {
   color: #fb3a3a;
 }
 
 /*******************
-File Upload 
+File Upload
 ******************/
 .fileupload {
   overflow: hidden;
@@ -3713,7 +3739,7 @@ File Upload
 }
 
 /*******************
-This is for the checkbox radio button and switch 
+This is for the checkbox radio button and switch
 ******************/
 /* Radio Buttons
    ========================================================================== */
@@ -7467,8 +7493,8 @@ Author: Wrappixel
 Email: niravjoshi87@gmail.com
 File: scss
 */
-/*============================================================== 
- For Laptop & above all (1650px) 
+/*==============================================================
+ For Laptop & above all (1650px)
  ============================================================== */
 @media (min-width: 1650px) {
   .widget-app-columns {
@@ -7496,8 +7522,8 @@ File: scss
   }
 }
 
-/*============================================================== 
- For Laptop & above all (1370px) 
+/*==============================================================
+ For Laptop & above all (1370px)
  ============================================================== */
 @media (max-width: 1370px) {
   .widget-app-columns {
@@ -7513,8 +7539,8 @@ File: scss
   }
 }
 
-/*-- ============================================================== 
- Small Desktop & above all (1024px) 
+/*-- ==============================================================
+ Small Desktop & above all (1024px)
  ============================================================== */
 @media (min-width: 1024px) {
   .page-wrapper {
@@ -7559,8 +7585,8 @@ File: scss
   }
 }
 
-/*-- ============================================================== 
- Ipad & above all(768px) 
+/*-- ==============================================================
+ Ipad & above all(768px)
  ============================================================== */
 @media (min-width: 768px) {
   .navbar-header {
@@ -7596,8 +7622,8 @@ File: scss
   }
 }
 
-/*-- ============================================================== 
- Phone and below ipad(767px) 
+/*-- ==============================================================
+ Phone and below ipad(767px)
  ============================================================== */
 @media (max-width: 767px) {
   .container-fluid {

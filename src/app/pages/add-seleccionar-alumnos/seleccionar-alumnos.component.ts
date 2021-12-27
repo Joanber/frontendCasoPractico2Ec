@@ -1,11 +1,8 @@
 import { formatDate } from "@angular/common";
-import { HttpClient } from "@angular/common/http";
 import { Component, OnInit, ViewChild } from "@angular/core";
 import { MatPaginator, PageEvent } from "@angular/material";
 import { ActivatedRoute, Router } from "@angular/router";
-import { Observable } from "rxjs";
 import { Convocatoria } from "src/app/models/convocatoria.model";
-import { EmpresaPersonal } from "src/app/models/empresaPersonal.model";
 import { SolicitudAlumno } from "src/app/models/solicitudAlumno.model";
 import { SolicitudEmpresa } from "src/app/models/solicitudEmpresa.model";
 import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
@@ -14,8 +11,6 @@ import { EmpresaService } from "src/app/services/services.models/empresa.service
 import { PersonaService } from "src/app/services/services.models/persona.service";
 import { SolicitudEmpresaService } from "src/app/services/services.models/solicitud-empresa.service";
 import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
-import { environment } from "src/environments/environment";
-const bd_url = environment.bd_url + "/empresas_personales";
 @Component({
   selector: "app-seleccionar-alumnos",
   templateUrl: "./seleccionar-alumnos.component.html",
@@ -43,8 +38,6 @@ export class SeleccionarAlumnosComponent implements OnInit {
   today = new Date();
   jstoday = "";
 
-  
-
   public convocatoria = new Convocatoria();
   constructor(
     private convocatoriaService: ConvocatoriasService,
@@ -53,9 +46,7 @@ export class SeleccionarAlumnosComponent implements OnInit {
     private solicitudEmpresaService: SolicitudEmpresaService,
     private empresaService: EmpresaService,
     private empresaPersonalService: EmpresaPersonalService,
-    private personaService: PersonaService,
-
-
+    private personaService: PersonaService
   ) {
     this.jstoday = formatDate(
       this.today,
@@ -63,7 +54,6 @@ export class SeleccionarAlumnosComponent implements OnInit {
       "en-US",
       "+0530"
     );
-    
   }
 
   ngOnInit() {
@@ -89,7 +79,6 @@ export class SeleccionarAlumnosComponent implements OnInit {
   }
 
 
-  guardarSeleccionEstudiantes() {}
 
   cargarConvocatoria(id: number) {
     if (!id) {
@@ -140,13 +129,17 @@ export class SeleccionarAlumnosComponent implements OnInit {
     }
   }
   filtrarPorCarrera() {
-
-      this.solicitudAlumnosService.getSolicitudesAlumnos().subscribe((solicitudes) => {
+    this.solicitudAlumnosService
+      .getSolicitudesAlumnos()
+      .subscribe((solicitudes) => {
         this.solicitudesAlumnos = solicitudes;
-    for (let i = 0; i <= this.solicitudesAlumnos.length; i++) {
-      if (this.convocatoria.id == this.solicitudesAlumnos[i].convocatoria.id) {
-        this.alumnosXconvocatoria.push(this.solicitudesAlumnos[i]);
-      }
-    }   }); 
+        for (let i = 0; i < this.solicitudesAlumnos.length; i++) {
+          if (
+            this.convocatoria.id === this.solicitudesAlumnos[i].convocatoria.id
+          ) {
+            this.alumnosXconvocatoria.push(this.solicitudesAlumnos[i]);
+          }
+        }
+      });
   }
 }

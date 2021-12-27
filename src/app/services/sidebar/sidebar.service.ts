@@ -22,7 +22,7 @@ export class SidebarService {
       submenu: [
         {
           titulo: "Convenios",
-          icono: "mdi  mdi-file-outline",
+          icono: "mdi mdi-book-multiple-variant",
           url: "convenios",
         },
         {
@@ -164,6 +164,6 @@ export class SidebarService {
       ],
     },
 
-    
+
   ];
 }

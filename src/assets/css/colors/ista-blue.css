@@ -1,0 +1,173 @@
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*
+Template Name: Admin Pro Admin
+Author: Wrappixel
+Email: niravjoshi87@gmail.com
+File: scss
+*/
+/*Theme Colors*/
+/*bootstrap Color*/
+/*Light colors*/
+/*Normal Color*/
+/*Extra Variable*/
+/*******************
+/*Top bar
+*******************/
+
+.notify .heartbit {
+  position: absolute;
+  top: -20px;
+  right: -4px;
+  height: 25px;
+  width: 25px;
+  z-index: 10;
+  border: 5px solid var(--color-warn);
+  border-radius: 70px;
+  -moz-animation: heartbit 1s ease-out;
+  -moz-animation-iteration-count: infinite;
+  -o-animation: heartbit 1s ease-out;
+  -o-animation-iteration-count: infinite;
+  -webkit-animation: heartbit 1s ease-out;
+  -webkit-animation-iteration-count: infinite;
+  animation-iteration-count: infinite;
+}
+.notify .point {
+  width: 6px;
+  height: 6px;
+  -webkit-border-radius: 30px;
+  -moz-border-radius: 30px;
+  border-radius: 30px;
+  background-color: var(--color-warn);
+  position: absolute;
+  right: 6px;
+  top: -10px;
+}
+
+.topbar {
+  background: var(--color-primary); }
+  .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+    display: none; }
+  .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+    display: inline-block;
+    color: #F4F6F9; }
+  .topbar .navbar-nav .nav-item > a.nav-link {
+    color: #F4F6F9; }
+    .topbar .navbar-nav .nav-item > a.nav-link:hover, .topbar .navbar-nav .nav-item > a.nav-link:focus {
+      color: #FFFFFF !important; }
+  .topbar .top-navbar .navbar-nav > .nav-item > span {
+    color: #FFFFFF; }
+  .topbar .navbar-header {
+    background: #F4F6F9; }
+
+.logo-center .topbar .navbar-header {
+  background: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none; }
+::ng-deep .mat-progress-bar-fill::after {
+    background-color: var(--color-warn);
+}
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
+  display: none; }
+
+.logo-center .topbar .top-navbar .navbar-header .navbar-brand .light-logo {
+  display: inline-block;
+  color: #F4F6F9; }
+
+/*******************
+/*General Elements
+*******************/
+a {
+  color: #0B2B5D; }
+
+a.link:hover, a.link:focus {
+  color: #0B2B5D !important; }
+
+.bg-theme {
+  background-color: #0B2B5D !important; }
+
+.pagination > .active > a,
+.pagination > .active > span,
+.pagination > .active > a:hover,
+.pagination > .active > span:hover,
+.pagination > .active > a:focus,
+.pagination > .active > span:focus {
+  background-color: #0B2B5D;
+  border-color: #0B2B5D; }
+
+.right-sidebar .rpanel-title {
+  background: #0B2B5D; }
+
+.stylish-table tbody tr:hover, .stylish-table tbody tr.active {
+  border-left: 4px solid #0B2B5D; }
+
+.text-themecolor {
+  color: #023469 !important; }
+
+.profile-tab li a.nav-link.active,
+.customtab li a.nav-link.active {
+  border-bottom: 2px solid #0B2B5D;
+  color: #0B2B5D; }
+
+.profile-tab li a.nav-link:hover,
+.customtab li a.nav-link:hover {
+  color: #0B2B5D; }
+
+/*******************
+/*Buttons
+*******************/
+.btn-themecolor,
+.btn-themecolor.disabled {
+  background: #0B2B5D;
+  color: #ffffff;
+  border: 1px solid #0B2B5D; }
+  .btn-themecolor:hover,
+  .btn-themecolor.disabled:hover {
+    background: #0B2B5D;
+    opacity: 0.7;
+    border: 1px solid #0B2B5D; }
+  .btn-themecolor.active, .btn-themecolor:focus,
+  .btn-themecolor.disabled.active,
+  .btn-themecolor.disabled:focus {
+    background: #0B2B5D; }
+
+/*******************
+/*sidebar navigation
+*******************/
+.card-no-border .left-sidebar,
+.card-no-border .sidebar-nav {
+  background: #F4F6F9; }
+
+.mini-sidebar .sidebar-nav {
+  background: transparent; }
+
+@media (min-width: 768px) {
+  .mini-sidebar .sidebar-nav #sidebarnav > li > ul {
+    background: var(--bg-secondary); } }
+
+.sidebar-nav {
+  background: #F4F6F9; }
+
+.user-profile .profile-text a {
+  color: #687384 !important; }
+
+.card-no-border .sidebar-footer {
+  background: var(--bg-secondary); }
+
+.label-themecolor {
+  background: #0B2B5D; }
+
+.sidebar-nav > ul > li.active > a {
+  color: #0B2B5D;
+  border-color: #0B2B5D; }
+  .sidebar-nav > ul > li.active > a i {
+    color: #0B2B5D; }
+
+.sidebar-nav ul li a.active, .sidebar-nav ul li a:hover {
+  color: #023469; }
+  .sidebar-nav ul li a.active i, .sidebar-nav ul li a:hover i {
+    color: var(--color-secondary); }

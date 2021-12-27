@@ -1,0 +1,164 @@
+
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <div class="card-titulo" style="text-align: center">
+        ANEXO 4: Respuesta positiva a entidad receptora
+      </div>
+      <br />
+      <br />
+
+      <div class="card-encabezado" style="text-align: right">
+
+        Cuenca, {{ today | date: "dd" }} de
+        {{ today | date: "MMMM ":"-0500" }} del
+        {{ today | date: "yyyy" }}
+      </div>
+      <br>
+
+      <div style="text-align: left">
+
+        {{convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_nombre}}
+        {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_nombre}}
+        {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_apellido}}
+        {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_apellido}}<br>
+        {{this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.cargo}}
+        <br>
+        {{this.convocatoria.solicitudEmpresa.empresa.nombre}} <br>
+        Su Despacho. -
+
+        <br>
+        <br>
+
+        De mi consideración: <br>
+        <br>
+        En respuesta a su solicitud de fecha {{convocatoria.solicitudEmpresa.fecha_emision}} debo indicarle que luego
+        haber realizado el proceso de selección
+        entre los estudiantes postulantes se ha aceptado la solicitud de los siguientes estudiantes que están
+        interesados en realizar sus prácticas pre profesionales en su prestigiosa empresa:
+        <br>
+        <br>
+
+      </div>
+
+
+      <div class="table-responsive" style="text-align: left;">
+        <div id="example23_wrapper" class="dataTables_wrapper">
+
+
+          <div class="table-scroll">
+            <h4 class="card-title text-center">
+              Listado de Solicitudes Enviadas por Alumnos
+            </h4>
+            <strong> Numero de alumnos permitidos para esta convocatoria:
+              {{convocatoria.solicitudEmpresa.numero_alumnos}}</strong>
+            <table class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                ">
+
+              <thead>
+                <tr>
+                  <th>Cedula</th>
+                  <th>Alumno</th>
+                  <th>Fecha Solicitud</th>
+                  <th>Promedio</th>
+                  <th class="text-nowrap">Accion</th>
+
+              </thead>
+
+              <tbody class="animated fadeIn fast">
+                <tr *ngFor="let solicitudesAlumnos of this.alumnosXconvocatoria">
+                  <td> {{ solicitudesAlumnos.alumno.persona.identificacion }}</td>
+                  <td>{{ solicitudesAlumnos.alumno.persona.primer_nombre }}
+                    {{ solicitudesAlumnos.alumno.persona.segundo_nombre }}
+                    {{ solicitudesAlumnos.alumno.persona.primer_apellido }}
+                    {{ solicitudesAlumnos.alumno.persona.segundo_apellido }}</td>
+                  <td>{{ solicitudesAlumnos.fecha_emision }}</td>
+                  <td>{{ solicitudesAlumnos.alumno.promedio_aprobado}}</td>
+                  <td class="text-nowrap text-center">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" value="" id={{solicitudesAlumnos.alumno.id}}>
+                      <label class="form-check-label" for={{solicitudesAlumnos.alumno.id}}>
+                        Elegir
+                      </label>
+                    </div>
+                  </td>
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+Alumnos  seleccioandos:
+      <div class="table-responsive" style="text-align: left;">
+        <div id="example23_wrapper" class="dataTables_wrapper">
+
+
+          <div class="table-scroll">
+
+
+            <table class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                ">
+
+              <thead>
+                <tr>
+                  <th>Cedula</th>
+                  <th>Alumno</th>
+              </thead>
+
+              <tbody class="animated fadeIn fast">
+                <tr *ngFor="let solicitudesAlumnos of this.alumnosXconvocatoria">
+                  <td> {{ solicitudesAlumnos.alumno.persona.identificacion }}</td>
+                  <td style="text-align: left;">{{ solicitudesAlumnos.alumno.persona.primer_nombre }}
+                    {{ solicitudesAlumnos.alumno.persona.segundo_nombre }}
+                    {{ solicitudesAlumnos.alumno.persona.primer_apellido }}
+                    {{ solicitudesAlumnos.alumno.persona.segundo_apellido }}</td>
+
+
+                </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+
+      <br>
+      <div class="card">
+        Solicito de la manera más comedida realizar la designación del tutor empresarial para cada uno de los
+        estudiantes, el mismo que será quien oriente al estudiante dentro de la empresa durante el tiempo que realice
+        <br>
+        las prácticas pre profesionales.
+        <br>
+        <br>
+        Sin más que informar me despido agradeciendo de antemano su colaboración.
+        <br>
+        <br>
+
+        Atentamente,<br>
+        <br>
+        {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}<br>
+        {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre }}<br>
+        {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}<br>
+        {{ this.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_apellido }}<br>
+        ______________________
+        <br>
+        Responsable de Prácticas Pre Profesionales <br>
+        CARRERA DE {{this.convocatoria.carrera.nombre}}. <br>
+        INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+      </div>
+
+    </div>
+  </div>
+</div>

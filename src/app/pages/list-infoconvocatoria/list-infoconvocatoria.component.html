@@ -5,64 +5,35 @@
         <h4 class="card-title text-center">Convocatorias</h4>
         <div class="row">
           <div class="col-md-2">
-            <input
-              [matDatepicker]="myDatepicker"
-              [(ngModel)]="fecha"
-              class="form-control"
-              style="display: block"
-              name="fechaF"
-              required
-              #fechaF="ngModel"
-            />
+            <input [matDatepicker]="myDatepicker" [formControl]="fechaControl" class="form-control" style="display: block" name="fechaF" required />
             <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker
-              [touchUi]="true"
-              color="dark"
-              #myDatepicker
-            ></mat-datepicker>
+            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
           </div>
           <div class="col-md-5">
             <select class="form-control" [(ngModel)]="carreraFiltro">
               <option [ngValue]="undefined">CARRERA (TODAS)</option>
-              <option
-                *ngFor="let carrera of carreras"
-                [ngValue]="carrera.nombre"
-              >
+              <option *ngFor="let carrera of carreras" [ngValue]="carrera.nombre">
                 {{ carrera.nombre }}
               </option>
             </select>
           </div>
           <div class="col-md-2">
-            <button
-              class="btn btn-primary"
-              (click)="filtarConvocatoriasPorFechaCarrera()"
-            >
+            <button class="btn btn-primary" (click)="filtarConvocatoriasPorFechaCarrera()">
               <i class="mdi mdi-magnify"></i>
               Buscar
             </button>
           </div>
           <div class="col-md-3 text-right">
-            <button
-              class="btn btn-light btn-sm"
-              (click)="cargarConvocatoriasDefault()"
-            >
+            <button class="btn btn-light btn-sm" (click)="cargarConvocatoriasDefault()">
               Mostrar Todas
             </button>
           </div>
         </div>
         <div class="row">
-          <div
-            class="col-lg-3 col-md-6"
-            *ngFor="let convocatoria of convocatorias"
-          >
+          <div class="col-lg-3 col-md-6" *ngFor="let convocatoria of convocatorias">
             <!-- Card -->
             <div class="card border-dark">
-              <img
-                class="card-img-top img-responsive"
-                src="../assets/images/ista2.jpg"
-                style="height: 120px"
-                alt="Card image cap"
-              />
+              <img class="card-img-top img-responsive" src="../assets/images/ista2.jpg" style="height: 120px" alt="Card image cap" />
               <div class="card-body">
                 <h4 class="card-title">
                   Convocatoria {{ convocatoria.carrera.abreviatura }}
@@ -83,12 +54,5 @@
     </div>
   </div>
 </div>
-<mat-paginator
-  [length]="totalRegistros"
-  [pageSize]="totalPorPagina"
-  [pageSizeOptions]="pageSizeOptions"
-  [pageIndex]="paginaActual"
-  (page)="paginar($event)"
-  showFirstLastButtons
->
+<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions" [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
 </mat-paginator>

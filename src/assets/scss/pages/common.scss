@@ -6,22 +6,22 @@ File: scss
 */
 
 @import '../variable';
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 
-#main-wrapper { 
+#main-wrapper {
     width: 100%;
     overflow: hidden;
 }
 
-.boxed #main-wrapper {  
+.boxed #main-wrapper {
     width: 100%;
     max-width: 1300px;
     margin: 0 auto;
     box-shadow: 0 0 60px rgba(0, 0, 0, 0.1);
     .sidebar-footer {
-        position: absolute; 
+        position: absolute;
     }
     .topbar{
         max-width: 1300px;
@@ -68,7 +68,7 @@ File: scss
     }
     .right-side-panel {
         top: 70px;
-        height: calc(100% - 70px); 
+        height: calc(100% - 70px);
     }
 }
 
@@ -649,6 +649,26 @@ ul#themecolors {
     background: -webkit-linear-gradient(left, $dark 0%, $dark 23%, $info 23%, $info 99%);
     /* Chrome10-25,Safari5.1-6 */
     background: linear-gradient(to right, $dark 0%, $dark 23%, $info 23%, $info 99%);
+}
+.ista-theme {
+    background: #EDF0F5;
+    ;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #EDF0F5 0%,#EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,#EDF0F5 0%, #EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,#EDF0F5 0%, #EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%);
+}
+.ista-yellow-theme {
+    background: #EDF0F5;
+    ;
+    /* Old browsers */
+    background: -moz-linear-gradient(left, #EDF0F5 0%,#EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%);
+    /* FF3.6-15 */
+    background: -webkit-linear-gradient(left,#EDF0F5 0%, #EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%);
+    /* Chrome10-25,Safari5.1-6 */
+    background: linear-gradient(to right,#EDF0F5 0%, #EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%);
 }
 
 .purple-dark-theme {

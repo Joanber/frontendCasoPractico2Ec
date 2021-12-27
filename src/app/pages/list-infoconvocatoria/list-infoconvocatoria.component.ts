@@ -1,11 +1,11 @@
+import { DatePipe } from "@angular/common";
 import { Component, OnInit, ViewChild } from "@angular/core";
+import { FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from "@angular/material";
-
-import { CarreraService } from "src/app/services/services.models/carrera.service";
 import { Carrera } from "src/app/models/carrera.model";
 import { Convocatoria } from "src/app/models/convocatoria.model";
+import { CarreraService } from "src/app/services/services.models/carrera.service";
 import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
-import { DatePipe } from "@angular/common";
 @Component({
   selector: "app-list-infoconvocatoria",
   templateUrl: "./list-infoconvocatoria.component.html",
@@ -17,14 +17,14 @@ export class ListInfoConvocatoriaComponent implements OnInit {
   public paginaActual = 0;
   public totalPorPagina = 10;
   public pageSizeOptions: number[] = [10, 20, 50, 100];
-  //MATPAGINATOR
+  // MATPAGINATOR
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
-
+  fechaControl = new FormControl();
   public convocatorias: Convocatoria[] = [];
   public carreras: Carrera[] = [];
-  //VARIABLES PARA BUSCAR
+  // VARIABLES PARA BUSCAR
   public carreraFiltro: string = undefined;
-  public fecha: string = "";
+  public fecha = '';
 
   constructor(
     private convocatoriaService: ConvocatoriasService,
@@ -38,23 +38,28 @@ export class ListInfoConvocatoriaComponent implements OnInit {
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.carreraFiltro,
-      this.fecha
+      ''
     );
   }
   public paginar(event: PageEvent): void {
+     const fechaFormateada = this.miDatePipe.transform(
+        this.fechaControl.value,
+        "yyyy-MM-dd"
+      );
+
     this.paginaActual = event.pageIndex;
     this.totalPorPagina = event.pageSize;
     this.getConvocatoriasPage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.carreraFiltro,
-      this.fecha
+      fechaFormateada
     );
   }
   public filtarConvocatoriasPorFechaCarrera() {
-    if (this.fecha != null && this.carreraFiltro != null) {
+    if ( this.fechaControl.value != null && this.carreraFiltro != null) {
       const fechaFormateada = this.miDatePipe.transform(
-        this.fecha,
+         this.fechaControl.value,
         "yyyy-MM-dd"
       );
       this.getConvocatoriasPage(
@@ -69,12 +74,11 @@ export class ListInfoConvocatoriaComponent implements OnInit {
   }
   cargarConvocatoriasDefault() {
     this.carreraFiltro = undefined;
-    this.fecha = "";
     return this.getConvocatoriasPage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.carreraFiltro,
-      this.fecha
+      ''
     );
   }
 

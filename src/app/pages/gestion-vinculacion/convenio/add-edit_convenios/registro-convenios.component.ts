@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -21,12 +21,12 @@ export class MyErrorStateMatcher implements ErrorStateMatcher {
   templateUrl: './registro-convenios.component.html',
   styleUrls: ['./registro-convenios.component.css']
 })
-export class RegistroConveniosComponent implements OnInit {
+export class RegistroConveniosComponent implements OnInit, AfterViewInit {
 
   constructor(private formbuilder: FormBuilder, private carreraService: CarreraService,
-    private empresaServices: EmpresaService, private convenioService: ConvenioService,
-    private activatedRoute: ActivatedRoute,
-    private router: Router) {}
+              private empresaServices: EmpresaService, private convenioService: ConvenioService,
+              private activatedRoute: ActivatedRoute,
+              private router: Router) {}
 
   get formValues() {
     return this.convenioForm.controls;
@@ -34,24 +34,31 @@ export class RegistroConveniosComponent implements OnInit {
 
   carreras: Carrera[] = [];
   empresas: Empresa[] = [];
+
+  carrera = new Carrera();
+
   convenio = {} as Convenio;
   convenioForm!: FormGroup;
+
   btnName = 'Guardar';
   alphabeticPattern = '^[a-zA-ZÀ-ÿÑñ ]+( *[a-zA-ZÀ-ÿÑñ]*)*[a-zA-ZÀ-ÿñÑ ]+$';
   matcher = new MyErrorStateMatcher();
 
+  ngAfterViewInit(): void {
+    this.activatedRoute.params.subscribe(({ id }) => this.retriveConvenio(id));
+  }
+
   ngOnInit() {
-    this.loadForm();
     this.retrieveCarreras();
     this.retrieveEmpresas();
-    this.activatedRoute.params.subscribe(({ id }) => this.retriveConvenio(id));
+    this.loadForm();
   }
 
   loadForm() {
     this.convenioForm = this.formbuilder.group({
       nombre: ['', [Validators.required, Validators.pattern(this.alphabeticPattern)]],
       carrera: ['', Validators.required],
-      empresa: [new Empresa(), Validators.required],
+      empresa: ['', Validators.required],
       id: []
     });
   }
@@ -107,36 +114,25 @@ export class RegistroConveniosComponent implements OnInit {
     this.convenioService.findConvenioById(id).subscribe(
       {
         next: (convenio) => {
-
-          this.patchForm(convenio);
+          this.convenio = convenio;
         },
         error: () => {
           return this.returnToList();
         }
         , complete: () => {
-          // this.patchForm(this.convenio);
+          this.patchForm(this.convenio);
         }
       });
   }
 
   patchForm(convenio: Convenio) {
 
-    this.convenioForm.setValue({
+    this.convenioForm.patchValue({
       id: convenio.id,
       nombre: convenio.nombre,
-      empresa: this.empresas.find(empresa => convenio.empresa !== undefined || convenio.empresa !== empresa),
-      carrera: this.carreras.find(carrera => convenio.carrera !== undefined || convenio.carrera !== carrera)
+      carrera: this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null),
+      empresa: this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null)
     });
-
-    this.btnName = 'Editar';
-    // this.carreras.pipe(map(carreras => carreras.find(carrera => convenio.carrera !== undefined || convenio.carrera !== carrera)))
-    //   .subscribe({
-
-    //     next: (e) => {
-    //       console.log(e);
-
-    //     }
-    //   });
 
   }
 }
@@ -146,3 +142,36 @@ export class RegistroConveniosComponent implements OnInit {
 // carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
 // carrera: this.carreras.filter(carrera => carrera.id = convenio.carrera.id)[0],
 // empresa: this.empresas[this.empresas.map((empresa) => empresa.id).indexOf(convenio.empresa.id)],
+
+// getC(c: Carrera) {
+//   return new Promise<Carrera>(resolve => {
+//     this.carreras.pipe(map(carreras => carreras.find(() => c !== undefined || c !== null)),
+//       take(1)
+//     )
+//       .subscribe(
+//         (data: Carrera) => {
+//           resolve(data);
+//         });
+//   });
+// }
+
+
+    // const convenioObj = Object.keys(convenio).filter(c => convenio[c] !== undefined || convenio[c] != null);
+    // const newConvenioObject = {};
+    // convenioObj.forEach(item => Object.assign(newConvenioObject, {
+    //   [item]: convenio[item]
+    // }));
+    // console.log(newConvenioObject);
+
+    // this.carreras.Where(x => x.Title == title)
+    // // this.convenioForm.setValue({
+    // //   id: convenio.id,
+    // //   nombre: convenio.nombre,
+    // //   empresa: this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null),
+    // //   // carrera: this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)
+    // // });
+    // console.log('empresa', this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null));
+
+    // this.btnName = 'Editar';
+    // this.carreras.pipe(map(carreras => carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)))
+    //   .subscribe(e => this.carrera = e);

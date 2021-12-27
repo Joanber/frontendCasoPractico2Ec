@@ -40,6 +40,7 @@ import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-respons
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
 import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
 import { ListSolicitudEmpresaComponent } from './list-solicitud-empresa/list-solicitud-empresa.component';
+import { AddValidacionSeleccionComponent } from "./add-validacion-seleccion/add-validacion-seleccion.component";
 
 
 
@@ -81,7 +82,7 @@ const routes: Routes = [
         component: AddPersonaComponent,
         data: { titulo: "Actualizar Persona" },
       },
-      
+
       {
         path: "carreras",
         component: ListCarrerasComponent,
@@ -143,11 +144,15 @@ const routes: Routes = [
         data: { titulo: "Convocatorias" },
       },
       {
-        path: "seleccionar-estudiantes/:id",
+        path: "solicitudes-recibidas/:id",
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Seleccionar Estudiantes" },
+        data: { titulo: "Solicitudes recibidas de estudiantes" },
       },
-
+      {
+        path: "seleccion-estudiantes-convocatorias/:id",
+        component: AddValidacionSeleccionComponent,
+        data: { titulo: "Responder a empresa eleccion estudiantes " },
+      },
       {
         path: "designarTutorAcademico",
         component: DesignarTutorAcademicoComponent,
@@ -267,7 +272,7 @@ const routes: Routes = [
         component: AddEmpresaComponent,
         data: { titulo: "Actualizar Empresa" },
       },
-      
+
       {
         path: "responsablesppp",
         component: ListResponsablePPPComponent,

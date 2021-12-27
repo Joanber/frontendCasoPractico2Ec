@@ -15,8 +15,8 @@ File: scss
 /*Light colors*/
 /*Normal Color*/
 /*Extra Variable*/
-/*============================================================== 
- For all pages 
+/*==============================================================
+ For all pages
  ============================================================== */
 #main-wrapper {
   width: 100%;
@@ -546,7 +546,26 @@ ul#themecolors {
   background: -webkit-gradient(linear, left top, right top, from(#263238), color-stop(23%, #263238), color-stop(23%, #398bf7), color-stop(99%, #398bf7));
   background: -o-linear-gradient(left, #263238 0%, #263238 23%, #398bf7 23%, #398bf7 99%);
   background: linear-gradient(to right, #263238 0%, #263238 23%, #398bf7 23%, #398bf7 99%); }
-
+.ista-theme {
+  background: #EDF0F5;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #EDF0F5 0%, #EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #EDF0F5 0%, #EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#EDF0F5), color-stop(23%, #EDF0F5), color-stop(23%, #0B2B5D), color-stop(99%, #0B2B5D));
+  background: -o-linear-gradient(left, #EDF0F5 0%, #EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%);
+  background: linear-gradient(to right, #EDF0F5 0%, #EDF0F5 23%, #0B2B5D 23%, #0B2B5D 99%); }
+.ista-yellow-theme {
+  background: #EDF0F5;
+  /* Old browsers */
+  background: -moz-linear-gradient(left, #EDF0F5 0%, #EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%);
+  /* FF3.6-15 */
+  background: -webkit-linear-gradient(left, #EDF0F5 0%, #EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%);
+  /* Chrome10-25,Safari5.1-6 */
+  background: -webkit-gradient(linear, left top, right top, from(#EDF0F5), color-stop(23%, #EDF0F5), color-stop(23%, var(--color-warn) ), color-stop(99%, var(--color-warn) ));
+  background: -o-linear-gradient(left, #EDF0F5 0%, #EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%);
+  background: linear-gradient(to right, #EDF0F5 0%, #EDF0F5 23%, var(--color-warn)  23%, var(--color-warn)  99%); }
 .purple-dark-theme {
   background: #263238;
   /* Old browsers */
@@ -1537,7 +1556,7 @@ Buttons
   color: #ffffff;
   background-color: #171515; }
 
-/*============================================================== 
+/*==============================================================
  Buttons page
  ============================================================== */
 .button-group .btn {
@@ -1688,7 +1707,7 @@ Form summernote
 .label {
   display: inline-block; }
 
-/*============================================================== 
+/*==============================================================
 Form addons page
 ============================================================== */
 /*Bootstrap select*/
@@ -1732,7 +1751,7 @@ Form addons page
   color: #ffffff;
   border-color: #398bf7; }
 
-/*============================================================== 
+/*==============================================================
 Form Material page
  ============================================================== */
 /*Material inputs*/
@@ -1782,13 +1801,13 @@ Form Material page
     border-bottom: 1px solid #398bf7; }
 
 /*******************
-Form validation error 
+Form validation error
 ******************/
 .error .help-block {
   color: #fb3a3a; }
 
 /*******************
-File Upload 
+File Upload
 ******************/
 .fileupload {
   overflow: hidden;
@@ -1805,7 +1824,7 @@ File Upload
     top: 0; }
 
 /*******************
-This is for the checkbox radio button and switch 
+This is for the checkbox radio button and switch
 ******************/
 /* Radio Buttons
    ========================================================================== */
