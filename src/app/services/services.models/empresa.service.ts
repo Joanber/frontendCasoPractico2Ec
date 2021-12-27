@@ -1,17 +1,16 @@
-import { Injectable } from '@angular/core';
+import { Injectable } from "@angular/core";
 import { HttpClient } from "@angular/common/http";
-import { Observable, throwError } from 'rxjs';
-import { Empresa } from 'src/app/models/empresa.model';
+import { Observable, throwError } from "rxjs";
+import { Empresa } from "src/app/models/empresa.model";
 import { environment } from "src/environments/environment";
-import { catchError, map, tap } from 'rxjs/operators';
-import Swal from 'sweetalert2';
+import { catchError, map, tap } from "rxjs/operators";
+import Swal from "sweetalert2";
+import { EmpresaPersonal } from "src/app/models/empresaPersonal.model";
 const bd_url = environment.bd_url + "/empresas";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
-
 export class EmpresaService {
-
   constructor(private http: HttpClient) {}
   //OBTENER UNA CARRERA POR ID
   getEmpresaById(id: number): Observable<Empresa> {
@@ -23,6 +22,11 @@ export class EmpresaService {
     return this.http.get<Empresa[]>(`${bd_url}/filtrar`);
   }
 
+  getEmpresaPersonal(): Observable<EmpresaPersonal[]> {
+    return this.http.get<EmpresaPersonal[]>(
+      `${bd_url}/filtrar-empresa-personal`
+    );
+  }
 
   //PAGINACION DE CARRERAS
   getEmpresaPage(
@@ -76,7 +80,7 @@ export class EmpresaService {
       })
     );
   }
-  
+
   //ELIMINAR UNA CARRERA
   eliminar(id: number): Observable<Empresa> {
     return this.http.delete<Empresa>(`${bd_url}/${id}`).pipe(

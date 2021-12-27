@@ -62,6 +62,8 @@ import { NotificationsComponent } from "./notifications/notifications.component"
 import { PagesComponent } from "./pages.component";
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from "./solicitud/solicitud.component";
+import { ListConvocatoriasValidasComponent } from './gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component';
+import { AddDesignacionTeComponent } from './gestion-empresa/add-designacion-te/add-designacion-te.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -103,6 +105,8 @@ import { SolicitudComponent } from "./solicitud/solicitud.component";
     AddSolicitudEmpresaComponent,
     ListSolicitudEmpresaComponent,
     AddValidacionSeleccionComponent,
+    ListConvocatoriasValidasComponent,
+    AddDesignacionTeComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

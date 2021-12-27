@@ -65,8 +65,8 @@ export class SidebarService {
           url: "solicitar/a4",
         },
         {
-          titulo: "Designar tutor empresarial",
-          url: "solicitar/a5",
+          titulo: "Convocatorias Aprobadas Designacion TE",
+          url: "convocatorias-aprobadas",
         },
         {
           titulo: "Evaluación a estudiante",
@@ -163,7 +163,5 @@ export class SidebarService {
         },
       ],
     },
-
-
   ];
 }
