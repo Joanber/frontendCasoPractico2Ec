@@ -25,11 +25,8 @@ export class AddEmpresaComponent implements OnInit {
   autocompleteControl = new FormControl();
   public empresa = new Empresa();
   public formSubmitted = false;
-  public bd_url = bd_url + "/personas";
   public empresas: Empresa[] = [];
   public docentes: Docente[] = [];
-  public empresaPersonales: EmpresaPersonal[] = [];
-
   public empresapersonal: EmpresaPersonal[] = [];
   public representanteFiltrados: Observable<Empresa[]>;
   constructor(
@@ -93,4 +90,8 @@ export class AddEmpresaComponent implements OnInit {
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
+
+  
 }
+
+

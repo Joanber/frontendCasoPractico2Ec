@@ -50,7 +50,7 @@
                     abreviatura_titulo.hasError('required') && abreviatura_titulo.touched
                     "
                   >
-                    Abreviatura es requerido!
+                    Abreviatura del titulo es requerido!
                   </div>
                 </div>
               </div>
@@ -65,7 +65,7 @@
                     required
                   >
                     <option [ngValue]="undefined">
-                      Seleccione la Tiempo
+                      Seleccione la jornada de trabajo
                     </option>
                     <option value="COMPLETO">COMPLETO</option>
                     <option value="MEDIO-TIEMPO">MEDIO TIEMPO</option>
@@ -75,7 +75,7 @@
                     class="text-danger"
                     *ngIf="tipo_tiempo.hasError('required') && tipo_tiempo.touched"
                   >
-                  Tiempo de Trabajo!
+                  Jornada del docente que trabajará es requerido!
                   </div>
                 </div>
               </div>
@@ -122,6 +122,7 @@
                       *ngFor="let persona of personas"
                       [value]="persona"
                     >
+                      {{ persona.primer_nombre }}
                       {{ persona.primer_nombre }}
                       {{ persona.segundo_nombre }}
                       {{ persona.primer_apellido }}

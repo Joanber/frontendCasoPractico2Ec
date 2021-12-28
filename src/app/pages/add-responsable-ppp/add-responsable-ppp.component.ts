@@ -30,7 +30,7 @@ export class AddResponsablePPPComponent implements OnInit {
   public empresas: Empresa[] = [];
   public carreras: Carrera[] = [];
   public docente= new Docente();
-  public carrera= new Carrera();
+
 
   public ResponsablePPPFiltrados: Observable<ResponsablePPP[]>;
   public docentesFiltrados: Observable<Docente[]>;
@@ -74,10 +74,12 @@ export class AddResponsablePPPComponent implements OnInit {
     if (this.responsableppp.id) {
       this.responsableService.editar(this.responsableppp, this.responsableppp.id)
         .subscribe((responsableppp) => {
+   
           Swal.fire(
-            "Actualizar Carrera",
-            `¡${responsableppp.carrera.nombre} actualizada con exito!`,
+            "Actualizado (a) Responsable de las practicas",
+            `¡${ this.responsableppp.docente.persona.primer_nombre +' '+  this.responsableppp.docente.persona.segundo_apellido +'  '+ this.responsableppp.carrera.nombre  } actualizada con exito!`,
             "success"
+
           );
           this.irListaResponsablePPP();
         });
@@ -86,8 +88,9 @@ export class AddResponsablePPPComponent implements OnInit {
       
       this.responsableService.crear(this.responsableppp).subscribe((responsableppp) => {
         Swal.fire(
-          "Nuevo (a) responsablePPP",
-          `¡${this.responsableppp.docente.persona.primer_nombre} creada con exito!`,
+          "Nuevo (a) responsable de Practicas PreProfesionales",
+          `¡${this.responsableppp.docente.persona.primer_nombre 
+            } creada con exito!`,
           "success"
         );
         this.irListaResponsablePPP();
