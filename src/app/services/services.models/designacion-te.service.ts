@@ -17,6 +17,9 @@ export class DesignacionTEService {
   getDesignacionTEById(id: number): Observable<DesignacionTE> {
     return this.http.get<DesignacionTE>(`${bd_url}/${id}`);
   }
+  getDesignacionTEByAlumnoId(id: number): Observable<DesignacionTE> {
+    return this.http.get<DesignacionTE>(`${bd_url}/alumno/${id}`);
+  }
 
   //DESIGNACION_TE SIN PAGINACION
   getDesiganacionesTE(): Observable<DesignacionTE[]> {

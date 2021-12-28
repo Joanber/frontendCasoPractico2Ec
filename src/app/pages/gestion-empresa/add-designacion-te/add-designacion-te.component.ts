@@ -7,7 +7,6 @@ import { EmpresaPersonal } from "src/app/models/empresaPersonal.model";
 import { ValidacionSAC } from "src/app/models/validaciones_sac.model";
 import { AlumnoService } from "src/app/services/services.models/alumno.service";
 import { DesignacionTEService } from "src/app/services/services.models/designacion-te.service";
-import { EmpresaPersonalService } from "src/app/services/services.models/empresa-personal.service";
 import { EmpresaService } from "src/app/services/services.models/empresa.service";
 import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
 import Swal from "sweetalert2";
@@ -45,6 +44,9 @@ export class AddDesignacionTeComponent implements OnInit {
       this.validacion_sacById(id)
     );
     this.activatedRoute.params.subscribe(({ ida }) => this.getByIdAlumno(ida));
+    this.activatedRoute.params.subscribe(({ idd }) =>
+      this.getDesignacionByAlumnoId(idd)
+    );
   }
 
   private validacion_sacById(id: number) {
@@ -62,6 +64,27 @@ export class AddDesignacionTeComponent implements OnInit {
     this.alumnoService.getById(ida).subscribe((alumno) => {
       this.alumno = alumno;
     });
+  }
+
+  private getDesignacionByAlumnoId(idd: number) {
+    if (!idd) {
+      return;
+    } else {
+      this.designacionTEService
+        .getDesignacionTEByAlumnoId(idd)
+        .subscribe((designacionTE) => {
+          this.designacionte = designacionTE;
+          this.identificacion =
+            this.designacionte.empresaPersonal.persona.identificacion;
+          this.nombres =
+            this.designacionte.empresaPersonal.persona.primer_nombre.concat(
+              " "
+            ) + this.designacionte.empresaPersonal.persona.primer_apellido;
+          this.validacionesSacService
+            .getValidacionSacByAlumnoId(idd)
+            .subscribe((validacionSac) => (this.validacionSac = validacionSac));
+        });
+    }
   }
 
   private cargarEmpresasPersonales() {

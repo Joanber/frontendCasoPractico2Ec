@@ -9,6 +9,8 @@ export class Alumno {
   egresado: boolean;
   observacion: string;
   promedio_aprobado: boolean;
+  te: boolean;
+  ta: boolean;
   persona: Persona;
   carrera: Carrera;
 }

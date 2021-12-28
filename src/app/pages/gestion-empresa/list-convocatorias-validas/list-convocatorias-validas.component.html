@@ -4,21 +4,35 @@
       <h4 class="card-title text-center">Listado de Convocatorias</h4>
       <div class="table-responsive">
         <div id="example23_wrapper" class="dataTables_wrapper">
-          <div class="dt-buttons">
-            <div id="example23_filter" class="dataTables_filter">
-              <label
-                >Buscar:<input
-                  type="text"
-                  placeholder=""
-                  [(ngModel)]="busqueda"
-                  #txtBusqueda
-                />
-              </label>
-              <button class="btn btn-primary btn-sm" type="button">
+          <div class="row">
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="carreraFiltro">
+                <option [ngValue]="undefined">CARRERA (TODAS)</option>
+                <option
+                  *ngFor="let carreras of carreras"
+                  [ngValue]="carreras.nombre"
+                >
+                  {{ carreras.nombre }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-1">
+              <button
+                class="btn btn-primary btn-sm"
+                (click)="filtrarValidacionesSACCarrera()"
+              >
                 <i class="mdi mdi-magnify"></i>
+                Buscar
+              </button>
+            </div>
+            <div class="col-md-2 text-right">
+              <button class="btn btn-sm" (click)="cargarConvocatoriasDefault()">
+                Mostrar Todas
               </button>
             </div>
           </div>
+          <br />
 
           <div class="table-scroll">
             <table
@@ -53,7 +67,7 @@
                           <th>C.I</th>
                           <th>Apellidos y Nombres</th>
                           <th>Tutor Empresarial</th>
-                          <th>Designar T Empresarial</th>
+                          <th>Accion</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -65,9 +79,11 @@
                             {{ alumno.persona.primer_nombre }}
                             {{ alumno.persona.segundo_nombre }}
                           </td>
-                          <td></td>
+                          <td *ngIf="!alumno.te">Sin Asignar</td>
+                          <td *ngIf="alumno.te">Designado</td>
                           <td class="text-nowrap text-center">
                             <a
+                              *ngIf="!alumno.te"
                               [routerLink]="[
                                 '/dashboard',
                                 'nueva-designacion-te',
@@ -79,7 +95,39 @@
                               class="cursor"
                               title="Designar Tutor Empresarial"
                             >
-                              <i class="mdi mdi-account-switch"></i>
+                              <i class="mdi mdi-account-switch m-r-10"></i>
+                            </a>
+                            <a
+                              *ngIf="alumno.te"
+                              [routerLink]="[
+                                '/dashboard',
+                                'actualizar-designacion-te',
+                                alumno.id
+                              ]"
+                              data-toggle="tooltip"
+                              data-original-title="Editar Tutor Empresarial"
+                              class="cursor"
+                              title="Editar Tutor Empresarial"
+                            >
+                              <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                            </a>
+                            <a
+                              *ngIf="alumno.te"
+                              data-toggle="tooltip"
+                              data-original-title="Borrar"
+                              class="cursor"
+                              title="Eliminar Tutor Empresarial"
+                            >
+                              <i class="fa fa-close text-danger m-r-10"></i>
+                            </a>
+                            <a
+                              *ngIf="alumno.te"
+                              data-toggle="tooltip"
+                              data-original-title="Ver"
+                              class="cursor"
+                              title="Ver"
+                            >
+                              <i class="mdi mdi-library-books"></i>
                             </a>
                           </td>
                         </tr>
@@ -94,4 +142,13 @@
       </div>
     </div>
   </div>
+  <mat-paginator
+    [length]="totalRegistros"
+    [pageSize]="totalPorPagina"
+    [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="paginaActual"
+    (page)="paginar($event)"
+    showFirstLastButtons
+  >
+  </mat-paginator>
 </div>
