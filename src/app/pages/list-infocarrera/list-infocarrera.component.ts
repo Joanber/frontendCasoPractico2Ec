@@ -1,19 +1,19 @@
-import { Component, OnInit, ViewChild } from "@angular/core";
-import { MatPaginator, PageEvent } from "@angular/material";
-import { ResponsablePPP } from "src/app/models/responsablePPP.model";
-import { ResponsablePPPService } from "src/app/services/services.models/responsable-ppp.service";
-import { environment } from "src/environments/environment";
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatPaginator, PageEvent } from '@angular/material';
+import { ResponsablePPP } from 'src/app/models/responsablePPP.model';
+import { ResponsablePPPService } from 'src/app/services/services.models/responsable-ppp.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
-  selector: "app-list-infocarrera",
-  templateUrl: "./list-infocarrera.component.html",
-  styleUrls: ["./list-infocarrera.component.css"],
+  selector: 'app-list-infocarrera',
+  templateUrl: './list-infocarrera.component.html',
+  styleUrls: ['./list-infocarrera.component.css'],
 })
 export class ListInfoCarreraComponent implements OnInit {
-  //VARIABLE DE CARRERAS
+  // VARIABLE DE CARRERAS
   public responsablesPPP: ResponsablePPP[] = [];
-  //VARIABLE DE LOADING
-  public cargando1: boolean = true;
+  // VARIABLE DE LOADING
+  public cargando1 = true;
 
   constructor(private responsablePPPService: ResponsablePPPService) {}
 

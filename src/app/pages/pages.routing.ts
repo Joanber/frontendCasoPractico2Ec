@@ -1,315 +1,321 @@
-import { NgModule } from "@angular/core";
-import { RouterModule, Routes } from "@angular/router";
-import { AuthGuard } from "../guards/auth.guard";
-import { AccountSettingsComponent } from "./account-settings/account-settings.component";
-import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
-import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
-import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
-import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
-import { AddPersonaComponent } from "./add-persona/add-persona.component";
-import { AnexosComponent } from "./anexos/anexos.component";
-import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
-import { DashboardComponent } from "./dashboard/dashboard.component";
-import { AcreditacionPppComponent } from "./gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component";
-import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
-import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-convenios/list-convenios.component";
-import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component";
-import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
-import { InformacionComponent } from "./informacion/informacion.component";
-import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
-import { ListPersonasComponent } from "./list-personas/list-personas.component";
-import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
-import { NotificationsComponent } from "./notifications/notifications.component";
-import { PagesComponent } from "./pages.component";
-import { ProfileComponent } from "./profile/profile.component";
-import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
-import { ListConvocatoriasComponent } from "./list-convocatorias/list-convocatorias.component";
-import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-infoconvocatoria.component";
-import { SolicitudComponent } from "./solicitud/solicitud.component";
-import { AsistenciasComponent } from "./asistencias/asistencias.component";
-import { InformeComponent } from "./informe/informe.component";
-import { ConvocatoriasAbiertasComponent } from "./convocatorias-abiertas/convocatorias-abiertas.component";
-import { ListDocenteComponent } from "./list-docente/list-docente.component";
-import { AddDocenteComponent } from "./add-docente/add-docente.component";
-import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
-import { SeleccionarAlumnosComponent } from "./add-seleccionar-alumnos/seleccionar-alumnos.component";
-import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { AuthGuard } from '../guards/auth.guard';
+import { AccountSettingsComponent } from './account-settings/account-settings.component';
+import { AddCarreraComponent } from './add-carrera/add-carrera.component';
+import { ConvocatoriaComponent } from './add-convocatoria/convocatoria.component';
+import { DesignarTutorAcademicoComponent } from './add-designar-tutor-academico/designar-tutor-academico.component';
+import { GenararActaComponent } from './add-genarar-acta/genarar-acta.component';
+import { AddPersonaComponent } from './add-persona/add-persona.component';
+import { AnexosComponent } from './anexos/anexos.component';
+import { ConsultasReportesPppComponent } from './consultas-reportes-ppp/consultas-reportes-ppp.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
+import { AcreditacionPppComponent } from './gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component';
+import { RegistroConveniosComponent } from './gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component';
+import { ListConveniosComponent } from './gestion-vinculacion/convenio/list-convenios/list-convenios.component';
+import { EstadoProcesosPppComponent } from './gestion-vinculacion/estado-procesos-ppp/estado-procesos-ppp.component';
+import { HistorialProcesosPppComponent } from './gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component';
+import { InformacionComponent } from './informacion/informacion.component';
+import { ListCarrerasComponent } from './list-carreras/list-carreras.component';
+import { ListPersonasComponent } from './list-personas/list-personas.component';
+import { ListInfoCarreraComponent } from './list-infocarrera/list-infocarrera.component';
+import { NotificationsComponent } from './notifications/notifications.component';
+import { PagesComponent } from './pages.component';
+import { ProfileComponent } from './profile/profile.component';
+import { ListSolicitudesEmpresasRespppComponent } from './list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component';
+import { ListConvocatoriasComponent } from './list-convocatorias/list-convocatorias.component';
+import { ListInfoConvocatoriaComponent } from './list-infoconvocatoria/list-infoconvocatoria.component';
+import { SolicitudComponent } from './solicitud/solicitud.component';
+import { AsistenciasComponent } from './asistencias/asistencias.component';
+import { InformeComponent } from './informe/informe.component';
+import { ConvocatoriasAbiertasComponent } from './convocatorias-abiertas/convocatorias-abiertas.component';
+import { ListDocenteComponent } from './list-docente/list-docente.component';
+import { AddDocenteComponent } from './add-docente/add-docente.component';
+import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
+import { SeleccionarAlumnosComponent } from './add-seleccionar-alumnos/seleccionar-alumnos.component';
+import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
 
-import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
-import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
-import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
-import { AddSolicitudEmpresaComponent } from "./add-solicitud-empresa/add-solicitud-empresa.component";
-import { ListSolicitudEmpresaComponent } from "./list-solicitud-empresa/list-solicitud-empresa.component";
-import { AddValidacionSeleccionComponent } from "./add-validacion-seleccion/add-validacion-seleccion.component";
-import { ListConvocatoriasValidasComponent } from "./gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component";
-import { AddDesignacionTeComponent } from "./gestion-empresa/add-designacion-te/add-designacion-te.component";
+import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsable-ppp.component';
+import { ListResponsablePPPComponent } from './list-responsable-ppp/list-responsable-ppp.component';
+import { ListEmpresaComponent } from './list-empresa/list-empresa.component';
+import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
+import { ListSolicitudEmpresaComponent } from './list-solicitud-empresa/list-solicitud-empresa.component';
+import { AddValidacionSeleccionComponent } from './add-validacion-seleccion/add-validacion-seleccion.component';
+import { ListConvocatoriasValidasComponent } from './gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component';
+import { AddDesignacionTeComponent } from './gestion-empresa/add-designacion-te/add-designacion-te.component';
+import { ListInfoProcesosComponent } from './list-infoprocesos/list-infoprocesos.component';
 
 const routes: Routes = [
   {
-    path: "dashboard",
+    path: 'dashboard',
     component: PagesComponent,
     canActivate: [AuthGuard],
 
     children: [
       {
-        path: "",
+        path: '',
         component: DashboardComponent,
-        data: { titulo: "Dashboard" },
+        data: { titulo: 'Dashboard' },
       },
       {
-        path: "account-settings",
+        path: 'account-settings',
         component: AccountSettingsComponent,
-        data: { titulo: "Ajustes de cuenta" },
+        data: { titulo: 'Ajustes de cuenta' },
       },
       {
-        path: "perfil",
+        path: 'perfil',
         component: ProfileComponent,
-        data: { titulo: "Mi Perfil" },
+        data: { titulo: 'Mi Perfil' },
       },
       {
-        path: "personas",
+        path: 'personas',
         component: ListPersonasComponent,
-        data: { titulo: "Personas" },
+        data: { titulo: 'Personas' },
       },
       {
-        path: "nueva-persona",
+        path: 'nueva-persona',
         component: AddPersonaComponent,
-        data: { titulo: "Nueva Persona" },
+        data: { titulo: 'Nueva Persona' },
       },
       {
-        path: "actualizar-persona/:id",
+        path: 'actualizar-persona/:id',
         component: AddPersonaComponent,
-        data: { titulo: "Actualizar Persona" },
+        data: { titulo: 'Actualizar Persona' },
       },
 
       {
-        path: "carreras",
+        path: 'carreras',
         component: ListCarrerasComponent,
-        data: { titulo: "Carreras" },
+        data: { titulo: 'Carreras' },
       },
       {
-        path: "nueva-carrera",
+        path: 'nueva-carrera',
         component: AddCarreraComponent,
-        data: { titulo: "Nueva Carrera" },
+        data: { titulo: 'Nueva Carrera' },
       },
       {
-        path: "actualizar-carrera/:id",
+        path: 'actualizar-carrera/:id',
         component: AddCarreraComponent,
-        data: { titulo: "Actualizar Carrera" },
+        data: { titulo: 'Actualizar Carrera' },
       },
       {
-        path: "solicitar/:anexo",
+        path: 'solicitar/:anexo',
         component: AnexosComponent,
-        data: { titulo: "Anexos Gestion Empresa" },
+        data: { titulo: 'Anexos Gestion Empresa' },
       },
       {
-        path: "notifications",
+        path: 'notifications',
         component: NotificationsComponent,
-        data: { titulo: "Notificaciones" },
+        data: { titulo: 'Notificaciones' },
       },
       {
-        path: "notifications/:id",
+        path: 'notifications/:id',
         component: NotificationsComponent,
-        data: { titulo: "Notificacion" },
+        data: { titulo: 'Notificacion' },
       },
       {
-        path: "soli/:informacion",
+        path: 'soli/:informacion',
         component: InformacionComponent,
-        data: { titulo: "Informacion" },
+        data: { titulo: 'Informacion' },
       },
       {
-        path: "infocarrera",
+        path: 'infoprocesos',
+        component: ListInfoProcesosComponent,
+        data: { titulo: 'Informacion de Procesos' },
+      },
+      {
+        path: 'infocarrera',
         component: ListInfoCarreraComponent,
-        data: { titulo: "Informacion de Carreras" },
+        data: { titulo: 'Informacion de Carreras' },
       },
       {
-        path: "infoconvocatoria",
+        path: 'infoconvocatoria',
         component: ListInfoConvocatoriaComponent,
-        data: { titulo: "Informacion de Convocatorias" },
+        data: { titulo: 'Informacion de Convocatorias' },
       },
       {
-        path: "nueva-convocatoria/:id",
+        path: 'nueva-convocatoria/:id',
         component: ConvocatoriaComponent,
-        data: { titulo: "Nueva Convocatoria Practicas Pre Profesionales" },
+        data: { titulo: 'Nueva Convocatoria Practicas Pre Profesionales' },
       },
       {
-        path: "actualizar-convocatoria/:idc",
+        path: 'actualizar-convocatoria/:idc',
         component: ConvocatoriaComponent,
-        data: { titulo: "Convocatoria Practicas Pre Profesionales" },
+        data: { titulo: 'Convocatoria Practicas Pre Profesionales' },
       },
       {
-        path: "convocatorias",
+        path: 'convocatorias',
         component: ListConvocatoriasComponent,
-        data: { titulo: "Convocatorias" },
+        data: { titulo: 'Convocatorias' },
       },
       {
-        path: "solicitudes-recibidas/:id",
+        path: 'solicitudes-recibidas/:id',
         component: SeleccionarAlumnosComponent,
-        data: { titulo: "Solicitudes recibidas de estudiantes" },
+        data: { titulo: 'Solicitudes recibidas de estudiantes' },
       },
       {
-        path: "seleccion-estudiantes-convocatorias/:id",
+        path: 'seleccion-estudiantes-convocatorias/:id',
         component: AddValidacionSeleccionComponent,
-        data: { titulo: "Responder a empresa eleccion estudiantes " },
+        data: { titulo: 'Responder a empresa eleccion estudiantes ' },
       },
       {
-        path: "designarTutorAcademico",
+        path: 'designarTutorAcademico',
         component: DesignarTutorAcademicoComponent,
-        data: { titulo: "Designar Tutor Academico" },
+        data: { titulo: 'Designar Tutor Academico' },
       },
       {
-        path: "generarActa",
+        path: 'generarActa',
         component: GenararActaComponent,
-        data: { titulo: "Acta" },
+        data: { titulo: 'Acta' },
       },
       {
-        path: "consultas-reportes",
+        path: 'consultas-reportes',
         component: ConsultasReportesPppComponent,
-        data: { titulo: "Consultas Reportes Tutores" },
+        data: { titulo: 'Consultas Reportes Tutores' },
       },
       {
-        path: "convenios",
+        path: 'convenios',
         component: ListConveniosComponent,
         data: {
-          titulo: "Convenios",
+          titulo: 'Convenios',
         },
       },
       {
-        path: "convenios/registro-convenio",
+        path: 'convenios/registro-convenio',
         component: RegistroConveniosComponent,
         data: {
-          titulo: "Registro de Convenio",
+          titulo: 'Registro de Convenio',
         },
       },
       {
-        path: "convenio/:id",
+        path: 'convenio/:id',
         component: RegistroConveniosComponent,
-        data: { titulo: "Actualizar convenio" },
+        data: { titulo: 'Actualizar convenio' },
       },
       {
-        path: "acreditacion-ppp",
+        path: 'acreditacion-ppp',
         component: AcreditacionPppComponent,
         data: {
-          titulo: "Informe de acreditación de PPP",
+          titulo: 'Informe de acreditación de PPP',
         },
       },
       {
-        path: "estado-procesos-ppp",
+        path: 'estado-procesos-ppp',
         component: EstadoProcesosPppComponent,
         data: {
-          titulo: "Estado de procesos PPP",
+          titulo: 'Estado de procesos PPP',
         },
       },
       {
-        path: "historial-procesos-ppp",
+        path: 'historial-procesos-ppp',
         component: HistorialProcesosPppComponent,
-        data: { titulo: "Historial de procesos PPP" },
+        data: { titulo: 'Historial de procesos PPP' },
       },
       {
-        path: "solicitud/:id",
+        path: 'solicitud/:id',
         component: SolicitudComponent,
-        data: { titulo: "Crear Solicitud de Estudiantes" },
+        data: { titulo: 'Crear Solicitud de Estudiantes' },
       },
 
       {
-        path: "convocatoriasabiertas",
+        path: 'convocatoriasabiertas',
         component: ConvocatoriasAbiertasComponent,
-        data: { titulo: "Convocatorias Abiertas" },
+        data: { titulo: 'Convocatorias Abiertas' },
       },
       {
-        path: "asistencias",
+        path: 'asistencias',
         component: AsistenciasComponent,
-        data: { titulo: "Registro de Asistencia" },
+        data: { titulo: 'Registro de Asistencia' },
       },
       {
-        path: "informe",
+        path: 'informe',
         component: InformeComponent,
-        data: { titulo: "Informe Final" },
+        data: { titulo: 'Informe Final' },
       },
       {
-        path: "solicitudes_empresas",
+        path: 'solicitudes_empresas',
         component: ListSolicitudesEmpresasRespppComponent,
-        data: { titulo: "Lista solicitudes de las empresas" },
+        data: { titulo: 'Lista solicitudes de las empresas' },
       },
 
       {
-        path: "solicitudes_estudiantes",
+        path: 'solicitudes_estudiantes',
         component: ListSolicitudesAlumnosComponent,
-        data: { titulo: "Lista solicitudes de los estudiantes" },
+        data: { titulo: 'Lista solicitudes de los estudiantes' },
       },
 
       {
-        path: "docentes",
+        path: 'docentes',
         component: ListDocenteComponent,
-        data: { titulo: "Lista de Docentes" },
+        data: { titulo: 'Lista de Docentes' },
       },
       {
-        path: "nuevo-docentes",
+        path: 'nuevo-docentes',
         component: AddDocenteComponent,
-        data: { titulo: "Nuevo Docentes" },
+        data: { titulo: 'Nuevo Docentes' },
       },
 
       {
-        path: "actualizar-Docente/:id",
+        path: 'actualizar-Docente/:id',
         component: AddDocenteComponent,
-        data: { titulo: "Actualizar Docente" },
+        data: { titulo: 'Actualizar Docente' },
       },
 
       {
-        path: "empresas",
+        path: 'empresas',
         component: ListEmpresaComponent,
-        data: { titulo: "Lista de Empresas" },
+        data: { titulo: 'Lista de Empresas' },
       },
       {
-        path: "nueva-empresas",
+        path: 'nueva-empresas',
         component: AddEmpresaComponent,
-        data: { titulo: "Nuevo Empresas" },
+        data: { titulo: 'Nuevo Empresas' },
       },
       {
-        path: "actualizar-Empresa/:id",
+        path: 'actualizar-Empresa/:id',
         component: AddEmpresaComponent,
-        data: { titulo: "Actualizar Empresa" },
+        data: { titulo: 'Actualizar Empresa' },
       },
 
       {
-        path: "responsablesppp",
+        path: 'responsablesppp',
         component: ListResponsablePPPComponent,
-        data: { titulo: "Lista de responsablesppp" },
+        data: { titulo: 'Lista de responsablesppp' },
       },
       {
-        path: "nuevo-responsablesppp",
+        path: 'nuevo-responsablesppp',
         component: AddResponsablePPPComponent,
-        data: { titulo: "Nuevo responsablesppp" },
+        data: { titulo: 'Nuevo responsablesppp' },
       },
       {
-        path: "actualizar-responsablesppp/:id",
+        path: 'actualizar-responsablesppp/:id',
         component: AddResponsablePPPComponent,
-        data: { titulo: "Actualizar responsablesppp" },
+        data: { titulo: 'Actualizar responsablesppp' },
       },
       {
-        path: "nueva-solicitud-empresa",
+        path: 'nueva-solicitud-empresa',
         component: AddSolicitudEmpresaComponent,
-        data: { titulo: "Nueva Solicitud" },
+        data: { titulo: 'Nueva Solicitud' },
       },
       {
-        path: "list-solicitud-empresa",
+        path: 'list-solicitud-empresa',
         component: ListSolicitudEmpresaComponent,
-        data: { titulo: "Lista Solicitudes Empresas" },
+        data: { titulo: 'Lista Solicitudes Empresas' },
       },
       {
-        path: "convocatorias-aprobadas",
+        path: 'convocatorias-aprobadas',
         component: ListConvocatoriasValidasComponent,
-        data: { titulo: "Designacion de Tutores Empresariales" },
+        data: { titulo: 'Designacion de Tutores Empresariales' },
       },
       {
-        path: "nueva-designacion-te/:id/:ida",
+        path: 'nueva-designacion-te/:id/:ida',
         component: AddDesignacionTeComponent,
-        data: { titulo: " Nueva Designacion de Tutor Empresarial" },
+        data: { titulo: ' Nueva Designacion de Tutor Empresarial' },
       },
       {
-        path: "actualizar-designacion-te/:idd",
+        path: 'actualizar-designacion-te/:idd',
         component: AddDesignacionTeComponent,
-        data: { titulo: "Actualizar la Designacion de Tutor Empresarial" },
+        data: { titulo: 'Actualizar la Designacion de Tutor Empresarial' },
       },
     ],
   },

@@ -1,165 +1,165 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
 @Injectable({
-  providedIn: "root",
+  providedIn: 'root',
 })
 export class SidebarService {
   constructor() {}
   menu: any[] = [
     {
-      titulo: "Dashboard",
-      icono: "mdi mdi-gauge",
+      titulo: 'Dashboard',
+      icono: 'mdi mdi-gauge',
       submenu: [
-        { titulo: "Convocatorias", url: "infoconvocatoria" },
-        { titulo: "Procesos", url: "soli/procesos" },
-        { titulo: "Informacion Carrera", url: "infocarrera" },
-        { titulo: "Instructivo/Anexos", url: "soli/instructivos" },
+        { titulo: 'Convocatorias', url: 'infoconvocatoria' },
+        { titulo: 'Procesos', url: 'infoprocesos' },
+        { titulo: 'Informacion Carrera', url: 'infocarrera' },
+        { titulo: 'Instructivo/Anexos', url: 'soli/instructivos' },
       ],
     },
     {
-      titulo: "Gestión de Vinculación ",
-      icono: "mdi mdi-account-switch",
+      titulo: 'Gestión de Vinculación ',
+      icono: 'mdi mdi-account-switch',
       submenu: [
         {
-          titulo: "Convenios",
-          icono: "mdi mdi-book-multiple-variant",
-          url: "convenios",
+          titulo: 'Convenios',
+          icono: 'mdi mdi-book-multiple-variant',
+          url: 'convenios',
         },
         {
-          titulo: "Acreditacion PPP",
-          icono: "mdi   mdi-file-document",
-          url: "acreditacion-ppp",
+          titulo: 'Acreditacion PPP',
+          icono: 'mdi   mdi-file-document',
+          url: 'acreditacion-ppp',
         },
         {
-          titulo: "Procesos PPP",
-          icono: "mdi  mdi mdi-chart-line",
-          url: "estado-procesos-ppp",
+          titulo: 'Procesos PPP',
+          icono: 'mdi  mdi mdi-chart-line',
+          url: 'estado-procesos-ppp',
         },
         {
-          titulo: "Historial PPP",
-          icono: "mdi    mdi-archive",
-          url: "historial-procesos-ppp",
-        },
-      ],
-    },
-    {
-      titulo: "Gestión de Carrera ",
-      icono: "mdi mdi-clipboard-text",
-      submenu: [
-        { titulo: "Empresas", url: "empresas" },
-        { titulo: "Docentes", url: "docentes" },
-        { titulo: "ResponsablesPPP", url: "responsablesppp" },
-        { titulo: "Carreras", url: "carreras" },
-      ],
-    },
-    {
-      titulo: "Gestion Empresa",
-      icono: "mdi mdi-account-multiple",
-      submenu: [
-        {
-          titulo: "Solicitar Requerimiento de Empresas",
-          url: "list-solicitud-empresa",
-        },
-        {
-          titulo: "Consultar Listado de estudiantes asignados",
-          url: "solicitar/a4",
-        },
-        {
-          titulo: "Designar Tutor Empresarial",
-          url: "convocatorias-aprobadas",
-        },
-        {
-          titulo: "Evaluación a estudiante",
-          url: "solicitar/a12",
-        },
-        {
-          titulo: "Certificado",
-          url: "solicitar/a12_1",
+          titulo: 'Historial PPP',
+          icono: 'mdi    mdi-archive',
+          url: 'historial-procesos-ppp',
         },
       ],
     },
     {
-      titulo: "Gestion de PPP",
-      icono: "mdi mdi-account-multiple",
+      titulo: 'Gestión de Carrera ',
+      icono: 'mdi mdi-clipboard-text',
+      submenu: [
+        { titulo: 'Empresas', url: 'empresas' },
+        { titulo: 'Docentes', url: 'docentes' },
+        { titulo: 'ResponsablesPPP', url: 'responsablesppp' },
+        { titulo: 'Carreras', url: 'carreras' },
+      ],
+    },
+    {
+      titulo: 'Gestion Empresa',
+      icono: 'mdi mdi-account-multiple',
       submenu: [
         {
-          titulo: "Solicitudes Empresas",
-          url: "solicitudes_empresas",
+          titulo: 'Solicitar Requerimiento de Empresas',
+          url: 'list-solicitud-empresa',
         },
         {
-          titulo: "Convocatorias",
-          url: "convocatorias",
+          titulo: 'Consultar Listado de estudiantes asignados',
+          url: 'solicitar/a4',
         },
         {
-          titulo: "Designar Tutor academico",
-          url: "designarTutorAcademico",
+          titulo: 'Designar Tutor Empresarial',
+          url: 'convocatorias-aprobadas',
         },
         {
-          titulo: "Generar Acta",
-          url: "generarActa",
+          titulo: 'Evaluación a estudiante',
+          url: 'solicitar/a12',
+        },
+        {
+          titulo: 'Certificado',
+          url: 'solicitar/a12_1',
+        },
+      ],
+    },
+    {
+      titulo: 'Gestion de PPP',
+      icono: 'mdi mdi-account-multiple',
+      submenu: [
+        {
+          titulo: 'Solicitudes Empresas',
+          url: 'solicitudes_empresas',
+        },
+        {
+          titulo: 'Convocatorias',
+          url: 'convocatorias',
+        },
+        {
+          titulo: 'Designar Tutor academico',
+          url: 'designarTutorAcademico',
+        },
+        {
+          titulo: 'Generar Acta',
+          url: 'generarActa',
         },
 
         {
-          titulo: "Consultas Reportes",
-          url: "consultas-reportes",
+          titulo: 'Consultas Reportes',
+          url: 'consultas-reportes',
         },
       ],
     },
     {
-      titulo: "Gestion Tutor Academico",
-      icono: "mdi mdi-account-multiple",
+      titulo: 'Gestion Tutor Academico',
+      icono: 'mdi mdi-account-multiple',
       submenu: [
         {
-          titulo: "Seguimientos",
-          url: "seguimientos",
+          titulo: 'Seguimientos',
+          url: 'seguimientos',
         },
         {
-          titulo: "Visitas",
-          url: "visitas",
+          titulo: 'Visitas',
+          url: 'visitas',
         },
         {
-          titulo: "Evaluaciones",
-          url: "evualaciones",
+          titulo: 'Evaluaciones',
+          url: 'evualaciones',
         },
       ],
     },
     {
-      titulo: "Gestion Alumnos",
-      icono: "mdi mdi-account-multiple",
+      titulo: 'Gestion Alumnos',
+      icono: 'mdi mdi-account-multiple',
       submenu: [
         {
-          titulo: "Lista Solicitudes Alumnos",
-          url: "solicitudes_estudiantes",
+          titulo: 'Lista Solicitudes Alumnos',
+          url: 'solicitudes_estudiantes',
         },
         {
-          titulo: "Convocatorias",
-          url: "convocatoriasabiertas",
+          titulo: 'Convocatorias',
+          url: 'convocatoriasabiertas',
         },
         {
-          titulo: "Solicitudes",
-          url: "convocatoriasabiertas",
+          titulo: 'Solicitudes',
+          url: 'convocatoriasabiertas',
         },
         {
-          titulo: "Asistencias",
-          url: "asistencias",
+          titulo: 'Asistencias',
+          url: 'asistencias',
         },
         {
-          titulo: "Informes",
-          url: "informe",
+          titulo: 'Informes',
+          url: 'informe',
         },
       ],
     },
     {
-      titulo: "Personal",
-      icono: "mdi mdi-account-multiple",
+      titulo: 'Personal',
+      icono: 'mdi mdi-account-multiple',
       submenu: [
         {
-          titulo: "Personas",
-          url: "personas",
+          titulo: 'Personas',
+          url: 'personas',
         },
         {
-          titulo: "Usuarios",
-          url: "usarios",
+          titulo: 'Usuarios',
+          url: 'usarios',
         },
       ],
     },
