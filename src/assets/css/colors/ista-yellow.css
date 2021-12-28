@@ -91,7 +91,7 @@ a.link:focus {
 .stylish-table tbody tr.active {
   border-left: 4px solid #ebbf1f;
 }
-::ng-deep .mat-progress-bar-fill::after {
+.mat-progress-bar-fill::after {
   background-color: #0b2b5d;
 }
 

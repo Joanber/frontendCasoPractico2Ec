@@ -47,7 +47,7 @@
                     ruc.hasError('required') && ruc.touched
                     "
                   >
-                    Ruc es requerido!
+                    Ruc de la empresa es requerido!
                   </div>
                 </div>
               </div>
@@ -69,7 +69,7 @@
                         class="text-danger"
                         *ngIf="telefono.hasError('required') && telefono.touched"
                       >
-                        Telefono es requerido!
+                        Telefono de la empresa es requerido!
                       </div>
                     </div>
                   </div>
@@ -92,7 +92,7 @@
                         class="text-danger"
                         *ngIf="direccion.hasError('required') && direccion.touched"
                       >
-                      direccion es requerido!
+                      direccion de la empresa es requerido!
                       </div>
                     </div>
                   </div>
@@ -105,7 +105,7 @@
                 <div class="form-group">
                   <label class="control-label">Representante de la Empresa*</label>
                   <ng-select
-                    [compareWith]="empresaPersonal"
+                    [compareWith]="CompararPersonalEmpresa"
                     name="empresaPersonal"
                     placeholder="Seleccione al Representante de Empresa (a)"
                     #empresaPersonal="ngModel"
@@ -113,7 +113,7 @@
                     required
                   >
                     <ng-option
-                      *ngFor="let empresaPersonal of empresaPersonales"
+                      *ngFor="let empresaPersonal of empresapersonal"
                       [value]="empresaPersonal"
                     >
                       
@@ -123,12 +123,11 @@
                       {{ empresaPersonal.persona.segundo_apellido }}
                     </ng-option>
                   </ng-select>
-
                   <div
                     class="text-danger"
                     *ngIf="empresaPersonal.hasError('required') && empresaPersonal.touched"
                   >
-                    Representante es requerido!
+                    Representante de la empresa es requerido!
                   </div>
                 </div>
               </div>
