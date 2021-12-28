@@ -57,7 +57,7 @@ export class SidebarService {
       icono: "mdi mdi-account-multiple",
       submenu: [
         {
-          titulo: "Solicitar Requerimiento de Empresas",
+          titulo: "Solicitud  de Empresa",
           url: "list-solicitud-empresa",
         },
         {
