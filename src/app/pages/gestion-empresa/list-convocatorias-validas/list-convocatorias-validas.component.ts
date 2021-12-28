@@ -3,7 +3,9 @@ import { MatPaginator, PageEvent } from "@angular/material";
 import { Carrera } from "src/app/models/carrera.model";
 import { ValidacionSAC } from "src/app/models/validaciones_sac.model";
 import { CarreraService } from "src/app/services/services.models/carrera.service";
+import { DesignacionTEService } from "src/app/services/services.models/designacion-te.service";
 import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
+import Swal from "sweetalert2";
 
 @Component({
   selector: "app-list-convocatorias-validas",
@@ -13,7 +15,7 @@ import { ValidacionesSacService } from "src/app/services/services.models/validac
 export class ListConvocatoriasValidasComponent implements OnInit {
   public totalRegistros = 0;
   public paginaActual = 0;
-  public totalPorPagina = 10;
+  public totalPorPagina = 5;
   public pageSizeOptions: number[] = [5, 10, 20, 50];
   //MATPAGINATOR
   @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
@@ -23,7 +25,8 @@ export class ListConvocatoriasValidasComponent implements OnInit {
 
   constructor(
     private validacionesSacService: ValidacionesSacService,
-    private carreraService: CarreraService
+    private carreraService: CarreraService,
+    private designacionTEService: DesignacionTEService
   ) {}
 
   ngOnInit() {
@@ -86,5 +89,42 @@ export class ListConvocatoriasValidasComponent implements OnInit {
       this.totalPorPagina.toString(),
       this.carreraFiltro
     );
+  }
+
+  eliminarDesignacionTE(id: number) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "¿Estas  seguro?",
+        text: `¿Seguro que quieres eliminar esta Designacion de Tutor Empresarial ?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.value) {
+          this.designacionTEService.eliminar(id).subscribe((resp) => {
+            this.getValidacionesSacPage(
+              this.paginaActual.toString(),
+              this.totalPorPagina.toString(),
+              this.carreraFiltro
+            );
+            swalWithBootstrapButtons.fire(
+              "Eliminada!",
+              `Designacion de Tutor Empresarial eliminada correctamente!`,
+              "success"
+            );
+          });
+        }
+      });
   }
 }
