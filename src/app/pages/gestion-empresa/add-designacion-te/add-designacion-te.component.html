@@ -1,0 +1,143 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #MyForm="ngForm" (submit)="guardarDesignacionTE(MyForm)">
+          <div class="form-body">
+            <div class="card-titulo" style="text-align: center">
+              ANEXO 5:Designacion Tutor Empresarial
+            </div>
+            <br />
+            <br />
+
+            <div class="card-encabezado" style="text-align: right">
+              <br />
+              Cuenca, {{ today | date: "dd" }} de
+              {{ today | date: "MMMM ":"-0500" }} del
+              {{ today | date: "yyyy" }}
+            </div>
+            <div class="card-text">
+              {{
+                validacionSac.convocatoria?.solicitudEmpresa?.responsablePPP
+                  ?.docente?.abreviatura_titulo
+              }}
+              <br />
+              {{
+                validacionSac.convocatoria?.solicitudEmpresa?.responsablePPP
+                  ?.docente?.persona?.primer_nombre
+              }}
+              {{
+                validacionSac.convocatoria?.solicitudEmpresa?.responsablePPP
+                  ?.docente?.persona?.segundo_nombre
+              }}
+              {{
+                validacionSac.convocatoria?.solicitudEmpresa?.responsablePPP
+                  ?.docente?.persona?.primer_apellido
+              }}
+              {{
+                validacionSac.convocatoria?.solicitudEmpresa?.responsablePPP
+                  ?.docente?.persona?.segundo_apellido
+              }}
+              <br />
+              <br />
+              RESPONSABLE DE PRACTICAS PREPROFESIONALES DE LA CARRERA
+              {{
+                validacionSac.convocatoria?.solicitudEmpresa?.responsablePPP
+                  ?.carrera?.nombre
+              }}
+              <br />
+              DEL INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY
+              <br />
+              Su despacho.-
+              <br />
+              <br />
+              De mi consideracion:
+              <br />
+
+              <strong
+                >Luego de expresarle un atento saludo me permito informar el
+                Sr./Ing./Dr.
+              </strong>
+              <ng-select
+                [compareWith]="compararEmpresaPersonal"
+                name="empresaPersonal"
+                placeholder="Seleccione al personal de la empresa"
+                #empresaPersonal="ngModel"
+                [(ngModel)]="designacionte.empresaPersonal"
+                (change)="capturarDatos()"
+                required
+              >
+                <ng-option
+                  *ngFor="let empresaPersonal of empresasPersonales"
+                  [value]="empresaPersonal"
+                >
+                  {{ empresaPersonal.persona?.primer_nombre }}
+                  {{ empresaPersonal.persona?.segundo_nombre }}
+                  {{ empresaPersonal.persona?.primer_apellido }}
+                  {{ empresaPersonal.persona?.segundo_apellido }}
+                </ng-option>
+              </ng-select>
+              <div
+                class="text-danger"
+                *ngIf="
+                  empresaPersonal.hasError('required') &&
+                  empresaPersonal.touched
+                "
+              >
+                Personal Empresa es requerido!
+              </div>
+              con <br />
+              cedula de identidad numero <strong>{{ identificacion }} </strong>
+              {{ empresaPersonal.persona?.identificacion }} ha sido designado
+              como TUTOR EMPRESARIAL del estudiante
+              {{ alumno?.persona?.primer_apellido }}
+              {{ alumno?.persona?.segundo_apellido }}
+              {{ alumno?.persona?.primer_nombre }}
+              {{ alumno?.persona?.segundo_nombre }}
+              <br />
+              <br />
+              El Sr./Ing./Dr. <strong>{{ nombres }} </strong> se compromete a
+              colaborar y guiar en las actividades que se <br />
+              encomienden al estudiante procurando siempre un ambiente laboral
+              óptimo para la ejecución <br />
+              de las prácticas pre profesionales.
+              <br />
+              <br />
+              <br />
+              Sin más que informar, me despido augurando éxito en las funciones
+              que realiza.
+
+              <div class="card-pie">
+                Atentamente,
+                <br />
+                <br />
+                <br />
+                ______________________ <br />
+                {{
+                  validacionSac.convocatoria?.solicitudEmpresa?.empresa
+                    ?.empresaPersonal?.cargo
+                }}
+                de la Empresa
+              </div>
+            </div>
+
+            <div class="form-actions" style="text-align: right">
+              <button type="submit" class="btn btn-primary mr-2">
+                Guardar
+              </button>
+              <button
+                type="button"
+                class="btn btn-inverse"
+                (click)="irListaSolicitudes()"
+              >
+                Cancelar
+              </button>
+
+              <button type="button" class="btn btn-danger">Generar PDF</button>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

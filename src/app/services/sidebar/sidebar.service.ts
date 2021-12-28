@@ -48,7 +48,7 @@ export class SidebarService {
       submenu: [
         { titulo: "Empresas", url: "empresas" },
         { titulo: "Docentes", url: "docentes" },
-        { titulo: "ResponsablePPP", url: "responsablesppp" },
+        { titulo: "ResponsablesPPP", url: "responsablesppp" },
         { titulo: "Carreras", url: "carreras" },
       ],
     },
@@ -65,8 +65,8 @@ export class SidebarService {
           url: "solicitar/a4",
         },
         {
-          titulo: "Designar tutor empresarial",
-          url: "solicitar/a5",
+          titulo: "Designar Tutor Empresarial",
+          url: "convocatorias-aprobadas",
         },
         {
           titulo: "Evaluación a estudiante",
@@ -163,7 +163,5 @@ export class SidebarService {
         },
       ],
     },
-
-
   ];
 }

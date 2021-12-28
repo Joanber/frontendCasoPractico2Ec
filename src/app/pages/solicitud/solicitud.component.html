@@ -29,7 +29,7 @@
                 }}
   
             <br> RESPONSABLE DE PRÁCTICAS PRE PROFESIONALES DE LA CARRERA DE
-            {{convocatoria.carrera.nombre }}
+            {{convocatoria.carrera.nombre}}
             <br> INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
             <br> Su Despacho. -
 
@@ -37,15 +37,15 @@
 
                 <br />
                 <br /> De mi consideración: Por medio de la presente, Yo
-                {{this.user.persona.primer_nombre}}
-                {{this.user.persona.segundo_nombre}}
-                {{this.user.persona.primer_apellido}}
-                {{this.user.persona.segundo_apellido}}
+                {{this.alumno.persona.primer_nombre}}
+                {{this.alumno.persona.segundo_nombre}}
+                {{this.alumno.persona.primer_apellido}}
+                {{this.alumno.persona.segundo_apellido}}
                 con número de cédula 
-                {{this.user.username}}
+                {{this.alumno.persona.identificacion}}
                 estudiante del
                 {{convocatoria.ciclo }}
-                ciclo paralelo
+                ciclo paralelo "{{this.alumno.paralelo}}"
 
                 del periodo académico Abril 2020 - Octubre 2020 de la carrera de
                 {{convocatoria.carrera.nombre }}
@@ -71,21 +71,21 @@
                 <br>
                 <br> ______________________ 
                 <br> Nombre: 
-                {{this.user.persona.primer_nombre}}
-                {{this.user.persona.segundo_nombre}}
-                {{this.user.persona.primer_apellido}}
-                {{this.user.persona.segundo_apellido}}
+                {{this.alumno.persona.primer_nombre}}
+                {{this.alumno.persona.segundo_nombre}}
+                {{this.alumno.persona.primer_apellido}}
+                {{this.alumno.persona.segundo_apellido}}
                 <br> Telefono:
-                {{this.user.persona.celular}}
+                {{this.alumno.persona.celular}}
                 
                 <br> Correo:
-                {{this.user.persona.email}}
+                {{this.alumno.persona.email}}
             </div>
         </div>
     </div>
 </form>
 <div class="card-botones" style="text-align: right;">
 
-    <button type="button" class="btn btn-primary" (click)="llamarUsuario()">Crear Solicitud </button>
+    <button type="button" class="btn btn-primary" (click)="llamarUsuario()">Guardar Solicitud </button>
     <button type="button" class="btn btn-inverse mr-2">Cancelar </button>
 </div>

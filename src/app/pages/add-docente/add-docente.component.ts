@@ -87,7 +87,7 @@ export class AddDocenteComponent implements OnInit {
       this.docente = docente;
     });
   }
-  compararPersona(d1: Docente, d2: Docente) {
+  compararPersona(d1: Persona, d2: Persona) {
     if (d1 === undefined && d2 === undefined) {
       return true;
     }

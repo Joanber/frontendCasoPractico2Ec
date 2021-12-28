@@ -67,35 +67,6 @@
             </div>
              <!--/row-->
 
-            <!--/row-->
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label class="control-label">Empresa*</label>
-                  <ng-select
-                    [compareWith]="compararEmpresa()"
-                    name="empresa"
-                    placeholder="Seleccione la Empresa"
-                    #empresa="ngModel"
-                    [(ngModel)]="responsableppp.empresa"
-                    required
-                  >
-                    <ng-option
-                      *ngFor="let empresa  of empresas"
-                      [value]="empresa"
-                    >
-                      {{ empresa.nombre }}
-                    </ng-option>
-                  </ng-select>
-
-                  <div class="text-danger" *ngIf="empresa.hasError('required') && empresa.touched" >
-                    Empresa es requerido!
-                  </div>
-                </div>
-              </div>
-            </div>
-             <!--/row-->
-
 
             <hr />
             <div class="form-actions">

@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,8 +7,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./informe.component.css']
 })
 export class InformeComponent implements OnInit {
-
-  constructor() { }
+ //Variable fecha
+ today = new Date();
+ jstoday = '';
+  constructor() { 
+    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
+  }
 
   ngOnInit() {
   }
