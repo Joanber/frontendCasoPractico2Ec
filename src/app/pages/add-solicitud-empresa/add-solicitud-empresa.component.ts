@@ -8,6 +8,7 @@ import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-add-solicitud-empresa',
+  providers: [DatePipe],
   templateUrl: './add-solicitud-empresa.component.html',
   styleUrls: ['./add-solicitud-empresa.component.css']
 })
