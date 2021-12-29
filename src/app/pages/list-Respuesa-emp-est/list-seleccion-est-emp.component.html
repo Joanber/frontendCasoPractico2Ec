@@ -43,7 +43,7 @@
                   <th>Convocatoria</th>
                   <th>Empresa</th>
                   <th>Alumnos</th>
-                  <th>Acciones</th>
+                  <th>Acciones A6</th>
                 </tr>
               </thead>
 
@@ -64,9 +64,8 @@
                         <tr>
                           <th>C.I</th>
                           <th>Apellidos y Nombres</th>
-                          <th>Nombre Academico</th>
                           <th>Tutor Academico</th>
-                          <th>Accion</th>
+                          <th>Accion designacion</th>
                         </tr>
                       </thead>
                       <tbody>
@@ -78,7 +77,7 @@
                             {{ alumno.persona.primer_nombre }}
                             {{ alumno.persona.segundo_nombre }}
                           </td>
-                          <td>Nombre Tutor</td>
+
                           <td *ngIf="!alumno.ta">Sin Asignar</td>
                           <td *ngIf="alumno.ta">Designado</td>
                           <td class="text-nowrap text-center">
@@ -115,14 +114,14 @@
                   <td>
                     <a [routerLink]="[
                                 '/dashboard',
-                                'actualizar-designacion-te',
+                                'seleccion-estudiantes-convocatorias',
                                 validacionesSac.id
                               ]" data-toggle="tooltip" data-original-title="Editar Tutor Empresarial" class="cursor"
                       title="Editar Tutor Empresarial">
                       <i class="fa fa-pencil text-inverse m-r-10"> </i>
                     </a>
                     <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
-                      title="Eliminar Tutor Empresarial" (click)="eliminarDesignacionTA(validacionesSac.id)">
+                      title="Eliminar Respuesta Empresa" (click)="eliminarRespuestaEmpresa(validacionesSac.id)">
                       <i class="fa fa-close text-danger m-r-10"></i>
                     </a>
                     <a data-toggle="tooltip" data-original-title="Ver" class="cursor" title="Ver">

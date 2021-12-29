@@ -24,9 +24,16 @@
 
               <br>
               <div class="col-3">
-                <ng-select name="docente" placeholder="Seleccione el docente" #docente="ngModel"
-                  [(ngModel)]="designacionta.docente" required>
-                  <ng-option *ngFor="let docente of docentes" [value]="docente">
+                <ng-select
+                [compareWith]="compararDocente"
+                name="docente"
+                placeholder="Seleccione el docente"
+                #docente="ngModel"
+                [(ngModel)]="designacionta.docente"
+                (change)="capturarDatos()"
+                  required>
+                  <ng-option
+                  *ngFor="let docente of docentes" [value]="docente">
                     {{ docente.persona.primer_nombre }}
                     {{ docente.persona.segundo_nombre }}
                     {{ docente.persona.primer_apellido }}

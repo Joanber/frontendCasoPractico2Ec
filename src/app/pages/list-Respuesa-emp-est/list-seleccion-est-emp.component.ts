@@ -98,8 +98,7 @@ export class ListSeleccionEstEmpComponent implements OnInit {
 
 
 
-
-  eliminarDesignacionTA(vadacion: ValidacionSAC) {
+  eliminarDesignacionTA(id: number) {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: "btn btn-success",
@@ -111,7 +110,7 @@ export class ListSeleccionEstEmpComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar esta Seleccion de la empresa ${vadacion.convocatoria.solicitudEmpresa.empresa.nombre} ?`,
+        text: `¿Seguro que quieres eliminar esta Designacion de Tutor Academico ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -120,22 +119,56 @@ export class ListSeleccionEstEmpComponent implements OnInit {
       })
       .then((result) => {
         if (result.value) {
-          this.validacionesSacService
-            .eliminar(vadacion.id)
-            .subscribe((resp) => {
-              this.getValidacionesSacPage(
-                this.paginaActual.toString(),
-                this.totalPorPagina.toString(),
-               this.carreraFiltro
-              );
-              swalWithBootstrapButtons.fire(
-                "Eliminada!",
-                `Respuesta empresa ${vadacion.convocatoria.solicitudEmpresa.empresa.nombre}  eliminada correctamente!`,
-                "success"
-              );
-            });
+          this.designacionTAService.eliminar(id).subscribe((resp) => {
+            this.getValidacionesSacPage(
+              this.paginaActual.toString(),
+              this.totalPorPagina.toString(),
+              this.carreraFiltro
+            );
+            swalWithBootstrapButtons.fire(
+              "Eliminada!",
+              `Designacion de Tutor Empresarial eliminada correctamente!`,
+              "success"
+            );
+          });
         }
       });
   }
 
+  eliminarRespuestaEmpresa(id: number) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "btn btn-success",
+        cancelButton: "btn btn-danger",
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: "¿Estas  seguro?",
+        text: `¿Seguro que quieres eliminar esta Designacion de Tutor Academico ?`,
+        icon: "warning",
+        showCancelButton: true,
+        confirmButtonText: "Si, eliminar!",
+        cancelButtonText: "No, cancelar!",
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.value) {
+          this.validacionesSacService.eliminar(id).subscribe((resp) => {
+            this.getValidacionesSacPage(
+              this.paginaActual.toString(),
+              this.totalPorPagina.toString(),
+              this.carreraFiltro
+            );
+            swalWithBootstrapButtons.fire(
+              "Eliminada!",
+              `Designacion de Tutor Empresarial eliminada correctamente!`,
+              "success"
+            );
+          });
+        }
+      });
+  }
 }

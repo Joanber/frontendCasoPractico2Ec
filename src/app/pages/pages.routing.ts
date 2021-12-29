@@ -175,7 +175,7 @@ const routes: Routes = [
         data: { titulo: "Designar Tutor Academico" },
       },
       {
-        path: 'actualizar-designacion-ta/:idd/:idc',
+        path: 'actualizar-designacion-ta/:idd',
         component: DesignarTutorAcademicoComponent,
         data: { titulo: 'Actualizar Tutor Academico' },
       },
