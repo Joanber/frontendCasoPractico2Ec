@@ -20,4 +20,6 @@ export class AlumnoService {
   getAlumnoByPersonaId(id: number): Observable<Alumno> {
     return this.httpClient.get<Alumno>(`${url}/persona/${id}`);
   }
+  
+
 }

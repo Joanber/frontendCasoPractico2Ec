@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-12">
+  <div class="col-12" >
     <div class="card">
       <div class="card-body">
         <form #MyForm="ngForm" (submit)="guardarConvocatoria(MyForm)">
@@ -11,7 +11,7 @@
               <br />
               <br />
 
-              <div class="card-encabezado" style="text-align: right">
+              <div class="card-encabezado" style="text-align: right" id="todo-Cuerpo">
                 CONVOCATORIA -
 
                 {{ this.solicitudEmpresa.responsablePPP.carrera.abreviatura }}
@@ -172,7 +172,7 @@
                   Cancelar
                 </button>
 
-                <button type="button" class="btn btn-danger">
+                <button type="button" class="btn btn-danger" (click)="exportPdf()">
                   Generar PDF
                 </button>
               </div>
