@@ -168,14 +168,14 @@ const routes: Routes = [
         data: { titulo: 'Respuestas  a Empresas' },
       },
       {
-        path: 'designar-tutor-academico/:id',
+        path: 'nueva-designacion-ta/:id/:ida',
         component: DesignarTutorAcademicoComponent,
         data: { titulo: 'Designar Tutor Academico' },
       },
       {
-        path: 'designar-tutor-academico/:idc',
+        path: 'actualizar-designacion-ta/:idd/:idc',
         component: DesignarTutorAcademicoComponent,
-        data: { titulo: 'Designar Tutor Academico' },
+        data: { titulo: 'Actualizar Tutor Academico' },
       },
       {
         path: 'generarActa',
