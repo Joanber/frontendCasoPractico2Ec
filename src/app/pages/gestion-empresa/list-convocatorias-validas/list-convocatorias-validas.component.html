@@ -33,6 +33,12 @@
             </div>
           </div>
           <br />
+          <div
+            class="alert alert-primary text-center"
+            *ngIf="validacionesSac.length == 0"
+          >
+            NO HAY DATOS DISPONIBLES
+          </div>
 
           <div class="table-scroll">
             <table
@@ -42,6 +48,7 @@
                 table-responsive-sm table-sm
                 dataTable
               "
+              *ngIf="validacionesSac.length > 0"
             >
               <thead>
                 <tr>
@@ -117,6 +124,7 @@
                               data-original-title="Borrar"
                               class="cursor"
                               title="Eliminar Tutor Empresarial"
+                              (click)="eliminarDesignacionTE(alumno.id)"
                             >
                               <i class="fa fa-close text-danger m-r-10"></i>
                             </a>

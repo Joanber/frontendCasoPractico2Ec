@@ -44,7 +44,24 @@
                 <p class="card-text">
                   Fecha Maxima:{{ convocatoria.fecha_max_recib_solic }}
                 </p>
-                <a href="#" class="btn btn-info">Ver</a>
+                <p class="card-text">
+                  Estudiantes requeridos:{{convocatoria.solicitudEmpresa.numero_alumnos}}
+                </p>
+                <p class="card-text">
+                  Responsable PPP:
+                                  {{convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo}}
+                                  {{convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}}
+                                  {{convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}
+                </p>
+                
+              
+                  
+                  
+              
+                  <br>
+                  <br>
+        
+                </div>
               </div>
             </div>
             <!-- Card -->
@@ -53,6 +70,6 @@
       </div>
     </div>
   </div>
-</div>
+
 <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions" [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
 </mat-paginator>

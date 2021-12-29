@@ -8,7 +8,6 @@
                             <!-- appearance="outline" -->
                             <mat-form-field class="col-md-12">
                                 <mat-label>Nombre convenio</mat-label>
-                                <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
                                 <mat-error *ngIf="formValues.nombre.errors?.pattern">
                                     Ingrese solo valores alfabéticos
                                 </mat-error>
@@ -27,11 +26,12 @@
                                 </mat-error>
                             </mat-form-field> -->
                         </section>
+
                         <div class="row mt-4">
                             <mat-form-field class="col-md-6">
                                 <mat-label>Carrera</mat-label>
                                 <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
-                                    <mat-option  *ngFor="let carrera of carreras" [value]="carrera">
+                                    <mat-option *ngFor="let carrera of carreras" [value]="carrera">
                                         {{carrera.nombre}}
                                     </mat-option>
                                 </mat-select>
@@ -40,8 +40,8 @@
                             </mat-form-field>
                             <mat-form-field class="col-md-6">
                                 <mat-label>Empresa</mat-label>
-                                <mat-select  #empresa disableRipple [errorStateMatcher]="matcher"  formControlName="empresa" required>
-                                    <mat-option *ngFor="let empresa of empresas"  [value]="empresa">
+                                <mat-select #empresa disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
+                                    <mat-option *ngFor="let empresa of empresas" [value]="empresa">
                                         {{empresa.nombre}}
                                     </mat-option>
                                 </mat-select>

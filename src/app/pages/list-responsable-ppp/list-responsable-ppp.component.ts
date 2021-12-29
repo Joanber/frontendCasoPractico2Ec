@@ -113,7 +113,7 @@ export class ListResponsablePPPComponent implements OnInit {
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${responsablePPPP.docente.persona.primer_nombre} eliminada correctamente!`,
+              `Responsable de practicas ${responsablePPPP.docente.persona.primer_nombre} eliminada correctamente!`,
               "success"
             );
           });

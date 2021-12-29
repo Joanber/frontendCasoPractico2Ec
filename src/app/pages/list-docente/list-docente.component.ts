@@ -107,7 +107,7 @@ export class ListDocenteComponent implements OnInit {
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${docente.persona.primer_nombre} eliminada correctamente!`,
+              `Carrera ${docente.persona.primer_nombre} eliminado (a) correctamente!`,
               "success"
             );
           });

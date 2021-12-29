@@ -93,5 +93,6 @@ export class AddDocenteComponent implements OnInit {
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
+  
 
 }
