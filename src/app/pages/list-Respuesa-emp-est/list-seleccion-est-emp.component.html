@@ -1,0 +1,98 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-md-3">
+            Buscar por fecha
+            <br>
+            <input aria-placeholder="Seleccioanr fecha" [matDatepicker]="myDatepicker" [(ngModel)]="busqueda"
+              class="form-control" style="width: min-content" name="fechaF" required #fechaF="ngModel" />
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
+          </div>
+
+          <br>
+          <br><br>
+          <div class="col-md-1">
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="filtarConvocatoriasPorFechaCarrera()">
+              <i class="mdi mdi-magnify"></i>
+              Buscar
+            </button>
+          </div>
+          <div class="col-md-2 text-right"><br>
+            <button class="btn btn-sm " (click)="cargarConvocatoriasDefault()">
+              Mostrar Todas
+            </button>
+          </div>
+        </div>
+        <div>
+          <button routerLink="/dashboard/solicitudes_empresas" class="btn btn-primary btn-sm">
+            <i class="mdi mdi-plus"></i>
+            Nueva Convocatoria
+          </button>
+          <br>
+          <br>
+
+        </div>
+        <div class="table-scroll">
+          <table class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                ">
+            <thead>
+              <tr>
+                <th>Fecha Respuesta </th>
+                <th>Empresa </th>
+                <th >Estudiantes</th>
+                <th>Carrera</th>
+
+                <th>Acciones</th>
+              </tr>
+            </thead>
+
+            <tbody class="animated fadeIn fast">
+              <tr *ngFor="let validar of validaciones">
+                <td>{{validar.fecha_emision}}</td>
+                <td>{{validar.convocatoria.solicitudEmpresa.empresa.nombre}}</td>
+                <table >
+                  <tbody>
+                  <th *ngFor="let alum of validar.alumnos">
+                    <tr>{{alum.persona.primer_nombre}} {{alum.persona.segundo_nombre}} {{alum.persona.primer_apellido}} {{alum.persona.segundo_apellido}}</tr>
+                  </th>
+                  </tbody>
+                </table>
+                <td>{{ validar.convocatoria.carrera.abreviatura }}</td>
+
+
+                <td class="text-nowrap text-center">
+
+                  <a [routerLink]="[
+                      '/dashboard',
+                      'actualizar-convocatoria',
+                      validar.id
+                    ]" data-toggle="tooltip" data-original-title="Editar" class="cursor">
+                    <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                  </a>
+                  <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
+                    (click)="eliminarRespuesta(validar)">
+                    <i class="fa fa-close text-danger"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <button type="button" class="btn btn-danger" (click)="prueba()">Prueba</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
+  [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+</mat-paginator>

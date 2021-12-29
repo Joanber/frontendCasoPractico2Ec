@@ -32,7 +32,7 @@ import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
 import { GenararActaComponent } from './add-genarar-acta/genarar-acta.component';
 import { AddPersonaComponent } from './add-persona/add-persona.component';
 import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsable-ppp.component';
-import { SeleccionarAlumnosComponent } from './add-seleccionar-alumnos/seleccionar-alumnos.component';
+
 import { AddSolicitudEmpresaComponent } from './add-solicitud-empresa/add-solicitud-empresa.component';
 import { AddValidacionSeleccionComponent } from './add-validacion-seleccion/add-validacion-seleccion.component';
 import { AnexosComponent } from './anexos/anexos.component';
@@ -65,6 +65,8 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { ListConvocatoriasValidasComponent } from './gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component';
 import { AddDesignacionTeComponent } from './gestion-empresa/add-designacion-te/add-designacion-te.component';
 import { ListInfoProcesosComponent } from './list-infoprocesos/list-infoprocesos.component';
+import { SeleccionarAlumnosComponent } from './list-solicitudes-alumnos-empresa/seleccionar-alumnos.component';
+import { ListSeleccionEstEmpComponent } from './list-Respuesa-emp-est/list-seleccion-est-emp.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -109,6 +111,7 @@ import { ListInfoProcesosComponent } from './list-infoprocesos/list-infoprocesos
     AddValidacionSeleccionComponent,
     ListConvocatoriasValidasComponent,
     AddDesignacionTeComponent,
+    ListSeleccionEstEmpComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
