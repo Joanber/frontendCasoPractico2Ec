@@ -7,9 +7,9 @@ import { NgForm } from "@angular/forms";
 import Swal from "sweetalert2";
 import { AlumnoService } from "src/app/services/services.models/alumno.service";
 import { DesignacionTA } from "src/app/models/designacionta.model";
-import { DesignacionTAService } from "src/app/services/services.models/designacion-ta.service";
 import { Docente } from "src/app/models/docente.model";
 import { DocenteService } from "src/app/services/services.models/docente.service";
+import { DesignacionTaService } from "src/app/services/services.models/designacion-ta.service";
 
 @Component({
   selector: "app-designar-tutor-academico",
@@ -33,7 +33,7 @@ export class DesignarTutorAcademicoComponent implements OnInit {
   constructor(
     private validacionesSacService: ValidacionesSacService,
     private docenteService: DocenteService,
-    private designacionTAService: DesignacionTAService,
+    private designacionTAService: DesignacionTaService,
     private alumnoService: AlumnoService,
     private activatedRoute: ActivatedRoute,
     private router: Router
@@ -95,7 +95,6 @@ export class DesignarTutorAcademicoComponent implements OnInit {
   }
   private cargarDocentes() {
     this.docenteService.getDocentes().subscribe((docente) => {
-
       this.docente = docente;
     });
   }
