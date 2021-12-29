@@ -2,11 +2,17 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-           <div class="row">
+        <div class="row">
           <div class="col-md-3">
-            
+            Buscar por fecha
+            <br>
+            <input aria-placeholder="Seleccioanr fecha" [matDatepicker]="myDatepicker" [(ngModel)]="fecha"
+              class="form-control" style="width: min-content" name="fechaF" required #fechaF="ngModel" />
+            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
           </div>
           <div class="col-md-5">
+            Buscar por carrera<br>
             <select class="form-control" [(ngModel)]="carreraFiltro">
               <option [ngValue]="undefined">CARRERA (TODAS)</option>
               <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
@@ -14,16 +20,19 @@
               </option>
             </select>
           </div>
+          <br>
+          <br><br>
           <div class="col-md-1">
-            <button class="btn btn-primary" (click)="cargarConvocatoriasDefault()">
+            <br>
+            <button class="btn btn-primary btn-sm" (click)="filtarConvocatoriasPorFechaCarrera()">
               <i class="mdi mdi-magnify"></i>
               Buscar
             </button>
           </div>
-          <div class="col-md-3 text-right">
-            <button class="btn btn-danger " (click)="cargarConvocatoriasDefault()">
+          <div class="col-md-2 text-right"><br>
+            <button class="btn btn-sm " (click)="cargarConvocatoriasDefault()">
               Mostrar Todas
-            </button> 
+            </button>
           </div>
         </div>
         <br>

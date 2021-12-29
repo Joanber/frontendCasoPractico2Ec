@@ -6,12 +6,14 @@ import { ActivatedRoute } from "@angular/router";
 import { Convocatoria } from "src/app/models/convocatoria.model";
 import { SolicitudAlumno } from "src/app/models/solicitudAlumno.model";
 import { SolicitudEmpresa } from "src/app/models/solicitudEmpresa.model";
+import { ValidacionSAC } from "src/app/models/validaciones_sac.model";
 import { ConvocatoriasService } from "src/app/services/services.models/convocatorias.service";
 import { EmpresaPersonalService } from "src/app/services/services.models/empresa-personal.service";
 import { EmpresaService } from "src/app/services/services.models/empresa.service";
 import { PersonaService } from "src/app/services/services.models/persona.service";
 import { SolicitudEmpresaService } from "src/app/services/services.models/solicitud-empresa.service";
 import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
+import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
 
 @Component({
   selector: 'app-add-validacion-seleccion',
@@ -31,6 +33,14 @@ export class AddValidacionSeleccionComponent implements OnInit {
 
   public alumnosXconvocatoria: SolicitudAlumno[] = [];
 
+  public validacionesSac: ValidacionSAC [] = [];
+
+  //variable para guardar los alumnos seleccionados
+
+  alumnosSelect: any;
+
+  
+
   //Variable fecha
   today = new Date();
   jstoday = "";
@@ -43,7 +53,8 @@ export class AddValidacionSeleccionComponent implements OnInit {
     private solicitudEmpresaService: SolicitudEmpresaService,
     private empresaService: EmpresaService,
     private empresaPersonalService: EmpresaPersonalService,
-    private personaService: PersonaService
+    private personaService: PersonaService,
+    private validacionesSacA: ValidacionesSacService,
   ) {
 
   }
@@ -58,7 +69,19 @@ export class AddValidacionSeleccionComponent implements OnInit {
 
 
 
-  guardarSeleccionEstudiantes() {}
+  guardarSeleccionEstudiantes(id) {
+
+    this.validacionesSacA.getValidacionSacByAlumnoId(id).subscribe(
+      // traer los alumnos seleccionados por id
+      (data)=> {
+        this.alumnosSelect = data;
+        // this.alumnosSelect.array.forEach(alumnoseleccionado => {
+          
+        // }); // Recorrer los alumnos seleccionados
+        
+      }
+    )
+  }
 
   cargarConvocatoria(id: number) {
     if (!id) {

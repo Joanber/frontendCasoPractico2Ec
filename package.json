@@ -24,6 +24,8 @@
     "@angular/router": "~8.2.14",
     "@ng-select/ng-select": "^3.7.3",
     "hammerjs": "^2.0.8",
+    "jspdf": "^2.5.0",
+    "jspdf-autotable": "^3.5.23",
     "moment": "^2.29.1",
     "primeicons": "^5.0.0",
     "rxjs": "~6.4.0",
