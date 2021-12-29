@@ -1,12 +1,23 @@
 <mat-card class="mb-3">
-    <div class=" row d-flex justify-content-between  ">
-        <div class="col-md-6 mt-1">
-            <button mat-raised-button class="mt-1" [routerLink]="['./registro-convenio']" color='primary'>
+    <div class=" row align-items-center sd-flex justify-content-between  ">
+        <div class="col-md-8">
+            <button mat-raised-button [routerLink]="['./registro-convenio']" color='primary'>
                 <i class="mdi mdi-plus"></i><strong>Nuevo convenio</strong>
             </button>
         </div>
-        <div class="col-md-6">
-            <div *ngIf="convenios.length>0 || search">
+        <div class="col-md-4">
+            <div *ngIf="this.dataSource.data.length>0 || value">
+                <mat-form-field  floatLabel="never">
+                    <input matInput type="text" #inputSearch  placeholder="Buscar" [(ngModel)]="value">
+                    <button mat-button *ngIf="value" (click)="resetSearch()" matSuffix mat-icon-button aria-label="limpiar" (click)="value=''">
+                        <mat-icon>close</mat-icon>
+                    </button>
+                    <button  class="mx-auto" mat-raised-button matSuffix (click)="searchByCarrera(inputSearch.value)" color="primary" type="button">
+                        <mat-icon aria-hidden="false" aria-label="Buscar" >search</mat-icon>
+                    </button>
+                </mat-form-field>
+            </div>
+            <!-- <div *ngIf="convenios.length>0 || search">
                 <mat-form-field floatLabel="never">
                     <input type="text" [formControl]='searchInput' placeholder="Buscar" #inputSearch matInput>
                     <span matSuffix *ngIf="search==false; else reset">
@@ -23,25 +34,22 @@
                         </span>
                     </ng-template>
                 </mat-form-field>
-            </div>
-        </div>
-        <div class="mt-3 col-md-12 mr-3 text-center" *ngIf="convenios.length===0 && !search ">
-            <mat-icon color="accent" aria-hidden="false" aria-label="Example home icon">info</mat-icon>
-            Aun no hay convenios registrados
+            </div> -->
         </div>
     </div>
 </mat-card>
 
-<mat-card class="mat-elevation-z8" [hidden]='false===convenios.length>0 && !search'>
+<mat-card class="mat-elevation-z8">
+    <!-- [hidden]='false===convenios.length>0 && !search' -->
+    <mat-form-field [hidden]='emptyList'>
+        <mat-label>Filtrar</mat-label>
+        <input matInput #inputFilter (keyup)="filterByCarrera(inputFilter.value)" placeholder="Ex. Tec" #input>
+    </mat-form-field>
     <mat-card-subtitle>
-        <mat-form-field [hidden]='emptyList'>
-            <mat-label>Filtrar</mat-label>
-            <input matInput #inputFilter (keyup)="filterByCarrera(inputFilter.value)" placeholder="Ex. Tec" #input>
-        </mat-form-field>
     </mat-card-subtitle>
     <mat-card-content>
-        <div class="example-container">
-            <div class="example-table-container">
+        <div class="example-container" >
+            <div class="example-table-container"*ngIf="dataSource.data.length>0" >
                 <table mat-table [dataSource]="dataSource" matSort (matSortChange)="SortChange($event)">
                     <ng-container matColumnDef="id">
                         <th mat-header-cell mat-sort-header sortActionDescription="Sort by id" *matHeaderCellDef>Id</th>
@@ -85,20 +93,10 @@
                     <tr mat-footer-row *matFooterRowDef="['disclaimer']" [ngClass]="{'hide':!(dataSource.filteredData!=null && dataSource.filteredData.length==0 && search==false)}" class="example-second-footer-row">
                     </tr>
                 </table>
+     <mat-paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)" showFirstLastButtons aria-label="Select page">
+            </mat-paginator>
             </div>
 
-            <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)" showFirstLastButtons aria-label="Select page">
-            </mat-paginator>
         </div>
     </mat-card-content>
 </mat-card>
-
-<div class="row" *ngIf="loaderService.isLoading | async">
-    <div class="col-12">
-        <div class="alert alert-info text-center" role="alert">
-            <h4 class="alert-heading">Cargando</h4>
-            <i class="fa fa-spin fa-refresh fa-2x"></i>
-            <p class="mb-0">Por favor espere...</p>
-        </div>
-    </div>
-</div>

@@ -19,17 +19,16 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   searchInput = new FormControl('');
   displayedColumns: string[] = ['id', 'nombre', 'empresa', 'carrera', 'acciones'];
-
+  value: any;
   public pageSizeOptions: number[] = [10, 20, 50, 100];
 
-  dataSource: MatTableDataSource<Convenio>;
-
+  dataSource = new MatTableDataSource<Convenio>();
   convenios: Convenio[] = [];
 
   totalElements = 0;
   currentPage = 0;
   pageSize = 10;
-  loading = true;
+  // loading = true;
   sortBy = '';
   message = '';
   search = false;
@@ -40,7 +39,7 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource();
+    // this.dataSource = new MatTableDataSource<>();
     this.retriveConveniosByPage(this.currentPage, this.pageSize, this.sortBy);
   }
 
@@ -83,15 +82,16 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   retriveConveniosByPage(page: number, size: number, sortBy: string) {
-    this.loading = true;
     this.convenioService.retrieveConveniosByPage(page.toString(), size.toString(), sortBy).subscribe({
       next: (convenios) => {
+        if (convenios.content.length === 0) {
+          this.dataSource = new MatTableDataSource();
+        }
         this.convenios = convenios.content;
-        this.emptyList = convenios.content.length === 0;
         this.totalElements = convenios.totalElements;
       }, complete: () => {
         this.initPaginator();
-        this.loading = false;
+        console.warn(this.dataSource.data.length < 1 );
       }, error: (err) => console.log(err)
     });
   }
@@ -152,8 +152,8 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   resetSearch() {
-    this.search = false;
-    this.searchInput.reset();
+    // this.search = false;
+    // this.searchInput.reset();
     return this.retriveConveniosByPage(
       this.currentPage,
       this.pageSize,

@@ -8,6 +8,8 @@
                             <!-- appearance="outline" -->
                             <mat-form-field class="col-md-12">
                                 <mat-label>Nombre convenio</mat-label>
+                                <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
+
                                 <mat-error *ngIf="formValues.nombre.errors?.pattern">
                                     Ingrese solo valores alfabéticos
                                 </mat-error>

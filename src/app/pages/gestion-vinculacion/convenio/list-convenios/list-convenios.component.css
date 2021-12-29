@@ -10,7 +10,9 @@
 table {
   width: 100%;
 }
-
+.example-form-field {
+  width: 200px;
+}
 th,
 td {
   /* padding: 10px !important; */
