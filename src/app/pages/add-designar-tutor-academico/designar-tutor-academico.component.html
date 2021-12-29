@@ -16,63 +16,72 @@
             </div>
 
 
-            <div class="card-destinatario">
+            <div class="card-text">
 
 
               <br>
-Magister
+              Magister
 
               <br>
-<div class="col-3" >
-              <ng-select
+              <div class="col-3">
+                <ng-select
+                [compareWith]="compararDocente"
                 name="docente"
                 placeholder="Seleccione el docente"
-                #empresaPersonal="ngModel"
+                #docente="ngModel"
                 [(ngModel)]="designacionta.docente"
                 (change)="capturarDatos()"
-                required
-              >
-                <ng-option
-                  *ngFor="let docent of docente" >
-                  {{ docent.persona.primer_nombre }}
-                  {{ docent.persona.segundo_nombre }}
-                  {{ docent.persona.primer_apellido }}
-                  {{ docent.persona.segundo_apellido }}
-                </ng-option>
-              </ng-select>
-            </div>
-             INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
-              <br> Su Despacho. -
-              <div class="card-text">
-
-                <br />
-                <br /> De mi consideración: Luego de expresarle un atento saludo y desearle éxito en las funciones que
-                acertadamente realiza, me permito informarle ha sido designado como TUTOR ACÁDEMICO del estudiante
-
-
-                {{ alumno.persona.primer_apellido }}
-                {{ alumno.persona.segundo_apellido }}
-                {{ alumno.persona.primer_nombre }}
-                {{ alumno.persona.segundo_nombre }}. para la ejecución de las prácticas pre profesionales en
-                la empresa   {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
-                <br>
-                <br> Agradezco de antemano su valiosa colaboración con esta importante actividad.
-
-
-                <div class="card-pie">
-                  <br>
-                  <br> Atentamente,
-                  <br>
-                  <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
-                 {{validacionSac.convocatoria.carrera.nombre}}
-                  <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
-                </div>
+                  required>
+                  <ng-option
+                  *ngFor="let docente of docentes" [value]="docente">
+                    {{ docente.persona.primer_nombre }}
+                    {{ docente.persona.segundo_nombre }}
+                    {{ docente.persona.primer_apellido }}
+                    {{ docente.persona.segundo_apellido }}
+                  </ng-option>
+                </ng-select>
               </div>
+              INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+              <br> Su Despacho. -
+
+
+              <br />
+              <br /> De mi consideración: Luego de expresarle un atento saludo y desearle éxito en las funciones que
+              acertadamente realiza, me permito informarle ha sido designado como TUTOR ACÁDEMICO del estudiante
+
+
+              {{ alumno.persona.primer_apellido }}
+              {{ alumno.persona.segundo_apellido }}
+              {{ alumno.persona.primer_nombre }}
+              {{ alumno.persona.segundo_nombre }}. para la ejecución de las prácticas pre profesionales en
+              la empresa {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+              <br>
+              <br> Agradezco de antemano su valiosa colaboración con esta importante actividad.
+
+
+              <div class="card-pie">
+                <br>
+                <br> Atentamente,
+                <br>
+                <br> ______________________ <br> Responsable de Prácticas Pre Profesionales <br> CARRERA DE
+                {{validacionSac.convocatoria.carrera.nombre}}
+                <br>INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+              </div>
+            </div>
+
+            <div class="form-actions" style="text-align: right">
+              <button type="submit" class="btn btn-primary mr-2">
+                Guardar
+              </button>
+              <button type="button" class="btn btn-inverse" (click)="irListaRespuestasEmpresas()">
+                Cancelar
+              </button>
+
+              <button type="button" class="btn btn-danger">Generar PDF</button>
             </div>
           </div>
         </form>
-        <div class="card-botones" style="text-align: right;">
-
-          <button type="button" class="btn btn-primary">Guardar </button>
-          <button type="button" class="btn btn-success">Generar PDF</button>
-        </div>
+      </div>
+    </div>
+  </div>
+</div>

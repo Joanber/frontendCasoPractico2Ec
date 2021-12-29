@@ -4,6 +4,7 @@ import { ErrorStateMatcher } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Empresa } from 'src/app/models/empresa.model';
+import { LoaderService } from 'src/app/services/interceptores/loader.service';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { EmpresaService } from 'src/app/services/services.models/empresa.service';
 import Swal from 'sweetalert2';
@@ -25,8 +26,11 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
 
   constructor(private formbuilder: FormBuilder, private carreraService: CarreraService,
               private empresaServices: EmpresaService, private convenioService: ConvenioService,
-              private activatedRoute: ActivatedRoute,
-              private router: Router) {}
+              private activatedRoute: ActivatedRoute, public loaderService: LoaderService,
+              private router: Router) {
+
+
+              }
 
   get formValues() {
     return this.convenioForm.controls;
@@ -45,6 +49,7 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   matcher = new MyErrorStateMatcher();
 
   ngAfterViewInit(): void {
+
     this.activatedRoute.params.subscribe(({ id }) => this.retriveConvenio(id));
   }
 
@@ -115,18 +120,16 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       {
         next: (convenio) => {
           this.convenio = convenio;
+          this.patchForm(convenio);
         },
         error: () => {
           return this.returnToList();
-        }
-        , complete: () => {
-          this.patchForm(this.convenio);
         }
       });
   }
 
   patchForm(convenio: Convenio) {
-
+    this.convenioForm.markAllAsTouched();
     this.convenioForm.patchValue({
       id: convenio.id,
       nombre: convenio.nombre,

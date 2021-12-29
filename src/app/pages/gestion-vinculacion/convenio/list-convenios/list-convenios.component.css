@@ -10,7 +10,9 @@
 table {
   width: 100%;
 }
-
+.example-form-field {
+  width: 200px;
+}
 th,
 td {
   /* padding: 10px !important; */
@@ -179,3 +181,8 @@ div.table-container {
   color: #888888;
 }
 /* Loading Spinner CSS Rules End */
+.spinner-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
