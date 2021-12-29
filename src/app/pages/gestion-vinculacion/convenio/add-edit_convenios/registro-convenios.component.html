@@ -1,69 +1,64 @@
-<div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-body">
-                <form [formGroup]="convenioForm">
-                    <div class="form-body">
-                        <section class="row">
-                            <!-- appearance="outline" -->
-                            <mat-form-field class="col-md-12">
-                                <mat-label>Nombre convenio</mat-label>
-                                <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
+<mat-card>
+    <mat-card-content>
+        <form [formGroup]="convenioForm">
+            <div>
+                <section class="row">
+                    <!-- appearance="outline" -->
+                    <mat-form-field class="col-md-12">
+                        <mat-label>Nombre convenio</mat-label>
+                        <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
 
-                                <mat-error *ngIf="formValues.nombre.errors?.pattern">
-                                    Ingrese solo valores alfabéticos
-                                </mat-error>
-                                <mat-error *ngIf="formValues.nombre.hasError('required')">
-                                    Nombre de convenio es <strong>requerido</strong>
-                                </mat-error>
-                            </mat-form-field>
-                            <!-- <mat-form-field class="col-md-6 ">
-                                <mat-label>Tipo de convenio</mat-label>
-                                <input type="text" matInput formControlName="tipo" [errorStateMatcher]="matcher" placeholder="Ejemplo tipo de convenio" required>
-                                <mat-error *ngIf="formValues.tipo.errors?.pattern">
-                                    Ingrese solo valores alfabéticos
-                                </mat-error>
-                                <mat-error *ngIf="formValues.tipo.hasError('required')">
-                                    Tipo de convenio es <strong>requerido</strong>
-                                </mat-error>
-                            </mat-form-field> -->
-                        </section>
-
-                        <div class="row mt-4">
-                            <mat-form-field class="col-md-6">
-                                <mat-label>Carrera</mat-label>
-                                <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
-                                    <mat-option *ngFor="let carrera of carreras" [value]="carrera">
-                                        {{carrera.nombre}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="formValues.carrera.errors?.required">Por favor escoge una carrera</mat-error>
-                                <mat-hint>{{formValues.carrera.value?.id}}</mat-hint>
-                            </mat-form-field>
-                            <mat-form-field class="col-md-6">
-                                <mat-label>Empresa</mat-label>
-                                <mat-select #empresa disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
-                                    <mat-option *ngFor="let empresa of empresas" [value]="empresa">
-                                        {{empresa.nombre}}
-                                    </mat-option>
-                                </mat-select>
-                                <mat-error *ngIf="formValues.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
-                                <mat-hint>{{formValues.empresa.value?.id}}</mat-hint>
-                            </mat-form-field>
-                        </div>
-                    </div>
-                    <mat-divider class="mb-3 mt-3"></mat-divider>
-                    <section>
-                        <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" (click)="onSubmit()" class="mr-2">
-                            {{btnName}}
-                        </button>
-                        <button *ngIf="convenioForm.touched" mat-raised-button color="accent" type="reset" (click)="loadForm()" class="mr-2">Reset</button>
-                        <button mat-raised-button color="warn" (click)="returnToList()" type="button">
-                            Cancelar
-                        </button>
-                    </section>
-                </form>
+                        <mat-error *ngIf="formValues.nombre.errors?.pattern">
+                            Ingrese solo valores alfabéticos
+                        </mat-error>
+                        <mat-error *ngIf="formValues.nombre.hasError('required')">
+                            Nombre de convenio es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                    <!-- <mat-form-field class="col-md-6 ">
+                                            <mat-label>Tipo de convenio</mat-label>
+                                            <input type="text" matInput formControlName="tipo" [errorStateMatcher]="matcher" placeholder="Ejemplo tipo de convenio" required>
+                                            <mat-error *ngIf="formValues.tipo.errors?.pattern">
+                                                Ingrese solo valores alfabéticos
+                                            </mat-error>
+                                            <mat-error *ngIf="formValues.tipo.hasError('required')">
+                                                Tipo de convenio es <strong>requerido</strong>
+                                            </mat-error>
+                                        </mat-form-field> -->
+                </section>
+                <div class="row">
+                    <mat-form-field class="col-md-6">
+                        <mat-label>Carrera</mat-label>
+                        <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
+                            <mat-option *ngFor="let carrera of carreras" [value]="carrera">
+                                {{carrera.nombre}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formValues.carrera.errors?.required">Por favor escoge una carrera</mat-error>
+                        <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field class="col-md-6">
+                        <mat-label>Empresa</mat-label>
+                        <mat-select #empresa disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
+                            <mat-option *ngFor="let empresa of empresas" [value]="empresa">
+                                {{empresa.nombre}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formValues.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
+                        <!-- <mat-hint>{{formValues.empresa.value?.id}}</mat-hint> -->
+                    </mat-form-field>
+                </div>
             </div>
-        </div>
-    </div>
-</div>
+        </form>
+    </mat-card-content>
+    <!-- <mat-divider inset></mat-divider> -->
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" (click)="onSubmit()">
+            {{btnName}}
+        </button>
+        <button mat-raised-button color="accent" *ngIf="convenioForm.touched" type="reset" (click)="loadForm()">Reset</button>
+        <button mat-raised-button color="warn" (click)="returnToList()" type="button">
+            Cancelar
+        </button>
+    </mat-card-actions>
+</mat-card>

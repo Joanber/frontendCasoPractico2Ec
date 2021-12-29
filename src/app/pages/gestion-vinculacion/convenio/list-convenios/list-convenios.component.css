@@ -181,3 +181,8 @@ div.table-container {
   color: #888888;
 }
 /* Loading Spinner CSS Rules End */
+.spinner-container {
+   display: flex;
+   justify-content: center;
+   align-items: center;
+}
