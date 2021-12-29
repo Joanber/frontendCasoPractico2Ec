@@ -1,0 +1,109 @@
+<div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">Listado de Estudiantes Asignados</h4>
+        <div class="table-responsive">
+          <div id="example23_wrapper" class="dataTables_wrapper">
+            <div class="row">
+              <div class="col-md-8">
+                <select class="form-control" [(ngModel)]="carreraFiltro">
+                  <option [ngValue]="undefined">CARRERA (TODAS)</option>
+                  <option
+                    *ngFor="let carreras of carreras"
+                    [ngValue]="carreras.nombre"
+                  >
+                    {{ carreras.nombre }}
+                  </option>
+                </select>
+              </div>
+  
+              <div class="col-md-1">
+                <button
+                  class="btn btn-primary btn-sm"
+                  (click)="filtrarValidacionesSACCarrera()"
+                >
+                  <i class="mdi mdi-magnify"></i>
+                  Buscar
+                </button>
+              </div>
+              <div class="col-md-2 text-right">
+                <button class="btn btn-sm" (click)="cargarConvocatoriasDefault()">
+                  Mostrar Todas
+                </button>
+              </div>
+            </div>
+            <br />
+            <div
+              class="alert alert-primary text-center"
+              *ngIf="validacionesSac.length == 0"
+            >
+              NO HAY DATOS DISPONIBLES
+            </div>
+  
+            <div class="table-scroll">
+              <table
+                class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                "
+                *ngIf="validacionesSac.length > 0"
+              >
+                <thead>
+                  <tr>
+                    <th>Convocatoria</th>
+                    <th>Alumnos</th>
+                  </tr>
+                </thead>
+  
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let validacionesSac of validacionesSac">
+                    <td>
+                      {{ validacionesSac.convocatoria.carrera.abreviatura }}
+                    </td>
+                    <td>
+                      <table
+                        class="
+                          table table-bordered table-responsive-sm table-sm
+                          text-center
+                        "
+                      >
+                        <thead class="bg-pri white">
+                          <tr>
+                            <th>C.I</th>
+                            <th>Apellidos y Nombres</th>                        
+                          </tr>
+                        </thead>
+                        <tbody>
+                          <tr *ngFor="let alumno of validacionesSac.alumnos">
+                            <td>{{ alumno.persona.identificacion }}</td>
+                            <td>
+                              {{ alumno.persona.primer_apellido }}
+                              {{ alumno.persona.segundo_apellido }}
+                              {{ alumno.persona.primer_nombre }}
+                              {{ alumno.persona.segundo_nombre }}
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <mat-paginator
+      [length]="totalRegistros"
+      [pageSize]="totalPorPagina"
+      [pageSizeOptions]="pageSizeOptions"
+      [pageIndex]="paginaActual"
+      (page)="paginar($event)"
+      showFirstLastButtons
+    >
+    </mat-paginator>
+  </div>
+  

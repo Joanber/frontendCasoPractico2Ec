@@ -45,6 +45,9 @@ import { AddDesignacionTeComponent } from './gestion-empresa/add-designacion-te/
 import { ListInfoProcesosComponent } from './list-infoprocesos/list-infoprocesos.component';
 import { SeleccionarAlumnosComponent } from './list-solicitudes-alumnos-empresa/seleccionar-alumnos.component';
 import { ListSeleccionEstEmpComponent } from './list-Respuesa-emp-est/list-seleccion-est-emp.component';
+import { ListEstudiantesAsignadosComponent } from './list-estudiantes-asignados/list-estudiantes-asignados.component';
+import { AddEvaluacionEstudianteEmpresaComponent } from './add-evaluacion-estudiante-empresa/add-evaluacion-estudiante-empresa.component';
+import { AddCertificadoEstudianteEmpresaComponent } from './add-certificado-estudiante-empresa/add-certificado-estudiante-empresa.component';
 
 const routes: Routes = [
   {
@@ -316,7 +319,7 @@ const routes: Routes = [
       {
         path: 'convocatorias-aprobadas',
         component: ListConvocatoriasValidasComponent,
-        data: { titulo: 'Designacion de Tutores Empresariales' },
+        data: { titulo: 'Designación de Tutores Empresariales' },
       },
       {
         path: 'nueva-designacion-te/:id/:ida',
@@ -327,6 +330,21 @@ const routes: Routes = [
         path: 'actualizar-designacion-te/:idd',
         component: AddDesignacionTeComponent,
         data: { titulo: 'Actualizar la Designacion de Tutor Empresarial' },
+      },
+      {
+        path: 'lista-estudiantes-asignados',
+        component: ListEstudiantesAsignadosComponent,
+        data: { titulo: 'Estudiantes Asignados' },
+      },
+      {
+        path: 'evaluacion-estudiante-empresa',
+        component: AddEvaluacionEstudianteEmpresaComponent,
+        data: { titulo: 'Evaluación a Estudiante' },
+      },
+      {
+        path: 'certificado-estudiante-empresa',
+        component: AddCertificadoEstudianteEmpresaComponent,
+        data: { titulo: 'Certificado de Empresa' },
       },
     ],
   },
