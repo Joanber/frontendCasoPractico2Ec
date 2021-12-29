@@ -1,0 +1,61 @@
+<div class="row" *ngIf="!cargando1">
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <h4 class="card-title text-center">Informacion de Procesos</h4>
+          <div class="table-responsive">
+            <div id="example23_wrapper" class="dataTables_wrapper">
+              <div class="row" *ngIf="cargando1">
+                <div class="col-12">
+                  <div class="alert alert-info text-center" role="alert">
+                    <h4 class="alert-heading">Cargando</h4>
+                    <i class="fa fa-spin fa-refresh fa-2x"></i>
+                    <p class="mb-0">Por favor espere...</p>
+                  </div>
+                </div>
+              </div>
+              <div class="table-scroll">
+                <table
+                  class="
+                    table table-bordered
+                    justify-content-center
+                    table-responsive-sm table-sm
+                    dataTable
+                  "
+                >
+                  <thead>
+                    <tr>
+                      <th># Proceso</th> 
+                      <th>Carrera</th>
+                      <th># Estudiantes</th>
+                      <th>Empresa</th>
+                      <th>Responsable PPP</th>
+                      <th>Estado</th>
+                    </tr>
+                  </thead>
+  
+                  <tbody class="animated fadeIn fast">
+                    <tr *ngFor="let convocatoria of convocatoria">
+                      <td>{{ convocatoria.id }}</td>
+                      <td>{{ convocatoria.carrera.nombre }}</td>
+                      <td>{{ convocatoria.solicitudEmpresa.numero_alumnos}}</td>
+                      <td>{{ convocatoria.solicitudEmpresa.empresa.nombre }}</td>
+                      <td>{{ convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo}}
+                          {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}} 
+                          {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}
+                      </td>
+                      <td>{{ convocatoria.estado}}</td>
+                     
+                     
+                     
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  

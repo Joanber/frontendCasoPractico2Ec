@@ -1,43 +1,27 @@
 <div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body">
-        <form
-          #MyForm="ngForm"
-          (submit)="guardarSolicitudEmpresa(MyForm)"
-        >
-          <div class="form-body">
-            <div
-              class="card-titulo"
-              style="text-align: center"
-            >
-              ANEXO 1: Solicitud emitida por entidad receptora
-            </div>
-
-            <br>
-            <br>
-
-            <div
-              class="card-encabezado"
-              style="text-align: right"
-            >
-              <!-- CONVOCATORIA -
+    <div class="col-12">
+      <div class="card">
+        <div class="card-body">
+          <form #MyForm="ngForm" (submit)="guardarSolicitudEmpresa(MyForm)">
+            <div class="form-body">
   
-                  {{ this.solicitudEmpresa.responsablePPP.carrera.abreviatura }}
-                  - {{ today | date: "yyyy" }} -
+                <div class="card-titulo" style="text-align: center">
+                  ANEXO 1: Solicitud emitida por entidad receptora
+                </div>
+                <br />
+                <br />
   
-                  {{ ultimoElemento }} -->
-              <br>
-              Cuenca, {{ today | date: "dd" }} de
+                <div class="card-encabezado" style="text-align: right">
+  
+                  <br />
+                  Cuenca, {{ today | date: "dd" }} de
                   {{ today | date: "MMMM ":"-0500" }} del
                   {{ today | date: "yyyy" }}
-            </div>
-
-            <div class="card-text">
-              Magister
-
-              <br>
-              {{
+                </div>
+                <div class="card-text">
+                    Magister
+                    <br />
+                    {{
                         this.solicitudEmpresa.responsablePPP.docente
                           .abreviatura_titulo
                       }}
@@ -49,191 +33,117 @@
                         this.solicitudEmpresa.responsablePPP.docente.persona
                           .primer_apellido
                       }}
+                  <br />
 
-              <br>
-              <br>
-              RESPONSABLE DE PRÁCTICAS PRE PROFESIONALES DE LA CARRERA DE
-
-              <!-- <select
-                    class="form-control"
-                    style="width: min-content"
-                    name="ciclo"
-                    #ciclo="ngModel"
-                    [(ngModel)]="convocatoria.ciclo"
-                    required
-                  >
-                    <option [ngValue]="undefined">Ciclo</option>
+                  <br />
+                  RESPONSABLE DE PRÁCTICAS PRE PROFESIONALES DE LA CARRERA DE 
   
-                    <option value="3">3</option>
-                    <option value="4">4</option>
-                    <option value="5">5</option>
-                    <option value="6">6</option>
-  
-                  </select>
-                  <div
-                    class="text-danger"
-                    *ngIf="ciclo.hasError('required') && ciclo.touched"
-                  >
-                    Ciclo es requerido!
-                  </div>
-                  ciclo de la carrera -->
-              {{ this.solicitudEmpresa.responsablePPP.carrera.nombre }}
+                  {{ this.solicitudEmpresa.responsablePPP.carrera.nombre }}
                   INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
+                  <br />
 
-              <br>
-              <br>
-              Su Despacho. -
+                  <br />
+                    Su Despacho. - 
+                  <br />
 
-              <br>
-              <br>
-              De mi consideración:
+                  <br />
+                    De mi consideración:
+                    <br />
 
-              <br>
-              <br>
-              Reciba un cordial saludo de quienes conformamos la empresa 
+                    <br />
+                    Reciba un cordial saludo de quienes conformamos la empresa 
   
                   {{ this.solicitudEmpresa.empresa.nombre }}
                   , en atención del convenio que mantenemos con el 
                   Instituto Superior Tecnológico del Azuay, doy a conocer que se 
                   requiere de .....
 
-                  Estudiantes para realizar las siguientes actividades
-
-              <br>
-
-              <textarea
-                placeholder="Describa aqui las actividades a desarrollar"
-                class="form-control"
-                name="actividades"
-                rows="8"
-                #actividades="ngModel"
-                [(ngModel)]="solicitudEmpresa.actividades"
-                required="required"
-              ></textarea>
-
-              <div
-                class="text-danger"
-                *ngIf="actividades.hasError('required') && actividades.touched"
-              >Actividades es requerido!</div>
-
-              <br>
-              La fecha de inicio tentativa es el
-
-              <!-- por lo que los postulantes deberán haber aprobado las siguientes
-                  asignaturas:
+                  Estudiantes para realizar las siguientes actividades 
+                  <br />
   
                   <textarea
-                    placeholder="Describa aquí las asignaturas que deberian haber aprobado"
+                    placeholder="Describa aqui las actividades a desarrollar"
                     class="form-control"
-                    name="asignaturas"
+                    name="actividades"
                     rows="8"
-                    #asignaturas="ngModel"
-                    [(ngModel)]="convocatoria.asignaturas"
+                    #actividades="ngModel"
+                    [(ngModel)]="solicitudEmpresa.actividades"
                     required
-                  ></textarea>
+                  >
+                  </textarea>
                   <div
                     class="text-danger"
                     *ngIf="
-                      asignaturas.hasError('required') && asignaturas.touched
+                      actividades.hasError('required') && actividades.touched
                     "
                   >
-                    Asignaturas es requerido!
-                  </div> 
-  
-                  La fecha máxima en la que se receptarán las solicitudes es el -->
-
-              <input
-                [matDatepicker]="myDatepicker"
-                style="width: min-content"
-                class="form-control"
-                name="fecha_inicio"
-                #fecha_inicio="ngModel"
-                [(ngModel)]="solicitudEmpresa.fecha_inicio"
-                required="required"
-              />
-
-              <mat-datepicker-toggle
-                    [for]="myDatepicker"
-                  ></mat-datepicker-toggle>
-                  <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
-
-              <div
-                class="text-danger"
-                *ngIf="fecha_inicio.hasError('required') &&
-                    fecha_inicio.touched"
-              >Fecha es requerido!</div>
-
-              <br>
-              <br>
-              .Solicito comedidamente se me informe si esta petición es
+                    Actividades es requerido!
+                  </div>
+                  <br />
+                  La fecha de inicio tentativa es el 
+       
+                  <input
+                    [matDatepicker]="myDatepicker"
+                    style="width: min-content"
+                    class="form-control"
+                    name="fecha_inicio"
+                    #fecha_inicio="ngModel"
+                    [(ngModel)]="solicitudEmpresa.fecha_inicio"
+                    required
+                  />
+                    <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                    <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                    fecha_inicio.hasError('required') &&
+                    fecha_inicio.touched
+                    "
+                  >
+                    Fecha es requerido!
+                  </div>
+                  <br />
+                  <br />
+                  .Solicito comedidamente se me informe si esta petición es
                    viable, y en caso de serlo, se me haga conocer el listado 
                    de estudiantes que podrían ingresar a la empresa.
-
-              <br>
-              <br>
-              Agradezco de antemano la atención que brinde a la presente.
-
-              <!-- . Para mayor información contactarse con
-                  {{
-                    this.solicitudEmpresa.responsablePPP.docente
-                      .abreviatura_titulo
-                  }}
-                  {{
-                    this.solicitudEmpresa.responsablePPP.docente.persona
-                      .primer_nombre
-                  }}
-                  {{
-                    this.solicitudEmpresa.responsablePPP.docente.persona
-                      .primer_apellido
-                  }}
-                  , docente responsable de prácticas pre profesionales de la
-                  carrera.
-                  <br />
-                  <br /> -->
-
-              <div class="card-pie">
-                Atentamente,
-
-                <br>
-                <br>
-                ______________________
-
-                <br>
-                {{ this.solicitudEmpresa.empresa.empresaPersonal.persona.primer_nombre }}
+                   <br />
+                   <br />
+                   Agradezco de antemano la atención que brinde a la presente.
+  
+                  <div class="card-pie">
+                    Atentamente,
+                    <br />
+                    <br />
+                    ______________________
+                     <br />
+                    {{ this.solicitudEmpresa.empresa.empresaPersonal.persona.primer_nombre }}
                     {{ this.solicitudEmpresa.empresa.empresaPersonal.persona.primer_apellido }}
                     {{ this.solicitudEmpresa.empresa.empresaPersonal.cargo }}
-
-                <!-- Responsable de Prácticas Pre Profesionales <br />
-                    CARRERA DE
-                    {{ this.solicitudEmpresa.responsablePPP.carrera.nombre }}
+                    
+                  </div>
+                </div>
   
-                    <br />INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY -->
+                <div class="form-actions" style="text-align: right">
+                  <button type="submit" class="btn btn-primary mr-2">
+                    Guardar
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-inverse "
+                    (click)="irListaSolicitudesEmpresas()"
+                  >
+                    Cancelar
+                  </button>
+  
+                  <button type="button" class="btn btn-danger">
+                    Generar PDF
+                  </button>
+                </div>
               </div>
-            </div>
-
-            <div
-              class="form-actions"
-              style="text-align: right"
-            >
-              <button
-                type="submit"
-                class="btn btn-primary mr-2"
-              >Guardar</button>
-
-              <button
-                type="button"
-                class="btn btn-inverse"
-                (click)="irListaSolicitudesEmpresas()"
-              >Cancelar</button>
-
-              <button
-                type="button"
-                class="btn btn-danger"
-              >Generar PDF</button>
-            </div>
-          </div>
-        </form>
+              </form>
+        </div>
       </div>
     </div>
   </div>
-</div>
+  

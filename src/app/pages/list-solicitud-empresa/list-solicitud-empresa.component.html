@@ -3,14 +3,14 @@
       <div class="card">
         <div class="card-body">
           <h4 class="card-title text-center">
-            Listado de Solicitudes de las Empresas Vinculadas List
+            Listado de Solicitudes de las Empresas Vinculadas
           </h4>
           <div class="table-responsive">
             <div id="example23_wrapper" class="dataTables_wrapper">
               <div class="dt-buttons">
                 <button routerLink="/dashboard/nueva-solicitud-empresa" class="btn btn-primary btn-sm">
                   <i class="mdi mdi-plus"></i>
-                  Crear Nueva Solicitud
+                  Nueva Solicitud
                 </button>
               </div>
               <div id="example23_filter" class="dataTables_filter">
@@ -39,7 +39,6 @@
                   ">
                   <thead>
                     <tr>
-                      <th>Código</th>
                       <th>Empresa</th>
                       <th>Fecha Inicio PPP</th>
                       <th>Actividades</th>
@@ -52,7 +51,6 @@
 
                   <tbody class="animated fadeIn fast">
                     <tr *ngFor="let solicitudEmpresa of solicitudesEmpresas">
-                      <td>{{ solicitudEmpresa.empresa.id }}</td>
                       <td>{{ solicitudEmpresa.empresa.nombre }}</td>
                       <td>{{ solicitudEmpresa.fecha_inicio }}</td>
                       <td>{{ solicitudEmpresa.actividades }}</td>

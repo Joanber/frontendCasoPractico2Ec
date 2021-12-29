@@ -1,5 +1,5 @@
-import { Carrera } from "./carrera.model";
-import { SolicitudEmpresa } from "./solicitudEmpresa.model";
+import { Carrera } from './carrera.model';
+import { SolicitudEmpresa } from './solicitudEmpresa.model';
 
 export class Convocatoria {
   id: number;

@@ -10,7 +10,8 @@ import Swal from 'sweetalert2';
   selector: 'app-add-solicitud-empresa',
   providers: [DatePipe],
   templateUrl: './add-solicitud-empresa.component.html',
-  styleUrls: ['./add-solicitud-empresa.component.css']
+  styleUrls: ['./add-solicitud-empresa.component.css'],
+  providers: [DatePipe],
 })
 export class AddSolicitudEmpresaComponent implements OnInit {
   public solicitudEmpresa = new SolicitudEmpresa();

@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Alumno } from 'src/app/models/alumno.model';
 import { Carrera } from 'src/app/models/carrera.model';
@@ -14,7 +14,7 @@ import { DocenteService } from 'src/app/services/services.models/docente.service
 import { EmpresaService } from 'src/app/services/services.models/empresa.service';
 import { SolicitudAlumnoService } from 'src/app/services/services.models/solicitudes-alumnos.service';
 import Swal from 'sweetalert2';
-const loggedUser = localStorage.getItem("usuario");
+
 @Component({
   selector: 'app-solicitud',
   templateUrl: './solicitud.component.html',
@@ -22,7 +22,7 @@ const loggedUser = localStorage.getItem("usuario");
 })
 export class SolicitudComponent implements OnInit {
   user:any;
-  public alumno: Alumno;
+public alumno=new Alumno();
  //VARIABLE DE LOADING
  public cargando: boolean = true;
  //VARIABLE PARA BUSCAR
@@ -42,27 +42,29 @@ jstoday = '';
   this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
 
  }
-
  ngOnInit() {
    this.activatedRoute.params.subscribe(({ id }) =>
      this.cargarConvocatoria(id)
    );
-   this.user =JSON.parse(loggedUser);
-  this.alumnoService.getAlumnoByPersonaId(this.user.id).subscribe(data =>{
-    this.alumno=data;
-   });
  }
 
  cargarConvocatoria(id: number) {
-   if (!id) {
-     return;
-   }
-   this.convocatoriaService
-     .getConvocatoriaById(id)
-     .subscribe((convocatoria) => {
-       this.convocatoria = convocatoria;
-     });
+  if (!id) {
+    return;
+  }
+  this.convocatoriaService
+    .getConvocatoriaById(id)
+    .subscribe({
+      next: (convocatoria)=> this.convocatoria=convocatoria,
+      complete: () => {
+        this.user = JSON.parse(localStorage.getItem("usuario"));
+        this.alumnoService.getAlumnoByPersonaId(this.user.id).subscribe(data => {
+          this.alumno = data;
+        });
+
+    }});
  }
+ 
  ObtenerFecha(){
   let fechaEmision =new Date();
   let mes = fechaEmision.getMonth();
