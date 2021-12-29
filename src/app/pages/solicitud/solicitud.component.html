@@ -22,12 +22,12 @@
             {{
                 convocatoria.solicitudEmpresa.responsablePPP.docente.persona
                 .primer_nombre
-                }}	
+                }}
                 {{
                   convocatoria.solicitudEmpresa.responsablePPP.docente.persona
                 .primer_apellido
                 }}
-  
+
             <br> RESPONSABLE DE PRÁCTICAS PRE PROFESIONALES DE LA CARRERA DE
             {{convocatoria.carrera.nombre}}
             <br> INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
@@ -35,17 +35,17 @@
 
             <div class="card-text">
 
-                <br />
-                <br /> De mi consideración: Por medio de la presente, Yo
-                {{this.alumno.persona.primer_nombre}}
-                {{this.alumno.persona.segundo_nombre}}
-                {{this.alumno.persona.primer_apellido}}
-                {{this.alumno.persona.segundo_apellido}}
-                con número de cédula 
-                {{this.alumno.persona.identificacion}}
+                <br>
+                <br > De mi consideración: Por medio de la presente, Yo
+                {{(this.alumno | async )?.persona.primer_nombre}}
+                {{(this.alumno | async )?.persona.segundo_nombre}}
+                {{(this.alumno | async )?.persona.primer_apellido}}
+                {{(this.alumno | async )?.persona.segundo_apellido}}
+                con número de cédula
+                {{(this.alumno | async )?.persona.identificacion}}
                 estudiante del
                 {{convocatoria.ciclo }}
-                ciclo paralelo "{{this.alumno.paralelo}}"
+                ciclo paralelo "{{(this.alumno | async )?.paralelo}}"
 
                 del periodo académico Abril 2020 - Octubre 2020 de la carrera de
                 {{convocatoria.carrera.nombre }}
@@ -55,10 +55,10 @@
                 según solicitud CONVOCATORIA
                 {{convocatoria.id }}
                 <br>
-                <br> Acepto realizar el proceso de selección determinado por la empresa 
-                receptora y en caso de ser elegido, me comprometo a cumplir con la normativa 
-                de la empresa, presentar los requisitos solicitados por el Instituto Superior 
-                Tecnológico del Azuay como prueba de las actividades realizadas y demostrar 
+                <br> Acepto realizar el proceso de selección determinado por la empresa
+                receptora y en caso de ser elegido, me comprometo a cumplir con la normativa
+                de la empresa, presentar los requisitos solicitados por el Instituto Superior
+                Tecnológico del Azuay como prueba de las actividades realizadas y demostrar
                 profesionalismo, dedicación y honestidad en todo momento, dejando en alto el
                 nombre de la institución educativa y colaborando en el fortalecimiento de la
                 empresa receptora que me brinda la posibilidad de formarme en sus instalaciones.
@@ -69,17 +69,17 @@
                 <br>
                 <br> Atentamente,
                 <br>
-                <br> ______________________ 
-                <br> Nombre: 
-                {{this.alumno.persona.primer_nombre}}
-                {{this.alumno.persona.segundo_nombre}}
-                {{this.alumno.persona.primer_apellido}}
-                {{this.alumno.persona.segundo_apellido}}
+                <br> ______________________
+                <br> Nombre:
+                {{(this.alumno | async )?.persona.primer_nombre}}
+                {{(this.alumno | async )?.persona.segundo_nombre}}
+                {{(this.alumno | async )?.persona.primer_apellido}}
+                {{(this.alumno | async )?.persona.segundo_apellido}}
                 <br> Telefono:
-                {{this.alumno.persona.celular}}
-                
+                {{(this.alumno | async )?.persona.celular}}
+
                 <br> Correo:
-                {{this.alumno.persona.email}}
+                {{(this.alumno | async )?.persona.email}}
             </div>
         </div>
     </div>

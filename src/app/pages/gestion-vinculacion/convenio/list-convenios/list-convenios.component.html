@@ -1,7 +1,7 @@
 <mat-card class="mb-3">
     <div class=" row d-flex justify-content-between  ">
         <div class="col-md-6 mt-1">
-            <button mat-raised-button [routerLink]="['./registro-convenio']" color='primary'>
+            <button mat-raised-button class="mt-1" [routerLink]="['./registro-convenio']" color='primary'>
                 <i class="mdi mdi-plus"></i><strong>Nuevo convenio</strong>
             </button>
         </div>
@@ -85,21 +85,6 @@
                     <tr mat-footer-row *matFooterRowDef="['disclaimer']" [ngClass]="{'hide':!(dataSource.filteredData!=null && dataSource.filteredData.length==0 && search==false)}" class="example-second-footer-row">
                     </tr>
                 </table>
-
-                <div class="row" *ngIf="loaderService.isLoading | async">
-                    <div class="col-12">
-                        <div class="alert alert-info text-center" role="alert">
-                            <div class="spinner-container">
-                                <div class="prcs-lbl-container">
-                                    <span class="prcs-lbl" id="prcs_lbl">
-                                        <mat-progress-spinner color="primary" mode="indeterminate">
-                                        </mat-progress-spinner>
-                                    </span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
             </div>
 
             <mat-paginator #paginator [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="paginate($event)" showFirstLastButtons aria-label="Select page">
@@ -107,3 +92,13 @@
         </div>
     </mat-card-content>
 </mat-card>
+
+<div class="row" *ngIf="loaderService.isLoading | async">
+    <div class="col-12">
+        <div class="alert alert-info text-center" role="alert">
+            <h4 class="alert-heading">Cargando</h4>
+            <i class="fa fa-spin fa-refresh fa-2x"></i>
+            <p class="mb-0">Por favor espere...</p>
+        </div>
+    </div>
+</div>

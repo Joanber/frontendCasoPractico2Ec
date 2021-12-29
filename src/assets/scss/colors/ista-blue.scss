@@ -1,0 +1,509 @@
+/**
+* Generated theme by Material Theme Generator
+* https://materialtheme.arcsine.dev
+* Fork at: https://materialtheme.arcsine.dev/?c=YHBhbGV0dGU$YHByaW1hcnk$YF48IzAyMzQ2OSIsIj9lcjwjYjNjMmQyIiwiO2VyPCMwMTIxNGN$LCIlPmBePCNlYmJmMWYiLCI~ZXI8I2Y5ZWNiYyIsIjtlcjwjZTJhOTEyfiwid2Fybj5gXjwjZjQ0MzM2IiwiP2VyPCNmY2M3YzMiLCI7ZXI8I2VmMmMyMn4sIj9UZXh0PCMyYzJjMmMiLCI~PTwjZjRmNmY5IiwiO1RleHQ8I2ZmZmZmZiIsIjs9PCMwNjFhNDF$LCJmb250cz5bYEA8KC00IiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8KC0zIiwiZmFtaWx5PE9wZW4gU2FucyIsInZhcmlhbnQ8bWVkaXVtfixgQDwoLTIiLCJmYW1pbHk8T3BlbiBTYW5zfixgQDwoLTEiLCJmYW1pbHk8T3BlbiBTYW5zfixgQDxoZWFkbGluZSIsImZhbWlseTxPcGVuIFNhbnN$LGBAPHRpdGxlIiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8c3ViKS0yIiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8c3ViKS0xIiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8Ym9keS0yIiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8Ym9keS0xIiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8YnV0dG9uIiwiZmFtaWx5PE9wZW4gU2Fuc34sYEA8Y2FwdGlvbiIsImZhbWlseTxPcGVuIFNhbnN$LGBAPGlucHV0IiwiZmFtaWx5PE9wZW4gU2FucyIsInNpemU$bnVsbH1dLCJpY29uczxSb3VuZGVkIiwiP25lc3M$dHJ1ZSwidmVyc2lvbj4xMX0=
+*/
+
+@import "~@angular/material/theming";
+
+// Include the common styles for Angular Material. We include this here so that you only
+// have to load a single css file for Angular Material in your app.
+
+// Fonts
+@import "https://fonts.googleapis.com/css?family=Material+Icons+Round";
+@import url("https://fonts.googleapis.com/css?family=Open+Sans:300,400,500");
+
+$fontConfig: (
+  display-4: mat-typography-level(112px, 112px, 300, "Open Sans", -0.0134em),
+  display-3: mat-typography-level(56px, 56px, 500, "Open Sans", -0.0089em),
+  display-2: mat-typography-level(45px, 48px, 400, "Open Sans", 0em),
+  display-1: mat-typography-level(34px, 40px, 400, "Open Sans", 0.0074em),
+  headline: mat-typography-level(24px, 32px, 400, "Open Sans", 0em),
+  title: mat-typography-level(20px, 32px, 500, "Open Sans", 0.0075em),
+  subheading-2: mat-typography-level(16px, 28px, 400, "Open Sans", 0.0094em),
+  subheading-1: mat-typography-level(15px, 24px, 500, "Open Sans", 0.0067em),
+  body-2: mat-typography-level(14px, 24px, 500, "Open Sans", 0.0179em),
+  body-1: mat-typography-level(14px, 20px, 400, "Open Sans", 0.0179em),
+  button: mat-typography-level(14px, 14px, 500, "Open Sans", 0.0893em),
+  caption: mat-typography-level(12px, 20px, 400, "Open Sans", 0.0333em),
+  input: mat-typography-level(inherit, 1.125, 400, "Open Sans", 1.5px),
+);
+
+// Foreground Elements
+
+// Light Theme Text
+$dark-text: #22262a;
+$dark-primary-text: rgba($dark-text, 0.87);
+$dark-accent-text: rgba($dark-primary-text, 0.54);
+$dark-disabled-text: rgba($dark-primary-text, 0.38);
+$dark-dividers: rgba($dark-primary-text, 0.12);
+$dark-focused: rgba($dark-primary-text, 0.12);
+
+$mat-light-theme-foreground: (
+  base: black,
+  divider: $dark-dividers,
+  dividers: $dark-dividers,
+  disabled: $dark-disabled-text,
+  disabled-button: rgba($dark-text, 0.26),
+  disabled-text: $dark-disabled-text,
+  elevation: black,
+  secondary-text: $dark-accent-text,
+  hint-text: $dark-disabled-text,
+  accent-text: $dark-accent-text,
+  icon: $dark-accent-text,
+  icons: $dark-accent-text,
+  text: $dark-primary-text,
+  slider-min: $dark-primary-text,
+  slider-off: rgba($dark-text, 0.26),
+  slider-off-active: $dark-disabled-text,
+);
+
+// Dark Theme text
+$light-text: #ffffff;
+$light-primary-text: $light-text;
+$light-accent-text: rgba($light-primary-text, 0.7);
+$light-disabled-text: rgba($light-primary-text, 0.5);
+$light-dividers: rgba($light-primary-text, 0.12);
+$light-focused: rgba($light-primary-text, 0.12);
+
+$mat-dark-theme-foreground: (
+  base: $light-text,
+  divider: $light-dividers,
+  dividers: $light-dividers,
+  disabled: $light-disabled-text,
+  disabled-button: rgba($light-text, 0.3),
+  disabled-text: $light-disabled-text,
+  elevation: black,
+  hint-text: $light-disabled-text,
+  secondary-text: $light-accent-text,
+  accent-text: $light-accent-text,
+  icon: $light-text,
+  icons: $light-text,
+  text: $light-text,
+  slider-min: $light-text,
+  slider-off: rgba($light-text, 0.3),
+  slider-off-active: rgba($light-text, 0.3),
+);
+
+// Background config
+// Light bg
+$light-background: #f4f6f9;
+$light-bg-darker-5: darken($light-background, 5%);
+$light-bg-darker-10: darken($light-background, 10%);
+$light-bg-darker-20: darken($light-background, 20%);
+$light-bg-darker-30: darken($light-background, 30%);
+$light-bg-lighter-5: lighten($light-background, 5%);
+$dark-bg-tooltip: lighten(#061a41, 20%);
+$dark-bg-alpha-4: rgba(#061a41, 0.04);
+$dark-bg-alpha-12: rgba(#061a41, 0.12);
+
+$mat-light-theme-background: (
+  background: $light-background,
+  status-bar: $light-bg-darker-20,
+  app-bar: $light-bg-darker-5,
+  hover: $dark-bg-alpha-4,
+  card: $light-bg-lighter-5,
+  dialog: $light-bg-lighter-5,
+  tooltip: $dark-bg-tooltip,
+  disabled-button: $dark-bg-alpha-12,
+  raised-button: $light-bg-lighter-5,
+  focused-button: $dark-focused,
+  selected-button: $light-bg-darker-20,
+  selected-disabled-button: $light-bg-darker-30,
+  disabled-button-toggle: $light-bg-darker-10,
+  unselected-chip: $light-bg-darker-10,
+  disabled-list-option: $light-bg-darker-10,
+);
+
+// Dark bg
+$dark-background: #061a41;
+$dark-bg-lighter-5: lighten($dark-background, 5%);
+$dark-bg-lighter-10: lighten($dark-background, 10%);
+$dark-bg-lighter-20: lighten($dark-background, 20%);
+$dark-bg-lighter-30: lighten($dark-background, 30%);
+$light-bg-alpha-4: rgba(#f4f6f9, 0.04);
+$light-bg-alpha-12: rgba(#f4f6f9, 0.12);
+
+// Background palette for dark themes.
+$mat-dark-theme-background: (
+  background: $dark-background,
+  status-bar: $dark-bg-lighter-20,
+  app-bar: $dark-bg-lighter-5,
+  hover: $light-bg-alpha-4,
+  card: $dark-bg-lighter-5,
+  dialog: $dark-bg-lighter-5,
+  tooltip: $dark-bg-lighter-20,
+  disabled-button: $light-bg-alpha-12,
+  raised-button: $dark-bg-lighter-5,
+  focused-button: $light-focused,
+  selected-button: $dark-bg-lighter-20,
+  selected-disabled-button: $dark-bg-lighter-30,
+  disabled-button-toggle: $dark-bg-lighter-10,
+  unselected-chip: $dark-bg-lighter-20,
+  disabled-list-option: $dark-bg-lighter-10,
+);
+
+// Compute font config
+@include mat-core($fontConfig);
+
+// Theme Config
+
+body {
+  --primary-color: #023469;
+  --primary-lighter-color: #b3c2d2;
+  --primary-darker-color: #01214c;
+  --text-primary-color: #{$light-primary-text};
+  --text-primary-lighter-color: #{$dark-primary-text};
+  --text-primary-darker-color: #{$light-primary-text};
+}
+$mat-primary: (
+  main: #023469,
+  lighter: #b3c2d2,
+  darker: #01214c,
+  200: #023469,
+  // For slide toggle,
+  contrast:
+    (
+      main: $light-primary-text,
+      lighter: $dark-primary-text,
+      darker: $light-primary-text,
+    ),
+);
+$theme-primary: mat-palette($mat-primary, main, lighter, darker);
+
+body {
+  --accent-color: #ebbf1f;
+  --accent-lighter-color: #f9ecbc;
+  --accent-darker-color: #e2a912;
+  --text-accent-color: #{$dark-primary-text};
+  --text-accent-lighter-color: #{$dark-primary-text};
+  --text-accent-darker-color: #{$dark-primary-text};
+}
+$mat-accent: (
+  main: #ebbf1f,
+  lighter: #f9ecbc,
+  darker: #e2a912,
+  200: #ebbf1f,
+  // For slide toggle,
+  contrast:
+    (
+      main: $dark-primary-text,
+      lighter: $dark-primary-text,
+      darker: $dark-primary-text,
+    ),
+);
+$theme-accent: mat-palette($mat-accent, main, lighter, darker);
+
+body {
+  --warn-color: #f44336;
+  --warn-lighter-color: #fcc7c3;
+  --warn-darker-color: #ef2c22;
+  --text-warn-color: #{$light-primary-text};
+  --text-warn-lighter-color: #{$dark-primary-text};
+  --text-warn-darker-color: #{$light-primary-text};
+}
+$mat-warn: (
+  main: #f44336,
+  lighter: #fcc7c3,
+  darker: #ef2c22,
+  200: #f44336,
+  // For slide toggle,
+  contrast:
+    (
+      main: $light-primary-text,
+      lighter: $dark-primary-text,
+      darker: $light-primary-text,
+    ),
+);
+$theme-warn: mat-palette($mat-warn, main, lighter, darker);
+$theme: mat-light-theme($theme-primary, $theme-accent, $theme-warn);
+$altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
+
+// Theme Init
+@include angular-material-theme($theme);
+
+.theme-alternate {
+  @include angular-material-theme($altTheme);
+}
+
+// Specific component overrides, pieces that are not in line with the general theming
+
+// Handle buttons appropriately, with respect to line-height
+.mat-raised-button,
+.mat-stroked-button,
+.mat-flat-button {
+  padding: 0 1.15em;
+  margin: 0 0.65em;
+  min-width: 3em;
+  line-height: 36.4px;
+}
+
+.mat-standard-chip {
+  padding: 0.5em 0.85em;
+  min-height: 2.5em;
+}
+
+.material-icons {
+  font-size: 24px;
+  font-family: "Material Icons Round", "Material Icons";
+  .mat-badge-content {
+    font-family: "Open Sans";
+  }
+}
+
+//primary
+
+.mat-raised-button.mat-primary.active.focus,
+.mat-raised-button.mat-primary.active:focus,
+.mat-raised-button.mat-primary.active:hover:enabled,
+.mat-raised-button.mat-primary.focus:active:enabled,
+.mat-raised-button.mat-primary:active:enabled:focus,
+.mat-raised-button.mat-primary:active:enabled:hover:enabled,
+.open > .dropdown-toggle.mat-raised-button.mat-primary.focus,
+.open > .dropdown-toggle.mat-raised-button.mat-primary:focus,
+.open > .dropdown-toggle.mat-raised-button.mat-primary:hover:enabled,
+.mat-raised-button.mat-primary.focus,
+.mat-raised-button.mat-primary:focus,
+.show > .mat-raised-button.mat-primary.dropdown-toggle {
+  border: 1px solid #b3c2d2 !important;
+}
+.mat-raised-button.mat-primary:enabled {
+  border: 1px solid #023469 !important;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(2, 52, 105, 0.14),
+    0 3px 1px -2px rgba(2, 52, 105, 0.2), 0 1px 5px 0 rgba(2, 52, 105, 0.12) !important;
+  box-shadow: 0 2px 2px 0 rgba(2, 52, 105, 0.14),
+    0 3px 1px -2px rgba(2, 52, 105, 0.2), 0 1px 5px 0 rgba(2, 52, 105, 0.12) !important;
+  -webkit-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}
+.mat-raised-button.mat-primary:hover:enabled {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(2, 52, 105, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 52, 105, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(2, 52, 105, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 52, 105, 0.2) !important;
+  border: 1px solid #023469 !important;
+}
+.mat-raised-button.mat-primary.active,
+.mat-raised-button.mat-primary:active:enabled,
+.mat-raised-button.mat-primary:focus {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(2, 52, 105, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 52, 105, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(2, 52, 105, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 52, 105, 0.2) !important;
+  border-color: transparent;
+}
+
+//warn
+
+.mat-raised-button.mat-warn.active.focus,
+.mat-raised-button.mat-warn.active:focus,
+.mat-raised-button.mat-warn.active:hover:enabled,
+.mat-raised-button.mat-warn.focus:active:enabled,
+.mat-raised-button.mat-warn:active:enabled:focus,
+.mat-raised-button.mat-warn:active:enabled:hover:enabled,
+.open > .dropdown-toggle.mat-raised-button.mat-warn.focus,
+.open > .dropdown-toggle.mat-raised-button.mat-warn:focus,
+.open > .dropdown-toggle.mat-raised-button.mat-warn:hover:enabled,
+.mat-raised-button.mat-warn.focus,
+.mat-raised-button.mat-warn:focus,
+.show > .mat-raised-button.mat-warn.dropdown-toggle {
+  border: 1px solid #fcc7c3 !important;
+}
+.mat-raised-button.mat-warn:enabled {
+  border: 1px solid #f44336 !important;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14),
+    0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12) !important;
+  box-shadow: 0 2px 2px 0 rgba(244, 67, 54, 0.14),
+    0 3px 1px -2px rgba(244, 67, 54, 0.2), 0 1px 5px 0 rgba(244, 67, 54, 0.12) !important;
+  -webkit-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}
+.mat-raised-button.mat-warn:hover:enabled {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2) !important;
+  border: 1px solid #f44336 !important;
+}
+.mat-raised-button.mat-warn.active,
+.mat-raised-button.mat-warn:active:enabled,
+.mat-raised-button.mat-warn:focus {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(244, 67, 54, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(244, 67, 54, 0.2) !important;
+  border-color: transparent;
+}
+
+//accent
+.mat-raised-button.mat-accent.active.focus,
+.mat-raised-button.mat-accent.active:focus,
+.mat-raised-button.mat-accent.active:hover:enabled,
+.mat-raised-button.mat-accent.focus:active:enabled,
+.mat-raised-button.mat-accent:active:enabled:focus,
+.mat-raised-button.mat-accent:active:enabled:hover:enabled,
+.open > .dropdown-toggle.mat-raised-button.mat-accent.focus,
+.open > .dropdown-toggle.mat-raised-button.mat-accent:focus,
+.open > .dropdown-toggle.mat-raised-button.mat-accent:hover:enabled,
+.mat-raised-button.mat-accent.focus,
+.mat-raised-button.mat-accent:focus,
+.show > .mat-raised-button.mat-accent.dropdown-toggle {
+  border: 1px solid #f9ecbc !important;
+}
+.mat-raised-button.mat-accent:enabled {
+  border: 1px solid #ebbf1f !important;
+  -webkit-box-shadow: 0 2px 2px 0 rgba(235, 191, 30, 0.14),
+    0 3px 1px -2px rgba(235, 191, 30, 0.2), 0 1px 5px 0 rgba(235, 191, 30, 0.12) !important;
+  box-shadow: 0 2px 2px 0 rgba(235, 191, 30, 0.14),
+    0 3px 1px -2px rgba(235, 191, 30, 0.2), 0 1px 5px 0 rgba(235, 191, 30, 0.12) !important;
+  -webkit-transition: 0.2s ease-in;
+  -o-transition: 0.2s ease-in;
+  transition: 0.2s ease-in;
+}
+.mat-raised-button.mat-accent:hover:enabled {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(235, 191, 30, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(235, 191, 30, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(235, 191, 30, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(235, 191, 30, 0.2) !important;
+  border: 1px solid #ebbf1f !important;
+}
+.mat-raised-button.mat-accent.active,
+.mat-raised-button.mat-accent:active:enabled,
+.mat-raised-button.mat-accent:focus {
+  -webkit-box-shadow: 0 14px 26px -12px rgba(235, 191, 30, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(235, 191, 30, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(235, 191, 30, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(235, 191, 30, 0.2) !important;
+  border-color: transparent;
+}
+
+// mat icon buttons
+
+.mat-icon-button.active.focus:enabled,
+.mat-icon-button.active:focus:enabled,
+.mat-icon-button.active:hover,
+.mat-icon-button.focus:active:enabled,
+.mat-icon-button:active:focus:enabled,
+.mat-icon-button:active:hover:enabled,
+.open > .dropdown-toggle.mat-icon-button.focus:enabled,
+.open > .dropdown-toggle.mat-icon-button:focus:enabled,
+.open > .dropdown-toggle.mat-icon-button:hover:enabled,
+.mat-icon-button.focus:enabled,
+.mat-icon-button:focus:enabled,
+.show > .mat-icon-button.dropdown-toggle:enabled {
+  color: #023469 !important;
+}
+
+.mat-icon-button:enabled,
+.mat-icon-button.disabled:enabled {
+  color: #01214c !important;
+}
+
+.mat-icon-button:hover:enabled,
+.mat-icon-button.disabled:hover:enabled {
+  color: #01214c !important;
+}
+.mat-icon-button.active:enabled,
+.mat-icon-button:active:enabled,
+.mat-icon-button:focus:enabled,
+.mat-icon-button.disabled.active:enabled,
+.mat-icon-button.disabled:active:enabled,
+.mat-icon-button.disabled:focus:enabled {
+  color: #023469 !important;
+  -webkit-box-shadow: 0 14px 26px -12px rgba(2, 52, 105, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 52, 105, 0.2) !important;
+  box-shadow: 0 14px 26px -12px rgba(2, 52, 105, 0.42),
+    0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(2, 52, 105, 0.2) !important;
+  border-color: transparent;
+}
+
+//mat progress bar
+
+.loader-container {
+  position: fixed;
+  width: 100%;
+  z-index: 100;
+}
+
+/* ::ng-deep .mat-progress-bar-buffer {
+    background: #E4E8EB;
+} */
+
+.mat-progress-bar {
+  height: 6px;
+}
+
+/// mat form field
+
+$mat-primary: (
+  main: #023469,
+  lighter: #b3c2d2,
+  darker: #01214c,
+  200: #023469,
+  // For slide toggle,
+  contrast:
+    (
+      main: $light-primary-text,
+      lighter: $dark-primary-text,
+      darker: $light-primary-text,
+    ),
+);
+
+.mat-focused .mat-form-field-label {
+  color: #023469 !important;
+}
+
+.mat-form-field-underline {
+  background-color: #b3c2d2 !important;
+}
+
+.mat-form-field-ripple {
+  background-color: #023469 !important;
+}
+
+// mat talble
+.mat-column-id,
+.mat-header-cell {
+  font-weight: bold;
+  color: #01214c;
+}
+.mat-header-cell,
+.mat-cell {
+  padding: 10px !important;
+  text-align: center !important;
+  font-size: medium;
+}
+// mat sort table
+.mat-sort-header-container {
+  display: flex;
+  padding: 10px !important;
+  justify-content: center;
+}
+.mat-sort-header-arrow {
+  color: #ebbf1f;
+}
+.mat-sort-header-stem {
+  height: 3px !important;
+  width: 10px !important;
+  transform: rotate(180deg) !important;
+}
+.mat-sort-header-pointer-left,
+.mat-sort-header-pointer-right {
+  width: 7px !important;
+  height: 3px !important;
+}
+.mat-sort-header-pointer-middle {
+  width: 0px !important;
+  height: 0px !important;
+}
+
+
+// .mat-form-field-flex > .mat-form-field-infix { padding: 0.4em 0px !important;}
+// .mat-form-field-label-wrapper { top: -1.5em; }
+
+// .mat-form-field-appearance-outline.mat-form-field-can-float.mat-form-field-should-float .mat-form-field-label {
+//     transform: translateY(-1.1em) scale(.75);
+//     width: 133.33333%;
+// }

@@ -45,6 +45,9 @@ File: scss
  *  7. Widgets
  *  8. Custom Templates
  */
+
+
+
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 /*******************
 Global Styles
@@ -61,12 +64,50 @@ Global Styles
 * {
   outline: none;
 }
+
+/*
+Material custom themes and colors
+*/
+
+
+/* end material custom themes an */
 :root {
   --color-primary: #0B2B5D;
   --color-secondary: #00356C;
   --color-warn: #EBBF1F;
   --bg-secondary: #EDF0F5;
 }
+:root {
+  --ista-bg-color: rgba(31,86,177, 1);
+  --ista-text-color: rgba(198,208,248, 1);
+  --ista-text-soft-color: rgba(198,208,248, 1);
+  --ista-text-strong-color: rgba(255,255,255, 1);
+  --ista-subtle-color: rgba(29,82,169, 1);
+  --ista-border-color: rgba(113,126,169, 1);
+  --ista-shadow-color: rgba(14,48,105, 1);
+  --ista-input-color: rgba(23,68,143, 1);
+  --ista-outline-color: rgba(113,144,229, 1);
+  --ista-mark-color: rgba(255,255,255, 0.08);
+  --ista-special-color: rgba(255,255,255, 1);
+  --ista-special-bg-color: rgba(198,208,248, 1);
+  --ista-special-text-color: rgba(31,86,177, 1);
+  --ista-special-shadow-color: rgba(110,123,164, 1);
+  --ista-special-mark-color: rgba(31,86,177, 0.08);
+  --ista-light-color: rgba(241,243,254, 1);
+  --ista-dark-color: rgba(62,70,96, 1);
+  --ista-text-color-rgb: 198,208,248;
+  --ista-bg-color-rgb: 31,86,177;
+  --ista-subtle-color-rgb: 29,82,169;
+  --ista-special-color-rgb: 255,255,255;
+  --ista-special-text-color-rgb: 31,86,177;
+  --ista-special-bg-color-rgb: 198,208,248;
+  --ista-shadow-color-rgb: 14,48,105;
+  --ista-special-shadow-color-rgb: 110,123,164;
+  --ista-outline-color-rgb: 113,144,229;
+  --ista-dark-color-rgb: 62,70,96;
+  --ista-light-color-rgb: 241,243,254;
+}
+
 body {
   background: #fff;
  font-family: 'Roboto', sans-serif;
