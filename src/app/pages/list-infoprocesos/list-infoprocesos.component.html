@@ -1,61 +1,80 @@
-<div class="row" *ngIf="!cargando1">
+<div class="row">
     <div class="col-12">
       <div class="card">
         <div class="card-body">
-          <h4 class="card-title text-center">Informacion de Procesos</h4>
-          <div class="table-responsive">
-            <div id="example23_wrapper" class="dataTables_wrapper">
-              <div class="row" *ngIf="cargando1">
-                <div class="col-12">
-                  <div class="alert alert-info text-center" role="alert">
-                    <h4 class="alert-heading">Cargando</h4>
-                    <i class="fa fa-spin fa-refresh fa-2x"></i>
-                    <p class="mb-0">Por favor espere...</p>
-                  </div>
-                </div>
-              </div>
-              <div class="table-scroll">
-                <table
-                  class="
+          <div class="row">
+           
+            <div class="col-md-5">
+              Buscar por estado<br>
+              <select class="form-control" [(ngModel)]="estadoFiltro">
+                <option [ngValue]="undefined">ESTADO (TODAS)</option>
+                <option *ngFor="let convocatoria of convocatoria" [ngValue]="convocatoria.estado">
+                  {{ convocatoria.estado }}
+                </option>
+              </select>
+            </div>
+            <br>
+            <br><br>
+            <div class="col-md-1">
+              <br>
+              <button class="btn btn-primary btn-sm" (click)="filtarConvocatoriasPorEstado()">
+                <i class="mdi mdi-magnify"></i>
+                Buscar
+              </button>
+            </div>
+            <div class="col-md-2 text-right"><br>
+              <button class="btn btn-sm " (click)="cargarEstadoDefault()">
+                Mostrar Todas
+              </button>
+            </div>
+          </div>
+          
+          <div class="table-scroll">
+            <table class="
                     table table-bordered
                     justify-content-center
                     table-responsive-sm table-sm
                     dataTable
-                  "
-                >
-                  <thead>
-                    <tr>
-                      <th># Proceso</th> 
-                      <th>Carrera</th>
-                      <th># Estudiantes</th>
-                      <th>Empresa</th>
-                      <th>Responsable PPP</th>
-                      <th>Estado</th>
-                    </tr>
-                  </thead>
-  
-                  <tbody class="animated fadeIn fast">
-                    <tr *ngFor="let convocatoria of convocatoria">
-                      <td>{{ convocatoria.id }}</td>
-                      <td>{{ convocatoria.carrera.nombre }}</td>
-                      <td>{{ convocatoria.solicitudEmpresa.numero_alumnos}}</td>
-                      <td>{{ convocatoria.solicitudEmpresa.empresa.nombre }}</td>
-                      <td>{{ convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo}}
-                          {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}} 
-                          {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}
-                      </td>
-                      <td>{{ convocatoria.estado}}</td>
-                     
-                     
-                     
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
+                  ">
+              <thead>
+                <tr>
+                    <th>Codigo Proceso</th> 
+                    <th>Carrera</th>
+                    <th># Estudiantes</th>
+                    <th>Empresa</th>
+                    <th>Responsable PPP</th>
+                    <th>Fecha Inicio</th>
+                    <th>Fecha Finalizacion</th>
+                    <th>Estado</th>
+                  </tr>
+                </thead>
+
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let convocatoria of convocatoria">
+                    <td>{{ convocatoria.id }}</td>
+                    <td>{{ convocatoria.carrera.nombre }}</td>
+                    <td>{{ convocatoria.solicitudEmpresa.numero_alumnos}}</td>
+                    <td>{{ convocatoria.solicitudEmpresa.empresa.nombre }}</td>
+                    <td>{{ convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo}}
+                        {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}} 
+                        {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}
+                    </td>    
+                    <td>{{ convocatoria.fecha_emision}}</td>
+                    <td>{{ convocatoria.fecha_max_recib_solic}}</td>
+                    <td>{{ convocatoria.estado}}</td>
+                  <td>
+                   
+                  </td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
     </div>
   </div>
+  
+  <mat-paginator [length]=" totalRegistros " [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+  </mat-paginator>
   
