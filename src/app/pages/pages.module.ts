@@ -70,6 +70,8 @@ import { ListSeleccionEstEmpComponent } from './list-Respuesa-emp-est/list-selec
 import { ListEstudiantesAsignadosComponent } from './list-estudiantes-asignados/list-estudiantes-asignados.component';
 import { AddEvaluacionEstudianteEmpresaComponent } from './add-evaluacion-estudiante-empresa/add-evaluacion-estudiante-empresa.component';
 import { AddCertificadoEstudianteEmpresaComponent } from './add-certificado-estudiante-empresa/add-certificado-estudiante-empresa.component';
+import { ListSeguimientosComponent } from './gestion-tutor-academico/list-seguimientos/list-seguimientos.component';
+import { AddSeguimientoComponent } from './gestion-tutor-academico/add-seguimiento/add-seguimiento.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -118,6 +120,8 @@ import { AddCertificadoEstudianteEmpresaComponent } from './add-certificado-estu
     ListEstudiantesAsignadosComponent,
     AddEvaluacionEstudianteEmpresaComponent,
     AddCertificadoEstudianteEmpresaComponent,
+    ListSeguimientosComponent,
+    AddSeguimientoComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
