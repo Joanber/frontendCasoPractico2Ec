@@ -112,7 +112,6 @@ export class AddDesignacionTeComponent implements OnInit {
       return;
     }
     this.designacionte.alumno = this.alumno;
-    this.designacionte.validacionSAC = this.validacionSac;
     this.designacionTEService
       .crear(this.designacionte)
       .subscribe((designacionTE) => {

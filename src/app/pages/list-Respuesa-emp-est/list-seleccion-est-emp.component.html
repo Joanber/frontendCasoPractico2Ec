@@ -1,121 +1,143 @@
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-3">
-            Buscar por fecha
-            <br>
-            <input aria-placeholder="Seleccioanr fecha" [matDatepicker]="myDatepicker" [(ngModel)]="busqueda"
-              class="form-control" style="width: min-content" name="fechaF" required #fechaF="ngModel" />
-            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
-          </div>
-          <div class="col-md-5">
-            Buscar por carrera<br>
-            <select class="form-control" [(ngModel)]="busqueda">
-              <option [ngValue]="undefined">CARRERA (TODAS)</option>
-              <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
-                {{ carreras.nombre }}
-              </option>
-            </select>
-          </div>
-          <br>
-          <br><br>
-          <div class="col-md-1">
-            <br>
-            <button class="btn btn-primary btn-sm" (click)="filtarConvocatoriasPorFechaCarrera()">
-              <i class="mdi mdi-magnify"></i>
-              Buscar
-            </button>
-          </div>
-          <div class="col-md-2 text-right"><br>
-            <button class="btn btn-sm " (click)="cargarConvocatoriasDefault()">
-              Mostrar Todas
-            </button>
-          </div>
-        </div>
-        <div>
-          <button routerLink="/dashboard/solicitudes_empresas" class="btn btn-primary btn-sm">
-            <i class="mdi mdi-plus"></i>
-            Nueva Convocatoria
-          </button>
-          <br>
-          <br>
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-center">Listado de Respuestas a Empresas </h4>
+      <div class="table-responsive">
+        <div id="example23_wrapper" class="dataTables_wrapper">
+          <div class="row">
+            <div class="col-md-8">
+              <select class="form-control" [(ngModel)]="carreraFiltro">
+                <option [ngValue]="undefined">CARRERA (TODAS)</option>
+                <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
+                  {{ carreras.nombre }}
+                </option>
+              </select>
+            </div>
 
-        </div>
-        <div class="table-scroll">
-          <table class="
-                  table table-bordered
-                  justify-content-center
-                  table-responsive-sm table-sm
-                  dataTable
-                ">
-            <thead>
-              <tr>
-                <th>Fecha Respuesta </th>
-                <th>Empresa </th>
-                <th>Estudiantes</th>
-                <th>Carrera</th>
-                <th>Acciones</th>
-              </tr>
-            </thead>
+            <div class="col-md-1">
+              <button class="btn btn-primary btn-sm" (click)="filtrarValidacionesSACCarrera()">
+                <i class="mdi mdi-magnify"></i>
+                Buscar
+              </button>
+            </div>
+            <div class="col-md-2 text-right">
+              <button class="btn btn-sm" (click)="cargarConvocatoriasDefault()">
+                Mostrar Todas
+              </button>
+            </div>
+          </div>
+          <br />
+          <div class="alert alert-primary text-center" *ngIf="validacionesSac.length == 0">
+            NO HAY DATOS DISPONIBLES
+          </div>
 
-            <tbody class="animated fadeIn fast">
-              <tr *ngFor="let validar of validaciones">
-                <td>{{validar.fecha_emision}}</td>
-                <td>{{validar.convocatoria.solicitudEmpresa.empresa.nombre}}</td>
-                <table class="
+          <div class="table-scroll">
+            <table class="
                 table table-bordered
                 justify-content-center
                 table-responsive-sm table-sm
                 dataTable
-            ">
+              " *ngIf="validacionesSac.length > 0">
+              <thead>
+                <tr>
+                  <th>Convocatoria</th>
+                  <th>Empresa</th>
+                  <th>Alumnos</th>
+                  <th>Acciones</th>
+                </tr>
+              </thead>
 
-                  <tr *ngFor="let alum of validar.alumnos">
-                    <td class="text-center">{{alum.persona.primer_nombre}} {{alum.persona.segundo_nombre}}
-                      {{alum.persona.primer_apellido}}
-                      {{alum.persona.segundo_apellido}}</td>
-                    <td class="text-nowrap text-center">
-                      <a [routerLink]="[
-                            '/dashboard',
-                            'designar-tutor',
-                            alum.id  ]" data-toggle="tooltip"  class="cursor"
-                        title="Designar Tutor">
-                        <i class="mdi mdi-account-star-variant"> </i>Tutor</a>
-                    </td>
-                  </tr>
-
-
-                </table>
-                <td>{{ validar.convocatoria.carrera.abreviatura }}</td>
-
-
-                <td class="text-nowrap text-center">
-
-                  <a [routerLink]="[
-                      '/dashboard',
-                      'actualizar-convocatoria',
-                      validar.id
-                    ]" data-toggle="tooltip" data-original-title="Editar" class="cursor">
-                    <i class="fa fa-pencil text-inverse m-r-10"> </i>
-                  </a>
-                  <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
-                    (click)="eliminarRespuesta(validar)">
-                    <i class="fa fa-close text-danger"></i>
-                  </a>
-                </td>
-              </tr>
-            </tbody>
-          </table>
-
+              <tbody class="animated fadeIn fast">
+                <tr *ngFor="let validacionesSac of validacionesSac">
+                  <td>
+                    {{ validacionesSac.convocatoria.carrera.abreviatura }} {{ validacionesSac.convocatoria.carrera.id }}
+                  </td>
+                  <td>
+                    {{ validacionesSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+                  </td>
+                  <td>
+                    <table class="
+                        table table-bordered table-responsive-sm table-sm
+                        text-center
+                      ">
+                      <thead class="bg-pri white">
+                        <tr>
+                          <th>C.I</th>
+                          <th>Apellidos y Nombres</th>
+                          <th>Nombre Academico</th>
+                          <th>Tutor Academico</th>
+                          <th>Accion</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr *ngFor="let alumno of validacionesSac.alumnos">
+                          <td>{{ alumno.persona.identificacion }}</td>
+                          <td>
+                            {{ alumno.persona.primer_apellido }}
+                            {{ alumno.persona.segundo_apellido }}
+                            {{ alumno.persona.primer_nombre }}
+                            {{ alumno.persona.segundo_nombre }}
+                          </td>
+                          <td>Nombre Tutor</td>
+                          <td *ngIf="!alumno.ta">Sin Asignar</td>
+                          <td *ngIf="alumno.ta">Designado</td>
+                          <td class="text-nowrap text-center">
+                            <a *ngIf="!alumno.ta" [routerLink]="[
+                                '/dashboard',
+                                'nueva-designacion-ta',
+                                validacionesSac.id,
+                                alumno.id
+                              ]" data-toggle="tooltip" data-original-title="Designar Tutor Academico" class="cursor"
+                              title="Designar Tutor Academico">
+                              <i class="mdi mdi-account-switch m-r-10"></i>
+                            </a>
+                            <a *ngIf="alumno.ta" [routerLink]="[
+                                '/dashboard',
+                                'actualizar-designacion-ta',
+                                alumno.id
+                              ]" data-toggle="tooltip" data-original-title="Editar Tutor Academico" class="cursor"
+                              title="Editar Tutor Academico">
+                              <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                            </a>
+                            <a *ngIf="alumno.ta" data-toggle="tooltip" data-original-title="Borrar" class="cursor"
+                              title="Eliminar Tutor Academico" (click)="eliminarDesignacionTA(alumno.id)">
+                              <i class="fa fa-close text-danger m-r-10"></i>
+                            </a>
+                            <a *ngIf="alumno.ta" data-toggle="tooltip" data-original-title="Ver" class="cursor"
+                              title="Ver">
+                              <i class="mdi mdi-library-books"></i>
+                            </a>
+                          </td>
+                        </tr>
+                      </tbody>
+                    </table>
+                  </td>
+                  <td>
+                    <a [routerLink]="[
+                                '/dashboard',
+                                'actualizar-designacion-te',
+                                validacionesSac.id
+                              ]" data-toggle="tooltip" data-original-title="Editar Tutor Empresarial" class="cursor"
+                      title="Editar Tutor Empresarial">
+                      <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                    </a>
+                    <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
+                      title="Eliminar Tutor Empresarial" (click)="eliminarDesignacionTA(validacionesSac.id)">
+                      <i class="fa fa-close text-danger m-r-10"></i>
+                    </a>
+                    <a data-toggle="tooltip" data-original-title="Ver" class="cursor" title="Ver">
+                      <i class="mdi mdi-library-books"></i>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+  </mat-paginator>
 </div>
-
-
-<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
-  [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
-</mat-paginator>
