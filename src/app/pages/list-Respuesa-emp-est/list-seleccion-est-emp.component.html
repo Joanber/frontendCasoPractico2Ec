@@ -11,7 +11,15 @@
             <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
             <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
           </div>
-
+          <div class="col-md-5">
+            Buscar por carrera<br>
+            <select class="form-control" [(ngModel)]="busqueda">
+              <option [ngValue]="undefined">CARRERA (TODAS)</option>
+              <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
+                {{ carreras.nombre }}
+              </option>
+            </select>
+          </div>
           <br>
           <br><br>
           <div class="col-md-1">
@@ -47,9 +55,8 @@
               <tr>
                 <th>Fecha Respuesta </th>
                 <th>Empresa </th>
-                <th >Estudiantes</th>
+                <th>Estudiantes</th>
                 <th>Carrera</th>
-
                 <th>Acciones</th>
               </tr>
             </thead>
@@ -58,12 +65,28 @@
               <tr *ngFor="let validar of validaciones">
                 <td>{{validar.fecha_emision}}</td>
                 <td>{{validar.convocatoria.solicitudEmpresa.empresa.nombre}}</td>
-                <table >
-                  <tbody>
-                  <th *ngFor="let alum of validar.alumnos">
-                    <tr>{{alum.persona.primer_nombre}} {{alum.persona.segundo_nombre}} {{alum.persona.primer_apellido}} {{alum.persona.segundo_apellido}}</tr>
-                  </th>
-                  </tbody>
+                <table class="
+                table table-bordered
+                justify-content-center
+                table-responsive-sm table-sm
+                dataTable
+            ">
+
+                  <tr *ngFor="let alum of validar.alumnos">
+                    <td class="text-center">{{alum.persona.primer_nombre}} {{alum.persona.segundo_nombre}}
+                      {{alum.persona.primer_apellido}}
+                      {{alum.persona.segundo_apellido}}</td>
+                    <td class="text-nowrap text-center">
+                      <a [routerLink]="[
+                            '/dashboard',
+                            'designar-tutor',
+                            alum.id  ]" data-toggle="tooltip"  class="cursor"
+                        title="Designar Tutor">
+                        <i class="mdi mdi-account-star-variant"> </i>Tutor</a>
+                    </td>
+                  </tr>
+
+
                 </table>
                 <td>{{ validar.convocatoria.carrera.abreviatura }}</td>
 
@@ -85,7 +108,7 @@
               </tr>
             </tbody>
           </table>
-          <button type="button" class="btn btn-danger" (click)="prueba()">Prueba</button>
+
         </div>
       </div>
     </div>

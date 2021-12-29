@@ -1,8 +1,10 @@
 import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
+import { Carrera } from 'src/app/models/carrera.model';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
 import { ValidacionSAC } from 'src/app/models/validaciones_sac.model';
+import { CarreraService } from 'src/app/services/services.models/carrera.service';
 import { ValidacionesSacService } from 'src/app/services/services.models/validaciones-sac.service';
 import Swal from 'sweetalert2';
 
@@ -13,6 +15,8 @@ import Swal from 'sweetalert2';
   providers: [DatePipe],
 })
 export class ListSeleccionEstEmpComponent implements OnInit {
+
+  public carreras: Carrera[] = [];
   public totalRegistros = 0;
   public paginaActual = 0;
   public totalPorPagina = 10;
@@ -28,6 +32,7 @@ export class ListSeleccionEstEmpComponent implements OnInit {
 
   constructor(
     private validacionesSacService: ValidacionesSacService,
+    private carreraService:CarreraService,
       private miDatePipe: DatePipe
   ) {}
   ngOnInit() {
@@ -38,7 +43,7 @@ export class ListSeleccionEstEmpComponent implements OnInit {
       this.busqueda
     );
 
-
+this.cargarCarreras();
   }
 
   public paginar(event: PageEvent): void {
@@ -65,6 +70,13 @@ export class ListSeleccionEstEmpComponent implements OnInit {
       return;
     }
   }
+
+  cargarCarreras() {
+    this.carreraService
+      .getCarreras()
+      .subscribe((carreras) => (this.carreras = carreras));
+  }
+
   cargarConvocatoriasDefault() {
     this.carreraFiltro = undefined;
     this.busqueda = "";
@@ -133,13 +145,5 @@ export class ListSeleccionEstEmpComponent implements OnInit {
         }
       });
   }
-  prueba(){
-    for (let index = 0; index < this.validaciones.length; index++) {
-      for (let i = 0; i < this.validaciones[index].alumnos.length; i++){
-        console.log(this.validaciones[index].alumnos[i].persona.primer_nombre);
-      }
 
-
-    }
-  }
 }

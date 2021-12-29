@@ -165,7 +165,12 @@ const routes: Routes = [
         data: { titulo: 'Respuestas  a Empresas' },
       },
       {
-        path: 'designarTutorAcademico',
+        path: 'designar-autor-academico/:id',
+        component: DesignarTutorAcademicoComponent,
+        data: { titulo: 'Designar Tutor Academico' },
+      },
+      {
+        path: 'designar-autor-academico/:idc',
         component: DesignarTutorAcademicoComponent,
         data: { titulo: 'Designar Tutor Academico' },
       },
