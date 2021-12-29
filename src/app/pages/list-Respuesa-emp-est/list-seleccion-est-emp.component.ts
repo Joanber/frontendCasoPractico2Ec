@@ -137,8 +137,5 @@ export class ListSeleccionEstEmpComponent implements OnInit {
         }
       });
   }
-  irListaRespuestasEmpresas(){
-    this.router.navigateByUrl("/dashboard/respuestas-empresas");
-  }
 
 }
