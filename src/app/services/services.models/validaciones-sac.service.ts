@@ -49,7 +49,7 @@ export class ValidacionesSacService {
   }
 
 
-  //CREAR convocatoria
+  //CREAR Respuesta empresa
   crear(validacionSAC: ValidacionSAC): Observable<ValidacionSAC> {
     return this.http.post<ValidacionSAC>(`${bd_url}/`, validacionSAC).pipe(
       map((response: any) => response.carrera as ValidacionSAC),
@@ -62,7 +62,7 @@ export class ValidacionesSacService {
       })
     );
   }
-  //EDITAR CONVOCATORIA
+  //EDITAR Respuesta empresa
   editar(validacionSAC: ValidacionSAC, id: number): Observable<ValidacionSAC> {
     return this.http.put<ValidacionSAC>(`${bd_url}/${id}`, validacionSAC).pipe(
       map((response: any) => response.convocatoria as ValidacionSAC),
@@ -75,7 +75,7 @@ export class ValidacionesSacService {
       })
     );
   }
-  //ELIMINAR UNA CONVOCATORIA
+  //ELIMINAR UNA Respuesta empresa
   eliminar(id: number): Observable<ValidacionSAC> {
     return this.http.delete<ValidacionSAC>(`${bd_url}/${id}`).pipe(
       catchError((e) => {
