@@ -61,8 +61,8 @@ export class SidebarService {
           url: "list-solicitud-empresa",
         },
         {
-          titulo: 'Consultar Listado de estudiantes asignados',
-          url: 'solicitar/a4',
+          titulo: 'Listado de estudiantes asignados',
+          url: 'lista-estudiantes-asignados',
         },
         {
           titulo: 'Designar Tutor Empresarial',
@@ -70,11 +70,11 @@ export class SidebarService {
         },
         {
           titulo: 'Evaluación a estudiante',
-          url: 'solicitar/a12',
+          url: 'evaluacion-estudiante-empresa',
         },
         {
           titulo: 'Certificado',
-          url: 'solicitar/a12_1',
+          url: 'certificado-estudiante-empresa',
         },
       ],
     },

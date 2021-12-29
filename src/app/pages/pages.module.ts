@@ -67,6 +67,9 @@ import { AddDesignacionTeComponent } from './gestion-empresa/add-designacion-te/
 import { ListInfoProcesosComponent } from './list-infoprocesos/list-infoprocesos.component';
 import { SeleccionarAlumnosComponent } from './list-solicitudes-alumnos-empresa/seleccionar-alumnos.component';
 import { ListSeleccionEstEmpComponent } from './list-Respuesa-emp-est/list-seleccion-est-emp.component';
+import { ListEstudiantesAsignadosComponent } from './list-estudiantes-asignados/list-estudiantes-asignados.component';
+import { AddEvaluacionEstudianteEmpresaComponent } from './add-evaluacion-estudiante-empresa/add-evaluacion-estudiante-empresa.component';
+import { AddCertificadoEstudianteEmpresaComponent } from './add-certificado-estudiante-empresa/add-certificado-estudiante-empresa.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -112,6 +115,9 @@ import { ListSeleccionEstEmpComponent } from './list-Respuesa-emp-est/list-selec
     ListConvocatoriasValidasComponent,
     AddDesignacionTeComponent,
     ListSeleccionEstEmpComponent,
+    ListEstudiantesAsignadosComponent,
+    AddEvaluacionEstudianteEmpresaComponent,
+    AddCertificadoEstudianteEmpresaComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
