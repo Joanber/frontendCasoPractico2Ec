@@ -1,7 +1,7 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import { MatPaginator, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { LoaderService } from 'src/app/services/interceptores/loader.service';
 import Swal from 'sweetalert2';
 import { Convenio } from './../../../../models/convenio';
@@ -12,35 +12,33 @@ import { ConvenioService } from './../../../../services/services.models/convenio
   styleUrls: ['./list-convenios.component.css']
 })
 export class ListConveniosComponent implements OnInit, AfterViewInit {
-  constructor(private convenioService: ConvenioService, private _liveAnnouncer: LiveAnnouncer,public loaderService: LoaderService) {
+  constructor(private convenioService: ConvenioService, private _liveAnnouncer: LiveAnnouncer, public loaderService: LoaderService) {
   }
 
-  @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
   @ViewChild(MatSort, { static: true }) sort: MatSort;
   searchInput = new FormControl('');
   displayedColumns: string[] = ['id', 'nombre', 'empresa', 'carrera', 'acciones'];
-
+  value: any;
   public pageSizeOptions: number[] = [10, 20, 50, 100];
-
-  dataSource: MatTableDataSource<Convenio>;
-
+  dataSource = new MatTableDataSource<Convenio>();
   convenios: Convenio[] = [];
-
   totalElements = 0;
   currentPage = 0;
   pageSize = 10;
-  loading = true;
   sortBy = '';
   message = '';
   search = false;
-  emptyList: boolean;
+  emptyList = false;
 
   ngAfterViewInit() {
-    this.paginator.pageIndex = this.currentPage;
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource();
+    this.dataSource = new MatTableDataSource([]);
     this.retriveConveniosByPage(this.currentPage, this.pageSize, this.sortBy);
   }
 
@@ -83,25 +81,26 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   retriveConveniosByPage(page: number, size: number, sortBy: string) {
-    this.loading = true;
+    // this.loading = true;
     this.convenioService.retrieveConveniosByPage(page.toString(), size.toString(), sortBy).subscribe({
       next: (convenios) => {
+        if (convenios.content.length === 0) {
+          this.dataSource = new MatTableDataSource();
+          this.emptyList = true;
+        }
+
         this.convenios = convenios.content;
-        this.emptyList = convenios.content.length === 0;
         this.totalElements = convenios.totalElements;
       }, complete: () => {
-        this.initPaginator();
-        this.loading = false;
+        if (this.convenios.length > 0) {
+          this.initPaginator();
+        }
+        console.warn(this.dataSource.data.length < 1 );
       }, error: (err) => console.log(err)
     });
   }
 
   initPaginator() {
-    this.paginator._intl.itemsPerPageLabel = 'Registros por página:';
-    this.paginator._intl.nextPageLabel = 'Siguiente';
-    this.paginator._intl.previousPageLabel = 'Previa';
-    this.paginator._intl.firstPageLabel = 'Primera Página';
-    this.paginator._intl.lastPageLabel = 'Última Página';
     this.dataSource = new MatTableDataSource(this.convenios);
     this.dataSource.filterPredicate = (data: Convenio, filter: string) => data.carrera.nombre.indexOf(filter) !== -1;
     this.dataSource.sortingDataAccessor = (convenio, property) => {
@@ -111,8 +110,17 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
         default: return convenio[property];
       }
     };
-    this.dataSource.sort = this.sort;
-    this.paginator.length = this.totalElements;
+
+
+  }
+  CustomPaginator(): MatPaginatorIntl {
+    const customPaginatorIntl = new MatPaginatorIntl();
+    customPaginatorIntl.itemsPerPageLabel = 'Registros por página:';
+    customPaginatorIntl.nextPageLabel = 'Siguiente';
+    customPaginatorIntl.previousPageLabel = 'Previa';
+    customPaginatorIntl.firstPageLabel = 'Primera Página';
+    customPaginatorIntl.lastPageLabel = 'Última Página';
+    return customPaginatorIntl;
   }
 
   paginate(event: PageEvent): void {
@@ -152,8 +160,8 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   resetSearch() {
-    this.search = false;
-    this.searchInput.reset();
+    // this.search = false;
+    // this.searchInput.reset();
     return this.retriveConveniosByPage(
       this.currentPage,
       this.pageSize,
