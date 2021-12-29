@@ -1,5 +1,5 @@
 import { formatDate } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Alumno } from 'src/app/models/alumno.model';
@@ -15,9 +15,9 @@ import Swal from 'sweetalert2';
   templateUrl: './solicitud.component.html',
   styleUrls: ['./solicitud.component.css']
 })
-export class SolicitudComponent implements OnInit {
+export class SolicitudComponent implements OnInit, AfterViewInit {
   user:any;
-  public alumno: Observable<Alumno>;
+ public alumno=new Observable<Alumno>();
  //VARIABLE DE LOADING
  public cargando: boolean = true;
  //VARIABLE PARA BUSCAR
@@ -26,7 +26,7 @@ export class SolicitudComponent implements OnInit {
 today = new Date();
 jstoday = '';
 
- public convocatoria = new Convocatoria();
+ public convocatoria=new Convocatoria();
  constructor(
    private convocatoriaService: ConvocatoriasService,
    private activatedRoute: ActivatedRoute,
@@ -35,12 +35,20 @@ jstoday = '';
 
  ) {
   this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
-
  }
+
+ ngAfterViewInit(): void {
+ 
+ }
+
  ngOnInit() {
-   this.activatedRoute.params.subscribe(({ id }) =>
-     this.cargarConvocatoria(id)
-   );
+  this.user = JSON.parse(localStorage.getItem("usuario"));
+  this.alumno = this.alumnoService.getAlumnoByPersonaId(this.user.id);
+    this.activatedRoute.params.subscribe(({ id }) => {
+      this.cargarConvocatoria(id);
+    }
+    );
+    
  }
 
  cargarConvocatoria(id: number) {
@@ -49,12 +57,10 @@ jstoday = '';
   }
   this.convocatoriaService
     .getConvocatoriaById(id)
-    .subscribe({
-      next: (convocatoria)=> this.convocatoria=convocatoria,
-      complete: () => {
-        this.user = JSON.parse(localStorage.getItem("usuario"));
-        this.alumno = this.alumnoService.getAlumnoByPersonaId(this.user.id);
-    }});
+    .subscribe(convocatoria => {
+      this.convocatoria = convocatoria;
+     
+    });
  }
 
  ObtenerFecha(){
@@ -76,27 +82,37 @@ jstoday = '';
   return fechaEmision.getFullYear()+"-"+messtr+"-"+diastr;
  }
 
+ solicitudAlumno=new SolicitudAlumno();
+
   llamarUsuario() {
-    let solicitudAlumno = new SolicitudAlumno();
-    this.alumno.subscribe((alumno) => solicitudAlumno.id = alumno.persona.id);
-    solicitudAlumno.fecha_emision=this.ObtenerFecha();
-    solicitudAlumno.numero_horas=240;
-    this.alumno.subscribe((alumno) => solicitudAlumno.alumno = alumno);
-    solicitudAlumno.convocatoria=this.convocatoria;
-    console.log(this.ObtenerFecha());
-    this.solicitudAlumnosrv.crear(solicitudAlumno).subscribe(data=>{
-      console.log(data);
-      Swal.fire(
-        "Solicitud Estudiante",
-        `creada con exito!`,
-        "success"
-      );
-      /*this.irListaEmpresa();*/
-      console.log("Solicitud Exitosa");
+    this.alumno.subscribe({
+      next: (alumno: Alumno) => {
+        this.solicitudAlumno.fecha_emision = this.ObtenerFecha();
+        this.solicitudAlumno.numero_horas = 240;
+        console.warn('segundo', this.solicitudAlumno);
+        this.solicitudAlumno.convocatoria = this.convocatoria;
+        console.log(this.ObtenerFecha());
+        this.solicitudAlumno.alumno = alumno;
+        console.warn(alumno);
+      }
+      , complete: () => {
 
-    },
-    error=>console.log("ha ocurrido un error")
+        this.solicitudAlumnosrv.crear(this.solicitudAlumno).subscribe(data => {
+          console.log(data);
+          Swal.fire(
+            "Solicitud Estudiante",
+            `creada con exito!`,
+            "success"
+          );
+          /*this.irListaEmpresa();*/
+          console.log("Solicitud Exitosa");
+
+        },
+          error => console.log("ha ocurrido un error")
+        );
+      }
+    }
     );
- };
-
+  }
+  
 }

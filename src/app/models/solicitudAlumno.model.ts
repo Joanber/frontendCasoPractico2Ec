@@ -7,4 +7,9 @@ export class SolicitudAlumno {
   numero_horas: number;
   alumno: Alumno;
   convocatoria: Convocatoria;
+
+  constructor (){
+    this.alumno=new Alumno();
+    this.convocatoria=new Convocatoria();
+  }
 }
