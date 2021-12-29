@@ -91,8 +91,8 @@ export class SidebarService {
           url: 'convocatorias',
         },
         {
-          titulo: 'Designar Tutor academico',
-          url: 'designarTutorAcademico',
+          titulo: 'Respuestas a Empresas',
+          url: 'respuestas-empresas',
         },
         {
           titulo: 'Generar Acta',

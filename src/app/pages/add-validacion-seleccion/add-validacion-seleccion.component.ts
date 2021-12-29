@@ -34,7 +34,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
 
   alumnosSelect: any;
 
-  
+
 
   //Variable fecha
   today = new Date();

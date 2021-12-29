@@ -32,7 +32,6 @@ import { ConvocatoriasAbiertasComponent } from './convocatorias-abiertas/convoca
 import { ListDocenteComponent } from './list-docente/list-docente.component';
 import { AddDocenteComponent } from './add-docente/add-docente.component';
 import { ListSolicitudesAlumnosComponent } from './list-solicitudes-alumnos/list-solicitudes-alumnos.component';
-import { SeleccionarAlumnosComponent } from './add-seleccionar-alumnos/seleccionar-alumnos.component';
 import { AddEmpresaComponent } from './add-empresa/add-empresa.component';
 
 import { AddResponsablePPPComponent } from './add-responsable-ppp/add-responsable-ppp.component';
@@ -44,6 +43,8 @@ import { AddValidacionSeleccionComponent } from './add-validacion-seleccion/add-
 import { ListConvocatoriasValidasComponent } from './gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component';
 import { AddDesignacionTeComponent } from './gestion-empresa/add-designacion-te/add-designacion-te.component';
 import { ListInfoProcesosComponent } from './list-infoprocesos/list-infoprocesos.component';
+import { SeleccionarAlumnosComponent } from './list-solicitudes-alumnos-empresa/seleccionar-alumnos.component';
+import { ListSeleccionEstEmpComponent } from './list-Respuesa-emp-est/list-seleccion-est-emp.component';
 
 const routes: Routes = [
   {
@@ -159,7 +160,17 @@ const routes: Routes = [
         data: { titulo: 'Responder a empresa eleccion estudiantes ' },
       },
       {
-        path: 'designarTutorAcademico',
+        path: 'respuestas-empresas',
+        component: ListSeleccionEstEmpComponent,
+        data: { titulo: 'Respuestas  a Empresas' },
+      },
+      {
+        path: 'designar-autor-academico/:id',
+        component: DesignarTutorAcademicoComponent,
+        data: { titulo: 'Designar Tutor Academico' },
+      },
+      {
+        path: 'designar-autor-academico/:idc',
         component: DesignarTutorAcademicoComponent,
         data: { titulo: 'Designar Tutor Academico' },
       },
