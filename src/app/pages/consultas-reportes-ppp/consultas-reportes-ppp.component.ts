@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
+import autoTable, { UserOptions } from 'jspdf-autotable';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
 import { Empresa } from 'src/app/models/empresa.model';
@@ -10,6 +11,13 @@ import { EmpresaService } from 'src/app/services/services.models/empresa.service
 import { PersonaService } from 'src/app/services/services.models/persona.service';
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
+import jsPDF, * as jspdf from 'jspdf';
+
+interface jsPDFWithPlugin extends jspdf.jsPDF {
+  [x: string]: any;
+
+  autoTable: (optios: UserOptions) => jspdf.jsPDF;
+}
 
 
 const bd_url = environment.bd_url;
@@ -34,15 +42,14 @@ export class ConsultasReportesPppComponent implements OnInit {
   //VARIABLE DE LOADING
   public cargando: boolean = true;
   //VARIABLE PARA BUSCAR
-
   public carreraFiltro: string = undefined;
   public fecha: string = "";
-
   public busqueda: string = "";
   public bd_url = bd_url + "/tutores";
-
-
   public fechaFormateada: string = "";
+  // Variable para almanecar localmente
+   public asistenciaStorage: any [] = [];
+
   constructor(private personaService: PersonaService,
     private carreraService: CarreraService,
     private convocatoriaService: ConvocatoriasService
@@ -184,5 +191,45 @@ export class ConsultasReportesPppComponent implements OnInit {
     this.carreraService
       .getCarreras()
       .subscribe((carreras) => (this.carreras = carreras));
+  }
+
+  async exportPdf() {
+
+    const dataBody = [];
+    const data = await this.asistenciaStorage;
+    const head = [['Identificación', 'Apellidos y Nombres','Email', 'Celular', 'Carrera']];
+    const doc = new jsPDF('p', 'pt', 'a4');  
+    //var logo = new Image();
+    doc.setFontSize(14);
+    // logo.src = 'src\assets\images\ista2.jpg';
+    // doc.addImage(logo, 'JPEG', 20, 10, 50, 70);
+    //doc.text('LOGO', 540, 15);
+    doc.text('TUTORES ACADEMICOS ', 215, 100);
+    
+    doc.setFontSize(10);
+
+ 
+    
+     data.forEach( data => {
+     let row = [
+           
+          
+    // //     data.idasistencia,
+    // //     this.formatoFecha(data.fechaActual),
+    // //     this.formatoHora(data.horaInicio),
+    // //     this.formatoHora(data.horaFin),
+    // //     data.actividadRealizada,
+    // //     '',
+    // //     data.numeroHoras,
+       ];
+    //    dataBody.push(row);
+      });
+    console.log(dataBody);
+    autoTable(doc, {
+      startY: 190,
+      head: head,
+      body: dataBody,
+    });
+    doc.save('REPORTE DE TUTORES.pdf');
   }
 }
