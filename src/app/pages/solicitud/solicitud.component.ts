@@ -114,7 +114,7 @@ export class SolicitudComponent implements OnInit, AfterViewInit {
             `creada con exito!`,
             "success"
           );
-          this.irListaSolicitudes();
+          /*this.irListaSolicitudes();*/
           console.log("Solicitud Exitosa");
 
         },

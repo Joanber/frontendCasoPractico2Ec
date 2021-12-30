@@ -89,7 +89,7 @@ export class ConsultasReportesPppComponent implements OnInit {
         },
         complete: () => {
           if (this.designacionesTA.length > 0) {
-            this.initPaginator();
+            /*this.initPaginator();*/
           }
           console.warn(this.dataSource.data.length < 1);
         },
