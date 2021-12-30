@@ -180,6 +180,11 @@ const routes: Routes = [
         data: { titulo: 'Actualizar Tutor Academico' },
       },
       {
+        path: "generar-acta/:id/:ida",
+        component: GenararActaComponent,
+        data: { titulo: "Acta" },
+      },
+      {
         path: "generarActa",
         component: GenararActaComponent,
         data: { titulo: "Acta" },

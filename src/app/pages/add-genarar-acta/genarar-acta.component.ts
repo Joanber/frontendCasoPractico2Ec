@@ -1,64 +1,135 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { Carrera } from 'src/app/models/carrera.model';
-import { Docente } from 'src/app/models/docente.model';
-import { Empresa } from 'src/app/models/empresa.model';
-import { CarreraService } from 'src/app/services/services.models/carrera.service';
-import { DocenteService } from 'src/app/services/services.models/docente.service';
-import { EmpresaService } from 'src/app/services/services.models/empresa.service';
-import { formatDate } from '@angular/common';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
+import { formatDate } from "@angular/common";
+import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
+import { DesignacionTaService } from "src/app/services/services.models/designacion-ta.service";
+import { AlumnoService } from "src/app/services/services.models/alumno.service";
+import { ActivatedRoute, Router } from "@angular/router";
+import { DesignacionTA } from "src/app/models/designacionta.model";
+import { ValidacionSAC } from "src/app/models/validaciones_sac.model";
+import { Alumno } from "src/app/models/alumno.model";
+import { DesignacionTEService } from "src/app/services/services.models/designacion-te.service";
+import { DesignacionTE } from "src/app/models/designacionte.model";
+import { ActaDR } from "src/app/models/actaDR.model";
+import { NgForm } from "@angular/forms";
+import { ActaService } from "src/app/services/services.models/acta.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-genarar-acta',
-  templateUrl: './genarar-acta.component.html',
-  styleUrls: ['./genarar-acta.component.css']
+  selector: "app-genarar-acta",
+  templateUrl: "./genarar-acta.component.html",
+  styleUrls: ["./genarar-acta.component.css"],
+  providers: [DatePipe],
 })
 export class GenararActaComponent implements OnInit {
+  public designacionta = new DesignacionTA();
+  public designacionte = new DesignacionTE();
+  public validacionSac = new ValidacionSAC();
+  public alumno = new Alumno();
+  public acta = new ActaDR();
+  public formSubmitted = false;
 
-  //VARIABLE DE CARRERAS
-  public carreras: Carrera[] = [];
-  //VARIABLE DE DOCENTES
-  public docentes: Docente[] = [];
-  //VARIABLE DE EMPRESA
-  public empresas: Empresa[] = [];
-   //Variable fecha
-   today = new Date();
-   jstoday = '';
+  public identificacion: string = "";
+  public nombres: string = "";
 
+  today = new Date();
+  jstoday = "";
   constructor(
-    private docenteService: DocenteService,
-    private carreraService: CarreraService,
-    private empresaService: EmpresaService
-    //private miDatePipe: DatePipe,
+    private validacionesSacService: ValidacionesSacService,
+    private designacionTAService: DesignacionTaService,
+    private designacionTeService: DesignacionTEService,
+    private actaService: ActaService,
+    private alumnoService: AlumnoService,
+    private activatedRoute: ActivatedRoute,
+    private miDatePipe: DatePipe,
+    private router: Router
   ) {
-    this.jstoday = formatDate(this.today, 'dd-MM-yyyy hh:mm:ss a', 'en-US', '+0530');
-   }
+    this.jstoday = formatDate(
+      this.today,
+      "dd-MM-yyyy hh:mm:ss a",
+      "en-US",
+      "+0530"
+    );
+  }
 
   ngOnInit() {
-    this.getCarreras();
-    this.getEmpresas();
-    this.getDocentes();
+    this.activatedRoute.params.subscribe(({ id }) =>
+      this.validacion_sacById(id)
+    );
+    this.activatedRoute.params.subscribe(({ ida }) => this.getByIdAlumno(ida));
+    this.activatedRoute.params.subscribe(({ idd }) =>
+      this.getDesignacionByAlumnoId(idd)
+    );
+    this.activatedRoute.params.subscribe(({ ida }) => this.getTutorE(ida));
   }
-
-
-  private getDocentes() {
-    this.docenteService.getDocentes().subscribe((docentes) => {
-      this.docentes = docentes;
+  private validacion_sacById(id: number) {
+    if (!id) {
+      return;
+    }
+    this.validacionesSacService.getValidacionSacById(id).subscribe((val) => {
+      this.validacionSac = val;
+    });
+  }
+  private getTutorE(ida: number) {
+    this.designacionTeService
+      .getDesignacionTEByAlumnoId(ida)
+      .subscribe((te) => {
+        this.designacionte = te;
+      });
+  }
+  private getByIdAlumno(ida: number) {
+    if (!ida) {
+      return;
+    }
+    this.alumnoService.getById(ida).subscribe((alumno) => {
+      this.alumno = alumno;
     });
   }
 
-
-  private getCarreras() {
-    this.carreraService.getCarreras().subscribe((carreras) => {
-      this.carreras = carreras;
-    });
+  private getDesignacionByAlumnoId(idd: number) {
+    if (!idd) {
+      return;
+    } else {
+      this.designacionTAService
+        .getDesignacionTAByAlumnoId(idd)
+        .subscribe((designacionTA) => {
+          this.designacionta = designacionTA;
+          this.identificacion =
+            this.designacionta.docente.persona.identificacion;
+          this.nombres =
+            this.designacionta.docente.persona.primer_nombre.concat(" ") +
+            this.designacionta.docente.persona.primer_apellido;
+          this.validacionesSacService
+            .getValidacionSacByAlumnoId(idd)
+            .subscribe((validacionSac) => (this.validacionSac = validacionSac));
+        });
+    }
   }
 
+  guardarActa(form: NgForm) {
+    this.formSubmitted = true;
+    if (form.invalid) {
+      return;
+    }
 
-  private getEmpresas() {
-    this.empresaService.getEmpresas().subscribe((empresas) => {
-      this.empresas = empresas;
-    });
-  }
-}
+      const fechaFormateadaFIn = this.miDatePipe.transform(
+        this.acta.fecha_fin_ppp,
+        'yyyy-MM-dd'
+      );
+      this.acta.fecha_fin_ppp = fechaFormateadaFIn;
+      this.acta.alumno = this.alumno;
+      this.acta.actividadesActasDR = null;
 
+      this.actaService
+          .crear(this.acta)
+          .subscribe((acta) => {
+            Swal.fire(
+              'Nueva Acta',
+              `¡ Acta creada con exito!`,
+              'success'
+            );
+            this.irListaActas();
+          });
+      }
+      irListaActas(){}
+    }
