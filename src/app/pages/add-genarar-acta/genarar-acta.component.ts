@@ -112,24 +112,20 @@ export class GenararActaComponent implements OnInit {
       return;
     }
 
-      const fechaFormateadaFIn = this.miDatePipe.transform(
-        this.acta.fecha_fin_ppp,
-        'yyyy-MM-dd'
-      );
-      this.acta.fecha_fin_ppp = fechaFormateadaFIn;
-      this.acta.alumno = this.alumno;
-      this.acta.actividadesActasDR = null;
+    const fechaFormateadaFIn = this.miDatePipe.transform(
+      this.acta.fecha_fin_ppp,
+      "yyyy-MM-dd"
+    );
+    this.acta.fecha_fin_ppp = fechaFormateadaFIn;
+    this.acta.alumno = this.alumno;
+    this.acta.actividadesActasDR = null;
 
-      this.actaService
-          .crear(this.acta)
-          .subscribe((acta) => {
-            Swal.fire(
-              'Nueva Acta',
-              `¡ Acta creada con exito!`,
-              'success'
-            );
-            this.irListaActas();
-          });
-      }
-      irListaActas(){}
-    }
+    this.actaService.crear(this.acta).subscribe((acta) => {
+      Swal.fire("Nueva Acta", `¡ Acta creada con exito!`, "success");
+      this.respuestaEmpresas();
+    });
+  }
+  respuestaEmpresas() {
+    this.router.navigateByUrl("/dashboard/respuestas-empresas");
+  }
+}
