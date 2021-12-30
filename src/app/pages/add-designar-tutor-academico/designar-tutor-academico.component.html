@@ -24,22 +24,23 @@
 
               <br>
               <div class="col-3">
-                <ng-select
-                [compareWith]="compararDocente"
-                name="docente"
-                placeholder="Seleccione el docente"
-                #docente="ngModel"
-                [(ngModel)]="designacionta.docente"
-                (change)="capturarDatos()"
-                  required>
-                  <ng-option
-                  *ngFor="let docente of docentes" [value]="docente">
+                <ng-select name="docente" placeholder="Seleccione el docente" #docente="ngModel"
+                  [(ngModel)]="designacionta.docente" required>
+                  <ng-option *ngFor="let docente of docentes" [value]="docente">
                     {{ docente.persona.primer_nombre }}
                     {{ docente.persona.segundo_nombre }}
                     {{ docente.persona.primer_apellido }}
                     {{ docente.persona.segundo_apellido }}
                   </ng-option>
                 </ng-select>
+                <div
+                  class="text-danger"
+                  *ngIf="docente.hasError('required') && docente.touched"
+                  >
+                  Docente es requerido!
+                </div>
+
+
               </div>
               INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY
               <br> Su Despacho. -
@@ -48,14 +49,13 @@
               <br />
               <br /> De mi consideración: Luego de expresarle un atento saludo y desearle éxito en las funciones que
               acertadamente realiza, me permito informarle ha sido designado como TUTOR ACÁDEMICO del estudiante
-
-
-              {{ alumno.persona.primer_apellido }}
-              {{ alumno.persona.segundo_apellido }}
-              {{ alumno.persona.primer_nombre }}
-              {{ alumno.persona.segundo_nombre }}. para la ejecución de las prácticas pre profesionales en
+              {{ designacionta?.alumno?.persona.primer_nombre }}
+              {{ designacionta?.alumno?.persona.segundo_nombre }}
+              {{ designacionta?.alumno?.persona.primer_apellido }}
+              {{ designacionta?.alumno?.persona.segundo_apellido }}
+              para la ejecución de las prácticas pre profesionales en
               la empresa {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
-              <br>
+              <br><br>
               <br> Agradezco de antemano su valiosa colaboración con esta importante actividad.
 
 

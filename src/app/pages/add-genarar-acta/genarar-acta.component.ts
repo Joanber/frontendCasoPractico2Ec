@@ -94,11 +94,7 @@ export class GenararActaComponent implements OnInit {
         .getDesignacionTAByAlumnoId(idd)
         .subscribe((designacionTA) => {
           this.designacionta = designacionTA;
-          this.identificacion =
-            this.designacionta.docente.persona.identificacion;
-          this.nombres =
-            this.designacionta.docente.persona.primer_nombre.concat(" ") +
-            this.designacionta.docente.persona.primer_apellido;
+
           this.validacionesSacService
             .getValidacionSacByAlumnoId(idd)
             .subscribe((validacionSac) => (this.validacionSac = validacionSac));
