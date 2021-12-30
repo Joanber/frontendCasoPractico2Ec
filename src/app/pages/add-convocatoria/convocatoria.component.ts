@@ -186,13 +186,8 @@ export class ConvocatoriaComponent implements OnInit {
     doc.text('CARRERA DE ',40,630);
     doc.text('Atentamente,',40,650);
     doc.text(this.solicitudEmpresa.responsablePPP.carrera.nombre,40,670);
-    doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY',40,700);
+    doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY',40,690);
     doc.setFontSize(10);
-    //  doc.text("Estudiante: "+data[0].estudiante.persona.primernombre + ' ' +data[0].estudiante.persona.primerapellido,
-    //    10,110);
-    // doc.text("Empresa: "+ data[0].tutorEmpresarial.empresa.nombreempresa ,10,130);
-    // doc.text("Tutor empresarial: "+ data[0].tutorEmpresarial.nombretutor ,10,150);
-    // doc.text("Horas cumplidas: " +this.totalH.toString()+" horas" , 10,170);
     // data.forEach( data => {
     //   let row = [
     //     data.idasistencia,
