@@ -25,6 +25,10 @@ export class ActaService {
   getActas(): Observable<ActaDR[]> {
     return this.http.get<ActaDR[]>(`${bd_url}/filtrar`);
   }
+  //ACTAS
+  getActasByTAExiste(): Observable<ActaDR[]> {
+    return this.http.get<ActaDR[]>(`${bd_url}/actas-ta/filtrar`);
+  }
 
   //PAGINACION DE ACTAS
   getConvocatoriasPage(
@@ -92,5 +96,9 @@ export class ActaService {
   //OBTENER UNA ACTA POR ID
   getActaById(id: number): Observable<ActaDR> {
     return this.http.get<ActaDR>(`${bd_url}/${id}`);
+  }
+  //OBTENER UNA ACTA POR ALUMNO ID
+  getActaRDByAlumnoId(id: number): Observable<ActaDR> {
+    return this.http.get<ActaDR>(`${bd_url}/alumno/${id}`);
   }
 }
