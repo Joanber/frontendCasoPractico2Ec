@@ -1,233 +1,209 @@
-<form>
-  <div class="card-body">
-    <div class="card-titulo" style="text-align: center;">
-      ANEXO 7: Acta de reunion
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #MyForm="ngForm" (submit)="guardarActa(MyForm)">
+          <div class="form-body">
+            <div class="card-titulo" style="text-align: center">
+              ANEXO 7: Acta de reunion
 
-    </div>
-    <br>
-    <br>
+            </div>
+            <br>
+            <br>
 
-    <div class="card-encabezado">
-      <strong>Fecha: </strong> Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today |
-      date:'yyyy'}}
-    </div>
-    <div class="card-asistentes">
+            <div class="card-encabezado">
+              <strong>Fecha: </strong> Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today |
+              date:'yyyy'}}
+            </div>
+            <div class="card-asistentes">
 
-      <strong>Asistentes:</strong> - Mgtr.
-      <select class="form-control" style="width: auto;" name="Responsable de prácticas pre profesionales">
-        <option [ngValue]="undefined">Seleccione el responsable de prácticas pre profesionales</option>
-        <option *ngFor="let docente of docentes">
-          {{ docente.persona.primer_nombre }}
-          {{ docente.persona.segundo_nombre }}
-          {{ docente.persona.primer_apellido }}
-          {{ docente.persona.primer_apellido }}
+              <strong>Asistentes:</strong> - Mgtr.
+
+              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}
+              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre }}
+              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}
+              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}
+              Responsable de Prácticas Pre Profesionales de la Carrera
+              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }} del Instituto Superior
+              Tecnológico
+              del Azuay.
+              <br>- Sr./Dr./Ing.
+              {{this.designacionte.empresaPersonal.persona.primer_nombre}}
+              {{this.designacionte.empresaPersonal.persona.segundo_nombre}}
+              {{this.designacionte.empresaPersonal.persona.primer_apellido}}
+              {{this.designacionte.empresaPersonal.persona.segundo_apellido}}
+              , Tutor asignado por la empresa
+              {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+
+              <br> Asunto: Actividades a desarrollar en las prácticas pre profesionales por el estudiante
+
+              {{ alumno.persona.primer_nombre }}
+              {{ alumno.persona.segundo_nombre }}
+              {{ alumno.persona.primer_apellido }}
+              {{ alumno.persona.primer_apellido }}
+
+              <br> Lugar de la reunión: <input>
+              <br>
+              <br>
+              <div class="card-titulo" style="text-align: center;">
+                <strong> Desarollo y acuerdos</strong>
+              </div>
+
+              <strong> 1. Planificación de actividades a desarrollar</strong><br> Con base en la solicitud realizada por
+              la empresa {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+              el/la Sr./Srta./Sra.
+
+              {{ alumno.persona.primer_nombre }}
+              {{ alumno.persona.segundo_nombre }}
+              {{ alumno.persona.primer_apellido }}
+              {{ alumno.persona.primer_apellido }} ,
+              estudiante de
+              {{ alumno.ciclo }}
+              ciclo de la carrera {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }}
+              del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la cumplir
+              con las  <input type="text" class="col-1"> horas de prácticas pre profesionales.
+              <table class="table table-striped">
+                <thead>
+                  <tr>
+                    <th scope="col">Area</th>
+                    <th scope="col">Actividad por reazlizar</th>
+                    <th scope="col">Asignatura relacionada</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+
+                      <td></td>
+                      <td>{{validacionSac.convocatoria.actividades}}</td>
 
 
-        </option>
-      </select>Responsable de Prácticas Pre Profesionales de la Carrera
-      <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-        <option [ngValue]="undefined"> Seleccione la carrera </option>
-        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-      </select> del Instituto Superior Tecnológico del Azuay. <br>- Sr./Dr./Ing.
 
-      <select class="form-control" style="width: auto;" name="empresa">
-        <option [ngValue]="undefined"> Seleccione responsable de la empresa</option>
-        <option *ngFor="let empresa of empresas">{{empresa.representante}}</option>
-      </select> , Tutor asignado por la empresa
+                      <td>{{validacionSac.convocatoria.asignaturas}}</td>
 
-      <select class="form-control" style="width: auto;" name="empresa">
-        <option [ngValue]="undefined"> Seleccione la empresa </option>
-        <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-      </select>
+                    </tr>
+                </tbody>
+              </table>
+              <div class="card-text">
+
+                <br>
+
+                <strong>2. Fechas Importantes y horario de prácticas pre profesionales</strong> <br> El estudiante
+                comenzará a
+                desarrollar las prácticas pre profesionales a partir del
 
 
-      <br> Asunto: Actividades a desarrollar en las prácticas pre profesionales por el estudiante
-
-      <select class="form-control" style="width: auto;" name="empresa">
-        <option [ngValue]="undefined"> Seleccione responsable el estudiante</option>
-        <option *ngFor="let empresa of empresas">{{empresa.representante}}</option>
-      </select>
-
-      <br> Lugar de la reunión: <input>
-      <br>
-      <br>
-      <div class="card-titulo" style="text-align: center;">
-        <strong> Desarollo y acuerdos</strong>
-      </div>
-
-      <strong> 1. Planificación de actividades a desarrollar</strong><br> Con base en la solicitud realizada por la
-      empresa
-
-      <select class="form-control" style="width: auto;" name="empresa">
-        <option [ngValue]="undefined"> Seleccione la empresa </option>
-        <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-      </select> el/la Sr./Srta./Sra.
-
-
-      <select class="form-control" style="width: auto;" name="empresa">
-        <option [ngValue]="undefined"> Seleccione el estudiante</option>
-        <option *ngFor="let empresa of empresas">{{empresa.representante}}</option>
-      </select> , estudiante de
-      <select class="form-control" style="width: auto;" name="ciclo">
-        <option [ngValue]="undefined"> Seleccione el ciclo </option>
-        <option *ngFor="let ciclo of empresas">{{ciclo.nombre}}</option>
-      </select> ciclo de la carrera
-
-
-      <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-        <option [ngValue]="undefined"> Seleccione la carrera </option>
-        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-      </select> del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la cumplir
-      con las <input type="text"> horas de prácticas pre profesionales.
-      <table class="table table-striped">
-        <thead>
-          <tr>
-            <th scope="col">Area</th>
-            <th scope="col">Actividad por reazlizar</th>
-            <th scope="col">Asignatura relacionada</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <th scope="row">1</th>
-            <td>Mark</td>
-
-          </tr>
-          <tr>
-            <th scope="row">2</th>
-            <td>Jacob</td>
-
-          </tr>
-          <tr>
-            <th scope="row">3</th>
-            <td>Larry</td>
-
-          </tr>
-        </tbody>
-      </table>
-      <div class="card-text">
-
-        <br>
-
-        <strong>2. Fechas Importantes y horario de prácticas pre profesionales</strong> <br> El estudiante comenzará a
-        desarrollar las prácticas pre profesionales a partir del
-
-<!--
-        <input [matDatepicker]="myDatepicker"
+        <input
+        [matDatepicker]="myDatepicker"
         style="width: min-content;"
-         class="form-control"
-         name="fecha_inicio"
-          #fecha_inicio="ngModel"
-           [(ngModel)]="convocatoria.fecha_inicio"
-          required>
+        class="form-control"
+        name="fecha_inicio_ppp"
+        #fecha_inicio_ppp="ngModel"
+        [(ngModel)]="acta.fecha_inicio_ppp"
+        required>
         <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
         <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
-        terminará el
+       y terminará el
 
-        <input [matDatepicker]="myDatepicker"
+        <input
+        [matDatepicker]="myDatepicker2"
         style="width: min-content;"
-         class="form-control"
-          name="fecha_fin"
-          #fecha_inicio="ngModel"
-         [(ngModel)]="convocatoria.fecha_fin"-->
-            required >
-        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker color="blue" #myDatepicker></mat-datepicker>,en un horario de
+        class="form-control"
+        name="fecha_fin_ppp"
+        #fecha_fin_ppp="ngModel"
+        [(ngModel)]="acta.fecha_fin_ppp"
+        required>
+        <mat-datepicker-toggle [for]="myDatepicker2"></mat-datepicker-toggle>
+        <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
+        en un horario de
+                <input type="time" name="hora" min="6:00" step="3600"> a <input type="time" name="hora" min="7:00"
+                  step="3600">.
+
+                <br />
+                <strong>3. Cronograma de Actividades</strong>
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th scope="col">Area</th>
+                      <th scope="col">Actividad por reazlizar</th>
+                      <th scope="col">Asignatura relacionada</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td></td>
+                      <td>{{validacionSac.convocatoria.actividades}}</td>
 
 
-        <input type="time" name="hora" min="6:00" step="3600" > a <input type="time" name="hora" min="7:00"
-          step="3600" >.
 
-        <br />
-        <strong>3. Cronograma de Actividades</strong>
-        <table class="table table-striped">
-          <thead>
-            <tr>
-              <th scope="col">Area</th>
-              <th scope="col">Actividad por reazlizar</th>
-              <th scope="col">Asignatura relacionada</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <th scope="row">1</th>
-              <td>Mark</td>
+                      <td>{{validacionSac.convocatoria.asignaturas}}</td>
 
-            </tr>
-            <tr>
-              <th scope="row">2</th>
-              <td>Jacob</td>
+                    </tr>
 
-            </tr>
-            <tr>
-              <th scope="row">3</th>
-              <td>Larry</td>
+                  </tbody>
+                </table>
+                <br />
+                <br />
+                <strong> 4. Acuerdos varios</strong>
+                <br>
+                <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
 
-            </tr>
-          </tbody>
-        </table>
-        <br />
-        <br />
-        <strong> 4. Acuerdos varios</strong>
-        <br>
-        <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
+                <br>
+                <br>
+                <br>
+                <div class="row" style="text-align: center;">
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        Mgtr.
 
-        <div class="card-pie" style="text-align: center;">
-          <br>
-          <br>
-          <br>
-          <div class="row">
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  Mgtr.
-                  <select class="form-control" style="width: auto;" name="Responsable de prácticas pre profesionales">
-                    <option [ngValue]="undefined">Seleccione el responsable de prácticas pre profesionales</option>
-                    <option *ngFor="let docente of docentes">
-                      {{ docente.persona.primer_nombre }}
-                      {{ docente.persona.segundo_nombre }}
-                      {{ docente.persona.primer_apellido }}
-                      {{ docente.persona.primer_apellido }}
+                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}
+                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre
+                        }}
+                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
+                        }}
+                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
+                        }}<br>
+                        Responsable de prácticas pre <br> profesionales de la carrera<br>
 
+                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }}
+                        <br> Instituto Superior Tecnológico del Azuay <br>
 
-                    </option>
-                  </select> <br> Responsable de prácticas pre profesionales<br> de la carrera
+                      </div>
+                    </div>
+                  </div>
+                  <div class="col-sm-6">
+                    <div class="card">
+                      <div class="card-body">
+                        /Dr./Ing.
+                        {{this.designacionte.empresaPersonal.persona.primer_nombre}}
+                        {{this.designacionte.empresaPersonal.persona.segundo_nombre}}
+                        {{this.designacionte.empresaPersonal.persona.primer_apellido}}
+                        {{this.designacionte.empresaPersonal.persona.segundo_apellido}}
+                        <br> Tutor Empresarial<br>
 
-                  <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-                    <option [ngValue]="undefined"> Seleccione la carrera </option>
-                    <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-                  </select>
-                  <br> Instituto Superior Tecnológico del Azuay <br>
+                        {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+                      </div>
+                    </div>
 
-                </div>
-              </div>
-            </div>
-            <div class="col-sm-6">
-              <div class="card">
-                <div class="card-body">
-                  /Dr./Ing.
-                  <select class="form-control" style="width: auto;" name="empresa">
-                    <option [ngValue]="undefined"> Seleccione responsable de la empresa</option>
-                    <option *ngFor="let empresa of empresas">{{empresa.representante}}</option>
-                  </select>
-                  <br> Tutor Empresarial<br>
+                  </div>
 
-                  <select class="form-control" style="width: auto;" name="empresa">
-                    <option [ngValue]="undefined"> Seleccione la empresa </option>
-                    <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                  </select>
+                  <div class="form-actions" style="text-align: right">
+                    <button type="submit" class="btn btn-primary mr-2">
+                      Guardar
+                    </button>
+                    <button type="button" class="btn btn-inverse" (click)="respuestaEmpresas()">
+                      Cancelar
+                    </button>
+
+                    <button type="button" class="btn btn-danger">Generar PDF</button>
+                  </div>
+
                 </div>
               </div>
             </div>
           </div>
-        </div>
-
+        </form>
       </div>
     </div>
   </div>
-</form>
-<div class="card-botones" style="text-align: right;">
-
-  <button type="button" class="btn btn-primary">Guardar </button>
-  <button type="button" class="btn btn-success">Generar PDF</button>
 </div>

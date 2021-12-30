@@ -20,8 +20,6 @@ export class DesignarTutorAcademicoComponent implements OnInit {
   public designacionta = new DesignacionTA();
   public validacionSac = new ValidacionSAC();
   public alumno = new Alumno();
-  public docentesAll: Docente[] = [];
-
   public docentes: Docente[] = [];
   public formSubmitted = false;
 
@@ -41,18 +39,16 @@ export class DesignarTutorAcademicoComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-
     this.cargarDocentes();
-
     this.activatedRoute.params.subscribe(({ id }) =>
       this.validacion_sacById(id)
     );
     this.activatedRoute.params.subscribe(({ ida }) => this.getByIdAlumno(ida));
-
     this.activatedRoute.params.subscribe(({ idd }) =>
       this.getDesignacionByAlumnoId(idd)
     );
   }
+
   private validacion_sacById(id: number) {
     if (!id) {
       return;
@@ -81,17 +77,20 @@ export class DesignarTutorAcademicoComponent implements OnInit {
           this.identificacion =
             this.designacionta.docente.persona.identificacion;
           this.nombres =
-            this.designacionta.docente.persona.primer_nombre.concat(" ") +
-            this.designacionta.docente.persona.primer_apellido;
+            this.designacionta.docente.persona.primer_nombre.concat(
+              " "
+            ) + this.designacionta.docente.persona.primer_apellido;
           this.validacionesSacService
             .getValidacionSacByAlumnoId(idd)
             .subscribe((validacionSac) => (this.validacionSac = validacionSac));
         });
     }
   }
-  cargarDocentes() {
-    this.docenteService.getDocentes().subscribe((docente) => {
-      this.docentes=docente;});
+
+  private cargarDocentes() {
+    this.docenteService.getDocentes().subscribe((docentes) => {
+      this.docentes = docentes;
+    });
   }
 
   compararDocente(d1: Docente, d2: Docente) {
@@ -100,32 +99,51 @@ export class DesignarTutorAcademicoComponent implements OnInit {
     }
     return d1 == null || d2 == null ? false : d1.id === d2.id;
   }
-
   capturarDatos() {
-    this.identificacion = this.designacionta.docente.persona.identificacion;
+    this.identificacion =
+      this.designacionta.docente.persona.identificacion;
     this.nombres =
       this.designacionta.docente.persona.primer_nombre.concat(" ") +
       this.designacionta.docente.persona.primer_apellido;
   }
-
   guardarDesignacionTA(form: NgForm) {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
     }
+    if(this.designacionta.id
+
+    ){
+      this.designacionta.alumno = this.alumno;
+      this.designacionTAService
+        .editar(this.designacionta, this.designacionta.id)
+        .subscribe((designacionTEA) => {
+          Swal.fire(
+            "Actualizar designacion de Tutor Empresarial",
+            `Designacion actualizada con exito!`,
+            "success"
+          );
+          this.irListaRespuestasEmpresas();
+        });
+
+    }else{
+if(this.validacionSac.id){
     this.designacionta.alumno = this.alumno;
     this.designacionTAService
       .crear(this.designacionta)
-      .subscribe((designacionTE) => {
+      .subscribe((designacionTA) => {
         Swal.fire(
-          "Nueva Designacion de Tutor Academico",
+          "Nueva Designacion de Tutor Empresarial",
           `Nueva Designacion creada con exito!`,
           "success"
         );
         this.irListaRespuestasEmpresas();
       });
+
+}
   }
 
+}
   irListaRespuestasEmpresas(){
     this.router.navigateByUrl("/dashboard/respuestas-empresas");
   }

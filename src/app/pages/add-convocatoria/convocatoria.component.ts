@@ -10,6 +10,9 @@ import Swal from 'sweetalert2';
 import { SolicitudEmpresa } from 'src/app/models/solicitudEmpresa.model';
 import { SolicitudEmpresaService } from 'src/app/services/services.models/solicitud-empresa.service';
 import jsPDF, * as jspdf from 'jspdf';
+import { style } from '@angular/animations';
+import { ThrowStmt } from '@angular/compiler';
+import { Alumno } from 'src/app/models/alumno.model';
 
 
 interface jsPDFWithPlugin extends jspdf.jsPDF {
@@ -150,31 +153,41 @@ export class ConvocatoriaComponent implements OnInit {
     this.router.navigateByUrl('/dashboard/solicitudes_empresas');
   }
 
-  // exportPdfEmp() {
-  //   const doc = new jsPDF()
-  //   var contenido = '';
-  //   contenido += '              INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY'
-  //   contenido += '\n                                         Reporte de la empresa'
-  //   autoTable(doc.text(contenido, 5, 5), { html: '#todo-Cuerpo' })
-  //   doc.save('Anexo-2.pdf')
-  // }
 
   async exportPdf() {
+
     const dataBody = [];
     const data = await this.asistenciaStorage;
     // const head = [['No', 'Fecha','Hora llegada', 'Hora salida', 'Actividad realizada', 'Firma tutor', 'Numero horas']];
-    const doc = new jsPDF('p', 'pt', 'a4');
+    const doc = new jsPDF('p', 'pt', 'a4');  
+    //var logo = new Image();
     doc.setFontSize(14);
-    doc.text('ANEXO 2: Convocatoria a prácticas pre profesionales ', 20, 20);
-    doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY', 50, 50);
-    // doc.text(data[0].solicitudEmpresa.responsablePPP.carrera.nombre, 30,70);
-    doc.text('A los estudiantes Interesados:', 10, 90);
+    // logo.src = 'src\assets\images\ista2.jpg';
+    // doc.addImage(logo, 'JPEG', 20, 10, 50, 70);
+    //doc.text('LOGO', 540, 15);
+    doc.text('ANEXO 2: Convocatoria a prácticas pre profesionales ', 20, 80);
+    doc.text(this.solicitudEmpresa.fecha_emision,490,120);
+    doc.text('CONVOCATORIA-'+this.solicitudEmpresa.responsablePPP.carrera.abreviatura+'-2021',370,140);
+    doc.text('A los estudiantes Interesados: ', 40, 200);
+    doc.text('Se convoca a los estudiantes de '+this.convocatoria.ciclo+' ciclo de la carrera ',40, 300);
+    doc.text(this.solicitudEmpresa.responsablePPP.carrera.nombre,40, 320);
+    doc.text('que deseen realizar sus prácticas pre profesionales en la empresa ',40, 340);
+    doc.text(this.solicitudEmpresa.empresa.nombre,40,360);
+    doc.text('a presentar la solicitud correspondiente.',40, 380);
+    doc.text('Las actividades a desarrollar son: ',40,400);
+    doc.text(this.convocatoria.actividades,40,420);
+    doc.text('por lo que los postulantes deberán haber aprobado las siguientes asignaturas:',40,440);
+    doc.text(this.convocatoria.asignaturas,40,460);
+    doc.text('La fecha máxima en la que se receptarán las solicitudes es el '+this.convocatoria.fecha_max_recib_solic,40,480);
+    doc.text('Para mayor información contactarse con '+this.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre+' '+this.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido,40,500);
+    doc.text('docente responsable de prácticas pre profesionales de la carrera.', 40, 520);
+    doc.text('______________________',40,590);
+    doc.text('Responsable de Prácticas Pre Profesionales',40,610);
+    doc.text('CARRERA DE ',40,630);
+    doc.text('Atentamente,',40,650);
+    doc.text(this.solicitudEmpresa.responsablePPP.carrera.nombre,40,670);
+    doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY',40,690);
     doc.setFontSize(10);
-    // doc.text("Estudiante: "+data[0].estudiante.persona.primernombre + ' ' +data[0].estudiante.persona.primerapellido,
-    //   10,110);
-    // doc.text("Empresa: "+ data[0].tutorEmpresarial.empresa.nombreempresa ,10,130);
-    // doc.text("Tutor empresarial: "+ data[0].tutorEmpresarial.nombretutor ,10,150);
-    // doc.text("Horas cumplidas: " +this.totalH.toString()+" horas" , 10,170);
     // data.forEach( data => {
     //   let row = [
     //     data.idasistencia,
