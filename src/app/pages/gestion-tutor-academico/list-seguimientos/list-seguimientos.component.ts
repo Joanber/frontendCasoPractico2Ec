@@ -16,9 +16,8 @@ export class ListSeguimientosComponent implements OnInit {
     this.cargarActas();
   }
   private cargarActas() {
-    this.actaDRService.getActas().subscribe((actasDR) => {
+    this.actaDRService.getActasByTAExiste().subscribe((actasDR) => {
       this.actasDR = actasDR;
-      console.log(this.actasDR);
     });
   }
 }

@@ -9,7 +9,16 @@
           TECNOLOGIA <br />
           SEGUIMIENTO A ACTIVIDADES SEGUN CRONOGRAMA
         </h4>
-        <br />Estudiante: <br />Empresa: <br />Tutor Academico:
+        <br />Estudiante: {{ designacionTA.alumno?.persona?.primer_apellido }}
+        {{ designacionTA.alumno?.persona?.segundo_apellido }}
+        {{ designacionTA.alumno?.persona?.primer_nombre }}
+        {{ designacionTA.alumno?.persona?.segundo_nombre }} <br />Empresa:
+        {{ validacionSac.convocatoria?.solicitudEmpresa?.empresa?.nombre }}
+        <br />Tutor Academico:
+        {{ designacionTA.docente?.persona?.primer_apellido }}
+        {{ designacionTA.docente?.persona?.segundo_apellido }}
+        {{ designacionTA.docente?.persona?.primer_nombre }}
+        {{ designacionTA.docente?.persona?.segundo_apellido }}
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
             <div class="table-scroll">
@@ -23,26 +32,86 @@
               >
                 <thead>
                   <tr>
-                    <th>No.</th>
-                    <th>Fecha de Seguimiento</th>
-                    <th>Actividades</th>
-                    <th>Fecha Finalizacion Prevista Realizadas</th>
-                    <th>Porcentaje de avance</th>
-                    <th>Observaciones</th>
+                    <th style="width: 21px">Numero</th>
+                    <th style="width: 115px">Fecha de Seg</th>
+                    <th style="width: 250px">Actividades</th>
+                    <th style="width: 115px">Fecha Fin</th>
+                    <th style="width: 31px">Porcentaje</th>
+                    <th style="width: 250px">Observaciones</th>
+                    <th>Accion</th>
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
-                  <tr>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
+                  <tr *ngFor="let actividad_acta of actividades_actasdr">
+                    <td>
+                      <div class="row justify-content-center">
+                        <input
+                          type="text"
+                          class="form-control"
+                          style="width: 60px"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row justify-content-center">
+                        <input
+                          style="width: 110px"
+                          [matDatepicker]="myDatepicker"
+                          class="form-control"
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          [for]="myDatepicker"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker
+                          color="blue"
+                          #myDatepicker
+                        ></mat-datepicker>
+                      </div>
+                    </td>
+                    <td>{{ actividad_acta.actividad }}</td>
+                    <td>
+                      <div class="row justify-content-center">
+                        <input
+                          style="width: 110px"
+                          [matDatepicker]="myDatepicker2"
+                          class="form-control"
+                          required
+                        />
+                        <mat-datepicker-toggle
+                          [for]="myDatepicker2"
+                        ></mat-datepicker-toggle>
+                        <mat-datepicker
+                          color="blue"
+                          #myDatepicker2
+                        ></mat-datepicker>
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row justify-content-center">
+                        <input
+                          type="number"
+                          class="form-control"
+                          style="width: 68px"
+                        />
+                      </div>
+                    </td>
+                    <td>
+                      <div class="row justify-content-center">
+                        <textarea
+                          style="width: 240px"
+                          class="form-control"
+                          rows="3"
+                          required
+                        ></textarea>
+                      </div>
+                    </td>
                     <td></td>
                   </tr>
                 </tbody>
               </table>
+
               <h4 class="card-title text-center font-weight-bold">
                 <br />
                 ______________________ <br />
