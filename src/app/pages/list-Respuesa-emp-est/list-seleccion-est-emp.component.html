@@ -65,6 +65,7 @@
                           <th>C.I</th>
                           <th>Apellidos y Nombres</th>
                           <th>Tutor Academico</th>
+                          <th>Acta</th>
                           <th>Accion designacion</th>
                         </tr>
                       </thead>
@@ -80,6 +81,16 @@
 
                           <td *ngIf="!alumno.ta">Sin Asignar</td>
                           <td *ngIf="alumno.ta">Designado</td>
+                          <td>
+                            <a *ngIf="alumno.ta" [routerLink]="[
+                            '/dashboard',
+                            'generar-acta',
+                            validacionesSac.id,
+                                alumno.id
+                          ]" data-toggle="tooltip" data-original-title="Crear acta" class="cursor" title="Crear Acta">
+                              <i class="mdi mdi-file-word-box m-r-10"> </i>
+                            </a>
+                          </td>
                           <td class="text-nowrap text-center">
                             <a *ngIf="!alumno.ta" [routerLink]="[
                                 '/dashboard',
