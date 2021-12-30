@@ -91,7 +91,7 @@ export class SidebarService {
           url: 'convocatorias',
         },
         {
-          titulo: 'Respuestas a Empresas',
+          titulo: 'Respuestas Empresas',
           url: 'respuestas-empresas',
         },
         {

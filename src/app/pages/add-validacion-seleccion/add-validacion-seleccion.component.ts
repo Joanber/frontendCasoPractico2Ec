@@ -137,7 +137,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
     const head = [['Cedula', 'Estudiante']];
     const doc = new jsPDF('p', 'pt', 'a4');  
     //var logo = new Image();
-    doc.setFontSize(14);
+    doc.setFontSize(12);
     // logo.src = 'src\assets\images\ista2.jpg';
     // doc.addImage(logo, 'JPEG', 20, 10, 50, 70);
     //doc.text('LOGO', 540, 15);
@@ -177,7 +177,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
        ];
        dataBody.push(row);
     });
-    doc.setFontSize(10);
+  
     console.log(dataBody);
     autoTable(doc, {
       startY: 390,

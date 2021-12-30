@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material';
+import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import autoTable, { UserOptions } from 'jspdf-autotable';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
@@ -12,6 +12,11 @@ import { PersonaService } from 'src/app/services/services.models/persona.service
 import { environment } from 'src/environments/environment';
 import Swal from 'sweetalert2';
 import jsPDF, * as jspdf from 'jspdf';
+import { DesignacionTA } from 'src/app/models/designacionta.model';
+import { FormControl } from '@angular/forms';
+import { LoaderService } from 'src/app/services/interceptores/loader.service';
+import { LiveAnnouncer } from '@angular/cdk/a11y';
+import { DesignacionTaService } from 'src/app/services/services.models/designacion-ta.service';
 
 interface jsPDFWithPlugin extends jspdf.jsPDF {
   [x: string]: any;
@@ -27,171 +32,139 @@ const bd_url = environment.bd_url;
   styleUrls: ['./consultas-reportes-ppp.component.css']
 })
 export class ConsultasReportesPppComponent implements OnInit {
-  //VARIABLES DE PAGINACION
-  public totalRegistros = 0;
-  public paginaActual = 0;
-  public totalPorPagina = 10;
-  public pageSizeOptions: number[] = [10, 20, 50, 100];
-  //MATPAGINATOR
-  @ViewChild(MatPaginator, { static: true }) paginador: MatPaginator;
-  //VARIABLE DE PERSONAS
-  public personas: Persona[] = [];
-  //VARIABLE DE CARRERAS
-  public carreras: Carrera[] = [];
-  public convocatorias: Convocatoria[] = [];
-  //VARIABLE DE LOADING
-  public cargando: boolean = true;
-  //VARIABLE PARA BUSCAR
-  public carreraFiltro: string = undefined;
-  public fecha: string = "";
-  public busqueda: string = "";
-  public bd_url = bd_url + "/tutores";
-  public fechaFormateada: string = "";
-  // Variable para almanecar localmente
-   public asistenciaStorage: any [] = [];
+  constructor(
+    private designacionService: DesignacionTaService,
+    private _liveAnnouncer: LiveAnnouncer,
+    public loaderService: LoaderService
+  ) {}
 
-  constructor(private personaService: PersonaService,
-    private carreraService: CarreraService,
-    private convocatoriaService: ConvocatoriasService
-  ) { }
+  @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
+  @ViewChild(MatSort, { static: true }) sort: MatSort;
+  searchInput = new FormControl("");
+  displayedColumns: string[] = [
+    "id",
+    "nombre",
+    "empresa",
+    "carrera",
+    "acciones",
+  ];
+  value: any;
+  public pageSizeOptions: number[] = [10, 20, 50, 100];
+  dataSource = new MatTableDataSource<DesignacionTA>();
+  designacionesTA: DesignacionTA[] = [];
+   // Variable para almanecar localmente
+   public asistenciaStorage: any[] = [];
+  totalElements = 0;
+  currentPage = 0;
+  pageSize = 10;
+  sortBy = "";
+  message = "";
+  search = false;
+  emptyList = false;
+
+  ngAfterViewInit() {
+    this.dataSource.paginator = this.paginator;
+    this.dataSource.sort = this.sort;
+  }
 
   ngOnInit() {
-    this.cargarCarreras();
-    this.getPersonasPage(
-      this.paginaActual.toString(),
-      this.totalPorPagina.toString(),
-      this.busqueda
-    );
+    this.dataSource = new MatTableDataSource([]);
+    this.getDesignacionesByPage(this.currentPage, this.pageSize, this.sortBy);
   }
 
-  public paginar(event: PageEvent): void {
-    this.paginaActual = event.pageIndex;
-    this.totalPorPagina = event.pageSize;
-    this.getPersonasPage(
-      this.paginaActual.toString(),
-      this.totalPorPagina.toString(),
-      this.busqueda
-    );
-  }
+  
+  getDesignacionesByPage(page: number, size: number, sortBy: string) {
+    // this.loading = true;
+    this.designacionService
+      .getDesiganacionesByPage(page.toString(), size.toString(), sortBy)
+      .subscribe({
+        next: (designacion) => {
+          if (designacion.content.length === 0) {
+            this.dataSource = new MatTableDataSource();
+            this.emptyList = true;
+          }
 
-  private getPersonasPage(page: string, size: string, busqueda: string) {
-    this.cargando = true;
-    this.personaService.getPersonasPage(page, size, busqueda).subscribe((p) => {
-      this.personas = p.content as Persona[];
-      this.totalRegistros = p.totalElements as number;
-      this.paginador._intl.itemsPerPageLabel = "Registros por página:";
-      this.paginador._intl.nextPageLabel = "Siguiente";
-      this.paginador._intl.previousPageLabel = "Previa";
-      this.paginador._intl.firstPageLabel = "Primera Página";
-      this.paginador._intl.lastPageLabel = "Última Página";
-      this.cargando = false;
-    });
-  }
-  buscar(txtBusqueda: string) {
-    if (txtBusqueda.length > 0) {
-      this.getPersonasPage(
-        this.paginaActual.toString(),
-        this.totalPorPagina.toString(),
-        txtBusqueda
-      );
-    }
-  }
-  //  cargarTutoresDefault(txtBusqueda: string) {
-  //    if (txtBusqueda.length === 0) {
-  //      return this.getPersonasPage(
-  //        this.paginaActual.toString(),
-  //        this.totalPorPagina.toString(),
-  //        this.busqueda
-  //      );
-  //    }
-  //  }
-  eliminarTutor(persona: Persona) {
-    const swalWithBootstrapButtons = Swal.mixin({
-      customClass: {
-        confirmButton: "btn btn-success",
-        cancelButton: "btn btn-danger",
-      },
-      buttonsStyling: false,
-    });
-
-    swalWithBootstrapButtons
-      .fire({
-        title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar al tutor ${persona.primer_nombre}  ${persona.primer_apellido}?`,
-        icon: "warning",
-        showCancelButton: true,
-        confirmButtonText: "Si, eliminar!",
-        cancelButtonText: "No, cancelar!",
-        reverseButtons: true,
-      })
-      .then((result) => {
-        if (result.value) {
-          this.personaService.eliminar(persona.id).subscribe((resp) => {
-            this.getPersonasPage(
-              this.paginaActual.toString(),
-              this.totalPorPagina.toString(),
-              this.busqueda
-            );
-            swalWithBootstrapButtons.fire(
-              "Eliminado!",
-              `Tutor ${persona.primer_nombre} ${persona.primer_apellido} tutor eliminado correctamente!`,
-              "success"
-            );
-          });
-        }
+          this.designacionesTA = designacion.content;
+          this.totalElements = designacion.totalElements;
+        },
+        complete: () => {
+          if (this.designacionesTA.length > 0) {
+            this.initPaginator();
+          }
+          console.warn(this.dataSource.data.length < 1);
+        },
+        error: (err) => console.log(err),
       });
   }
 
-  // public filtarTutoresPorCarrera() {
-    
-  //   if (this.fecha != null && this.carreraFiltro != null) {
-      
-  //     this.getTutoresPage(
-  //       this.paginaActual.toString(),
-  //       this.totalPorPagina.toString(),
-  //       this.carreraFiltro,
-  //       this.fechaFormateada
-  //     );
-  //   } else {
-  //     return;
-  //   }
+  // initPaginator() {
+  //   this.dataSource = new MatTableDataSource(this.designacionesTA);
+  //   this.dataSource.filterPredicate = (data: DesignacionTA, filter: string) =>
+  //     data.docente.carrera.nombre.indexOf(filter) !== -1;
+  //   this.dataSource.sortingDataAccessor = (convenio, property) => {
+  //     switch (property) {
+  //       case "empresa":
+  //         return convenio.empresa.nombre;
+  //       case "carrera":
+  //         return convenio.carrera.nombre;
+  //       default:
+  //         return convenio[property];
+  //     }
+  //   };
   // }
-
-  //  cargarTutoresDefault() {
-  //    this.carreraFiltro = undefined;
-  //    this.fecha = "";
-  //    return this.getTutoresPage(
-  //      this.paginaActual.toString(),
-  //      this.totalPorPagina.toString(),
-  //      this.carreraFiltro,
-  //      this.fecha
-  //    );
-  //  }
-
-  // private getTutoresPage(
-  //   page: string,
-  //   size: string,
-  //   carreraFiltro: string,
-  //   fecha: string
-  // ) {
-  //   this.personaService
-  //     .getTutoresPage(page, size, carreraFiltro, fecha)
-  //     .subscribe((p) => {
-  //       this.convocatorias = p.content as Convocatoria[];
-  //       this.totalRegistros = p.totalElements as number;
-  //       this.paginador._intl.itemsPerPageLabel = "Registros por página:";
-  //       this.paginador._intl.nextPageLabel = "Siguiente";
-  //       this.paginador._intl.previousPageLabel = "Previa";
-  //       this.paginador._intl.firstPageLabel = "Primera Página";
-  //       this.paginador._intl.lastPageLabel = "Última Página";
-  //     });
-  // }
-
-  cargarCarreras() {
-    this.carreraService
-      .getCarreras()
-      .subscribe((carreras) => (this.carreras = carreras));
+  CustomPaginator(): MatPaginatorIntl {
+    const customPaginatorIntl = new MatPaginatorIntl();
+    customPaginatorIntl.itemsPerPageLabel = "Registros por página:";
+    customPaginatorIntl.nextPageLabel = "Siguiente";
+    customPaginatorIntl.previousPageLabel = "Previa";
+    customPaginatorIntl.firstPageLabel = "Primera Página";
+    customPaginatorIntl.lastPageLabel = "Última Página";
+    return customPaginatorIntl;
   }
+
+  paginate(event: PageEvent): void {
+    this.currentPage = event.pageIndex;
+    this.pageSize = event.pageSize;
+    this.getDesignacionesByPage(this.currentPage, this.pageSize, this.sortBy);
+  }
+
+  searchByCarrera(sortBy: string) {
+    if (sortBy.length > 0) {
+      this.search = true;
+      this.getDesignacionesByPage(this.currentPage, this.pageSize, sortBy);
+      if (!this.emptyList) {
+        this.message = `No se encontraron registros con la carrera" ${sortBy} " `;
+      }
+    }
+  }
+
+  filterByCarrera(sortBy: string) {
+    this.dataSource.filter = sortBy.trim().toUpperCase();
+    if (this.dataSource.paginator) {
+      this.dataSource.paginator.firstPage();
+    }
+    if (sortBy === "") {
+      this.dataSource.filter = "";
+    }
+    this.message = `Sin coincidencias para " ${sortBy} " `;
+  }
+
+  resetSearch() {
+    return this.getDesignacionesByPage(
+      this.currentPage,
+      this.pageSize,
+      this.sortBy
+    );
+  }
+
+  SortChange(sortState: Sort) {
+    if (sortState.direction) {
+      this._liveAnnouncer.announce(`Sorted ${sortState.direction}ending`);
+    } else {
+      this._liveAnnouncer.announce("Sorting cleared");
+    }
+  }
+
 
   async exportPdf() {
 
