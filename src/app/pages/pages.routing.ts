@@ -50,6 +50,7 @@ import { AddEvaluacionEstudianteEmpresaComponent } from "./add-evaluacion-estudi
 import { AddCertificadoEstudianteEmpresaComponent } from "./add-certificado-estudiante-empresa/add-certificado-estudiante-empresa.component";
 import { AddSeguimientoComponent } from "./gestion-tutor-academico/add-seguimiento/add-seguimiento.component";
 import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguimientos/list-seguimientos.component";
+import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
 
 const routes: Routes = [
   {
@@ -298,6 +299,11 @@ const routes: Routes = [
         data: { titulo: "Actualizar Empresa" },
       },
 
+      {
+        path: "add-solicitud-estudiante/:id",
+        component: AddSolicitudEstudianteComponent,
+        data: { titulo: "Actualizar Solicitud Estudiante" },
+      },
       {
         path: "responsablesppp",
         component: ListResponsablePPPComponent,

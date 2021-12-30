@@ -86,6 +86,10 @@
 </form>
 <div class="card-botones" style="text-align: right;">
 
-    <button type="button" class="btn btn-primary" (click)="llamarUsuario()">Guardar Solicitud </button>
-    <button type="button" class="btn btn-inverse mr-2">Cancelar </button>
+    <button type="button" class="btn btn-primary" (click)="llamarUsuario()"> Guardar Solicitud </button>
+    <button type="button" class="btn btn-inverse mr-2" (click)="irListaConvocatorias()">Cancelar </button>
+    <button type="button" class="btn btn-danger" (click)="exportPdf()">
+      Generar PDF
+    </button>
+
 </div>

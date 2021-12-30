@@ -72,6 +72,7 @@ import { AddEvaluacionEstudianteEmpresaComponent } from './add-evaluacion-estudi
 import { AddCertificadoEstudianteEmpresaComponent } from './add-certificado-estudiante-empresa/add-certificado-estudiante-empresa.component';
 import { ListSeguimientosComponent } from './gestion-tutor-academico/list-seguimientos/list-seguimientos.component';
 import { AddSeguimientoComponent } from './gestion-tutor-academico/add-seguimiento/add-seguimiento.component';
+import { AddSolicitudEstudianteComponent } from './add-solicitud-estudiante/add-solicitud-estudiante.component';
 @NgModule({
   declarations: [
     DashboardComponent,
@@ -122,6 +123,7 @@ import { AddSeguimientoComponent } from './gestion-tutor-academico/add-seguimien
     AddCertificadoEstudianteEmpresaComponent,
     ListSeguimientosComponent,
     AddSeguimientoComponent,
+    AddSolicitudEstudianteComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
