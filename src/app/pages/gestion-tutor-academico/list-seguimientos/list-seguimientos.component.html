@@ -1,1 +1,47 @@
-<p>list-seguimientos works!</p>
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-center">
+        Listado de Alumnos para el Seguimiento
+      </h4>
+      <div class="table-responsive">
+        <div id="example23_wrapper" class="dataTables_wrapper">
+          <br />
+          <div
+            class="alert alert-primary text-center"
+            *ngIf="actasDR.length == 0"
+          >
+            NO HAY DATOS DISPONIBLES
+          </div>
+
+          <div class="table-scroll">
+            <table
+              class="
+                table table-bordered
+                justify-content-center
+                table-responsive-sm table-sm
+                dataTable
+              "
+              *ngIf="actasDR.length > 0"
+            >
+              <thead>
+                <tr>
+                  <th>Alumno</th>
+                  <th>Alumnos</th>
+                </tr>
+              </thead>
+
+              <tbody class="animated fadeIn fast">
+                <tr *ngFor="let actaDR of actasDR">
+                  <td>
+                    {{ actaDR.alumno?.persona?.identificacion }}
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

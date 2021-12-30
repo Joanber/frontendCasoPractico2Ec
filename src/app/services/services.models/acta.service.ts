@@ -1,17 +1,22 @@
-import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
-import { catchError, map, tap } from 'rxjs/operators';
-import { ActaDR } from 'src/app/models/actaDR.model';
-import { environment } from 'src/environments/environment';
+import { HttpClient } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { Observable, throwError } from "rxjs";
+import { catchError, map, tap } from "rxjs/operators";
+import { ActaDR } from "src/app/models/actaDR.model";
+import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
-const bd_url = environment.bd_url + "/convocatorias";
+const bd_url = environment.bd_url + "/actasdr";
 @Injectable({
-  providedIn: 'root'
+  providedIn: "root",
 })
 export class ActaService {
-  getActaPage(page: string, size: string, carreraFiltro: string, fecha: string) {
-    throw new Error('Method not implemented.');
+  getActaPage(
+    page: string,
+    size: string,
+    carreraFiltro: string,
+    fecha: string
+  ) {
+    throw new Error("Method not implemented.");
   }
 
   constructor(private http: HttpClient) {}

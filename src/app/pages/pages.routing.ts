@@ -170,14 +170,14 @@ const routes: Routes = [
         data: { titulo: "Respuestas  a Empresas" },
       },
       {
-        path: 'nueva-designacion-ta/:id/:ida',
+        path: "nueva-designacion-ta/:id/:ida",
         component: DesignarTutorAcademicoComponent,
         data: { titulo: "Designar Tutor Academico" },
       },
       {
-        path: 'actualizar-designacion-ta/:idd',
+        path: "actualizar-designacion-ta/:idd",
         component: DesignarTutorAcademicoComponent,
-        data: { titulo: 'Actualizar Tutor Academico' },
+        data: { titulo: "Actualizar Tutor Academico" },
       },
       {
         path: "generar-acta/:id/:ida",
@@ -364,7 +364,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo seguimiento" },
       },
       {
-        path: "list-seguimientos",
+        path: "seguimientos",
         component: ListSeguimientosComponent,
         data: { titulo: "Listado de seguimientos" },
       },
