@@ -80,7 +80,7 @@
                           </td>
 
                           <td *ngIf="!alumno.ta">Sin Asignar</td>
-                          <td *ngIf="alumno.ta">Designado</td>
+                          <td *ngIf="alumno.ta" >Asignado</td>
                           <td>
                             <a *ngIf="alumno.ta" [routerLink]="[
                             '/dashboard',
@@ -135,6 +135,7 @@
                       title="Eliminar Respuesta Empresa" (click)="eliminarRespuestaEmpresa(validacionesSac.id)">
                       <i class="fa fa-close text-danger m-r-10"></i>
                     </a>
+
                     <a data-toggle="tooltip" data-original-title="Ver" class="cursor" title="Ver">
                       <i class="mdi mdi-library-books"></i>
                     </a>
