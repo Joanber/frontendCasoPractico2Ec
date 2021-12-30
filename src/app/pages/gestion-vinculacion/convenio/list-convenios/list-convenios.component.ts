@@ -1,6 +1,5 @@
 import { LiveAnnouncer } from '@angular/cdk/a11y';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
-import { FormControl } from '@angular/forms';
 import { MatPaginator, MatPaginatorIntl, MatSort, MatTableDataSource, PageEvent, Sort } from '@angular/material';
 import { LoaderService } from 'src/app/services/interceptores/loader.service';
 import Swal from 'sweetalert2';
@@ -16,13 +15,23 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   @ViewChild(MatPaginator, { static: false }) paginator: MatPaginator;
-  @ViewChild(MatSort, { static: true }) sort: MatSort;
-  searchInput = new FormControl('');
+  private sorts: MatSort;
+
+  @ViewChild(MatSort, { static: false }) set matSort(ms: MatSort) {
+    this.sorts = ms;
+    this.dataSource.sort = this.sorts;
+  }
+
   displayedColumns: string[] = ['id', 'nombre', 'empresa', 'carrera', 'acciones'];
-  value: any;
-  public pageSizeOptions: number[] = [10, 20, 50, 100];
+
+  textSearch: string;
+  textFilter: string;
+
+  pageSizeOptions: number[] = [10, 20, 50, 100];
   dataSource = new MatTableDataSource<Convenio>();
+
   convenios: Convenio[] = [];
+
   totalElements = 0;
   currentPage = 0;
   pageSize = 10;
@@ -32,13 +41,10 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   emptyList = false;
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
-
+    this.paginator.pageIndex = this.currentPage;
   }
 
   ngOnInit() {
-    this.dataSource = new MatTableDataSource([]);
     this.retriveConveniosByPage(this.currentPage, this.pageSize, this.sortBy);
   }
 
@@ -46,9 +52,9 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
     const swalWithBootstrapButtons = Swal.mixin({
       customClass: {
         confirmButton: 'btn btn-success',
-        cancelButton: 'btn btn-danger',
+        cancelButton: 'btn btn-danger'
       },
-      buttonsStyling: false,
+      buttonsStyling: false
     });
     swalWithBootstrapButtons
       .fire({
@@ -61,18 +67,28 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
         reverseButtons: true,
       })
       .then((result) => {
-        if (result.value) {
+        if (result.isConfirmed) {
           this.convenioService.deleteConvenio(convenio.id).subscribe({
             complete: () => {
+              const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 1200,
+                didOpen: (toast) => {
+                  toast.addEventListener('mouseenter', Swal.stopTimer);
+                  toast.addEventListener('mouseleave', Swal.resumeTimer);
+                }
+              });
+              Toast.fire({
+                icon: 'success',
+                title: `${ convenio.nombre } eliminado!`,
+              });
+              this.sortBy = this.textSearch || this.sortBy;
               this.retriveConveniosByPage(
                 this.currentPage,
                 this.pageSize,
                 this.sortBy
-              );
-              swalWithBootstrapButtons.fire(
-                'Eliminado!',
-                `Convenio ${ convenio.nombre } eliminado correctamente!`,
-                'success'
               );
             }
           });
@@ -80,28 +96,50 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
       });
   }
 
-  retriveConveniosByPage(page: number, size: number, sortBy: string) {
-    // this.loading = true;
-    this.convenioService.retrieveConveniosByPage(page.toString(), size.toString(), sortBy).subscribe({
+  retriveConveniosByPage(page: number, size: number, sortBy: string): any {
+    this.convenioService.retrieveConveniosByPage(page.toString(), size.toString(), sortBy.trim()).subscribe({
       next: (convenios) => {
+        this.emptyList = convenios.content.length === 0;
         if (convenios.content.length === 0) {
-          this.dataSource = new MatTableDataSource();
-          this.emptyList = true;
+          this.emptyList = !this.search;
+          if (this.search && this.textSearch) {
+            const Toast = Swal.mixin({
+              toast: true,
+              position: 'top-end',
+              showConfirmButton: false,
+              timer: 2000,
+              didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+              }
+            });
+            Toast.fire({
+              icon: 'info',
+              title: `No se encontraron registros con la carrera " ${ sortBy } "`,
+              showClass: {
+                popup: 'animate__animated animate__bounceInRight'
+              },
+              hideClass: {
+                popup: 'animate__animated animate__backOutRight'
+              }
+            });
+            this.search = false;
+          }
+        } else {
+          this.convenios = convenios.content;
+          this.totalElements = convenios.totalElements;
         }
-
-        this.convenios = convenios.content;
-        this.totalElements = convenios.totalElements;
       }, complete: () => {
-        if (this.convenios.length > 0) {
+        if (this.emptyList === false) {
           this.initPaginator();
+          this.textFilter = '';
         }
-        console.warn(this.dataSource.data.length < 1 );
       }, error: (err) => console.log(err)
     });
   }
 
   initPaginator() {
-    this.dataSource = new MatTableDataSource(this.convenios);
+    this.dataSource.data = this.convenios;
     this.dataSource.filterPredicate = (data: Convenio, filter: string) => data.carrera.nombre.indexOf(filter) !== -1;
     this.dataSource.sortingDataAccessor = (convenio, property) => {
       switch (property) {
@@ -111,7 +149,12 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
       }
     };
 
-
+    this.paginator._intl.itemsPerPageLabel = 'Registros por página:';
+    this.paginator._intl.nextPageLabel = 'Siguiente';
+    this.paginator._intl.previousPageLabel = 'Previa';
+    this.paginator._intl.firstPageLabel = 'Primera Página';
+    this.paginator._intl.lastPageLabel = 'Última Página';
+    this.paginator.length = this.totalElements;
   }
   CustomPaginator(): MatPaginatorIntl {
     const customPaginatorIntl = new MatPaginatorIntl();
@@ -122,7 +165,6 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
     customPaginatorIntl.lastPageLabel = 'Última Página';
     return customPaginatorIntl;
   }
-
   paginate(event: PageEvent): void {
     this.currentPage = event.pageIndex;
     this.pageSize = event.pageSize;
@@ -139,12 +181,11 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
       this.retriveConveniosByPage(
         this.currentPage,
         this.pageSize,
-        sortBy
-      );
-      if (!this.emptyList) {
-        this.message = `No se encontraron registros con la carrera" ${ sortBy } " `;
-      }
+        sortBy);
     }
+    // if (!this.emptyList && this.search) {
+    //   this.message = `No se encontraron registros con la carrera" ${ sortBy } " `;
+    // }
   }
 
 
@@ -160,16 +201,19 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
   }
 
   resetSearch() {
-    // this.search = false;
-    // this.searchInput.reset();
-    return this.retriveConveniosByPage(
-      this.currentPage,
-      this.pageSize,
-      this.sortBy
-    );
+    if (!this.emptyList && this.search) {
+      this.retriveConveniosByPage(
+        this.currentPage,
+        this.pageSize,
+        ''
+      );
+    }
+    this.search = false;
   }
 
   SortChange(sortState: Sort) {
+    console.warn(sortState);
+
     if (sortState.direction) {
       this._liveAnnouncer.announce(`Sorted ${ sortState.direction }ending`);
     } else {
