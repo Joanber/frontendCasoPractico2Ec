@@ -17,13 +17,12 @@
 .cursor {
   cursor: pointer;
 }
-ng serve - html,
 body {
   height: 100%;
 }
 body {
   margin: 0;
- font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
 }
 .table-scroll {
   height: 460px;

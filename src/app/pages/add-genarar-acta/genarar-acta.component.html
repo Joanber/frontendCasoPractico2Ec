@@ -61,26 +61,26 @@
               {{ alumno.ciclo }}
               ciclo de la carrera {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }}
               del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la cumplir
-              con las  <input type="text" class="col-1"> horas de prácticas pre profesionales.
+              con las <input type="text" class="col-1"> horas de prácticas pre profesionales.
               <table class="table table-striped">
                 <thead>
                   <tr>
                     <th scope="col">Area</th>
-                    <th scope="col">Actividad por reazlizar</th>
+                    <th scope="col">Actividad por realizar</th>
                     <th scope="col">Asignatura relacionada</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr>
 
-                      <td></td>
-                      <td>{{validacionSac.convocatoria.actividades}}</td>
+                    <td></td>
+                    <td>{{validacionSac.convocatoria.actividades}}</td>
 
 
 
-                      <td>{{validacionSac.convocatoria.asignaturas}}</td>
+                    <td>{{validacionSac.convocatoria.asignaturas}}</td>
 
-                    </tr>
+                  </tr>
                 </tbody>
               </table>
               <div class="card-text">
@@ -92,55 +92,70 @@
                 desarrollar las prácticas pre profesionales a partir del
 
 
-        <input
-        [matDatepicker]="myDatepicker"
-        style="width: min-content;"
-        class="form-control"
-        name="fecha_inicio_ppp"
-        #fecha_inicio_ppp="ngModel"
-        [(ngModel)]="acta.fecha_inicio_ppp"
-        required>
-        <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-        <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
-       y terminará el
+                <input [matDatepicker]="myDatepicker" style="width: min-content;" class="form-control"
+                  name="fecha_inicio_ppp" #fecha_inicio_ppp="ngModel" [(ngModel)]="acta.fecha_inicio_ppp" required>
+                <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                y terminará el
 
-        <input
-        [matDatepicker]="myDatepicker2"
-        style="width: min-content;"
-        class="form-control"
-        name="fecha_fin_ppp"
-        #fecha_fin_ppp="ngModel"
-        [(ngModel)]="acta.fecha_fin_ppp"
-        required>
-        <mat-datepicker-toggle [for]="myDatepicker2"></mat-datepicker-toggle>
-        <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
-        en un horario de
+                <input [matDatepicker]="myDatepicker2" style="width: min-content;" class="form-control"
+                  name="fecha_fin_ppp" #fecha_fin_ppp="ngModel" [(ngModel)]="acta.fecha_fin_ppp" required>
+                <mat-datepicker-toggle [for]="myDatepicker2"></mat-datepicker-toggle>
+                <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
+                en un horario de
                 <input type="time" name="hora" min="6:00" step="3600"> a <input type="time" name="hora" min="7:00"
                   step="3600">.
 
                 <br />
                 <strong>3. Cronograma de Actividades</strong>
-                <table class="table table-striped">
-                  <thead>
-                    <tr>
-                      <th scope="col">Area</th>
-                      <th scope="col">Actividad por reazlizar</th>
-                      <th scope="col">Asignatura relacionada</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    <tr>
-                      <td></td>
-                      <td>{{validacionSac.convocatoria.actividades}}</td>
+
+                <div class="table-scroll">
+                  <table style="border:1;"  class="
+                table table-bordered
+
+                justify-content-center
+                table-responsive-sm table-sm
+                dataTable
+              ">
+
+                    <thead>
+                      <tr>
+
+                        <th rowspan="2">Actividades por realizar</th>
+                        <th colspan="12">Semanas</th>
+                        <th rowspan="2">Numero de Horas</th>
+                      </tr>
+                      <tr>
+                        <th>1</th>
+                        <th>2</th>
+                        <th>3</th>
+                        <th>4</th>
+                        <th>5</th>
+                        <th>6</th>
+                        <th>7</th>
+                        <th>8</th>
+                        <th>10</th>
+                        <th>11</th>
+                        <th>12</th>
+                      </tr>
+                    </thead>
+                    <tfoot>
+                      <tr>
+                        <td colspan="12">TOTAL DE HORAS</td>
+                      </tr>
+                    </tfoot>
+                    <tbody class="animated fadeIn fast">
+                      <tr>
+                        <th *ngFor="let act of acta.actividadesActasDR">{{act.actividad}}</th>
+                        <td></td>
+                        <td></td>
+                      </tr>
 
 
 
-                      <td>{{validacionSac.convocatoria.asignaturas}}</td>
-
-                    </tr>
-
-                  </tbody>
-                </table>
+                    </tbody>
+                  </table>
+                </div>
                 <br />
                 <br />
                 <strong> 4. Acuerdos varios</strong>
@@ -188,14 +203,21 @@
                   </div>
 
                   <div class="form-actions" style="text-align: right">
+                
+                
+                    <button type="button" class="btn btn-danger" (click)="exportPdf()" style= "margin-right: 10px;">
+                      Generar PDF
+                    </button>
+    
+                    
+                    <button type="button" class="btn btn-inverse " (click)="irListaSolicitudes()" style= "margin-right: 10px;">
+                      Cancelar
+                    </button>
+                    
                     <button type="submit" class="btn btn-primary mr-2">
                       Guardar
                     </button>
-                    <button type="button" class="btn btn-inverse" (click)="respuestaEmpresas()">
-                      Cancelar
-                    </button>
-
-                    <button type="button" class="btn btn-danger">Generar PDF</button>
+                 
                   </div>
 
                 </div>

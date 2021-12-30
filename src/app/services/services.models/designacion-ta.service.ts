@@ -1,7 +1,7 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { Observable, throwError } from "rxjs";
-import { catchError, map } from "rxjs/operators";
+import { catchError, map, tap } from "rxjs/operators";
 import { DesignacionTA } from "src/app/models/designacionta.model";
 import { environment } from "src/environments/environment";
 import Swal from "sweetalert2";
@@ -22,8 +22,32 @@ export class DesignacionTaService {
   }
 
   //DESIGNACION_TA SIN PAGINACION
-  getDesiganacionesTE(): Observable<DesignacionTA[]> {
+  getDesiganacionesTA(): Observable<DesignacionTA[]> {
     return this.http.get<DesignacionTA[]>(`${bd_url}/filtrar`);
+  }
+  //GET TUTORES PAGINACION
+  getDesiganacionesByPage(
+    page: string,
+    size: string,
+    busqueda: string
+  ): Observable<any> {
+    return this.http
+      .get(
+        `${bd_url}/page?page=${page}&size=${size}&busqueda=${busqueda || ""} `
+      )
+      .pipe(
+        tap((response: any) => {
+          (response.content as DesignacionTA[]).forEach((designacionTA) => {
+            return designacionTA;
+          });
+        }),
+        map((response: any) => {
+          (response.content as DesignacionTA[]).map((designacionTA) => {
+            return designacionTA;
+          });
+          return response;
+        })
+      );
   }
 
   //CREAR Carrera SIN FOTO

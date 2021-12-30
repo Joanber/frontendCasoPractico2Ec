@@ -360,7 +360,7 @@ const routes: Routes = [
         data: { titulo: "Certificado de Empresa" },
       },
       {
-        path: "nuevo-seguimiento",
+        path: "nuevo-seguimiento/:ida",
         component: AddSeguimientoComponent,
         data: { titulo: "Nuevo seguimiento" },
       },

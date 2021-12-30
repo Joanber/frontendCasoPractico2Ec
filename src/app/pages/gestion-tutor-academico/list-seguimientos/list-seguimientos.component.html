@@ -27,7 +27,8 @@
               <thead>
                 <tr>
                   <th>Alumno</th>
-                  <th>Alumnos</th>
+                  <th>Carrera</th>
+                  <th>Accion</th>
                 </tr>
               </thead>
 
@@ -35,6 +36,28 @@
                 <tr *ngFor="let actaDR of actasDR">
                   <td>
                     {{ actaDR.alumno?.persona?.identificacion }}
+                    {{ actaDR.alumno?.persona?.primer_apellido }}
+                    {{ actaDR.alumno?.persona?.segundo_apellido }}
+                    {{ actaDR.alumno?.persona?.primer_nombre }}
+                    {{ actaDR.alumno?.persona?.segundo_nombre }}
+                  </td>
+                  <td>
+                    {{ actaDR.alumno?.carrera?.nombre }}
+                  </td>
+                  <td class="text-nowrap text-center">
+                    <a
+                      [routerLink]="[
+                        '/dashboard',
+                        'nuevo-seguimiento',
+                        actaDR.alumno?.id
+                      ]"
+                      data-toggle="tooltip"
+                      data-original-title="Nuevo Seguimiento"
+                      class="cursor"
+                      title="Nuevo Seguimiento"
+                    >
+                      <i class="mdi mdi-format-list-bulleted"></i>
+                    </a>
                   </td>
                 </tr>
               </tbody>
