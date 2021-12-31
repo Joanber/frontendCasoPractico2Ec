@@ -5,8 +5,16 @@
       <div class="table-responsive">
         <div id="example23_wrapper" class="dataTables_wrapper">
           <div class="row">
-            <div class="col-md-8">
-              <select class="form-control" [(ngModel)]="carreraFiltro">
+            <div class="col-md-2">
+
+              <button routerLink="/dashboard/convocatorias" mat-raised-button color="accent">
+                <i class="mdi mdi-plus"></i>
+                Ver Convocatorias
+              </button>
+
+            </div>
+            <div class="col-md-5">
+              <select style="width: auto; align-items: right;" class="form-control" [(ngModel)]="carreraFiltro">
                 <option [ngValue]="undefined">CARRERA (TODAS)</option>
                 <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
                   {{ carreras.nombre }}
@@ -15,16 +23,17 @@
             </div>
 
             <div class="col-md-1">
-              <button class="btn btn-primary btn-sm" (click)="filtrarValidacionesSACCarrera()">
+              <button mat-raised-button color="primary" (click)="filtrarValidacionesSACCarrera()">
                 <i class="mdi mdi-magnify"></i>
                 Buscar
               </button>
             </div>
             <div class="col-md-2 text-right">
-              <button class="btn btn-sm" (click)="cargarConvocatoriasDefault()">
+              <button class="btn " (click)="cargarConvocatoriasDefault()">
                 Mostrar Todas
               </button>
             </div>
+
           </div>
           <br />
           <div class="alert alert-primary text-center" *ngIf="validacionesSac.length == 0">
@@ -50,7 +59,8 @@
               <tbody class="animated fadeIn fast">
                 <tr *ngFor="let validacionesSac of validacionesSac">
                   <td>
-                    {{ validacionesSac.convocatoria.carrera.abreviatura }} {{ validacionesSac.convocatoria.carrera.id }}
+                    {{ validacionesSac.convocatoria.carrera.abreviatura }} {{ validacionesSac.convocatoria.carrera.id
+                    }}
                   </td>
                   <td>
                     {{ validacionesSac.convocatoria.solicitudEmpresa.empresa.nombre }}
@@ -80,7 +90,7 @@
                           </td>
 
                           <td *ngIf="!alumno.ta">Sin Asignar</td>
-                          <td *ngIf="alumno.ta" >Asignado</td>
+                          <td *ngIf="alumno.ta">Asignado</td>
                           <td>
                             <a *ngIf="alumno.ta" [routerLink]="[
                             '/dashboard',
