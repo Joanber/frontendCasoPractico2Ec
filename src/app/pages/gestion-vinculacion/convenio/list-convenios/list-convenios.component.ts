@@ -22,7 +22,7 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
     this.dataSource.sort = this.sorts;
   }
 
-  displayedColumns: string[] = ['id', 'nombre', 'empresa', 'carrera', 'acciones'];
+  displayedColumns: string[] = ['nombre', 'empresa', 'carrera', 'acciones'];
 
   textSearch: string;
   textFilter: string;
