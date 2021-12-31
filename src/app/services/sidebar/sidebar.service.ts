@@ -80,7 +80,7 @@ export class SidebarService {
     },
     {
       titulo: 'Gestion de PPP',
-      icono: 'mdi mdi-account-multiple',
+      icono: 'mdi mdi-server-security',
       submenu: [
         {
           titulo: 'Solicitudes Empresas',
@@ -94,11 +94,6 @@ export class SidebarService {
           titulo: 'Respuestas Empresas',
           url: 'respuestas-empresas',
         },
-        {
-          titulo: 'Generar Acta',
-          url: 'generarActa',
-        },
-
         {
           titulo: 'Consultas Reportes',
           url: 'consultas-reportes',

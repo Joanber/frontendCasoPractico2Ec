@@ -1,89 +1,124 @@
-<div class="row">
-  <div class="col-12">
-    <div class="card">
-      <div class="card-body">
-        <div class="row">
-          <div class="col-md-3">
-            Buscar por fecha
-            <br>
-            <input aria-placeholder="Seleccioanr fecha" [matDatepicker]="myDatepicker" [(ngModel)]="fecha"
-              class="form-control" style="width: min-content" name="fechaF" required #fechaF="ngModel" />
-            <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
-            <mat-datepicker [touchUi]="true" color="dark" #myDatepicker></mat-datepicker>
+<div class="col-12">
+  <div class="card">
+    <div class="card-body">
+      <h4 class="card-title text-center">Listado de Respuestas a Empresas </h4>
+      <div class="table-responsive">
+        <div id="example23_wrapper" class="dataTables_wrapper">
+          <div class="row">
+            <div class="col-md-2">
+              <select style="width: auto; align-items: right;" class="form-control"   id="tutores" >
+                <option Value="undefined">Seleccionar Tutores</option>
+                <option Value="1">Tutores Academicos</option>
+                <option Value="2">Tutores Empresariales</option>
+              </select>
+            </div>
+            <div class="col-md-5">
+              <select style="width: auto; align-items: right;" class="form-control" [(ngModel)]="carreraFiltro">
+                <option [ngValue]="undefined">CARRERA (TODAS)</option>
+                <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
+                  {{ carreras.nombre }}
+                </option>
+              </select>
+            </div>
+
+            <div class="col-md-1">
+              <button class="boton"mat-raised-button color="primary" (click)="filtrarValidacionesSACCarrera()">
+                <i class="mdi mdi-magnify"></i>
+                Buscar
+              </button>
+            </div>
+            <div class="col-md-2 text-right">
+              <button class="btn btn-sm" (click)="cargarConvocatoriasDefault()">
+                Mostrar Todas
+              </button>
+            </div>
+
           </div>
-          <div class="col-md-5">
-            Buscar por carrera<br>
-            <select class="form-control" [(ngModel)]="carreraFiltro">
-              <option [ngValue]="undefined">CARRERA (TODAS)</option>
-              <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
-                {{ carreras.nombre }}
-              </option>
-            </select>
+          <br />
+          <div class="alert alert-primary text-center" *ngIf="validacionesSac.length == 0">
+            NO HAY DATOS DISPONIBLES
           </div>
-          <br>
-          <br><br>
-          <div class="col-md-1">
-            <br>
-            <button class="btn btn-primary btn-sm" (click)="filtarConvocatoriasPorFechaCarrera()">
-              <i class="mdi mdi-magnify"></i>
-              Buscar
-            </button>
-          </div>
-          <div class="col-md-2 text-right"><br>
-            <button class="btn btn-sm " (click)="cargarConvocatoriasDefault()">
-              Mostrar Todas
-            </button>
+
+          <div class="table-scroll" >
+            <table class="
+              table table-bordered
+              justify-content-center
+              table-responsive-sm table-sm
+              dataTable
+            " *ngIf="validacionesSac.length > 0">
+
+              <thead>
+                <tr>
+                  <th>Titulo</th>
+                  <th>C.I.</th>
+                  <th>Nombre</th>
+                  <th>Correo</th>
+                  <th>Telefono</th>
+
+                </tr>
+              </thead>
+
+              <tbody class="animated fadeIn fast">
+                <tr *ngFor="let dta of desicnacionesTA">
+
+                  <td> {{dta.docente.abreviatura_titulo}}</td>
+                  <td> {{dta.docente.persona.identificacion}}</td>
+                  <td> {{dta.docente.persona.primer_apellido}}
+                    {{dta.docente.persona.segundo_apellido}}
+                    {{dta.docente.persona.primer_nombre}}
+                    {{dta.docente.persona.segundo_nombre}}</td>
+
+                  <td>
+                    {{dta.docente.persona.email }}
+                  </td>
+                  <td>
+                    {{dta.docente.persona.celular }}</td>
+                </tr>
+              </tbody>
+            </table>
+            <div class="table-scroll">
+              <table class="
+                table table-bordered
+                justify-content-center
+                table-responsive-sm table-sm
+                dataTable
+              " *ngIf="validacionesSac.length > 0">
+
+                <thead>
+                  <tr>
+                    <th>Cargo</th>
+                    <th>C.I.</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
+
+                  </tr>
+                </thead>
+
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let dte of desicnacionesTE">
+
+                    <td> {{dte.empresaPersonal.cargo}}</td>
+                    <td>{{dte.empresaPersonal.persona.identificacion}}</td>
+                    <td> {{dte.empresaPersonal.persona.primer_apellido}}
+                      {{dte.empresaPersonal.persona.segundo_apellido}}
+                      {{dte.empresaPersonal.persona.primer_nombre}}
+                      {{dte.empresaPersonal.persona.segundo_nombre}}</td>
+
+                    <td>
+                      {{dte.empresaPersonal.persona.email }}
+                    </td>
+                    <td>
+                      {{dte.empresaPersonal.persona.celular }}</td>
+                  </tr>
+                </tbody>
+              </table>
           </div>
         </div>
-        <br>
-        <div class="table-scroll">
-          <table class="
-                  table table-bordered
-                  justify-content-center
-                  table-responsive-sm table-sm
-                  dataTable
-                ">
-            <thead>
-              <tr>
-
-                <th>Identificación</th>
-                <th>Apellidos y Nombres</th>
-                <th>Email</th>
-                <th>Celular</th>
-                <th>Carrera</th>
-
-              </tr>
-            </thead>
-
-            <tbody class="animated fadeIn fast">
-              <tr *ngFor="let persona of personas">
-
-                <td>{{ persona.identificacion }}</td>
-                <td>
-                  {{ persona.primer_apellido }}
-                  {{ persona.segundo_apellido }}
-                  {{ persona.primer_nombre }} {{ persona.segundo_nombre }}
-                </td>
-                <td>{{ persona.email }}</td>
-                <td>{{ persona.celular }}</td>
-                <td>{{ persona.genero }}</td>
-
-              </tr>
-            </tbody>
-          </table>
-
-        </div>
       </div>
-
-      <div class="text-center">
-        <button type="button" class="btn btn-danger" (click)="exportPdf()">
-          Generar PDF
-        </button>
-      </div>
-      
     </div>
   </div>
+  <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
+    [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+  </mat-paginator>
 </div>
-<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions"
-  [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
-</mat-paginator>

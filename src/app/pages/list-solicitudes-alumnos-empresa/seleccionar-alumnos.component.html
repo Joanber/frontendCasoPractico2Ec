@@ -2,9 +2,9 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <button routerLink="/dashboard/convocatorias" class="btn btn-primary btn-sm">
-
-          Volver Convocatorias
+        <button class="boton" mat-raised-button routerLink="/dashboard/solicitudes_empresas" color='accent'>
+          <i class="mdi mdi-plus"></i>
+          Ver Convocatorias
         </button>
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
@@ -49,28 +49,7 @@
 
                     <td>{{ solicitudesAlumnos.alumno.persona.email }}</td>
                     <td>{{ solicitudesAlumnos.alumno.ciclo }}</td>
-                    <td class="text-nowrap text-center">
-                      <a
-                        [routerLink]="[
-                          '/dashboard',
-                          'add-solicitud-estudiante',
-                          solicitudesAlumnos.id
-                        ]"
-                        data-toggle="tooltip"
-                        data-original-title="Editar"
-                        class="cursor"
-                      >
-                        <i class="fa fa-pencil text-inverse m-r-10"> </i>
-                      </a>
-                      <a
-                        data-toggle="tooltip"
-                        data-original-title="Borrar"
-                        class="cursor"
-                        (click)="eliminarEmpresa(empresa)"
-                      >
-                        <i class="fa fa-close text-danger"></i>
-                      </a>
-                    </td>
+
 
                   </tr>
                 </tbody>
