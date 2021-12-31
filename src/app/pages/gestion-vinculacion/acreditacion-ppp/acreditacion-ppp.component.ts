@@ -59,7 +59,6 @@ export class AcreditacionPppComponent implements OnInit {
   get NombreCoordinador(): string {
     const nombre = this.cordinador.primer_nombre + ' ' + this.cordinador.primer_apellido;
     return nombre.charAt(0).toUpperCase() + nombre.slice(1).toLocaleLowerCase();
-
   }
 
   openDialog(): void {
