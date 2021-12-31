@@ -24,7 +24,7 @@
           <br><br>
           <div class="col-md-1">
             <br>
-            <button  mat-raised-button color="primary" (click)="filtarConvocatoriasPorFechaCarrera()">
+            <button class="boton" mat-raised-button color="primary" (click)="filtarConvocatoriasPorFechaCarrera()">
               <i class="mdi mdi-magnify"></i>
               Buscar
             </button>
@@ -36,7 +36,8 @@
           </div>
         </div>
         <div>
-          <button  mat-raised-button routerLink="/dashboard/solicitudes_empresas" color='accent'>
+          <br>
+          <button class="boton" mat-raised-button routerLink="/dashboard/solicitudes_empresas" color='accent'>
             <i class="mdi mdi-plus"></i>
             Nueva Convocatoria
           </button>
@@ -54,8 +55,7 @@
             <thead>
               <tr>
                 <th>Codigo </th>
-                <th>Fecha Emision</th>
-                <th>Fecha Max. R.Solicitud</th>
+                <th>Fecha</th>
                 <th>Empresa</th>
                 <th>Responsable de PPP</th>
                 <th>Estado</th>
@@ -68,7 +68,7 @@
             <tbody class="animated fadeIn fast">
               <tr *ngFor="let convocatoria of convocatorias">
                 <td>{{ convocatoria.carrera.abreviatura }} {{convocatoria.id}}</td>
-                <td>{{ convocatoria.fecha_emision }}</td>
+
                 <td>{{ convocatoria.fecha_max_recib_solic }}</td>
                 <td>
                   {{ convocatoria.solicitudEmpresa.empresa.nombre }}
