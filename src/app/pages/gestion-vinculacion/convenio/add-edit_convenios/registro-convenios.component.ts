@@ -2,6 +2,8 @@ import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angu
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
 import { ErrorStateMatcher, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Empresa } from 'src/app/models/empresa.model';
 import { LoaderService } from 'src/app/services/interceptores/loader.service';
@@ -33,10 +35,8 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     return this.convenioForm.controls;
   }
 
-  carreras: Carrera[] = [];
-  empresas: Empresa[] = [];
-
-  carrera = new Carrera();
+  carreras$ = new Observable<Carrera[]>();
+  empresas$ = new Observable<Empresa[]>();
 
   convenio = {} as Convenio;
   convenioForm!: FormGroup;
@@ -50,14 +50,15 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   }
 
   ngOnInit() {
+    this.loadForm();
     this.retrieveCarreras();
     this.retrieveEmpresas();
-    this.loadForm();
   }
 
   loadForm() {
     if (this.convenio.id) {
       this.patchForm(this.convenio);
+      return;
     }
     this.convenioForm = this.formbuilder.group({
       nombre: ['', [Validators.required, Validators.pattern(this.alphabeticPattern)]],
@@ -68,41 +69,50 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   }
 
   retrieveCarreras() {
-    this.carreraService.getCarreras().subscribe(c => this.carreras = c);
+    this.carreras$ = this.carreraService.getCarreras();
   }
 
   retrieveEmpresas() {
-    this.empresaServices.getEmpresas().subscribe(e => this.empresas = e);
+    this.empresas$ = this.empresaServices.getEmpresas();
+  }
+
+  async createConvenio() {
+    this.convenio = this.convenioForm.value;
+    this.convenio.carrera = await this.carreras$.pipe(map(carreras => carreras.find(c =>
+      c.id === this.convenioForm.value.carrera))).toPromise();
+    this.convenio.empresa = await this.empresas$.pipe(map(empresas => empresas.find(e =>
+      e.id === this.convenioForm.value.empresa))).toPromise();
   }
 
   onSubmit() {
     console.log('To Submit', this.convenioForm.value);
-
     if (this.convenioForm.valid && !this.convenio.id) {
-      this.convenio = this.convenioForm.value;
-      this.convenioService.createConvenio(this.convenio).subscribe({
-        next: (convenio) => Swal.fire(
-          'Nueva Convenio',
-          `¡${ convenio.nombre } creado con exito!`,
-          'success'
-        ), complete: () => this.returnToList()
-        , error: (err) => console.error(err)
+      this.createConvenio().finally(() => {
+        this.convenioService.createConvenio(this.convenio).subscribe({
+          next: (convenio) => Swal.fire(
+            'Nueva Convenio',
+            `¡${ convenio.nombre } creado con exito!`,
+            'success'
+          ), complete: () => this.returnToList()
+          , error: (err) => console.error(err)
+        });
       });
     }
     if (this.convenioForm.valid && this.convenio.id) {
-      this.convenio = this.convenioForm.value;
-      console.warn('To Update', this.convenioForm.value);
-      this.convenioService.updateConvenio(this.convenio, this.convenio.id).subscribe({
-        next: (convenio) =>
-          Swal.fire({
-            position: 'center',
-            icon: 'success',
-            title: 'Actualizar Convenio',
-            text: `¡${ convenio.nombre } actualizado con exito!`,
-            showConfirmButton: false,
-            timer: 1100
-          })
-        , complete: () => this.returnToList(), error: (err) => console.error(err)
+      this.createConvenio().finally(() => {
+        console.warn('To Update', this.convenioForm.value);
+        this.convenioService.updateConvenio(this.convenio, this.convenio.id).subscribe({
+          next: (convenio) =>
+            Swal.fire({
+              position: 'center',
+              icon: 'success',
+              title: 'Actualizar Convenio',
+              text: `¡${ convenio.nombre } actualizado con exito!`,
+              showConfirmButton: false,
+              timer: 1100
+            })
+          , complete: () => this.returnToList(), error: (err) => console.error(err)
+        });
       });
     }
   }
@@ -118,68 +128,24 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     this.convenioService.findConvenioById(id).subscribe(
       {
         next: (convenio) => {
+          this.patchForm(convenio);
           this.convenio = convenio;
         },
         error: () => {
           return this.returnToList();
         }, complete: () => {
-          this.patchForm(this.convenio);
+          this.btnName = 'Editar';
+          this.convenioForm.markAllAsTouched();
         }
       });
   }
 
   patchForm(convenio: Convenio) {
-    setTimeout(() => {
-      this.convenioForm.markAllAsTouched();
-      this.convenioForm.patchValue({
-        id: convenio.id,
-        nombre: convenio.nombre,
-        carrera:
-          this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)
-        ,
-        empresa:
-          this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null)
-      });
-    }, 500);
+    this.convenioForm.patchValue({
+      id: convenio.id,
+      nombre: convenio.nombre,
+      carrera: convenio.carrera.id,
+      empresa: convenio.empresa.id
+    });
   }
-
 }
-
-// carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
-// this.empresas.pipe(map(txs => txs.findIndex(txn => txn.id === convenio.empresa.id))).subscribe(e => this.empresaIndex = e)
-// carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/
-// carrera: this.carreras.filter(carrera => carrera.id = convenio.carrera.id)[0],
-// empresa: this.empresas[this.empresas.map((empresa) => empresa.id).indexOf(convenio.empresa.id)],
-
-// getC(c: Carrera) {
-//   return new Promise<Carrera>(resolve => {
-//     this.carreras.pipe(map(carreras => carreras.find(() => c !== undefined || c !== null)),
-//       take(1)
-//     )
-//       .subscribe(
-//         (data: Carrera) => {
-//           resolve(data);
-//         });
-//   });
-// }
-
-
-    // const convenioObj = Object.keys(convenio).filter(c => convenio[c] !== undefined || convenio[c] != null);
-    // const newConvenioObject = {};
-    // convenioObj.forEach(item => Object.assign(newConvenioObject, {
-    //   [item]: convenio[item]
-    // }));
-    // console.log(newConvenioObject);
-
-    // this.carreras.Where(x => x.Title == title)
-    // // this.convenioForm.setValue({
-    // //   id: convenio.id,
-    // //   nombre: convenio.nombre,
-    // //   empresa: this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null),
-    // //   // carrera: this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)
-    // // });
-    // console.log('empresa', this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null));
-
-    // this.btnName = 'Editar';
-    // this.carreras.pipe(map(carreras => carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)))
-    //   .subscribe(e => this.carrera = e);
