@@ -1,6 +1,6 @@
 import { AfterViewInit, ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, FormGroupDirective, NgForm, Validators } from '@angular/forms';
-import { ErrorStateMatcher } from '@angular/material';
+import { ErrorStateMatcher, MatDialog } from '@angular/material';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Empresa } from 'src/app/models/empresa.model';
@@ -27,10 +27,7 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   constructor(private formbuilder: FormBuilder, private carreraService: CarreraService,
               private empresaServices: EmpresaService, private convenioService: ConvenioService,
               private activatedRoute: ActivatedRoute, public loaderService: LoaderService,
-              private router: Router) {
-
-
-              }
+              private router: Router, public dialog: MatDialog) {}
 
   get formValues() {
     return this.convenioForm.controls;
@@ -49,7 +46,6 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   matcher = new MyErrorStateMatcher();
 
   ngAfterViewInit(): void {
-
     this.activatedRoute.params.subscribe(({ id }) => this.retriveConvenio(id));
   }
 
@@ -60,6 +56,9 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   }
 
   loadForm() {
+    if (this.convenio.id) {
+      this.patchForm(this.convenio);
+    }
     this.convenioForm = this.formbuilder.group({
       nombre: ['', [Validators.required, Validators.pattern(this.alphabeticPattern)]],
       carrera: ['', Validators.required],
@@ -120,24 +119,30 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       {
         next: (convenio) => {
           this.convenio = convenio;
-          this.patchForm(convenio);
         },
         error: () => {
           return this.returnToList();
+        }, complete: () => {
+          this.patchForm(this.convenio);
         }
       });
   }
 
   patchForm(convenio: Convenio) {
-    this.convenioForm.markAllAsTouched();
-    this.convenioForm.patchValue({
-      id: convenio.id,
-      nombre: convenio.nombre,
-      carrera: this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null),
-      empresa: this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null)
-    });
-
+    setTimeout(() => {
+      this.convenioForm.markAllAsTouched();
+      this.convenioForm.patchValue({
+        id: convenio.id,
+        nombre: convenio.nombre,
+        carrera:
+          this.carreras.find(() => convenio.carrera !== undefined || convenio.carrera !== null)
+        ,
+        empresa:
+          this.empresas.find(() => convenio.empresa !== undefined || convenio.empresa !== null)
+      });
+    }, 500);
   }
+
 }
 
 // carrera: this.carreras[this.carreras.findInde`1x(carrera => carrera.id === convenio.carrera.id)] ,/

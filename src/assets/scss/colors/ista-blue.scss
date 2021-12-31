@@ -424,45 +424,63 @@ $altTheme: mat-dark-theme($theme-primary, $theme-accent, $theme-warn);
 .loader-container {
   position: fixed;
   width: 100%;
-  z-index: 100;
+  z-index: 2000;
 }
 
-/* ::ng-deep .mat-progress-bar-buffer {
-    background: #E4E8EB;
-} */
 
 .mat-progress-bar {
-  height: 6px;
+  background-color: #0B3B6D !important;
 }
 
-/// mat form field
-
-$mat-primary: (
-  main: #023469,
-  lighter: #b3c2d2,
-  darker: #01214c,
-  200: #023469,
-  // For slide toggle,
-  contrast:
-    (
-      main: $light-primary-text,
-      lighter: $dark-primary-text,
-      darker: $light-primary-text,
-    ),
-);
-
-.mat-focused .mat-form-field-label {
-  color: #023469 !important;
+.mat-progress-bar-buffer {
+    background: #f9ecbc;
 }
+.mat-progress-bar-fill::after {
+    background-color: #ebbf1f;
+}
+
+.mat-progress-bar {
+    height: 22px;
+}
+ /// mat form field
 
 .mat-form-field-underline {
-  background-color: #b3c2d2 !important;
+  background-color: #0B3B6D !important;
+}
+.mat-form-field-label-wrapper {
+    font-size: 16px;
+    font-weight: 500;
 }
 
-.mat-form-field-ripple {
-  background-color: #023469 !important;
+.mat-form-field.mat-focused {
+    .mat-form-field-label {
+        color: #023469;
+      }
+      .mat-form-field-ripple {
+        background-color: #023469;
+        height: 2px;
+    }
+    .mat-form-field-required-marker {
+        color: #F44336;
+    }
+    .mat-input-element {
+        color: #01214c;
+    }
 }
-
+.mat-form-field.mat-form-field-invalid {
+    .mat-input-element {
+        color: #F44336;
+    }
+    .mat-form-field-label {
+        color: #F44336;
+        .mat-form-field-required-marker {
+            color: #F44336;
+        }
+    }
+    .mat-form-field-ripple {
+        background-color: #F44336;
+    }
+}
 // mat talble
 .mat-column-id,
 .mat-header-cell {

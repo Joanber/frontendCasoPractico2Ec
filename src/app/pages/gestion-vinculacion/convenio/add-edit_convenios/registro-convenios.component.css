@@ -1,0 +1,14 @@
+
+.alert-info {
+  color: var(--ista-bg-color);
+  background-color: var(--ista-light-color);
+  border-color: var(--ista-special-bg-color);
+}
+
+.alert-info hr {
+  border-top-color: var(--ista-bg-color);
+}
+
+.alert-info .alert-link {
+  color: var(--ista-bg-color);
+}

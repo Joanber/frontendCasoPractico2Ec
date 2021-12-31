@@ -134,7 +134,10 @@ export class ListConveniosComponent implements OnInit, AfterViewInit {
           this.initPaginator();
           this.textFilter = '';
         }
-      }, error: (err) => console.log(err)
+      }, error: (err) => {
+        console.log(err);
+        this.emptyList = true;
+      }
     });
   }
 

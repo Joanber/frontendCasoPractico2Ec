@@ -68,9 +68,7 @@ File: scss
   background: transparent;
   -webkit-box-shadow: none;
   box-shadow: none; }
-.mat-progress-bar-fill::after {
-    background-color: var(--color-warn);
-}
+
 .logo-center .topbar .top-navbar .navbar-header .navbar-brand .dark-logo {
   display: none; }
 

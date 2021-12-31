@@ -1,25 +1,34 @@
-<mat-card class="mb-3">
-    <div class=" row align-items-center sd-flex justify-content-between  ">
-        <div class="col-md-8">
-            <button mat-raised-button [routerLink]="['./registro-convenio']" color='primary'>
-                <i class="mdi mdi-plus"></i><strong>Nuevo convenio</strong>
-            </button>
-        </div>
-        <div class="col-md-4">
-            <div *ngIf="!emptyList || textSearch">
-                <mat-form-field floatLabel="never">
-                    <input matInput type="text" placeholder="Buscar" [(ngModel)]="textSearch">
-                    <button mat-button *ngIf="textSearch" (click)="resetSearch()" matSuffix mat-icon-button aria-label="limpiar" (click)="textSearch=''">
-                        <mat-icon>close</mat-icon>
-                    </button>
-                    <button class="mx-auto" mat-raised-button matSuffix (click)="searchByCarrera(textSearch)" color="primary" type="button">
-                        <mat-icon aria-hidden="false" aria-label="Buscar">search</mat-icon>
-                    </button>
-                </mat-form-field>
+<div *ngIf="loaderService.isLoading | async; else loaded">
+    <div class="alert alert-info text-center" role="alert">
+        <h4 class="alert-heading">Cargando</h4>
+        <i class="fa fa-spin fa-refresh fa-2x"></i>
+        <p>Por favor espere...</p>
+    </div>
+</div>
+<ng-template #loaded>
+    <mat-card class="mb-3">
+        <div class=" row align-items-center sd-flex justify-content-between  ">
+            <div class="col-md-8">
+                <button mat-raised-button [routerLink]="['./registro-convenio']" color='primary'>
+                    <i class="mdi mdi-plus"></i><strong>Nuevo convenio</strong>
+                </button>
+            </div>
+            <div class="col-md-4">
+                <div *ngIf="!emptyList || textSearch">
+                    <mat-form-field floatLabel="never">
+                        <input matInput type="text" placeholder="Buscar" [(ngModel)]="textSearch">
+                        <button mat-button *ngIf="textSearch" (click)="resetSearch()" matSuffix mat-icon-button aria-label="limpiar" (click)="textSearch=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                        <button class="mx-auto" mat-raised-button matSuffix (click)="searchByCarrera(textSearch)" color="primary" type="button">
+                            <mat-icon aria-hidden="false" aria-label="Buscar">search</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </div>
             </div>
         </div>
-    </div>
-</mat-card>
+    </mat-card>
+</ng-template>
 <mat-card class="mat-elevation-z8">
     <mat-form-field *ngIf="!emptyList">
         <mat-label>Filtrar</mat-label>
@@ -79,15 +88,3 @@
         </div>
     </mat-card-content>
 </mat-card>
-
-<!-- <div class=" example-container" *ngIf="loaderService.isLoading | async">
-                            <div class="overlay">
-                                <div class="spinner-wrapper">
-                                    <div class="alert alert-info text-center" role="alert">
-                                        <h4 class="alert-heading">Cargando</h4>
-                                        <i class="fa fa-spin fa-refresh fa-2x"></i>
-                                        <p>Por favor espere...</p>
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->

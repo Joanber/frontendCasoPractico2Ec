@@ -91,9 +91,6 @@ a.link:focus {
 .stylish-table tbody tr.active {
   border-left: 4px solid #ebbf1f;
 }
-.mat-progress-bar-fill::after {
-  background-color: #0b2b5d;
-}
 
 .notify .heartbit {
   position: absolute;
