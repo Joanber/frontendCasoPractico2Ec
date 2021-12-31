@@ -6,13 +6,17 @@
         <div id="example23_wrapper" class="dataTables_wrapper">
           <div class="row">
             <div class="col-md-2">
-
               <select
-              style="width: auto; align-items: right"
-              class="form-control" [(ngModel)]="seleccionado" required>
-              <option [ngValue]="undefined">Seleccione el Tutor</option>
+                style="width: auto; align-items: right"
+                class="form-control"
+                [(ngModel)]="seleccionado"
+                required
+              >
+                <option [ngValue]="undefined">Seleccione el Tutor</option>
 
-                <option *ngFor="let t of listTutores" [ngValue]="t">{{t}}</option>
+                <option *ngFor="let t of listTutores" [ngValue]="t">
+                  {{ t }}
+                </option>
               </select>
             </div>
             <div class="col-md-5">
@@ -56,56 +60,62 @@
             NO HAY DATOS DISPONIBLES
           </div>
 
+          <span *ngIf="seleccionado == 'Tutores Academico'">
+            <div class="table-scroll">
+              <table
+                class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                "
+                *ngIf="validacionesSac.length > 0"
+              >
+                <thead>
+                  <tr>
+                    <th>Titulo</th>
+                    <th>C.I.</th>
+                    <th>Nombre</th>
+                    <th>Correo</th>
+                    <th>Telefono</th>
 
+                  </tr>
+                </thead>
 
-          <span *ngIf="seleccionado=='Tutores Academico'">
-          <div class="table-scroll">
+                <tbody class="animated fadeIn fast">
+                  <tr *ngFor="let dta of desicnacionesTA">
+                    <td>{{ dta.docente.abreviatura_titulo }}</td>
+                    <td>{{ dta.docente.persona.identificacion }}</td>
+                    <td>
+                      {{ dta.docente.persona.primer_apellido }}
+                      {{ dta.docente.persona.segundo_apellido }}
+                      {{ dta.docente.persona.primer_nombre }}
+                      {{ dta.docente.persona.segundo_nombre }}
+                    </td>
 
-            <table
-              class="
-                table table-bordered
-                justify-content-center
-                table-responsive-sm table-sm
-                dataTable
-              "
-              *ngIf="validacionesSac.length > 0"
-            >
+                    <td>
+                      {{ dta.docente.persona.email }}
+                    </td>
+                    <td>
+                      {{ dta.docente.persona.celular }}
+                    </td>
+              <!-- <table class="table text-center">
+                      <tr *ngFor="let alumno of dta.alumno">
+                        <td>
+                          {{ alumno.persona.primer_apellido }}
+                          {{ alumno.persona.segundo_apellido }}
+                          {{ alumno.persona.primer_nombre }}
+                          {{ alumno.persona.segundo_nombre }}
+                        </td>
+                      </tr>
+                    </table>-->
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </span>
 
-
-              <thead>
-                <tr>
-                  <th>Titulo</th>
-                  <th>C.I.</th>
-                  <th>Nombre</th>
-                  <th>Correo</th>
-                  <th>Telefono</th>
-                </tr>
-              </thead>
-
-              <tbody class="animated fadeIn fast">
-                <tr *ngFor="let dta of desicnacionesTA">
-                  <td>{{ dta.docente.abreviatura_titulo }}</td>
-                  <td>{{ dta.docente.persona.identificacion }}</td>
-                  <td>
-                    {{ dta.docente.persona.primer_apellido }}
-                    {{ dta.docente.persona.segundo_apellido }}
-                    {{ dta.docente.persona.primer_nombre }}
-                    {{ dta.docente.persona.segundo_nombre }}
-                  </td>
-
-                  <td>
-                    {{ dta.docente.persona.email }}
-                  </td>
-                  <td>
-                    {{ dta.docente.persona.celular }}
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-</div>
-</span>
-
-          <span *ngIf="seleccionado=='Tutores empresariales'">
+          <span *ngIf="seleccionado == 'Tutores empresariales'">
             <div class="table-scroll">
               <table
                 class="
@@ -123,6 +133,7 @@
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Telefono</th>
+
                   </tr>
                 </thead>
 
@@ -143,11 +154,21 @@
                     <td>
                       {{ dte.empresaPersonal.persona.celular }}
                     </td>
+                    <!--<table class="table text-center">
+                      <tr *ngFor="let alumno of dte.alumno">
+                        <td>
+                          {{ alumno.persona.primer_apellido }}
+                          {{ alumno.persona.segundo_apellido }}
+                          {{ alumno.persona.primer_nombre }}
+                          {{ alumno.persona.segundo_nombre }}
+                        </td>
+                      </tr>
+                    </table>-->
                   </tr>
                 </tbody>
               </table>
             </div>
-        </span>
+          </span>
         </div>
       </div>
     </div>
