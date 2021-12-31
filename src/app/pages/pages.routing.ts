@@ -50,6 +50,7 @@ import { AddEvaluacionEstudianteEmpresaComponent } from "./add-evaluacion-estudi
 import { AddCertificadoEstudianteEmpresaComponent } from "./add-certificado-estudiante-empresa/add-certificado-estudiante-empresa.component";
 import { AddSeguimientoComponent } from "./gestion-tutor-academico/add-seguimiento/add-seguimiento.component";
 import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguimientos/list-seguimientos.component";
+import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
 
 const routes: Routes = [
   {
@@ -170,14 +171,14 @@ const routes: Routes = [
         data: { titulo: "Respuestas  a Empresas" },
       },
       {
-        path: 'nueva-designacion-ta/:id/:ida',
+        path: "nueva-designacion-ta/:id/:ida",
         component: DesignarTutorAcademicoComponent,
         data: { titulo: "Designar Tutor Academico" },
       },
       {
-        path: 'actualizar-designacion-ta/:idd',
+        path: "actualizar-designacion-ta/:idd",
         component: DesignarTutorAcademicoComponent,
-        data: { titulo: 'Actualizar Tutor Academico' },
+        data: { titulo: "Actualizar Tutor Academico" },
       },
       {
         path: "generar-acta/:id/:ida",
@@ -299,6 +300,11 @@ const routes: Routes = [
       },
 
       {
+        path: "add-solicitud-estudiante/:id",
+        component: AddSolicitudEstudianteComponent,
+        data: { titulo: "Actualizar Solicitud Estudiante" },
+      },
+      {
         path: "responsablesppp",
         component: ListResponsablePPPComponent,
         data: { titulo: "Lista de responsablesppp" },
@@ -354,7 +360,7 @@ const routes: Routes = [
         data: { titulo: "Certificado de Empresa" },
       },
       {
-        path: "nuevo-seguimiento",
+        path: "nuevo-seguimiento/:ida",
         component: AddSeguimientoComponent,
         data: { titulo: "Nuevo seguimiento" },
       },
@@ -364,7 +370,7 @@ const routes: Routes = [
         data: { titulo: "Nuevo seguimiento" },
       },
       {
-        path: "list-seguimientos",
+        path: "seguimientos",
         component: ListSeguimientosComponent,
         data: { titulo: "Listado de seguimientos" },
       },

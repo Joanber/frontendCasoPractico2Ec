@@ -1,0 +1,11 @@
+.table-scroll {
+  height: 800px;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+thead tr:nth-child(1) th {
+  background: white;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}

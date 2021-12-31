@@ -74,6 +74,7 @@ export class AddDesignacionTeComponent implements OnInit {
         .getDesignacionTEByAlumnoId(idd)
         .subscribe((designacionTE) => {
           this.designacionte = designacionTE;
+          this.alumno = this.designacionte.alumno;
           this.identificacion =
             this.designacionte.empresaPersonal.persona.identificacion;
           this.nombres =
@@ -111,17 +112,31 @@ export class AddDesignacionTeComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-    this.designacionte.alumno = this.alumno;
-    this.designacionTEService
-      .crear(this.designacionte)
-      .subscribe((designacionTE) => {
-        Swal.fire(
-          "Nueva Designacion de Tutor Empresarial",
-          `Nueva Designacion creada con exito!`,
-          "success"
-        );
-        this.irListaConvocatoriasValidas();
-      });
+    if (this.designacionte.id) {
+      this.designacionte.alumno = this.alumno;
+      this.designacionTEService
+        .editar(this.designacionte, this.designacionte.id)
+        .subscribe((designacionTE) => {
+          Swal.fire(
+            "Actualizar Tutor Empresarial",
+            `Designacion Tutor Empresarial actualizada con exito!`,
+            "success"
+          );
+          this.irListaConvocatoriasValidas();
+        });
+    } else {
+      this.designacionte.alumno = this.alumno;
+      this.designacionTEService
+        .crear(this.designacionte)
+        .subscribe((designacionTE) => {
+          Swal.fire(
+            "Nueva Designacion de Tutor Empresarial",
+            `Nueva Designacion creada con exito!`,
+            "success"
+          );
+          this.irListaConvocatoriasValidas();
+        });
+    }
   }
 
   irListaConvocatoriasValidas() {

@@ -1,20 +1,20 @@
-import { DatePipe } from '@angular/common';
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { MatPaginator, PageEvent } from '@angular/material';
-import { Router } from '@angular/router';
-import { Carrera } from 'src/app/models/carrera.model';
-import { Convocatoria } from 'src/app/models/convocatoria.model';
-import { ValidacionSAC } from 'src/app/models/validaciones_sac.model';
-import { CarreraService } from 'src/app/services/services.models/carrera.service';
-import { DesignacionTaService } from 'src/app/services/services.models/designacion-ta.service';
-import { ValidacionesSacService } from 'src/app/services/services.models/validaciones-sac.service';
-import Swal from 'sweetalert2';
+import { DatePipe } from "@angular/common";
+import { Component, OnInit, ViewChild } from "@angular/core";
+import { MatPaginator, PageEvent } from "@angular/material";
+import { Router } from "@angular/router";
+import { Carrera } from "src/app/models/carrera.model";
+import { Convocatoria } from "src/app/models/convocatoria.model";
+import { DesignacionTA } from "src/app/models/designacionta.model";
+import { ValidacionSAC } from "src/app/models/validaciones_sac.model";
+import { CarreraService } from "src/app/services/services.models/carrera.service";
+import { DesignacionTaService } from "src/app/services/services.models/designacion-ta.service";
+import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
+import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-list-seleccion-est-emp',
-  templateUrl: './list-seleccion-est-emp.component.html',
-  styleUrls: ['./list-seleccion-est-emp.component.css'],
-
+  selector: "app-list-seleccion-est-emp",
+  templateUrl: "./list-seleccion-est-emp.component.html",
+  styleUrls: ["./list-seleccion-est-emp.component.css"],
 })
 export class ListSeleccionEstEmpComponent implements OnInit {
   public totalRegistros = 0;
@@ -26,12 +26,14 @@ export class ListSeleccionEstEmpComponent implements OnInit {
   public carreraFiltro: string = undefined;
   public validacionesSac: ValidacionSAC[] = [];
   public carreras: Carrera[] = [];
+  public designacionta = new DesignacionTA();
 
+  public docente: string ="";
   constructor(
     private validacionesSacService: ValidacionesSacService,
     private carreraService: CarreraService,
     private designacionTAService: DesignacionTaService,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -95,8 +97,6 @@ export class ListSeleccionEstEmpComponent implements OnInit {
       this.carreraFiltro
     );
   }
-
-
 
   eliminarDesignacionTA(id: number) {
     const swalWithBootstrapButtons = Swal.mixin({
@@ -170,5 +170,19 @@ export class ListSeleccionEstEmpComponent implements OnInit {
           });
         }
       });
+  }
+  getTutor(id: number) {
+   this.docente=" ";
+    if (!id) {
+      return;
+    } else {
+      this.designacionTAService
+        .getDesignacionTAByAlumnoId(id)
+        .subscribe((designacionTA) => {
+          this.designacionta = designacionTA;
+           this.docente=this.designacionta.docente.persona.primer_apellido+" "+this.designacionta.docente.persona.primer_nombre;
+           console.log(this.docente)
+        });
+    }
   }
 }

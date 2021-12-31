@@ -1,0 +1,6 @@
+table {
+  border: #b2b2b2 1px solid;
+}
+td, th, tr {
+  border: black 1px solid;
+}

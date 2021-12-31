@@ -91,7 +91,7 @@ export class SidebarService {
           url: 'convocatorias',
         },
         {
-          titulo: 'Respuestas a Empresas',
+          titulo: 'Respuestas Empresas',
           url: 'respuestas-empresas',
         },
         {
@@ -128,16 +128,12 @@ export class SidebarService {
       icono: 'mdi mdi-account-multiple',
       submenu: [
         {
-          titulo: 'Lista Solicitudes Alumnos',
+          titulo: 'Convocatorias Abiertas',
+          url: 'convocatoriasabiertas',
+        },
+        {
+          titulo: 'Solicitudes Alumnos',
           url: 'solicitudes_estudiantes',
-        },
-        {
-          titulo: 'Convocatorias',
-          url: 'convocatoriasabiertas',
-        },
-        {
-          titulo: 'Solicitudes',
-          url: 'convocatoriasabiertas',
         },
         {
           titulo: 'Asistencias',

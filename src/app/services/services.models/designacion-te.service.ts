@@ -40,7 +40,7 @@ export class DesignacionTEService {
     );
   }
 
-  //EDITAR DESIGNACION_TA
+  //EDITAR DESIGNACION_TE
   editar(designacionTE: DesignacionTE, id: number): Observable<DesignacionTE> {
     return this.http.put<DesignacionTE>(`${bd_url}/${id}`, designacionTE).pipe(
       map((response: any) => response.designacionTE as DesignacionTE),
@@ -53,7 +53,7 @@ export class DesignacionTEService {
       })
     );
   }
-  //ELIMINAR UNA DESIGNACION_TA
+  //ELIMINAR UNA DESIGNACION_TE
   eliminar(id: number): Observable<DesignacionTE> {
     return this.http.delete<DesignacionTE>(`${bd_url}/${id}`).pipe(
       catchError((e) => {

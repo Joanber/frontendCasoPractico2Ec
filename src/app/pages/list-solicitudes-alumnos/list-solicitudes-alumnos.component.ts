@@ -82,6 +82,8 @@ export class ListSolicitudesAlumnosComponent implements OnInit {
       );
     }
   }
+
+  
 }
 
 
