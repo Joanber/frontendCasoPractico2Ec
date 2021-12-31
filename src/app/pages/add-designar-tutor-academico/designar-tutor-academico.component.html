@@ -33,10 +33,7 @@
                     {{ docente.persona.segundo_apellido }}
                   </ng-option>
                 </ng-select>
-                <div
-                  class="text-danger"
-                  *ngIf="docente.hasError('required') && docente.touched"
-                  >
+                <div class="text-danger" *ngIf="docente.hasError('required') && docente.touched">
                   Docente es requerido!
                 </div>
 
@@ -72,22 +69,21 @@
               </div>
             </div>
 
+
             <div class="form-actions" style="text-align: right">
-                
-                
+
               <button type="button" class="btn btn-danger" (click)="exportPdf()" style= "margin-right: 10px;">
                 Generar PDF
               </button>
 
-              
-              <button type="button" class="btn btn-inverse " (click)="irListaSolicitudes()" style= "margin-right: 10px;">
+              <button type="button" class="btn btn-inverse " (click)="irListaSolicitudes()" style="margin-right: 10px;">
                 Cancelar
               </button>
-              
+
               <button type="submit" class="btn btn-primary mr-2">
                 Guardar
               </button>
-           
+
             </div>
           </div>
         </form>

@@ -307,7 +307,7 @@ const routes: Routes = [
       {
         path: "responsablesppp",
         component: ListResponsablePPPComponent,
-        data: { titulo: "Lista de responsablesppp" },
+        data: { titulo: "Lista de Responsables de Practicas Preprofesionales" },
       },
       {
         path: "nuevo-responsablesppp",
