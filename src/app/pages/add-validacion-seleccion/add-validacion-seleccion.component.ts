@@ -125,7 +125,9 @@ export class AddValidacionSeleccionComponent implements OnInit {
     }
   }
 
-  irListarespuestaEmpresas() {}
+  irListarespuestaEmpresas() {
+    this.router.navigateByUrl("/dashboard/respuestas-empresas")
+  }
   irConvocatorias() {
     this.router.navigateByUrl("/dashboard/convocatorias");
   }
@@ -135,7 +137,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
     const dataBody = [];
     const data = await this.asistenciaStorage;
     const head = [['Cedula', 'Estudiante']];
-    const doc = new jsPDF('p', 'pt', 'a4');  
+    const doc = new jsPDF('p', 'pt', 'a4');
     //var logo = new Image();
     doc.setFontSize(12);
     // logo.src = 'src\assets\images\ista2.jpg';
@@ -177,7 +179,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
        ];
        dataBody.push(row);
     });
-  
+
     console.log(dataBody);
     autoTable(doc, {
       startY: 390,
