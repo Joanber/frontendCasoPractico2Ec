@@ -71,13 +71,8 @@ Material custom themes and colors
 
 
 /* end material custom themes an */
-:root {
-  --color-primary: #0B2B5D;
-  --color-secondary: #00356C;
-  --color-warn: #EBBF1F;
-  --bg-secondary: #EDF0F5;
-}
-:root {
+
+/* :root {
   --ista-bg-color: rgba(31,86,177, 1);
   --ista-text-color: rgba(198,208,248, 1);
   --ista-text-soft-color: rgba(198,208,248, 1);
@@ -106,7 +101,7 @@ Material custom themes and colors
   --ista-outline-color-rgb: 113,144,229;
   --ista-dark-color-rgb: 62,70,96;
   --ista-light-color-rgb: 241,243,254;
-}
+} */
 
 body {
   background: #fff;
@@ -2017,7 +2012,7 @@ ul#themecolors li a.working:before {
   );
 }
 .ista-yellow-theme {
-  background:  var(--color-warn) ;
+  background:  var(--color-warn-main) ;
 }
 .ista-theme {
   background: #F4F6F9;
@@ -2743,7 +2738,7 @@ Buttons
   border-color: #cccccc;
   cursor: default;
 }
-
+/*
 .btn-primary,
 .btn-primary.disabled {
   background: #745af2;
@@ -2777,7 +2772,7 @@ Buttons
   box-shadow: 0 14px 26px -12px rgba(116, 96, 238, 0.42),
     0 4px 23px 0 rgba(0, 0, 0, 0.12), 0 8px 10px -5px rgba(116, 96, 238, 0.2);
   border-color: transparent;
-}
+} */
 
 .btn-themecolor,
 .btn-themecolor.disabled {
@@ -3224,7 +3219,7 @@ Buttons
   border-color: #2f3d4a;
   color: #ffffff;
 }
-
+/*
 .btn-primary.active.focus,
 .btn-primary.active:focus,
 .btn-primary.active:hover,
@@ -3239,7 +3234,7 @@ Buttons
 .show > .btn-primary.dropdown-toggle {
   background-color: #6352ce;
   border: 1px solid #6352ce;
-}
+} */
 
 .btn-success.active.focus,
 .btn-success.active:focus,

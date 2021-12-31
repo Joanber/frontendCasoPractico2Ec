@@ -1,6 +1,29 @@
 /* You can add global styles to this file, and also import other style files */
 
 @import "~@ng-select/ng-select/themes/default.theme.css";
+:root {
+  --bg-secondary: #f4f6f9;
+  --color-secondary-main: #023469;
+  --color-lighter: #b3c2d2;
+  --color-primary-darker: #01214c;
+  --color-200: #023469;
+  --color-warn-main: #ebbf1f;
+  --color-warn-lighter: #f9ecbc;
+  --color-warn-darker: #e2a912;
+  --color-warn-200: #ebbf1f;
+ --color-success-main: #00b897;
+  --color-success-lighter: #b3eae0;
+  --color-success-darker: #00a07a;
+  --color-success-200: #00b897;
+  --color-red-main: #f44336;
+  --color-red-lighter: #fcc7c3;
+  --color-red-darker: #ef2c22;
+  --color-red-200: #f44336;
+   --color-inverse-main: #424656;
+  --color-inverse-lighter: #c6c8cc;
+  --color-inverse-darker: #2b2f3c;
+    --color-inverse-200: #424656;
+}
 .fast {
   -webkit-animation-duration: 0.3s;
   animation-duration: 0.3s;
