@@ -74,10 +74,12 @@
                           <th>C.I</th>
                           <th>Apellidos y Nombres</th>
                           <th>Tutor Empresarial</th>
+                          <th>Acta</th>
                           <th>Accion</th>
                         </tr>
                       </thead>
                       <tbody>
+                        
                         <tr *ngFor="let alumno of validacionesSac.alumnos">
                           <td>{{ alumno.persona.identificacion }}</td>
                           <td>
@@ -88,6 +90,18 @@
                           </td>
                           <td *ngIf="!alumno.te">Sin Asignar</td>
                           <td *ngIf="alumno.te">Designado</td>
+
+                          <td>
+                            <a *ngIf="alumno.te" [routerLink]="[
+                            '/dashboard',
+                            'generar-acta',
+                            validacionesSac.id,
+                                alumno.id
+                          ]" data-toggle="tooltip" data-original-title="Crear acta" class="cursor" title="Crear Acta">
+                              <i class="mdi mdi-file-word-box m-r-10"> </i>
+                            </a>
+                          </td>
+                          
                           <td class="text-nowrap text-center">
                             <a
                               *ngIf="!alumno.te"
