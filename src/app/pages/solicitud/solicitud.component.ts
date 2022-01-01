@@ -130,9 +130,9 @@ export class SolicitudComponent implements OnInit, AfterViewInit {
     const dataBody = [];
     const data = await this.asistenciaStorage;
     const doc = new jsPDF('p', 'pt', 'a4');
-    doc.setFontSize(14);
+    doc.setFontSize(12);
     doc.text('ANEXO 3: Solicitud Estudiantes ', 20, 80);
-    doc.text(this.solicitudAlumno.fecha_emision, 490, 120);
+    doc.text(this.solicitudAlumno.fecha_emision, 450, 120);
     doc.text(this.solicitudAlumno.convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo, 40, 140);
     doc.text(this.solicitudAlumno.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre, 40, 160);
     doc.text(this.solicitudAlumno.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido, 140, 160);
