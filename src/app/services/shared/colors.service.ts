@@ -18,7 +18,7 @@ export class ColorsService {
           }px`, 'border-radius': `${ this.pxbRadius
             }px`, 'padding': `0px ${ this.pxpaddingl }px 0px ${ this.pxpaddingr }px`, color: '#122911'
       }
-      , name: 'A tiempo'
+      , name: 'A tiempo', estado: true
     },
     {
       style: { color: '#573428', background: '#FEEDAF' },
@@ -34,7 +34,7 @@ export class ColorsService {
         'background-color': '#FFCDD2', 'font-size': `${ this.pxFont
           }px`, 'border-radius': `${ this.pxbRadius }px`, 'padding': `0px ${ this.pxpaddingl }px 0px ${ this.pxpaddingr }px`, color: '#942929'
       },
-      name: 'Fuera de tiempo'
+      name: 'Fuera de tiempo', estado: false
     }
   ]);
   status$ = this.status.asObservable();
