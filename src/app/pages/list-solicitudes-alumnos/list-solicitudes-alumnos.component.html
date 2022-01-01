@@ -8,9 +8,8 @@
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
             <div class="dt-buttons">
-              <button routerLink="/dashboard/convocatorias" class="btn btn-primary btn-sm">
-                <i class="mdi mdi-plus"></i>
-                Convocatorias
+              <button mat-raised-button [routerLink]="['/dashboard/convocatorias']" color='primary'>
+                <i class="mdi mdi-plus"></i><strong>Convocatorias</strong>
               </button>
             </div>
             <div id="example23_filter" class="dataTables_filter">
@@ -55,21 +54,27 @@
                       solicitudesAlumnos.alumno.persona.primer_apellido }}</td>
                     <td>{{ solicitudesAlumnos.convocatoria.id }}</td>
                     <td>
-                      <a [routerLink]="[
+                      <!--<a [routerLink]="[
                         '/dashboard',
                         'add-solicitud-estudiante',
                         solicitudesAlumnos.id
                       ]" data-toggle="tooltip" data-original-title="Editar" class="cursor">
                         <i class="fa fa-pencil text-inverse m-r-10"> </i>
-                      </a>
+                      </a>-->
 
-                      <a
-                      data-toggle="tooltip"
-                      data-original-title="Borrar"
-                      class="cursor"
-                     
-                    >
-                      <i class="fa fa-close text-danger"></i>
+                      <a class="mr-2" mat-button color="primary" [routerLink]="['/dashboard',
+                      'add-solicitud-estudiante',
+                      solicitudesAlumnos.id]"  data-toggle="tooltip" data-original-title="Editar">
+                        <mat-icon aria-hidden="true" aria-label="Example home icon">mode_edit</mat-icon>
+                    </a>
+
+                      <!-- <a data-toggle="tooltip" data-original-title="Borrar" class="cursor"
+                        (click)="eliminarSolicitud(solicitudesAlumnos)">
+                        <i class="fa fa-close text-danger"></i>
+                      </a>-->
+
+                      <a class="mr-2" mat-button color="warn" data-toggle="tooltip" data-original-title="Borrar" (click)="eliminarSolicitud(solicitudesAlumnos)">
+                        <mat-icon aria-hidden="true" aria-label="Example home icon">delete</mat-icon>
                     </a>
 
                     </td>

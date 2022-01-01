@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material';
+import { Router } from '@angular/router';
 import { SolicitudAlumno } from 'src/app/models/solicitudAlumno.model';
 import { SolicitudAlumnoService } from 'src/app/services/services.models/solicitudes-alumnos.service';
+import Swal from 'sweetalert2';
 
 
 @Component({
@@ -25,7 +27,8 @@ export class ListSolicitudesAlumnosComponent implements OnInit {
   //VARIABLE PARA BUSCAR
   public busqueda: string = "";
 
-  constructor(private solicitudAlumnosService: SolicitudAlumnoService) {}
+  constructor(private solicitudAlumnosService: SolicitudAlumnoService,
+    private router: Router) { }
   ngOnInit() {
     this.getSolicitudesAlumnosPage(
       this.paginaActual.toString(),
@@ -82,8 +85,49 @@ export class ListSolicitudesAlumnosComponent implements OnInit {
       );
     }
   }
+  irListaSolicitudes() {
+    this.router.navigateByUrl('/dashboard/solicitudes_estudiantes');
+  }
 
-  
+  eliminarSolicitud(solicitudesAlumnos: SolicitudAlumno) {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: 'btn btn-success',
+        cancelButton: 'btn btn-danger',
+      },
+      buttonsStyling: false,
+    });
+
+    swalWithBootstrapButtons
+      .fire({
+        title: '¿Estas  seguro?',
+        text: `¿Seguro que quieres eliminar esta Solicitud de ${solicitudesAlumnos.id} ?`,
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Si, eliminar!',
+        cancelButtonText: 'No, cancelar!',
+        reverseButtons: true,
+      })
+      .then((result) => {
+        if (result.value) {
+          this.solicitudAlumnosService
+            .eliminar(solicitudesAlumnos.id)
+            .subscribe((resp) => {
+              this.getSolicitudesAlumnosPage(
+                this.paginaActual.toString(),
+                this.totalPorPagina.toString(),
+                this.busqueda
+              );
+              swalWithBootstrapButtons.fire(
+                'Eliminada!',
+                `Solicitud  de ${solicitudesAlumnos.id} eliminada correctamente!`,
+                'success'
+              );
+            });
+        }
+      });
+  }
+
 }
 
 
