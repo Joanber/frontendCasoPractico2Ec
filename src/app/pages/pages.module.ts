@@ -74,6 +74,9 @@ import { NotificationsComponent } from './notifications/notifications.component'
 import { PagesComponent } from './pages.component';
 import { ProfileComponent } from './profile/profile.component';
 import { SolicitudComponent } from './solicitud/solicitud.component';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatExpansionModule } from '@angular/material/expansion';
 
 @NgModule({
   declarations: [
@@ -152,6 +155,9 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
     MatProgressSpinnerModule,
     MatListModule,
     MatDialogModule,
+    MatStepperModule,
+    MatRadioModule,
+    MatExpansionModule
   ], entryComponents: [
     DialogAcreditacionComponent
   ]

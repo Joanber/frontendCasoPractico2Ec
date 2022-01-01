@@ -1,52 +1,212 @@
-    <mat-card >
-        <mat-card-content>
-            <form *ngIf="convenioForm" [formGroup]="convenioForm">
-                <div>
-                    <section class="row">
-                        <!-- appearance="outline" -->
-                        <mat-form-field class="col-md-12">
-                            <mat-label>Nombre convenio</mat-label>
-                            <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
-                            <mat-error *ngIf="formValues.nombre.errors?.pattern">
-                                Ingrese solo valores alfabéticos
-                            </mat-error>
-                            <mat-error *ngIf="formValues.nombre.hasError('required')">
-                                Nombre de convenio es <strong>requerido</strong>
-                            </mat-error>
-                        </mat-form-field>
-                    </section>
-                    <div class="row">
-                        <mat-form-field class="col-md-6">
-                            <mat-label>Carrera</mat-label>
-                            <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
-                                <mat-option *ngFor="let carrera of carreras$ | async" [value]="carrera.id">
-                                    {{carrera.nombre}}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="formValues.carrera.errors?.required">Por favor escoge una carrera</mat-error>
-                            <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
-                        </mat-form-field>
-                        <mat-form-field class="col-md-6">
-                            <mat-label>Empresa</mat-label>
-                            <mat-select #empresa disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
-                                <mat-option *ngFor="let empresa of empresas$ | async" [value]="empresa.id">
-                                    {{empresa.nombre}}
-                                </mat-option>
-                            </mat-select>
-                            <mat-error *ngIf="formValues.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
-                            <!-- <mat-hint>{{formValues.empresa.value?.id}}</mat-hint> -->
-                        </mat-form-field>
-                    </div>
+<mat-vertical-stepper linear #stepper>
+
+    <ng-template matStepperIcon="empresa">
+        <mat-icon>business</mat-icon>
+    </ng-template>
+    <!-- Datos Generales -->
+    <mat-step label="Datos Generales" [stepControl]="firstFormGroup" errorMessage="No. de Informe requerido.">
+        <form [formGroup]="firstFormGroup" class="mt-3">
+            <ng-template matStepLabel>Datos Generales</ng-template>
+            <div class="row">
+                <mat-form-field class="col-md-4 ">
+                    <input matInput type="text" #numInforme placeholder="No. de Informe" formControlName="numInforme" required maxlength="5">
+                    <mat-hint align="start">
+                        <strong>{{nombreInformePrefix}}-{{firstStepFormGroup.numInforme.value}}-{{fechaInformeSubfix}}</strong>
+                    </mat-hint>
+                    <mat-hint align="end">{{numInforme.value.length}} / 5</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-4 ">
+                    <input matInput type="text" #nombreIST placeholder="Nombre del IST" formControlName="nombreIST" required maxlength="50">
+                    <mat-hint align="end">{{nombreIST.value.length}} / 50</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-4 ">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker2" [max]="today" formControlName="fecha">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+            </div>
+            <div class="mt-3">
+                <button mat-stroked-button matStepperNext color="primary">Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <!-- Datos de la Entidad Receptora -->
+    <mat-step label="Datos de la Entidad Receptora" state="empresa" [stepControl]="secondFormGroup" errorMessage="Address is required.">
+        <form [formGroup]="secondFormGroup">
+            <div class="row">
+                <mat-form-field class="col-md-6 ">
+                    <mat-label>Empresa</mat-label>
+                    <mat-select #emp disableRipple formControlName="empresa" required [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let empresa of empresas$ | async" [value]="empresa">
+                            {{empresa.nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint *ngIf="emp.value?.ruc">RUC: {{emp.value?.ruc}}</mat-hint>
+                    <mat-error *ngIf="formEmpresa.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="5">
+                    <mat-hint>
+                        <strong>Legalidad para la suscripción.</strong>
+                    </mat-hint>
+                </mat-form-field>
+                <div class="col-md-6 mt-2">
+                    <label id="example-radio-group-label">Naturaleza de gestión de la Entidad Receptora</label>
+                    <mat-radio-group required class="example-radio-group" aria-labelledby="example-radio-group-label" formControlName="naturaleza">
+                        <mat-radio-button required *ngFor="let naturaleza of naturalezaEmpresa" class="example-radio-button" [value]="naturaleza">
+                            {{naturaleza}}
+                        </mat-radio-button>
+                    </mat-radio-group>
                 </div>
-            </form>
-        </mat-card-content>
-           <mat-card-actions>
-            <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" (click)="onSubmit()">
-                {{btnName}}
-            </button>
-            <button mat-raised-button color="accent" *ngIf="convenioForm.touched" type="reset" (click)="loadForm()">Reset</button>
-            <button mat-raised-button color="warn" (click)="returnToList()" type="button">
-                Cancelar
-            </button>
-        </mat-card-actions>
-    </mat-card>
+                <mat-card>
+                    <mat-card-title>
+                        Actividad económica que consta en el RUC
+                    </mat-card-title>
+                    <mat-card-content class="mt-3">
+                        <div formArrayName="actividadEconomica">
+                            <div *ngFor="let itemrow of formArr.controls; let i=index" [formGroupName]="i">
+                                <div class="row align-self-start ">
+                                    <mat-form-field style="width: 100%;" class="col-md-2">
+                                        <input maxlength="9" #codigo formControlName="codigo" required matInput placeholder="Codigo">
+                                        <button *ngIf="formArr.controls.length > 1" matPrefix mat-icon-button class="fs-4" (click)="deleteRow(i)">
+                                            <mat-icon color="warn">delete</mat-icon>
+                                        </button>
+                                        <mat-hint align="end">{{codigo.value.length}} / 9</mat-hint>
+                                    </mat-form-field>
+                                    <mat-form-field class="example-full-width col-md-10">
+                                        <textarea cdkTextareaAutosize placeholder="Descripción de actividad" required formControlName="actividad" class="text-justify" matInput></textarea>
+                                    </mat-form-field>
+                                </div>
+                            </div>
+                        </div>
+                        <button mat-raised-button color="primary" [disabled]='!formArr.valid' (click)="addNewRow()">
+                            Añadir actividad</button>
+                    </mat-card-content>
+                </mat-card>
+                <!--  Criterios Generales  -->
+                <mat-accordion class="mt-3 p-0">
+                    <mat-expansion-panel (opened)="openCriteriosGenerales()">
+                        <mat-expansion-panel-header>
+                            <mat-panel-title>
+                                <h3 style="margin-bottom: 0px;">
+                                    Criterios Generales
+                                </h3>
+                            </mat-panel-title>
+                        </mat-expansion-panel-header>
+                        <div *ngFor="let criterio of criteriosGenerales">
+                            <mat-list *ngFor="let crit of criterio.critGen">
+                                <div mat-subheader>
+                                    <h3> <strong>
+                                            {{crit.crit}}
+                                        </strong>
+                                    </h3>
+                                </div>
+                                <div mat-line class="text-justify" style="width: 100%;">
+                                    <h4>{{crit?.value}}</h4>
+                                </div>
+                                <mat-list class="ms-4 mt-1" *ngFor="let parte of crit?.partes">
+                                    <div mat-subheader>
+                                        <h4>
+                                            <strong>
+                                                {{parte.parte}}
+                                            </strong>
+                                        </h4>
+                                    </div>
+                                    <mat-list-item *ngFor="let descripcion of parte?.oblicacion">
+                                        <div mat-line class="text-justify" style="width: 100%;">
+                                            <h5>
+                                                {{descripcion.value}}
+                                            </h5>
+                                        </div>
+                                    </mat-list-item>
+                                </mat-list>
+                            </mat-list>
+                        </div>
+                    </mat-expansion-panel>
+                </mat-accordion>
+                Administradores del convenio: Incluir únicamente el cargo de los administradores
+                Por el Instituto:
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="5">
+                    <mat-hint>
+                        <strong>Legalidad para la suscripción.</strong>
+                    </mat-hint>
+                </mat-form-field>
+                Por le Entidad Receptora:
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="5">
+                    <mat-hint>
+                        <strong>Legalidad para la suscripción.</strong>
+                    </mat-hint>
+                </mat-form-field>
+            </div>
+            <!-- <pre class="mt-3">{{secondFormGroup.value | json}}</pre> -->
+            <div class="mt-3">
+                <button mat-stroked-button matStepperPrevious color="accent">Regresar</button>
+                <button mat-stroked-button matStepperNext color="primary">Siguiente</button>
+            </div>
+        </form>
+    </mat-step>
+    <mat-step>
+        <ng-template matStepLabel>Registrar Convenio</ng-template>
+        Hecho
+        <div>
+            <button mat-button matStepperPrevious>Regresar</button>
+            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+        </div>
+    </mat-step>
+</mat-vertical-stepper>
+<!-- convenio v1 -->
+<mat-card class="mt-3">
+    <mat-card-content>
+        <form *ngIf="convenioForm" [formGroup]="convenioForm">
+            <div>
+                <section class="row">
+                    <!-- appearance="outline" -->
+                    <mat-form-field class="col-md-12">
+                        <mat-label>Nombre convenio</mat-label>
+                        <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
+                        <mat-error *ngIf="formValues.nombre.errors?.pattern">
+                            Ingrese solo valores alfabéticos
+                        </mat-error>
+                        <mat-error *ngIf="formValues.nombre.hasError('required')">
+                            Nombre de convenio es <strong>requerido</strong>
+                        </mat-error>
+                    </mat-form-field>
+                </section>
+                <div class="row">
+                    <mat-form-field class="col-md-6">
+                        <mat-label>Carrera</mat-label>
+                        <mat-select #carrera disableRipple [errorStateMatcher]="matcher" formControlName="carrera" required>
+                            <mat-option *ngFor="let carrera of carreras$ | async" [value]="carrera.id">
+                                {{carrera.nombre}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formValues.carrera.errors?.required">Por favor escoge una carrera</mat-error>
+                        <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
+                    </mat-form-field>
+                    <mat-form-field class="col-md-6">
+                        <mat-label>Empresa</mat-label>
+                        <mat-select #empresa disableRipple [errorStateMatcher]="matcher" formControlName="empresa" required>
+                            <mat-option *ngFor="let empresa of empresas$ | async" [value]="empresa.id">
+                                {{empresa.nombre}}
+                            </mat-option>
+                        </mat-select>
+                        <mat-error *ngIf="formValues.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
+                        <!-- <mat-hint>{{formValues.empresa.value?.id}}</mat-hint> -->
+                    </mat-form-field>
+                </div>
+            </div>
+        </form>
+    </mat-card-content>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!convenioForm.valid" (click)="onSubmit()">
+            {{btnName}}
+        </button>
+        <button mat-raised-button color="accent" *ngIf="convenioForm.touched" type="reset" (click)="loadForm()">Reset</button>
+        <button mat-raised-button color="warn" (click)="returnToList()" type="button">
+            Cancelar
+        </button>
+    </mat-card-actions>
+</mat-card>

@@ -20,8 +20,11 @@
                         <button mat-button *ngIf="textSearch" (click)="resetSearch()" matSuffix mat-icon-button aria-label="limpiar" (click)="textSearch=''">
                             <mat-icon>close</mat-icon>
                         </button>
-                        <button class="mx-auto" mat-raised-button matSuffix (click)="searchByCarrera(textSearch)" color="primary" type="button">
+                        <!-- <button class="mx-auto" mat-raised-button matSuffix (click)="searchByCarrera(textSearch)" color="primary" type="button">
                             <mat-icon aria-hidden="false" aria-label="Buscar">search</mat-icon>
+                        </button> -->
+                        <button matSuffix class="btn btn-primary btn-sm" (click)="searchByCarrera(textSearch)" color="primary" type="button">
+                            <i class="mdi mdi-magnify"></i>
                         </button>
                     </mat-form-field>
                 </div>

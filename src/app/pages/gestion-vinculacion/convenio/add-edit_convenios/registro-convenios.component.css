@@ -12,3 +12,77 @@
 .alert-info .alert-link {
   color: var(--ista-bg-color);
 }
+
+.example-radio-group {
+  display: flex;
+  flex-direction: row;
+}
+.example-radio-button {
+  margin: 5px;
+}
+label {
+    display: inline-block;
+    margin-bottom: 0;
+}
+
+.mat-radio-group{
+  display:flex ;
+  /* width:100%; */
+  justify-content: flex-start;
+}
+
+.example-action-buttons {
+  padding-bottom: 20px;
+}
+
+.example-headers-align .mat-expansion-panel-header-title,
+.example-headers-align .mat-expansion-panel-header-description {
+  flex-basis: 0;
+}
+
+.example-headers-align .mat-expansion-panel-header-description {
+  justify-content: space-between;
+  align-items: center;
+}
+
+.example-headers-align .mat-form-field + .mat-form-field {
+  margin-left: 8px;
+}
+::ng-deep .mat-list .mat-list-item .mat-line{
+     word-wrap: break-word;
+    white-space: pre-wrap;
+}
+::ng-deep  .mat-list .mat-list-item{
+  height:initial!important;
+}
+.mat-list-base .mat-list-item .mat-line:nth-child(n+2) {
+    font-size: 15px;
+    margin-bottom: 12px;
+}
+.mat-list-base .mat-list-item .mat-list-item-content, .mat-list-base .mat-list-option .mat-list-item-content, .mat-subheader {
+    padding: 0px;
+}
+/* ::ng-deep .mat-line{
+  word-wrap: break-word !important;
+  white-space: pre-wrap !important;
+} */
+/* .example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+} */
+
+
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+
+.example-full-width {
+  width: 100%;
+}
