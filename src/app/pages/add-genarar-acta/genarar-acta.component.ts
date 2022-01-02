@@ -39,7 +39,7 @@ export class GenararActaComponent implements OnInit {
   public alumno = new Alumno();
   public acta = new ActaDR();
   public formSubmitted = false;
-
+  private newAttribute: any = {};
   public identificacion: string = "";
   public nombres: string = "";
 
@@ -49,22 +49,7 @@ export class GenararActaComponent implements OnInit {
   // Variable para almanecar localmente
   public asistenciaStorage: any[] = [];
 
-  public actividadesActa: ActividadesActasDR[] = [
-    {
-      id: 1,
-      area: "Sistemas",
-      actividad: "Desarrorar app web",
-      asignatura: "Pogramacion web",
-      check: true,
-    },
-    {
-      id: 2,
-      area: "Sistemas",
-      actividad: "Desarrorar app movil",
-      asignatura: "Pogramacion Aplicaciones Moviles",
-      check: true,
-    }
-  ];
+  public actividadesActa: ActividadesActasDR[] = [];
   newDynamic: any = {};
 
   constructor(
@@ -98,25 +83,15 @@ export class GenararActaComponent implements OnInit {
     this.activatedRoute.params.subscribe(({ ida }) =>
       this.SolicitudAlumno(ida)
     );
-    this.newDynamic = { area: "", actividad: "", asignatura: "" };
+
+  }
+  addFieldValue() {
+    this.actividadesActa.push(this.newAttribute);
+    this.newAttribute = {};
   }
 
-  addRow() {
-    this.newDynamic = { area: "", actividad: "", asignatura: "" };
-    this.actividadesActa.push(this.newDynamic);
-
-    console.log(this.actividadesActa);
-    return true;
-  }
-
-  deleteRow(index) {
-    if (this.actividadesActa.length == 1) {
-      return false;
-    } else {
-      this.actividadesActa.splice(index, 1);
-
-      return true;
-    }
+  deleteFieldValue(index) {
+    this.actividadesActa.splice(index, 1);
   }
 
   private validacion_sacById(id: number) {
@@ -181,7 +156,7 @@ export class GenararActaComponent implements OnInit {
     this.acta.fecha_fin_ppp = fechaFormateadaFIn;
     this.acta.alumno = this.alumno;
 
-    this.acta.actividadesActasDR=this.actividadesActa;
+    this.acta.actividadesActasDR = this.actividadesActa;
 
     this.actaService.crear(this.acta).subscribe((acta) => {
       Swal.fire("Nueva Acta", `¡ Acta creada con exito!`, "success");

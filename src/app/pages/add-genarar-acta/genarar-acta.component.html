@@ -97,42 +97,84 @@
                   <thead>
                     <tr>
                       <th class="col-2">Area</th>
+
                       <th>Actividad</th>
                       <th class="col-2">Asignatura</th>
-                      <th class="col-1">Accion</th>
+                      <th class="col-1">Action</th>
                     </tr>
                   </thead>
                   <tbody>
-                    <tr *ngFor="let newAct of actividadesActa; let i = index">
+                    <tr *ngFor="let field of actividadesActa; let i = index">
                       <td>
                         <input
+                          [(ngModel)]="field.area"
                           class="form-control"
-                          name="newAct.area"
-                          required
+                          type="text"
+                          name="{{ field.area }}"
                         />
                       </td>
                       <td>
                         <input
+                          [(ngModel)]="field.actividad"
                           class="form-control"
-                          name="newAct.actividad"
-                          required
+                          type="text"
+                          name="{{ field.actividad }}"
                         />
                       </td>
                       <td>
                         <input
+                          [(ngModel)]="field.asignatura"
                           class="form-control"
-                          name="newAct.asignatura"
-                          required
+                          type="text"
+                          name="{{ field.asignatura }}"
                         />
                       </td>
-
-                      <td (click)="deleteRow(i)">
-                        <i class="fa fa-trash"></i>
+                      <td>
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          (click)="deleteFieldValue(i)"
+                        >
+                          Quitar
+                        </button>
                       </td>
                     </tr>
                     <tr>
-                      <td (click)="addRow()">
-                        <i class="fa fa-plus"></i>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="newAttributeCode"
+                          [(ngModel)]="newAttribute.area"
+                          name="newAttributeCode"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="newAttributeName"
+                          [(ngModel)]="newAttribute.actividad"
+                          name="newAttributeName"
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          type="text"
+                          id="newAttributePrice"
+                          [(ngModel)]="newAttribute.asignatura"
+                          name="newAttributePrice"
+                        />
+                      </td>
+                      <td>
+                        <button
+                          class="btn btn-default"
+                          type="button"
+                          (click)="addFieldValue()"
+                        >
+                          Agregar
+                        </button>
                       </td>
                     </tr>
                   </tbody>
@@ -231,55 +273,50 @@
                         <th>8</th>
                         <th>10</th>
                         <th>11</th>
-                        <th>12</th>
                       </tr>
+                      <tr></tr>
                     </thead>
                     <tfoot>
                       <tr>
-                        <td colspan="12">TOTAL DE HORAS</td>
+                        <td colspan="11">TOTAL DE HORAS</td>
                       </tr>
                     </tfoot>
                     <tbody class="animated fadeIn fast">
                       <tr *ngFor="let act of actividadesActa">
                         <td>{{ act.actividad }}</td>
 
-
                         <td>
-                          <input class="form-control" required />
-
-                          <input class="form-control" required />
+                          <input class="form-control" />
                         </td>
                         <td>
-                          <input class="form-control" required />
-                        </td>
-                        <td>
-                          <input class="form-control" required />
-                        </td>
-                        <td>
-                          <input class="form-control" required />
-                        </td>
-                        <td>
-                          <input class="form-control" required />
-                        </td>
-                        <td>
-                          <input class="form-control" required />
-                        </td>
-                        <td>
-                          <input class="form-control" required />
-                        </td>
-                        <td>
-                          <input class="form-control" required />
+                          <input class="form-control" />
                         </td>
 
                         <td>
-                          <input class="form-control" required />
+                          <input class="form-control" />
                         </td>
                         <td>
-                          <input class="form-control" required />
+                          <input class="form-control" />
                         </td>
                         <td>
-                          <input class="form-control" required />
+                          <input class="form-control" />
                         </td>
+                        <td>
+                          <input class="form-control" />
+                        </td>
+                        <td>
+                          <input class="form-control" />
+                        </td>
+                        <td>
+                          <input class="form-control" />
+                        </td>
+                        <td>
+                          <input class="form-control" />
+                        </td>
+                        <td>
+                          <input class="form-control" />
+                        </td>
+
                       </tr>
                     </tbody>
                   </table>

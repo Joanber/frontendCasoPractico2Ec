@@ -46,7 +46,7 @@
                     <mat-error *ngIf="formEmpresa.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-md-6">
-                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="5">
+                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="60">
                     <mat-hint>
                         <strong>Legalidad para la suscripción.</strong>
                     </mat-hint>
@@ -125,21 +125,10 @@
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
-                Administradores del convenio: Incluir únicamente el cargo de los administradores
-                Por el Instituto:
-                <mat-form-field class="col-md-6">
-                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="5">
-                    <mat-hint>
-                        <strong>Legalidad para la suscripción.</strong>
-                    </mat-hint>
-                </mat-form-field>
-                Por le Entidad Receptora:
-                <mat-form-field class="col-md-6">
-                    <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="5">
-                    <mat-hint>
-                        <strong>Legalidad para la suscripción.</strong>
-                    </mat-hint>
-                </mat-form-field>
+                <div class="mt-3">
+                    <h3>Administradores del convenio: Incluir únicamente el cargo de los administradores
+                    Por el Instituto:</h3>
+                </div>
             </div>
             <!-- <pre class="mt-3">{{secondFormGroup.value | json}}</pre> -->
             <div class="mt-3">
