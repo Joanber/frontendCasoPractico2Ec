@@ -49,7 +49,23 @@ export class GenararActaComponent implements OnInit {
   // Variable para almanecar localmente
   public asistenciaStorage: any[] = [];
 
-  public actividadesActa: ActividadesActasDR[] = [];
+  public actividadesActa: ActividadesActasDR[] = [
+    {
+      id: 1,
+      area: "Sistemas",
+      actividad: "Desarrorar app web",
+      asignatura: "Pogramacion web",
+      check: true,
+    },
+    {
+      id: 2,
+      area: "Sistemas",
+      actividad: "Desarrorar app movil",
+      asignatura: "Pogramacion Aplicaciones Moviles",
+      check: true,
+    }
+  ];
+  newDynamic: any = {};
 
   constructor(
     private validacionesSacService: ValidacionesSacService,
@@ -82,8 +98,26 @@ export class GenararActaComponent implements OnInit {
     this.activatedRoute.params.subscribe(({ ida }) =>
       this.SolicitudAlumno(ida)
     );
+    this.newDynamic = { area: "", actividad: "", asignatura: "" };
   }
 
+  addRow() {
+    this.newDynamic = { area: "", actividad: "", asignatura: "" };
+    this.actividadesActa.push(this.newDynamic);
+
+    console.log(this.actividadesActa);
+    return true;
+  }
+
+  deleteRow(index) {
+    if (this.actividadesActa.length == 1) {
+      return false;
+    } else {
+      this.actividadesActa.splice(index, 1);
+
+      return true;
+    }
+  }
 
   private validacion_sacById(id: number) {
     if (!id) {
@@ -135,14 +169,19 @@ export class GenararActaComponent implements OnInit {
     if (form.invalid) {
       return;
     }
-
+    const fechaFormateadaIni = this.miDatePipe.transform(
+      this.acta.fecha_fin_ppp,
+      "yyyy-MM-dd"
+    );
     const fechaFormateadaFIn = this.miDatePipe.transform(
       this.acta.fecha_fin_ppp,
       "yyyy-MM-dd"
     );
+    this.acta.fecha_inicio_ppp = fechaFormateadaIni;
     this.acta.fecha_fin_ppp = fechaFormateadaFIn;
     this.acta.alumno = this.alumno;
-    this.acta.actividadesActasDR = null;
+
+    this.acta.actividadesActasDR=this.actividadesActa;
 
     this.actaService.crear(this.acta).subscribe((acta) => {
       Swal.fire("Nueva Acta", `¡ Acta creada con exito!`, "success");

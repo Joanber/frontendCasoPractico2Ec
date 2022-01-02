@@ -78,19 +78,19 @@
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Telefono</th>
-
+                    <th>Alumnos Asignados</th>
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let dta of desicnacionesTA">
-                    <td>{{ dta.docente.abreviatura_titulo }}</td>
-                    <td>{{ dta.docente.persona.identificacion }}</td>
+                    <td>{{ dta.docente?.abreviatura_titulo }}</td>
+                    <td>{{ dta.docente?.persona?.identificacion }}</td>
                     <td>
-                      {{ dta.docente.persona.primer_apellido }}
-                      {{ dta.docente.persona.segundo_apellido }}
-                      {{ dta.docente.persona.primer_nombre }}
-                      {{ dta.docente.persona.segundo_nombre }}
+                      {{ dta.docente?.persona?.primer_apellido }}
+                      {{ dta.docente?.persona?.segundo_apellido }}
+                      {{ dta.docente?.persona?.primer_nombre }}
+                      {{ dta.docente?.persona?.segundo_nombre }}
                     </td>
 
                     <td>
@@ -99,16 +99,13 @@
                     <td>
                       {{ dta.docente.persona.celular }}
                     </td>
-              <!-- <table class="table text-center">
-                      <tr *ngFor="let alumno of dta.alumno">
-                        <td>
-                          {{ alumno.persona.primer_apellido }}
-                          {{ alumno.persona.segundo_apellido }}
-                          {{ alumno.persona.primer_nombre }}
-                          {{ alumno.persona.segundo_nombre }}
-                        </td>
-                      </tr>
-                    </table>-->
+
+                    <td>
+                      {{ dta.alumno?.persona?.primer_apellido }}
+                      {{ dta.alumno?.persona?.segundo_apellido }}
+                      {{ dta.alumno?.persona?.primer_nombre }}
+                      {{ dta.alumno?.persona?.segundo_nombre }}
+                    </td>
                   </tr>
                 </tbody>
               </table>
@@ -133,37 +130,34 @@
                     <th>Nombre</th>
                     <th>Correo</th>
                     <th>Telefono</th>
-
+                    <th>Alumnos Asiganados</th>
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let dte of desicnacionesTE">
-                    <td>{{ dte.empresaPersonal.cargo }}</td>
-                    <td>{{ dte.empresaPersonal.persona.identificacion }}</td>
+                    <td>{{ dte.empresaPersonal?.cargo }}</td>
+                    <td>{{ dte.empresaPersonal?.persona?.identificacion }}</td>
                     <td>
-                      {{ dte.empresaPersonal.persona.primer_apellido }}
-                      {{ dte.empresaPersonal.persona.segundo_apellido }}
-                      {{ dte.empresaPersonal.persona.primer_nombre }}
-                      {{ dte.empresaPersonal.persona.segundo_nombre }}
+                      {{ dte.empresaPersonal?.persona?.primer_apellido }}
+                      {{ dte.empresaPersonal?.persona?.segundo_apellido }}
+                      {{ dte.empresaPersonal?.persona?.primer_nombre }}
+                      {{ dte.empresaPersonal?.persona?.segundo_nombre }}
                     </td>
 
                     <td>
-                      {{ dte.empresaPersonal.persona.email }}
+                      {{ dte.empresaPersonal?.persona?.email }}
                     </td>
                     <td>
-                      {{ dte.empresaPersonal.persona.celular }}
+                      {{ dte.empresaPersonal?.persona?.celular }}
                     </td>
-                    <!--<table class="table text-center">
-                      <tr *ngFor="let alumno of dte.alumno">
-                        <td>
-                          {{ alumno.persona.primer_apellido }}
-                          {{ alumno.persona.segundo_apellido }}
-                          {{ alumno.persona.primer_nombre }}
-                          {{ alumno.persona.segundo_nombre }}
-                        </td>
-                      </tr>
-                    </table>-->
+
+                    <td>
+                      {{ dte.alumno?.persona?.primer_apellido }}
+                      {{ dte.alumno?.persona?.segundo_apellido }}
+                      {{ dte.alumno?.persona?.primer_nombre }}
+                      {{ dte.alumno?.persona?.segundo_nombre }}
+                    </td>
                   </tr>
                 </tbody>
               </table>
