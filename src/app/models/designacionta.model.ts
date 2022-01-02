@@ -6,4 +6,9 @@ export class DesignacionTA {
   fecha_emision: string;
   docente: Docente;
   alumno: Alumno;
+
+constructor() {
+  this.docente = new Docente();
+  this.alumno = new Alumno();
+}
 }

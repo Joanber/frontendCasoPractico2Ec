@@ -6,121 +6,223 @@
           <div class="form-body">
             <div class="card-titulo" style="text-align: center">
               ANEXO 7: Acta de reunion
-
             </div>
-            <br>
-            <br>
+            <br />
+            <br />
 
             <div class="card-encabezado">
-              <strong>Fecha: </strong> Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today |
-              date:'yyyy'}}
+              <strong>Fecha: </strong> Cuenca, {{ today | date: "dd" }} de
+              {{ today | date: "MMMM ":"-0500" }} del {{ today | date: "yyyy" }}
             </div>
             <div class="card-asistentes">
-
               <strong>Asistentes:</strong> - Mgtr.
 
-              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}
-              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre }}
-              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}
-              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido }}
+              {{
+                validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+                  .docente.persona.primer_nombre
+              }}
+              {{
+                validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+                  .docente.persona.segundo_nombre
+              }}
+              {{
+                validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+                  .docente.persona.primer_apellido
+              }}
+              {{
+                validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+                  .docente.persona.primer_apellido
+              }}
               Responsable de Prácticas Pre Profesionales de la Carrera
-              {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }} del Instituto Superior
-              Tecnológico
-              del Azuay.
-              <br>- Sr./Dr./Ing.
-              {{this.designacionte.empresaPersonal.persona.primer_nombre}}
-              {{this.designacionte.empresaPersonal.persona.segundo_nombre}}
-              {{this.designacionte.empresaPersonal.persona.primer_apellido}}
-              {{this.designacionte.empresaPersonal.persona.segundo_apellido}}
+              {{
+                validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+                  .carrera.nombre
+              }}
+              del Instituto Superior Tecnológico del Azuay. <br />- Sr./Dr./Ing.
+              {{ this.designacionte.empresaPersonal.persona.primer_nombre }}
+              {{ this.designacionte.empresaPersonal.persona.segundo_nombre }}
+              {{ this.designacionte.empresaPersonal.persona.primer_apellido }}
+              {{ this.designacionte.empresaPersonal.persona.segundo_apellido }}
               , Tutor asignado por la empresa
               {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
 
-              <br> Asunto: Actividades a desarrollar en las prácticas pre profesionales por el estudiante
+              <br />
+              Asunto: Actividades a desarrollar en las prácticas pre
+              profesionales por el estudiante
 
               {{ alumno.persona.primer_nombre }}
               {{ alumno.persona.segundo_nombre }}
               {{ alumno.persona.primer_apellido }}
               {{ alumno.persona.primer_apellido }}
 
-              <br> Lugar de la reunión: <input>
-              <br>
-              <br>
-              <div class="card-titulo" style="text-align: center;">
+              <br />
+              Lugar de la reunión: <input />
+              <br />
+              <br />
+              <div class="card-titulo" style="text-align: center">
                 <strong> Desarollo y acuerdos</strong>
               </div>
 
-              <strong> 1. Planificación de actividades a desarrollar</strong><br> Con base en la solicitud realizada por
-              la empresa {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+              <strong> 1. Planificación de actividades a desarrollar</strong
+              ><br />
+              Con base en la solicitud realizada por la empresa
+              {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
               el/la Sr./Srta./Sra.
 
               {{ alumno.persona.primer_nombre }}
               {{ alumno.persona.segundo_nombre }}
               {{ alumno.persona.primer_apellido }}
-              {{ alumno.persona.primer_apellido }} ,
-              estudiante de
+              {{ alumno.persona.primer_apellido }} , estudiante de
               {{ alumno.ciclo }}
-              ciclo de la carrera {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }}
-              del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades para la cumplir
-              con las <input type="text" class="col-1"> horas de prácticas pre profesionales.
-              <table class="table table-striped">
-                <thead>
-                  <tr>
-                    <th scope="col">Area</th>
-                    <th scope="col">Actividad por realizar</th>
-                    <th scope="col">Asignatura relacionada</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
+              ciclo de la carrera
+              {{
+                validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+                  .carrera.nombre
+              }}
+              del Instituto Superior Tecnológico del Azuay llevará a cabo las
+              siguientes actividades para la cumplir con las
+              {{ solicitudAlumno.numero_horas }} horas de prácticas pre
+              profesionales.
 
-                    <td></td>
-                    <td>{{validacionSac.convocatoria.actividades}}</td>
+              <div class="table-scroll">
 
 
 
-                    <td>{{validacionSac.convocatoria.asignaturas}}</td>
 
-                  </tr>
-                </tbody>
-              </table>
+
+
+                <table
+                  style="border: 1"
+                  class="
+                    table table-bordered
+                    justify-content-center
+                    table-responsive-sm table-sm
+                    dataTable
+                  "
+                >
+                  <thead>
+                    <tr>
+                      <th>Area</th>
+                      <th>Actividad</th>
+                      <th>Asignatura</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="area"
+                          #area="ngModel"
+                          [(ngModel)]="actiActa.area"
+                          required
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="actividad"
+                          #actividad="ngModel"
+                          [(ngModel)]="actiActa.actividad"
+                          required
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="asignatura"
+                          #asignatura="ngModel"
+                          [(ngModel)]="actiActa.asignatura"
+                          required
+                        />
+                      </td>
+                    </tr>
+                  </tbody>
+                  <tfoot>
+                    <tr>
+                      <td colspan="3" style="align: center">
+                        <button id="agregar">Agregar</button>
+                      </td>
+                    </tr>
+                  </tfoot>
+                </table>
+              </div>
+
               <div class="card-text">
+                <br />
 
-                <br>
+                <strong
+                  >2. Fechas Importantes y horario de prácticas pre
+                  profesionales</strong
+                >
+                <br />
+                El estudiante comenzará a desarrollar las prácticas pre
+                profesionales a partir del
 
-                <strong>2. Fechas Importantes y horario de prácticas pre profesionales</strong> <br> El estudiante
-                comenzará a
-                desarrollar las prácticas pre profesionales a partir del
-
-
-                <input [matDatepicker]="myDatepicker" style="width: min-content;" class="form-control"
-                  name="fecha_inicio_ppp" #fecha_inicio_ppp="ngModel" [(ngModel)]="acta.fecha_inicio_ppp" required>
-                <mat-datepicker-toggle [for]="myDatepicker"></mat-datepicker-toggle>
+                <input
+                  [matDatepicker]="myDatepicker"
+                  style="width: min-content"
+                  class="form-control"
+                  name="fecha_inicio_ppp"
+                  #fecha_inicio_ppp="ngModel"
+                  [(ngModel)]="acta.fecha_inicio_ppp"
+                  required
+                />
+                <mat-datepicker-toggle
+                  [for]="myDatepicker"
+                ></mat-datepicker-toggle>
                 <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
                 y terminará el
 
-                <input [matDatepicker]="myDatepicker2" style="width: min-content;" class="form-control"
-                  name="fecha_fin_ppp" #fecha_fin_ppp="ngModel" [(ngModel)]="acta.fecha_fin_ppp" required>
-                <mat-datepicker-toggle [for]="myDatepicker2"></mat-datepicker-toggle>
+                <input
+                  [matDatepicker]="myDatepicker2"
+                  style="width: min-content"
+                  class="form-control"
+                  name="fecha_fin_ppp"
+                  #fecha_fin_ppp="ngModel"
+                  [(ngModel)]="acta.fecha_fin_ppp"
+                  required
+                />
+                <mat-datepicker-toggle
+                  [for]="myDatepicker2"
+                ></mat-datepicker-toggle>
                 <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
                 en un horario de
-                <input type="time" name="hora" min="6:00" step="3600"> a <input type="time" name="hora" min="7:00"
-                  step="3600">.
+                <input
+                  style="width: 100px"
+                  placeholder="Hora inicio"
+                  class="form-control"
+                  name="desde"
+                  #desde="ngModel"
+                  [(ngModel)]="acta.desde"
+                  required
+                />
+                a
+                <input
+                  style="width: 100px"
+                  placeholder="Hora fin"
+                  class="form-control"
+                  name="hasta"
+                  #hasta="ngModel"
+                  [(ngModel)]="acta.desde"
+                  required
+                />
 
                 <br />
                 <strong>3. Cronograma de Actividades</strong>
 
                 <div class="table-scroll">
-                  <table style="border:1;"  class="
-                table table-bordered
-
-                justify-content-center
-                table-responsive-sm table-sm
-                dataTable
-              ">
-
+                  <table
+                    style="border: 1"
+                    class="
+                      table table-bordered
+                      justify-content-center
+                      table-responsive-sm table-sm
+                      dataTable
+                    "
+                  >
                     <thead>
                       <tr>
-
                         <th rowspan="2">Actividades por realizar</th>
                         <th colspan="12">Semanas</th>
                         <th rowspan="2">Numero de Horas</th>
@@ -146,43 +248,56 @@
                     </tfoot>
                     <tbody class="animated fadeIn fast">
                       <tr>
-                        <th *ngFor="let act of acta.actividadesActasDR">{{act.actividad}}</th>
+                        <th *ngFor="let act of acta.actividadesActasDR">
+                          {{ act.actividad }}
+                        </th>
                         <td></td>
                         <td></td>
                       </tr>
-
-
-
                     </tbody>
                   </table>
                 </div>
                 <br />
                 <br />
                 <strong> 4. Acuerdos varios</strong>
-                <br>
-                <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
+                <br />
+                <textarea name="varios" style="width: 100%; height: 150px">
+                </textarea>
 
-                <br>
-                <br>
-                <br>
-                <div class="row" style="text-align: center;">
+                <br />
+                <br />
+                <br />
+                <div class="row" style="text-align: center">
                   <div class="col-sm-6">
                     <div class="card">
                       <div class="card-body">
                         Mgtr.
 
-                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre }}
-                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre
+                        {{
+                          validacionSac.convocatoria.solicitudEmpresa
+                            .responsablePPP.docente.persona.primer_nombre
                         }}
-                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
+                        {{
+                          validacionSac.convocatoria.solicitudEmpresa
+                            .responsablePPP.docente.persona.segundo_nombre
                         }}
-                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
-                        }}<br>
-                        Responsable de prácticas pre <br> profesionales de la carrera<br>
+                        {{
+                          validacionSac.convocatoria.solicitudEmpresa
+                            .responsablePPP.docente.persona.primer_apellido
+                        }}
+                        {{
+                          validacionSac.convocatoria.solicitudEmpresa
+                            .responsablePPP.docente.persona.primer_apellido
+                        }}<br />
+                        Responsable de prácticas pre <br />
+                        profesionales de la carrera<br />
 
-                        {{ validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre }}
-                        <br> Instituto Superior Tecnológico del Azuay <br>
-
+                        {{
+                          validacionSac.convocatoria.solicitudEmpresa
+                            .responsablePPP.carrera.nombre
+                        }}
+                        <br />
+                        Instituto Superior Tecnológico del Azuay <br />
                       </div>
                     </div>
                   </div>
@@ -190,36 +305,56 @@
                     <div class="card">
                       <div class="card-body">
                         /Dr./Ing.
-                        {{this.designacionte.empresaPersonal.persona.primer_nombre}}
-                        {{this.designacionte.empresaPersonal.persona.segundo_nombre}}
-                        {{this.designacionte.empresaPersonal.persona.primer_apellido}}
-                        {{this.designacionte.empresaPersonal.persona.segundo_apellido}}
-                        <br> Tutor Empresarial<br>
+                        {{
+                          this.designacionte.empresaPersonal.persona
+                            .primer_nombre
+                        }}
+                        {{
+                          this.designacionte.empresaPersonal.persona
+                            .segundo_nombre
+                        }}
+                        {{
+                          this.designacionte.empresaPersonal.persona
+                            .primer_apellido
+                        }}
+                        {{
+                          this.designacionte.empresaPersonal.persona
+                            .segundo_apellido
+                        }}
+                        <br />
+                        Tutor Empresarial<br />
 
-                        {{ validacionSac.convocatoria.solicitudEmpresa.empresa.nombre }}
+                        {{
+                          validacionSac.convocatoria.solicitudEmpresa.empresa
+                            .nombre
+                        }}
                       </div>
                     </div>
-
                   </div>
 
                   <div class="form-actions" style="text-align: right">
-                
-                
-                    <button type="button" class="btn btn-danger" (click)="exportPdf()" style= "margin-right: 10px;">
+                    <button
+                      type="button"
+                      class="btn btn-danger"
+                      (click)="exportPdf()"
+                      style="margin-right: 10px"
+                    >
                       Generar PDF
                     </button>
-    
-                    
-                    <button type="button" class="btn btn-inverse " (click)="irListaSolicitudes()" style= "margin-right: 10px;">
+
+                    <button
+                      type="button"
+                      class="btn btn-inverse"
+                      (click)="irListarActas()"
+                      style="margin-right: 10px"
+                    >
                       Cancelar
                     </button>
-                    
+
                     <button type="submit" class="btn btn-primary mr-2">
                       Guardar
                     </button>
-                 
                   </div>
-
                 </div>
               </div>
             </div>

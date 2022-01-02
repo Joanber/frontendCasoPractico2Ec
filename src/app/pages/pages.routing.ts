@@ -6,7 +6,7 @@ import { AddCarreraComponent } from "./add-carrera/add-carrera.component";
 import { ConvocatoriaComponent } from "./add-convocatoria/convocatoria.component";
 import { DesignarTutorAcademicoComponent } from "./add-designar-tutor-academico/designar-tutor-academico.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
-import { AddPersonaComponent } from "./add-persona/add-persona.component";
+import { AddPersonaComponent } from "./personal/add-persona/add-persona.component";
 import { AnexosComponent } from "./anexos/anexos.component";
 import { ConsultasReportesPppComponent } from "./consultas-reportes-ppp/consultas-reportes-ppp.component";
 import { DashboardComponent } from "./dashboard/dashboard.component";
@@ -17,7 +17,6 @@ import { EstadoProcesosPppComponent } from "./gestion-vinculacion/estado-proceso
 import { HistorialProcesosPppComponent } from "./gestion-vinculacion/historial-procesos-ppp/historial-procesos-ppp.component";
 import { InformacionComponent } from "./informacion/informacion.component";
 import { ListCarrerasComponent } from "./list-carreras/list-carreras.component";
-import { ListPersonasComponent } from "./list-personas/list-personas.component";
 import { ListInfoCarreraComponent } from "./list-infocarrera/list-infocarrera.component";
 import { NotificationsComponent } from "./notifications/notifications.component";
 import { PagesComponent } from "./pages.component";
@@ -37,8 +36,8 @@ import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
 import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
 import { ListEmpresaComponent } from "./list-empresa/list-empresa.component";
-import { AddSolicitudEmpresaComponent } from "./add-solicitud-empresa/add-solicitud-empresa.component";
-import { ListSolicitudEmpresaComponent } from "./list-solicitud-empresa/list-solicitud-empresa.component";
+import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-empresa/add-solicitud-empresa.component";
+import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-empresa/list-solicitud-empresa.component";
 import { AddValidacionSeleccionComponent } from "./add-validacion-seleccion/add-validacion-seleccion.component";
 import { ListConvocatoriasValidasComponent } from "./gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component";
 import { AddDesignacionTeComponent } from "./gestion-empresa/add-designacion-te/add-designacion-te.component";
@@ -51,6 +50,8 @@ import { AddCertificadoEstudianteEmpresaComponent } from "./add-certificado-estu
 import { AddSeguimientoComponent } from "./gestion-tutor-academico/add-seguimiento/add-seguimiento.component";
 import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguimientos/list-seguimientos.component";
 import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
+import { ListPersonasComponent } from "./personal/list-personas/list-personas.component";
+import { ListActaComponent } from "./list-acta/list-acta.component";
 
 const routes: Routes = [
   {
@@ -166,6 +167,11 @@ const routes: Routes = [
         data: { titulo: "Responder a empresa eleccion estudiantes " },
       },
       {
+        path: "actualizar-seleccion-estudiantes-convocatorias/:idc",
+        component: AddValidacionSeleccionComponent,
+        data: { titulo: "Responder a empresa eleccion estudiantes " },
+      },
+      {
         path: "respuestas-empresas",
         component: ListSeleccionEstEmpComponent,
         data: { titulo: "Respuestas  a Empresas" },
@@ -186,15 +192,16 @@ const routes: Routes = [
         data: { titulo: "Acta" },
       },
       {
-        path: "generarActa",
-        component: GenararActaComponent,
-        data: { titulo: "Acta" },
+        path: "list-actas",
+        component: ListActaComponent,
+        data: { titulo: "Lista Actas" },
       },
       {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
         data: { titulo: "Consultas Reportes Tutores" },
       },
+
       {
         path: "convenios",
         component: ListConveniosComponent,
@@ -321,6 +328,11 @@ const routes: Routes = [
       },
       {
         path: "nueva-solicitud-empresa",
+        component: AddSolicitudEmpresaComponent,
+        data: { titulo: "Nueva Solicitud" },
+      },
+      {
+        path: "actualizar-solicitud-empresa/:id",
         component: AddSolicitudEmpresaComponent,
         data: { titulo: "Nueva Solicitud" },
       },
