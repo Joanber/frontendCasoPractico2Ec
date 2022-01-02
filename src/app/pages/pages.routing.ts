@@ -166,6 +166,11 @@ const routes: Routes = [
         data: { titulo: "Responder a empresa eleccion estudiantes " },
       },
       {
+        path: "actualizar-seleccion-estudiantes-convocatorias/:idc",
+        component: AddValidacionSeleccionComponent,
+        data: { titulo: "Responder a empresa eleccion estudiantes " },
+      },
+      {
         path: "respuestas-empresas",
         component: ListSeleccionEstEmpComponent,
         data: { titulo: "Respuestas  a Empresas" },

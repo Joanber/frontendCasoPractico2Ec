@@ -59,7 +59,9 @@ export class AddValidacionSeleccionComponent implements OnInit {
     this.activatedRoute.params.subscribe(({ id }) =>
       this.cargarConvocatoria(id)
     );
-
+    this.activatedRoute.params.subscribe(({ idc }) =>
+    this.cargarValidacionById(idc)
+  );
     this.getSolicitudesAlumnos();
   }
 
@@ -73,6 +75,24 @@ export class AddValidacionSeleccionComponent implements OnInit {
         this.convocatoria = convocatoria;
       });
   }
+
+  cargarValidacionById(idc){
+    if (!idc) {
+      return;
+    }
+    this.validacionesSacService
+      .getValidacionSacById(idc)
+      .subscribe((val) => {
+        if (!val) {
+          return this.irListarespuestaEmpresas();
+        }
+
+        this.validacionSAC = val;
+        this.convocatoria = this.validacionSAC.convocatoria;
+      });
+  }
+
+
   getSolicitudesAlumnos() {
     this.solicitudAlumnosService
       .getSolicitudesAlumnos()
@@ -95,15 +115,13 @@ export class AddValidacionSeleccionComponent implements OnInit {
     }
     if (this.validacionSAC.id) {
       this.validacionSAC.convocatoria = this.convocatoria;
-      for (let i = 0; i < this.alumnosXconvocatoria.length; i++) {
-        this.validacionSAC.alumnos.push(this.alumnosXconvocatoria[i].alumno);
-      }
+      this.validacionSAC.alumnos = this.listaAlumnos;
       this.validacionesSacService
         .editar(this.validacionSAC, this.validacionSAC.id)
         .subscribe((validacion) => {
           Swal.fire(
             "Actualizar Respuesta a empresa",
-            `¡${validacion.convocatoria.solicitudEmpresa.empresa.nombre} actualizada con exito!`,
+            `¡actualizada con exito!`,
             "success"
           );
           this.irListarespuestaEmpresas();
@@ -111,9 +129,9 @@ export class AddValidacionSeleccionComponent implements OnInit {
     } else {
       if (this.convocatoria.id) {
         this.validacionSAC.convocatoria = this.convocatoria;
-        for (let i = 0; i < this.alumnosXconvocatoria.length; i++) {
-          this.validacionSAC.alumnos=this.listaAlumnos;
-        }
+
+        this.validacionSAC.alumnos = this.listaAlumnos;
+
         this.validacionesSacService
           .crear(this.validacionSAC)
           .subscribe((validacion) => {
@@ -145,10 +163,9 @@ export class AddValidacionSeleccionComponent implements OnInit {
     } else {
       for (let i = 0; i < this.alumnosXconvocatoria.length; i++) {
         if (this.alumnosXconvocatoria[i].alumno.id === ide) {
-          this.listaAlumnos.splice(i,1);
-          return
+          this.listaAlumnos.splice(i, 1);
+          return;
         }
-
       }
     }
   }
