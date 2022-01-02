@@ -11,7 +11,7 @@ import { ConvocatoriasService } from "src/app/services/services.models/convocato
 import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
 import { ValidacionesSacService } from "src/app/services/services.models/validaciones-sac.service";
 import Swal from "sweetalert2";
-import jsPDF, * as jspdf from 'jspdf';
+import jsPDF, * as jspdf from "jspdf";
 import { ThrowStmt } from "@angular/compiler";
 
 interface jsPDFWithPlugin extends jspdf.jsPDF {
@@ -36,21 +36,23 @@ export class AddValidacionSeleccionComponent implements OnInit {
   //VARIABLE DE PERSONAS
   public solicitudesAlumnos: SolicitudAlumno[] = [];
   public alumnosXconvocatoria: SolicitudAlumno[] = [];
-  public validacionesSac: ValidacionSAC [] = [];
+  public validacionesSac: ValidacionSAC[] = [];
   //variable para guardar los alumnos seleccionados
-  alumnosSelect: any;
+
+  listaAlumnos: Alumno[] = [];
+
   //Variable fecha
   today = new Date();
   jstoday = "";
   // Variable para almanecar localmente
-  public asistenciaStorage: any [] = [];
+  public asistenciaStorage: any[] = [];
 
   constructor(
     private validacionesSacService: ValidacionesSacService,
     private convocatoriaService: ConvocatoriasService,
     private solicitudAlumnosService: SolicitudAlumnoService,
     private activatedRoute: ActivatedRoute,
-    private router: Router,
+    private router: Router
   ) {}
 
   ngOnInit() {
@@ -60,6 +62,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
 
     this.getSolicitudesAlumnos();
   }
+
   cargarConvocatoria(id: number) {
     if (!id) {
       return;
@@ -109,14 +112,14 @@ export class AddValidacionSeleccionComponent implements OnInit {
       if (this.convocatoria.id) {
         this.validacionSAC.convocatoria = this.convocatoria;
         for (let i = 0; i < this.alumnosXconvocatoria.length; i++) {
-          this.validacionSAC.alumnos.push(this.alumnosXconvocatoria[i].alumno);
+          this.validacionSAC.alumnos=this.listaAlumnos;
         }
         this.validacionesSacService
           .crear(this.validacionSAC)
           .subscribe((validacion) => {
             Swal.fire(
               "Nueva Respuesta a empresa",
-              `¡ Respuesta a empresa ${validacion.convocatoria.solicitudEmpresa.empresa.nombre} creada con exito!`,
+              `¡ Respuesta a empresa  creada con exito!`,
               "success"
             );
             this.irListarespuestaEmpresas();
@@ -126,58 +129,121 @@ export class AddValidacionSeleccionComponent implements OnInit {
   }
 
   irListarespuestaEmpresas() {
-    this.router.navigateByUrl("/dashboard/respuestas-empresas")
+    this.router.navigateByUrl("/dashboard/respuestas-empresas");
   }
   irConvocatorias() {
     this.router.navigateByUrl("/dashboard/convocatorias");
   }
+  alumnosSeleccionados(e: any, id: string) {
+    var ide = parseInt(id);
+    if (e.target.checked) {
+      for (let i = 0; i < this.alumnosXconvocatoria.length; i++) {
+        if (this.alumnosXconvocatoria[i].alumno.id === ide) {
+          this.listaAlumnos.push(this.alumnosXconvocatoria[i].alumno);
+        }
+      }
+    } else {
+      for (let i = 0; i < this.alumnosXconvocatoria.length; i++) {
+        if (this.alumnosXconvocatoria[i].alumno.id === ide) {
+          this.listaAlumnos.splice(i,1);
+          return
+        }
 
+      }
+    }
+  }
   async exportPdf() {
-
     const dataBody = [];
     const data = await this.asistenciaStorage;
-    const head = [['Cedula', 'Estudiante']];
-    const doc = new jsPDF('p', 'pt', 'a4');
+    const head = [["Cedula", "Estudiante"]];
+    const doc = new jsPDF("p", "pt", "a4");
     //var logo = new Image();
     doc.setFontSize(12);
     // logo.src = 'src\assets\images\ista2.jpg';
     // doc.addImage(logo, 'JPEG', 20, 10, 50, 70);
     //doc.text('LOGO', 540, 15);
-    doc.text('ANEXO 4: Respuesta positiva a entidad receptora ', 20, 80);
+    doc.text("ANEXO 4: Respuesta positiva a entidad receptora ", 20, 80);
     //doc.text(this.solicitudEmpresa.fecha_emision,490,120); PENDIENTE SACAR FECHA
-    doc.text(this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_nombre+' '+this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_nombre
-    +' '+this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.primer_apellido+' '+this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona.segundo_apellido, 40, 150);
-    doc.text(this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.cargo,40, 170);
-    doc.text(this.convocatoria.solicitudEmpresa.empresa.nombre,40, 190);
-    doc.text('Su Despacho.- ',40, 210);
-    doc.text('De mi consideración:',40,260);
-    doc.text('En respuesta a su solicitud de fecha '+this.convocatoria.solicitudEmpresa.fecha_emision+' debo indicarle que luego haber',40, 310);
-    doc.text('realizado el proceso de selección entre los estudiantes postulantes se ha aceptado',40,330);
-    doc.text('la solicitud de los siguientes estudiantes que están interesados en realizar sus',40,350);
-    doc.text('prácticas pre profesionales en su prestigiosa empresa:',40,370);
-    doc.text('Solicito de la manera más comedida realizar la designación del tutor empresarial',40,500);
-    doc.text('para cada uno de los estudiantes, el mismo que será quien oriente al estudiante',40,520);
-    doc.text('dentro de la empresa durante el tiempo que realice las prácticas pre profesionales.',40,540);
-    doc.text('Sin más que informar me despido agradeciendo de antemano su colaboración.',40,590);
-    doc.text('Atentamente,',40,640);
-    doc.text('______________________',40,690);
-    doc.text('Responsable de Prácticas Pre Profesionales',40,710);
-    doc.text('CARRERA DE ',40,730);
-    doc.text(this.convocatoria.carrera.nombre,40,750)
-    doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY',40,770);
-     data.forEach( data => {
-       let row = [
-          //  data.solicitudesAlumnos.alumno.persona.identificacion,
-          //  data.solicitudesAlumnos.alumno.persona.primer_nombre,
-          //  (data.identificacion)
-    //     this.formatoFecha(data.fechaActual),
-    //     this.formatoHora(data.horaInicio),
-    //     this.formatoHora(data.horaFin),
-    //     data.actividadRealizada,
-    //     '',
-    //     data.numeroHoras,
-       ];
-       dataBody.push(row);
+    doc.text(
+      this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona
+        .primer_nombre +
+        " " +
+        this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona
+          .segundo_nombre +
+        " " +
+        this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona
+          .primer_apellido +
+        " " +
+        this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.persona
+          .segundo_apellido,
+      40,
+      150
+    );
+    doc.text(
+      this.convocatoria.solicitudEmpresa.empresa.empresaPersonal.cargo,
+      40,
+      170
+    );
+    doc.text(this.convocatoria.solicitudEmpresa.empresa.nombre, 40, 190);
+    doc.text("Su Despacho.- ", 40, 210);
+    doc.text("De mi consideración:", 40, 260);
+    doc.text(
+      "En respuesta a su solicitud de fecha " +
+        this.convocatoria.solicitudEmpresa.fecha_emision +
+        " debo indicarle que luego haber",
+      40,
+      310
+    );
+    doc.text(
+      "realizado el proceso de selección entre los estudiantes postulantes se ha aceptado",
+      40,
+      330
+    );
+    doc.text(
+      "la solicitud de los siguientes estudiantes que están interesados en realizar sus",
+      40,
+      350
+    );
+    doc.text("prácticas pre profesionales en su prestigiosa empresa:", 40, 370);
+    doc.text(
+      "Solicito de la manera más comedida realizar la designación del tutor empresarial",
+      40,
+      500
+    );
+    doc.text(
+      "para cada uno de los estudiantes, el mismo que será quien oriente al estudiante",
+      40,
+      520
+    );
+    doc.text(
+      "dentro de la empresa durante el tiempo que realice las prácticas pre profesionales.",
+      40,
+      540
+    );
+    doc.text(
+      "Sin más que informar me despido agradeciendo de antemano su colaboración.",
+      40,
+      590
+    );
+    doc.text("Atentamente,", 40, 640);
+    doc.text("______________________", 40, 690);
+    doc.text("Responsable de Prácticas Pre Profesionales", 40, 710);
+    doc.text("CARRERA DE ", 40, 730);
+    doc.text(this.convocatoria.carrera.nombre, 40, 750);
+    doc.text("INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY", 40, 770);
+    data.forEach((data) => {
+      let row = [
+        //  data.solicitudesAlumnos.alumno.persona.identificacion,
+        //  data.solicitudesAlumnos.alumno.persona.primer_nombre,
+        //  (data.identificacion)
+        //     this.formatoFecha(data.fechaActual),
+        //     this.formatoHora(data.horaInicio),
+        //     this.formatoHora(data.horaFin),
+        //     data.actividadRealizada,
+        //     '',
+        //     data.numeroHoras,
+      ];
+      dataBody.push(row);
     });
 
     console.log(dataBody);
@@ -186,6 +252,6 @@ export class AddValidacionSeleccionComponent implements OnInit {
       head: head,
       body: dataBody,
     });
-    doc.save('ANEXO4.pdf');
+    doc.save("ANEXO4.pdf");
   }
 }
