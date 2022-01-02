@@ -46,7 +46,10 @@ export class SidebarService {
       titulo: "Gestión de Carrera ",
       icono: "mdi mdi-clipboard-text",
       submenu: [
-        { titulo: "Empresas", url: "empresas" },
+        {
+          titulo: "Empresas",
+          url: "empresas",
+        },
         { titulo: "Docentes", url: "docentes" },
         { titulo: "ResponsablesPPP", url: "responsablesppp" },
         { titulo: "Carreras", url: "carreras" },

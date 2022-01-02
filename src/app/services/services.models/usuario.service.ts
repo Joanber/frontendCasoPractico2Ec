@@ -14,6 +14,17 @@ const bd_url = environment.bd_url;
 export class UsuarioService {
   private _usuario: Usuario;
   private _token: string;
+  public roleAdmin: any = ["ROLE_ADMIN", "ROLE_USER"];
+  public rolesAll: any = [
+    "ROLE_ADMIN",
+    "ROLE_TACADEMICO",
+    "ROLE_VINCULACION",
+    "ROLE_CARRERA",
+    "ROLE_EMPRESA",
+    "ROLE_PPP",
+    "ROLE_ALUMNO",
+  ];
+  public rolesNotAll: any = ["ROLE_ADMIN"];
   constructor(private http: HttpClient, private router: Router) {}
   login(username: string, password: string): Observable<any> {
     return this.http.post(`${bd_url}/auth/login`, {
@@ -161,5 +172,17 @@ export class UsuarioService {
   //OBTENER TODOS LOS ROLES
   getRoles(): Observable<Rol[]> {
     return this.http.get<Rol[]>(`${bd_url}/usuarios/roles`);
+  }
+  hasRole(rol: Rol) {
+    let roles = this.usuario.roles;
+    return roles.findIndex((a) => a === rol) > -1;
+  }
+  hasAnyRoles(roles: Rol[]): boolean {
+    for (let i = 0; i <= roles.length; i++) {
+      if (this.hasRole(roles[i])) {
+        return true;
+      }
+    }
+    return false;
   }
 }
