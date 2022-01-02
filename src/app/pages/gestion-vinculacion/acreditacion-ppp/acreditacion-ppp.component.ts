@@ -245,7 +245,7 @@ export class AcreditacionPppComponent implements OnInit {
     doc.setFontSize(12);
     const text = `CERTIFICADO DE CUMPLIMIENTO DE PRÁCTICAS PRE PROFESIONALES`;
     const firma = '______________________';
-    const responsable = `Ing`;
+    const responsable = this.NombreCoordinador;
     const tipo = 'Coordinador de Vinculación con la Sociedad';
     const fecha = `Cuenca, ${ this.today }`;
     const certificado = `CERTIFICADO-${ this.convocatoria.carrera.abreviatura }-PPP-${ this.date.getFullYear() }-${ this.convocatoria.id }`;
