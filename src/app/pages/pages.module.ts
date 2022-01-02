@@ -77,6 +77,7 @@ import { SolicitudComponent } from './solicitud/solicitud.component';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatExpansionModule } from '@angular/material/expansion';
+import { ListActaComponent } from './list-acta/list-acta.component';
 
 @NgModule({
   declarations: [
@@ -128,7 +129,7 @@ import { MatExpansionModule } from '@angular/material/expansion';
     AddCertificadoEstudianteEmpresaComponent,
     ListSeguimientosComponent,
     AddSeguimientoComponent,
-    AddSolicitudEstudianteComponent, DialogAcreditacionComponent
+    AddSolicitudEstudianteComponent, DialogAcreditacionComponent, ListActaComponent
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

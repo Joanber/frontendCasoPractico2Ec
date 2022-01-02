@@ -51,6 +51,7 @@ import { AddCertificadoEstudianteEmpresaComponent } from "./add-certificado-estu
 import { AddSeguimientoComponent } from "./gestion-tutor-academico/add-seguimiento/add-seguimiento.component";
 import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguimientos/list-seguimientos.component";
 import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
+import { ListActaComponent } from "./list-acta/list-acta.component";
 
 const routes: Routes = [
   {
@@ -191,15 +192,17 @@ const routes: Routes = [
         data: { titulo: "Acta" },
       },
       {
-        path: "generarActa",
-        component: GenararActaComponent,
-        data: { titulo: "Acta" },
+        path: "list-actas",
+        component: ListActaComponent,
+        data: { titulo: "Lista Actas" },
       },
       {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
         data: { titulo: "Consultas Reportes Tutores" },
       },
+
+
       {
         path: "convenios",
         component: ListConveniosComponent,
