@@ -1,0 +1,37 @@
+
+<hr/>
+<div *ngIf="convocatoria">
+  <div>
+    <label><b>Convocatoria: </b></label> {{convocatoria.carrera.abreviatura}}
+  </div>
+  <div>
+    <label><b>Carrera: </b></label> {{convocatoria.carrera.nombre}}
+  </div>
+  <div>
+    <label><b>Empresa: </b></label> {{convocatoria.solicitudEmpresa.empresa.nombre}}
+  </div>
+  <div>
+    <label><b>Actividades a realizar: </b></label> {{convocatoria.actividades}}
+  </div>
+  <div>
+    <label><b>Asignaturas Aprobadas: </b></label> {{convocatoria.asignaturas}}
+  </div>
+  <div>
+    <label><b>Empresa: </b></label> {{convocatoria.solicitudEmpresa.fecha_emision}}
+  </div>
+  <div>
+    <label><b>Numero de estudiantes solicitados: </b></label> {{convocatoria.solicitudEmpresa.numero_alumnos}}
+  </div>
+  <div>
+    <label><b>Fecha de inicio: </b></label> {{convocatoria.solicitudEmpresa.fecha_inicio}}
+  </div>
+  <div>
+    <label><b>Responsable de PPP: </b></label> {{convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura}}  {{convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}  {{convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}}
+  </div>
+
+  <div>
+    <label><b>Observaciones: </b></label> {{convocatoria.solicitudEmpresa.observacion}}  º
+  </div>
+</div>
+
+<button (click)="list()" class="btn btn-primary">Regresar</button><br>
