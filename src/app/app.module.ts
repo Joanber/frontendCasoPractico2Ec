@@ -5,16 +5,11 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { AuthModule } from "./auth/auth.module";
+import { AuthInterceptor } from "./guards/AuthInterceptor";
 import { NotpagefoundComponent } from "./notpagefound/notpagefound.component";
 import { PagesModule } from "./pages/pages.module";
 import { InterceptorServiceService } from "./services/interceptores/interceptor-service.service";
 import { TokenInterceptor } from "./services/interceptores/token-interceptor.service";
-
-
-
-
-
-
 
 @NgModule({
   declarations: [AppComponent, NotpagefoundComponent],
@@ -28,7 +23,12 @@ import { TokenInterceptor } from "./services/interceptores/token-interceptor.ser
   bootstrap: [AppComponent],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: TokenInterceptor, multi: true },
-    { provide: HTTP_INTERCEPTORS, useClass: InterceptorServiceService, multi: true }
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: InterceptorServiceService,
+      multi: true,
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor, multi: true },
   ],
 })
 export class AppModule {}

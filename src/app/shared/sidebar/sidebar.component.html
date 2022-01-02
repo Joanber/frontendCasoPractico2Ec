@@ -5,20 +5,35 @@
     <nav class="sidebar-nav">
       <ul id="sidebarnav">
         <li class="user-profile">
-          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false">
-            <i alt="user" *ngIf="!usuarioService.usuario.persona.fotoHashCode" class="material-icons fs-1
-          ">
-              account_circle </i>
-            <img *ngIf="usuarioService.usuario.persona.fotoHashCode" [src]="
+          <a
+            class="has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+          >
+            <i
+              alt="user"
+              *ngIf="!usuarioService.usuario.persona.fotoHashCode"
+              class="material-icons fs-1"
+            >
+              account_circle
+            </i>
+            <img
+              *ngIf="usuarioService.usuario.persona.fotoHashCode"
+              [src]="
                 bd_url +
                 '/img/' +
                 usuarioService.usuario.persona.id +
                 '?fotoHashCode=' +
                 usuarioService.usuario.persona.fotoHashCode
-              " alt="Foto" class="avatar cursor" />
-            <span class="hide-menu ms-3">{{ usuarioService.usuario.persona.primer_nombre }}
+              "
+              alt="Foto"
+              class="avatar cursor"
+            />
+            <span class="hide-menu ms-3"
+              >{{ usuarioService.usuario.persona.primer_nombre }}
               {{ usuarioService.usuario.persona.primer_apellido }}
-            </span></a>
+            </span></a
+          >
           <ul aria-expanded="false" class="collapse">
             <li>
               <a routerLinkActive="active" routerLink="./perfil">Mi perfil </a>
@@ -30,11 +45,21 @@
         <li class="nav-devider"></li>
 
         <li *ngFor="let item of sidebarService.menu">
-          <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i [class]="item.icono"></i><span class="hide-menu">{{ item.titulo }} </span></a>
+          <a
+            class="has-arrow waves-effect waves-dark"
+            href="#"
+            aria-expanded="false"
+            ><i [class]="item.icono"></i
+            ><span class="hide-menu">{{ item.titulo }} </span></a
+          >
           <ul aria-expanded="false" class="collapse">
             <li *ngFor="let subMenuItem of item.submenu">
-              <a [routerLink]="subMenuItem.url" routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }">
-                <i [class]="subMenuItem.icono" style="font-size: 20px;"></i>
+              <a
+                [routerLink]="subMenuItem.url"
+                routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }"
+              >
+                <i [class]="subMenuItem.icono" style="font-size: 20px"></i>
                 <span class="m-2">{{ subMenuItem.titulo }}</span>
               </a>
             </li>
