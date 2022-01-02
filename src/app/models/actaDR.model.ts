@@ -10,4 +10,7 @@ export class ActaDR {
   hasta: string;
   alumno: Alumno;
   actividadesActasDR: ActividadesActasDR[] = [];
-}
+  constructor() {
+    this.alumno = new Alumno();
+  }
+  }

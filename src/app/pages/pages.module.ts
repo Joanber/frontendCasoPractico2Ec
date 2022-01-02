@@ -1,15 +1,3 @@
-import { CommonModule } from "@angular/common";
-import { NgModule } from "@angular/core";
-import { FormsModule, ReactiveFormsModule } from "@angular/forms";
-import {
-  MatDatepickerModule,
-  MatPaginatorModule,
-  MatSortModule,
-} from "@angular/material";
-import {
-  MatMomentDateModule,
-  MomentDateModule,
-} from "@angular/material-moment-adapter";
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
 import { MatDialogModule } from "@angular/material/dialog";
@@ -34,9 +22,7 @@ import { AddDocenteComponent } from "./add-docente/add-docente.component";
 import { AddEmpresaComponent } from "./add-empresa/add-empresa.component";
 import { AddEvaluacionEstudianteEmpresaComponent } from "./add-evaluacion-estudiante-empresa/add-evaluacion-estudiante-empresa.component";
 import { GenararActaComponent } from "./add-genarar-acta/genarar-acta.component";
-import { AddPersonaComponent } from "./personal/add-persona/add-persona.component";
 import { AddResponsablePPPComponent } from "./add-responsable-ppp/add-responsable-ppp.component";
-import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-empresa/add-solicitud-empresa.component";
 import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
 import { AddValidacionSeleccionComponent } from "./add-validacion-seleccion/add-validacion-seleccion.component";
 import { AnexosComponent } from "./anexos/anexos.component";
@@ -68,7 +54,6 @@ import { ListInfoConvocatoriaComponent } from "./list-infoconvocatoria/list-info
 import { ListInfoProcesosComponent } from "./list-infoprocesos/list-infoprocesos.component";
 import { ListResponsablePPPComponent } from "./list-responsable-ppp/list-responsable-ppp.component";
 import { ListSeleccionEstEmpComponent } from "./list-Respuesa-emp-est/list-seleccion-est-emp.component";
-import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-empresa/list-solicitud-empresa.component";
 import { SeleccionarAlumnosComponent } from "./list-solicitudes-alumnos-empresa/seleccionar-alumnos.component";
 import { ListSolicitudesAlumnosComponent } from "./list-solicitudes-alumnos/list-solicitudes-alumnos.component";
 import { ListSolicitudesEmpresasRespppComponent } from "./list-solicitudes-empresas-resppp/list-solicitudes-empresas-resppp.component";
@@ -79,9 +64,25 @@ import { SolicitudComponent } from "./solicitud/solicitud.component";
 import { MatStepperModule } from "@angular/material/stepper";
 import { MatRadioModule } from "@angular/material/radio";
 import { MatExpansionModule } from "@angular/material/expansion";
-import { ListPersonasComponent } from "./personal/list-personas/list-personas.component";
+import { ListActaComponent } from "./list-acta/list-acta.component";
 import { ListUsuariosComponent } from "./personal/list-usuarios/list-usuarios.component";
 import { AddUsuarioComponent } from "./personal/add-usuario/add-usuario.component";
+import { CommonModule } from "@angular/common";
+import { FormsModule, ReactiveFormsModule } from "@angular/forms";
+import {
+  MatDatepickerModule,
+  MatPaginatorModule,
+  MatSortModule,
+} from "@angular/material";
+import {
+  MatMomentDateModule,
+  MomentDateModule,
+} from "@angular/material-moment-adapter";
+import { ListPersonasComponent } from "./personal/list-personas/list-personas.component";
+import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-empresa/list-solicitud-empresa.component";
+import { AddPersonaComponent } from "./personal/add-persona/add-persona.component";
+import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-empresa/add-solicitud-empresa.component";
+import { NgModule } from "@angular/core";
 
 @NgModule({
   declarations: [
@@ -137,6 +138,9 @@ import { AddUsuarioComponent } from "./personal/add-usuario/add-usuario.componen
     DialogAcreditacionComponent,
     ListUsuariosComponent,
     AddUsuarioComponent,
+    AddSolicitudEstudianteComponent,
+    DialogAcreditacionComponent,
+    ListActaComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

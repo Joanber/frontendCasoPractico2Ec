@@ -93,6 +93,9 @@ export class SidebarService {
         {
           titulo: 'Respuestas Empresas',
           url: 'respuestas-empresas',
+        }, {
+          titulo: 'Actas',
+          url: 'list-actas',
         },
         {
           titulo: 'Consultas Reportes',
