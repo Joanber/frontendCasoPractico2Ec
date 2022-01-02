@@ -5,28 +5,32 @@
         <h4>Actas</h4>
         <div class="table-scroll">
           <table class="
-                  table table-bordered
-                  justify-content-center
-                  table-responsive-sm table-sm
-                  dataTable
-                ">
+                table table-bordered
+                justify-content-center
+                table-responsive-sm table-sm
+                dataTable
+              " *ngIf="actas.length > 0">
             <thead>
               <tr>
-                <th>Codigo </th>
+
+                <th>Id Acta</th>
                 <th>Fecha</th>
-                <th>Alumno</th>
-                <th>Actividades</th>
+
 
               </tr>
             </thead>
 
             <tbody class="animated fadeIn fast">
               <tr *ngFor="let acta of actas">
-                <td>{{ acta.id}}</td>
+                <td>
+                  {{ acta.id}}
+                </td>
+                <td>
+                  {{ acta.fecha_emision}}
+                </td>
+                <td>
 
-                <td>{{ acta.fecha_emision }}</td>
-
-
+                </td>
               </tr>
             </tbody>
           </table>
@@ -35,5 +39,3 @@
     </div>
   </div>
 </div>
-
-
