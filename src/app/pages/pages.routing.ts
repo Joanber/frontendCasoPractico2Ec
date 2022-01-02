@@ -52,6 +52,8 @@ import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguim
 import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
 import { ListPersonasComponent } from "./personal/list-personas/list-personas.component";
 import { ListActaComponent } from "./list-acta/list-acta.component";
+import { ListUsuariosComponent } from "./personal/list-usuarios/list-usuarios.component";
+import { AddUsuarioComponent } from "./personal/add-usuario/add-usuario.component";
 
 const routes: Routes = [
   {
@@ -385,6 +387,21 @@ const routes: Routes = [
         path: "seguimientos",
         component: ListSeguimientosComponent,
         data: { titulo: "Listado de seguimientos" },
+      },
+      {
+        path: "usuarios",
+        component: ListUsuariosComponent,
+        data: { titulo: "Usuarios" },
+      },
+      {
+        path: "nuevo-usuario",
+        component: AddUsuarioComponent,
+        data: { titulo: "Nuevo Usuario" },
+      },
+      {
+        path: "actualizar-usuario/:id",
+        component: AddUsuarioComponent,
+        data: { titulo: "Actualizar Usuario" },
       },
     ],
   },

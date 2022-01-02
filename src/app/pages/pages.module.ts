@@ -83,6 +83,7 @@ import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-
 import { AddPersonaComponent } from "./personal/add-persona/add-persona.component";
 import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-empresa/add-solicitud-empresa.component";
 import { NgModule } from "@angular/core";
+import { ValidatorPasswordDirective } from "./personal/validator-password.directive";
 
 @NgModule({
   declarations: [
@@ -141,6 +142,7 @@ import { NgModule } from "@angular/core";
     AddSolicitudEstudianteComponent,
     DialogAcreditacionComponent,
     ListActaComponent,
+    ValidatorPasswordDirective,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
