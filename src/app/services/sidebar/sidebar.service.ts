@@ -54,7 +54,7 @@ export class SidebarService {
     },
     {
       titulo: "Gestion Empresa",
-      icono: "mdi mdi-account-multiple",
+      icono: "mdi mdi-account-network",
       submenu: [
         {
           titulo: "Solicitud  de Empresa",
@@ -106,7 +106,7 @@ export class SidebarService {
     },
     {
       titulo: "Gestion Tutor Academico",
-      icono: "mdi mdi-account-multiple",
+      icono: "mdi mdi-school",
       submenu: [
         {
           titulo: "Seguimientos",
@@ -124,7 +124,7 @@ export class SidebarService {
     },
     {
       titulo: "Gestion Alumnos",
-      icono: "mdi mdi-account-multiple",
+      icono: "mdi mdi-layers",
       submenu: [
         {
           titulo: "Convocatorias Abiertas",
@@ -146,7 +146,7 @@ export class SidebarService {
     },
     {
       titulo: "Personal",
-      icono: "mdi mdi-account-multiple",
+      icono: "mdi  mdi-odnoklassniki",
       submenu: [
         {
           titulo: "Personas",

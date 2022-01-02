@@ -1,1 +1,467 @@
-<p>add-evaluacion-estudiante-empresa works!</p>
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <form
+                    #MyForm="ngForm"
+                    (submit)="guardarSolicitudEmpresa(MyForm)"
+                >
+                    <div class="form-body">
+                        <div
+                            class="card-titulo"
+                            style="text-align: center"
+                        >
+                            ANEXO 12: Rúbrica de Evaluación
+                        </div>
+
+                        <br>
+
+                        <div
+                            class="card-titulo"
+                            style="text-align: center"
+                        >
+                            Evaluación de prácticas pre profesionales
+                        </div>
+
+                        <div class="card-text">
+                           
+                            <br>
+                            {{ this.solicitudEmpresa.responsablePPP.carrera.nombre }}
+
+                           
+                            Cédula de identidad estudiante:
+                            <div class="row">
+                                   <div class="col-md-10">
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                   </div>
+                               </div>
+
+                            <br>
+
+                          
+                            Estudiante:
+                            <div class="row">
+                                   <div class="col-md-10">
+                                       <ng-select
+                                       [compareWith]="compararResponsable"
+                                       name="responsablePPP"
+                                       placeholder="Seleccione al responsablePPP"
+                                       [(ngModel)]="solicitudEmpresa.responsablePPP"
+                                       #responsablePPP="ngModel"
+                                       required
+                                       >
+                                       <ng-option
+                                           *ngFor="let responsablePPP of responsablesPPP"
+                                           [value]="responsablePPP"
+                                       >
+                                           {{ responsablePPP.docente?.persona?.primer_nombre }}
+                                           {{ responsablePPP.docente?.persona?.primer_apellido }}
+                                       </ng-option>
+                                       </ng-select>
+                                       <div
+                                           class="text-danger"
+                                           *ngIf="responsablePPP.invalid && responsablePPP.touched"
+                                           >
+                                           Responsable de Practicas Pre Profesionales es requerido!
+                                       </div>
+                                   </div>
+                               </div>
+
+                            <br>
+
+                            
+                            Empresa:
+                            <div class="row">
+                                   <div class="col-md-10">
+                                    <ng-select
+                                    [compareWith]="compararEmpresa"
+                                    name="empresa"
+                                    style="width: 500px"
+                                    placeholder="Seleccione la empresa"
+                                    [(ngModel)]="solicitudEmpresa.empresa"
+                                    #empresa="ngModel"
+                                    required="required"
+                                >
+                                    <ng-option
+                                        *ngFor="let empresa of empresas"
+                                        [value]="empresa"
+                                    >{{ empresa.nombre }}</ng-option>
+                                </ng-select>
+                                       <div
+                                           class="text-danger"
+                                           *ngIf="responsablePPP.invalid && responsablePPP.touched"
+                                           >
+                                           Responsable de Practicas Pre Profesionales es requerido!
+                                       </div>
+                                   </div>
+                               </div>
+
+                            <br>
+                      
+                            Carrera:
+                            <div class="row">
+                                   <div class="col-md-10">
+                                       <ng-select
+                                       [compareWith]="compararResponsable"
+                                       name="responsablePPP"
+                                       placeholder="Seleccione al responsablePPP"
+                                       [(ngModel)]="solicitudEmpresa.responsablePPP"
+                                       #responsablePPP="ngModel"
+                                       required
+                                       >
+                                       <ng-option
+                                           *ngFor="let responsablePPP of responsablesPPP"
+                                           [value]="responsablePPP"
+                                       >
+                                           {{ responsablePPP.carrera.nombre }}
+                                       </ng-option>
+                                       </ng-select>
+                                       <div
+                                           class="text-danger"
+                                           *ngIf="responsablePPP.invalid && responsablePPP.touched"
+                                           >
+                                           Responsable de Practicas Pre Profesionales es requerido!
+                                       </div>
+                                   </div>
+                               </div>
+                            <br>
+                            <br>
+                            Valore el desempeño del Practicante, marcando y registrando la calificación en cada uno de los aspectos descritos utilizando los siguientes parámetros.
+                (1) Deficiente     (5) Regular         (10) Bueno       (15) Muy bueno      (20) Sobresaliente
+                             <br>
+                            <br>
+                            <thead>
+                                <tr>
+                                    <th>PARÁMETROS</th>
+
+                                    <th>20</th>
+
+                                    <th>15</th>
+
+                                    <th>10</th>
+
+                                    <th>5</th>
+
+                                    <th>1</th>
+                                </tr>
+                            </thead>
+
+                            <tbody>
+                                <tr>
+                                    <td>a.	Asistencia y Puntualidad.</td>
+
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+
+                                    
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            
+                            <tbody>
+                                <tr>
+                                    <td>b.	Cumplimiento de normas establecidas por la entidad receptora.</td>
+
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+
+                                    
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>c.	Compromiso y responsabilidad frente al trabajo.</td>
+
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+
+                                    
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>d.	Integración y actitud de colaboración con los miembros del equipo de la empresa.</td>
+
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+
+                                    
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <tbody>
+                                <tr>
+                                    <td>e.	Valoración de los resultados tomando como base las actividades encomendadas al estudiante, así como su cumplimiento en los plazos establecidos.</td>
+
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                    <td>
+                                        <input
+                                            class="form-control"
+                                            name="actividad"
+                                            required="required"
+                                        />
+                                    </td>
+
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+
+                                    
+                                    <td>
+                                        <input
+                                        class="form-control"
+                                        name="actividad"
+                                        required="required"
+                                        />
+                                    </td>
+                                </tr>
+                            </tbody>
+                            <br>
+                            PUNTAJE TOTAL: 
+                            <input
+                            type="number"
+                            class="form-control"
+                            name="numero_alumnos"
+                            style="width: min-content"
+                            #numero_alumnos="ngModel"
+                            min="1"
+                            [(ngModel)]="solicitudEmpresa.numero_alumnos"
+                            required
+                          />
+                            /100
+                            <br>
+                            NÚMERO DE HORAS TOTAL:  
+                            <input
+                            type="number"
+                            class="form-control"
+                            name="numero_alumnos"
+                            style="width: min-content"
+                            #numero_alumnos="ngModel"
+                            min="1"
+                            [(ngModel)]="solicitudEmpresa.numero_alumnos"
+                            required
+                          />
+                          horas 
+                            <br>
+                            <br>
+                            <div class="card-pie">
+                                <br>
+                                <br>
+                                ______________________
+
+                                <br>
+
+                                Nombre Tutor Empresarial
+                             <div class="row">
+                                    <div class="col-md-10">
+                                        <ng-select
+                                        [compareWith]="compararResponsable"
+                                        name="responsablePPP"
+                                        placeholder="Seleccione al responsablePPP"
+                                        [(ngModel)]="solicitudEmpresa.responsablePPP"
+                                        #responsablePPP="ngModel"
+                                        required
+                                        >
+                                        <ng-option
+                                            *ngFor="let responsablePPP of responsablesPPP"
+                                            [value]="responsablePPP"
+                                        >
+                                            {{ responsablePPP.docente?.abreviatura_titulo }}
+                                            {{ responsablePPP.docente?.persona?.primer_nombre }}
+                                            {{ responsablePPP.docente?.persona?.primer_apellido }}
+                                        </ng-option>
+                                        </ng-select>
+                                        <div
+                                            class="text-danger"
+                                            *ngIf="responsablePPP.invalid && responsablePPP.touched"
+                                            >
+                                            Responsable de Practicas Pre Profesionales es requerido!
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                        </div>
+
+                        <div
+                            class="form-actions"
+                            style="text-align: right"
+                        >
+                            <button
+                                type="submit"
+                                class="btn btn-primary mr-2"
+                            >Guardar</button>
+
+                            <button
+                                type="button"
+                                class="btn btn-danger"
+                                (click)="irListaSolicitudesEmpresas()"
+                            >Cancelar</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

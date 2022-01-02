@@ -52,6 +52,7 @@ import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguim
 import { AddSolicitudEstudianteComponent } from "./add-solicitud-estudiante/add-solicitud-estudiante.component";
 import { ListPersonasComponent } from "./personal/list-personas/list-personas.component";
 import { ListActaComponent } from "./list-acta/list-acta.component";
+import { DetalleconvocatoriasComponent } from "./detalleconvocatorias/detalleconvocatorias.component";
 import { ListUsuariosComponent } from "./personal/list-usuarios/list-usuarios.component";
 import { AddUsuarioComponent } from "./personal/add-usuario/add-usuario.component";
 
@@ -143,6 +144,12 @@ const routes: Routes = [
         component: ListInfoConvocatoriaComponent,
         data: { titulo: "Informacion de Convocatorias" },
       },
+      {
+        path: "detalleconvocatorias/:id",
+        component: DetalleconvocatoriasComponent,
+        data: { titulo: "Detalle de Convocatorias" },
+      },
+
       {
         path: "nueva-convocatoria/:id",
         component: ConvocatoriaComponent,

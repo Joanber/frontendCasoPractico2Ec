@@ -2,6 +2,7 @@ import { DatePipe } from '@angular/common';
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { MatPaginator, PageEvent } from '@angular/material';
+import { Router } from '@angular/router';
 import { Carrera } from 'src/app/models/carrera.model';
 import { Convocatoria } from 'src/app/models/convocatoria.model';
 import { CarreraService } from 'src/app/services/services.models/carrera.service';
@@ -27,6 +28,7 @@ export class ListInfoConvocatoriaComponent implements OnInit {
   public fecha = '';
 
   constructor(
+    private router: Router,
     private convocatoriaService: ConvocatoriasService,
     private carreraService: CarreraService,
     private miDatePipe: DatePipe
@@ -99,6 +101,11 @@ export class ListInfoConvocatoriaComponent implements OnInit {
         this.paginador._intl.firstPageLabel = 'Primera Página';
         this.paginador._intl.lastPageLabel = 'Última Página';
       });
+  }
+  Detalle(id: number) {
+    this.router.navigate (['/dashboard/detalleconvocatorias', id]);
+
+
   }
   cargarCarreras() {
     this.carreraService

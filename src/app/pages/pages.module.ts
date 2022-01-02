@@ -84,6 +84,9 @@ import { AddPersonaComponent } from "./personal/add-persona/add-persona.componen
 import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-empresa/add-solicitud-empresa.component";
 import { NgModule } from "@angular/core";
 import { ValidatorPasswordDirective } from "./personal/validator-password.directive";
+import { ListEvaluacionEstudianteEmpresaComponent } from "./list-evaluacion-estudiante-empresa/list-evaluacion-estudiante-empresa.component";
+import { ListCertificadoEstudianteEmpresaComponent } from "./list-certificado-estudiante-empresa/list-certificado-estudiante-empresa.component";
+import { DetalleconvocatoriasComponent } from "./detalleconvocatorias/detalleconvocatorias.component";
 
 @NgModule({
   declarations: [
@@ -143,6 +146,9 @@ import { ValidatorPasswordDirective } from "./personal/validator-password.direct
     DialogAcreditacionComponent,
     ListActaComponent,
     ValidatorPasswordDirective,
+    ListEvaluacionEstudianteEmpresaComponent,
+    ListCertificadoEstudianteEmpresaComponent,
+    DetalleconvocatoriasComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
