@@ -83,6 +83,8 @@ import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-
 import { AddPersonaComponent } from "./personal/add-persona/add-persona.component";
 import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-empresa/add-solicitud-empresa.component";
 import { NgModule } from "@angular/core";
+import { ListEvaluacionEstudianteEmpresaComponent } from './list-evaluacion-estudiante-empresa/list-evaluacion-estudiante-empresa.component';
+import { ListCertificadoEstudianteEmpresaComponent } from './list-certificado-estudiante-empresa/list-certificado-estudiante-empresa.component';
 
 @NgModule({
   declarations: [
@@ -141,6 +143,8 @@ import { NgModule } from "@angular/core";
     AddSolicitudEstudianteComponent,
     DialogAcreditacionComponent,
     ListActaComponent,
+    ListEvaluacionEstudianteEmpresaComponent,
+    ListCertificadoEstudianteEmpresaComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
