@@ -1,1 +1,195 @@
-<p>add-usuario works!</p>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <form #MyForm="ngForm" (submit)="guardarUsuario(MyForm)">
+          <div class="form-body">
+            <h3 class="card-title">Usuario</h3>
+            <hr />
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Persona*</label>
+                  <ng-select
+                    [compareWith]="compararPersona"
+                    name="persona"
+                    placeholder="Seleccione la persona"
+                    #persona="ngModel"
+                    [(ngModel)]="usuario.persona"
+                    required
+                  >
+                    <ng-option
+                      *ngFor="let persona of personas"
+                      [value]="persona"
+                    >
+                      {{ persona.primer_nombre }}
+                      {{ persona.segundo_nombre }}
+                      {{ persona.primer_apellido }}
+                      {{ persona.segundo_nombre }}
+                    </ng-option>
+                  </ng-select>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="persona.hasError('required') && persona.touched"
+                  >
+                    Persona es requerido!
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Username*</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="username"
+                    #username="ngModel"
+                    value="{{ usuario.persona?.identificacion }}"
+                    [(ngModel)]="usuario.username"
+                    required
+                    disabled
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="username.hasError('required') && username.touched"
+                  >
+                    Username es requerido!
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row" *ngIf="mostrarInputPass">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Contraseña*</label>
+                  <div class="input-group">
+                    <input
+                      required
+                      class="form-control"
+                      [type]="fieldTextType ? 'text' : 'password'"
+                      name="password"
+                      #password="ngModel"
+                      [(ngModel)]="usuario.password"
+                      minlength="8"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i
+                          class="fa"
+                          [ngClass]="{
+                            'fa-eye-slash': !fieldTextType,
+                            'fa-eye': fieldTextType
+                          }"
+                          (click)="toggleFieldTextType()"
+                        ></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="password.hasError('required') && password.touched"
+                  >
+                    !Contraseña es requerido¡
+                  </div>
+                  <div class="text-danger" *ngIf="password.errors?.minlength">
+                    !Por lo menos
+                    {{ password.errors.minlength.requiredLength }} caracteres¡
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="control-label">Confirmar Contraseña*</label>
+                  <div class="input-group">
+                    <input
+                      required
+                      class="form-control"
+                      [type]="repeatFieldTextType ? 'text' : 'password'"
+                      name="confirmpassword"
+                      #confirmpassword="ngModel"
+                      [(ngModel)]="usuario.confirmPassword"
+                      appValidatorPassword="password"
+                    />
+                    <div class="input-group-append">
+                      <span class="input-group-text">
+                        <i
+                          class="fa"
+                          [ngClass]="{
+                            'fa-eye-slash': !repeatFieldTextType,
+                            'fa-eye': repeatFieldTextType
+                          }"
+                          (click)="toggleRepeatFieldTextType()"
+                        ></i>
+                      </span>
+                    </div>
+                  </div>
+
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      confirmpassword.hasError('required') &&
+                      confirmpassword.touched
+                    "
+                  >
+                    !Confirmar contraseña es requerido¡
+                  </div>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      confirmpassword.touched &&
+                      confirmpassword.errors?.notEqual &&
+                      !confirmpassword.errors?.required
+                    "
+                  >
+                    !Las contraseñas no coinciden¡
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <label class="control-label">Roles*</label>
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item" *ngFor="let rol of roles">
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [checked]="rol.check"
+                          id="{{ rol.id! }}"
+                          (change)="onChange($event, rol)"
+                          required
+                        />
+                        <label class="form-check-label" for="{{ rol.id! }}">
+                          {{ rol.nombre }}
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="form-actions">
+            <button type="submit" class="btn btn-primary mr-2">
+              <i class="fa fa-check"></i> Guardar
+            </button>
+            <button
+              type="button"
+              class="btn btn-danger"
+              (click)="irListaUsuarios()"
+            >
+              Cancelar
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
