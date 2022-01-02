@@ -85,12 +85,6 @@
               profesionales.
 
               <div class="table-scroll">
-
-
-
-
-
-
                 <table
                   style="border: 1"
                   class="
@@ -102,50 +96,49 @@
                 >
                   <thead>
                     <tr>
-                      <th>Area</th>
+                      <th class="col-2">Area</th>
                       <th>Actividad</th>
-                      <th>Asignatura</th>
+                      <th class="col-2">Asignatura</th>
+                      <th class="col-1">Accion</th>
                     </tr>
                   </thead>
                   <tbody>
+                    <tr *ngFor="let newAct of actividadesActa; let i = index">
+                      <td>
+                        <input
+                          class="form-control"
+                          name="newAct.area"
+                          required
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="newAct.actividad"
+                          required
+                        />
+                      </td>
+                      <td>
+                        <input
+                          class="form-control"
+                          name="newAct.asignatura"
+                          required
+                        />
+                      </td>
+
+                      <td (click)="deleteRow(i)">
+                        <i class="fa fa-trash"></i>
+                      </td>
+                    </tr>
                     <tr>
-                      <td>
-                        <input
-                          class="form-control"
-                          name="area"
-                          #area="ngModel"
-                          [(ngModel)]="actiActa.area"
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          class="form-control"
-                          name="actividad"
-                          #actividad="ngModel"
-                          [(ngModel)]="actiActa.actividad"
-                          required
-                        />
-                      </td>
-                      <td>
-                        <input
-                          class="form-control"
-                          name="asignatura"
-                          #asignatura="ngModel"
-                          [(ngModel)]="actiActa.asignatura"
-                          required
-                        />
+                      <td (click)="addRow()">
+                        <i class="fa fa-plus"></i>
                       </td>
                     </tr>
                   </tbody>
-                  <tfoot>
-                    <tr>
-                      <td colspan="3" style="align: center">
-                        <button id="agregar">Agregar</button>
-                      </td>
-                    </tr>
-                  </tfoot>
                 </table>
+
+                <br />
               </div>
 
               <div class="card-text">
@@ -204,7 +197,7 @@
                   class="form-control"
                   name="hasta"
                   #hasta="ngModel"
-                  [(ngModel)]="acta.desde"
+                  [(ngModel)]="acta.hasta"
                   required
                 />
 
@@ -247,12 +240,46 @@
                       </tr>
                     </tfoot>
                     <tbody class="animated fadeIn fast">
-                      <tr>
-                        <th *ngFor="let act of acta.actividadesActasDR">
-                          {{ act.actividad }}
-                        </th>
-                        <td></td>
-                        <td></td>
+                      <tr *ngFor="let act of actividadesActa">
+                        <td>{{ act.actividad }}</td>
+
+
+                        <td>
+                          <input class="form-control" required />
+
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
+                        <td>
+                          <input class="form-control" required />
+                        </td>
                       </tr>
                     </tbody>
                   </table>
