@@ -17,6 +17,114 @@
             </div>
         </mat-card-content>
     </mat-card>
+<div class="col-12">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title text-center">Listado de Respuestas a Empresas </h4>
+            <div class="table-responsive">
+                <div id="example23_wrapper" class="dataTables_wrapper">
+                    <div class="row">
+                        <div class="col-md-2">
+
+                            <button class="boton" routerLink="/dashboard/nueva-solicitud-empresa" mat-raised-button color="accent">
+                                <i class="mdi mdi-plus"></i>
+                                Nueva solictud empresa
+                            </button>
+
+                        </div>
+                        <div class="col-md-5">
+                            <select style="width: auto; align-items: right;" class="form-control" [(ngModel)]="carreraFiltro">
+                                <option [ngValue]="undefined">CARRERA (TODAS)</option>
+                                <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
+                                    {{ carreras.nombre }}
+                                </option>
+                            </select>
+                        </div>
+
+                        <div class="col-md-1">
+                            <button class="boton" mat-raised-button color="primary" (click)="filtrarValidacionesSACCarrera()">
+                                <i class="mdi mdi-magnify"></i>
+                                Buscar
+                            </button>
+                        </div>
+                        <div class="col-md-2 text-right">
+                            <button class="btn " (click)="cargarConvocatoriasDefault()">
+                                Mostrar Todas
+                            </button>
+                        </div>
+
+                    </div>
+                    <br />
+                    <div class="alert alert-primary text-center" *ngIf="solicitudesEmpresas.length == 0">
+                        NO HAY DATOS DISPONIBLES
+                    </div>
+
+                    <div class="table-scroll">
+                        <table class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                ">
+                            <thead>
+                                <tr>
+                                    <th>Empresa</th>
+                                    <th>Fecha Inicio PPP</th>
+                                    <th>Actividades</th>
+                                    <th>Nª Alumnos</th>
+                                    <th>Carrera</th>
+                                    <th>ResponsablePPP</th>
+                                    <th class="text-nowrap">Accion</th>
+                                </tr>
+                            </thead>
+
+                            <tbody class="animated fadeIn fast">
+                                <tr *ngFor="let solicitudEmpresa of solicitudesEmpresas">
+                                    <td>{{ solicitudEmpresa.empresa.nombre }}</td>
+                                    <td>{{ solicitudEmpresa.fecha_inicio }}</td>
+                                    <td>{{ solicitudEmpresa.actividades }}</td>
+                                    <td>{{ solicitudEmpresa.numero_alumnos }}</td>
+                                    <td>
+                                        {{ solicitudEmpresa.responsablePPP.carrera.nombre }}
+                                    </td>
+                                    <td>
+                                        {{
+                                        solicitudEmpresa.responsablePPP.docente
+                                        .abreviatura_titulo
+                                        }}
+                                        {{
+                                        solicitudEmpresa.responsablePPP.docente.persona
+                                        .primer_nombre
+                                        }}
+                                        {{
+                                        solicitudEmpresa.responsablePPP.docente.persona
+                                        .primer_apellido
+                                        }}
+                                    </td>
+                                    <td class="text-nowrap text-center">
+                                        <a [routerLink]="[
+                          '/dashboard',
+                          'nueva-convocatoria',
+                          solicitudEmpresa.id
+                        ]" data-toggle="tooltip" data-original-title="Crear Convocatoria" class="cursor" title="Generar Convocatoria">
+                                            <i class="mdi mdi-book-open m-r-10"></i>
+                                        </a>
+
+
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions" [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+</mat-paginator>
 
     <!-- <mat-card class="example-card mt-3 mb-3">
         <mat-card-subtitle>
