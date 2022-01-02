@@ -31,7 +31,7 @@ export class ActaService {
   }
 
   //PAGINACION DE ACTAS
-  getConvocatoriasPage(
+  getActasPage(
     page: string,
     size: string,
     busqueda: string,
@@ -57,7 +57,6 @@ export class ActaService {
         })
       );
   }
-
   //CREAR ACTAS
   crear(acta: ActaDR): Observable<ActaDR> {
     return this.http.post<ActaDR>(`${bd_url}/`, acta).pipe(

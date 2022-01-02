@@ -1,60 +1,69 @@
-    <mat-card class="mat-elevation-z8">
-        <div class="row">
-            <div class="col-md-12">
-                <mat-form-field>
-                    <mat-label>Filtrar</mat-label>
-                    <input matInput #inputFilter placeholder="Ex. Tec" #input>
-                </mat-form-field>
+<mat-card class="mat-elevation-z8">
+    <div class="d-flex align-items-center flex-column">
+        <mat-form-field style="width: 50% !important;" appearance="outline">
+            <mat-label>Carreras</mat-label>
+            <mat-select  #select  (selectionChange)="changeStatus(select.value)"  #selectCarrera>
+                <mat-option>Todas</mat-option>
+                <mat-option [value]="carrera.nombre" *ngFor="let carrera of carreras">
+                    {{carrera.nombre}}</mat-option>
+            </mat-select>
+        </mat-form-field>
+    </div>
+    <mat-card-content>
+        <div class="example-container">
+            <div class="alert alert-primary text-center" *ngIf="validacionesSac.length == 0">
+                NO HAY DATOS DISPONIBLES
             </div>
+            <div class="example-table-container table-responsive-sm">
+                <table class="table-bordered justify-content-center" *ngIf="validacionesSac.length > 0">
+                    <thead>
+                        <tr>
+                            <th>Convocatoria</th>
+                            <th>Alumnos</th>
+                        </tr>
+                    </thead>
+                    <tbody class="animated fadeIn fast">
+                        <tr *ngFor="let validacionesSac of validacionesSac">
+                            <th style="font-weight: bold;">
+                                {{ validacionesSac.convocatoria.carrera.abreviatura }}
+                            </th>
+                            <td>
+                                <div class="example-container m-2">
+                                    <div class="example-table-container table-responsive-sm">
+                                        <table style="margin-bottom: 0px;" class="table-bordered justify-content-center">
+                                            <thead class="bg-pri white">
+                                                <tr>
+                                                    <th>C.I</th>
+                                                    <th>Apellidos y Nombres</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                <tr *ngFor="let alumno of validacionesSac.alumnos">
+                                                    <th>{{alumno.persona.identificacion}}</th>
+                                                    <td>
+                                                        {{alumno.persona.primer_apellido}}
+                                                        {{alumno.persona.segundo_apellido}}
+                                                        {{alumno.persona.primer_nombre}}
+                                                        {{alumno.persona.segundo_nombre}}
+                                                    </td>
+                                                    <td>
+                                                        <button mat-button color="primary" (click)="openDialog(alumno,validacionesSac.convocatoria)">
+                                                            Acreditar
+                                                            <mat-icon>turned_in</mat-icon>
+                                                        </button>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <mat-paginator [length]="totalRegistros" [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions" [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+            </mat-paginator>
         </div>
-        <mat-card-content>
-            <button mat-button (click)="openDialog()">Acreditar</button>
-            <div class="example-container">
-                <div class="example-table-container">
-                </div>
-                <mat-paginator #paginatorshowFirstLastButtons aria-label="Select page">
-                </mat-paginator>
-            </div>
-        </mat-card-content>
-    </mat-card>
-
-    <!-- <mat-card class="example-card mt-3 mb-3">
-        <mat-card-subtitle>
-            <p class="file-header-top-end">
-                CERTIFICADO-TSDS-PPP-{{date.getFullYear()}}-012
-                <br>
-                Cuenca, {{today}}
-            </p>
-        </mat-card-subtitle>
-        <mat-card-title class="text-center mt-5 mb-5 fs-5">CERTIFICADO DE CUMPLIMIENTO DE PRÁCTICAS PRE PROFESIONALES
-        </mat-card-title>
-        <mat-card-content>
-            <p>Quien suscribe, hace constar que&#58;</p>
-            <p #cert class="text-justify mb-1">{{ bodyCertificado}}</p>
-                <mat-list>
-                    <mat-list-item *ngFor="let componente of componentes">
-                        <section style="font-size: 14px; " class="text-justify">
-                            {{componente.simbol}}&ensp;{{componente.data}}
-                        </section>
-                    </mat-list-item>
-                </mat-list>
-            <p #cert class="text-justify mt-4">Se expide el presente certificado para los fines que el estudiante estime conveniente.</p>
-            <div class="row">
-                <div class="col-md-12 text-center" style="margin-top: 155px;">
-                    <hr>
-                    <p class="firma">Ing. Andrea Peralta., Mgtr.</p>
-                    <p class="firma">Coordinadora de Vinculación con la Sociedad</p>
-                </div>
-            </div>
-        </mat-card-content>
-        <mat-divider inset></mat-divider>
-        <mat-card-actions align='end'>
-            <button mat-raised-button color="accent">
-                <mat-icon  aria-hidden="false" aria-label="Descargar">
-                    file_download
-                </mat-icon>
-                Generar
-            </button>
-            <button mat-raised-button color="warn">Cancelar</button>
-        </mat-card-actions>
-    </mat-card> -->
+    </mat-card-content>
+</mat-card>

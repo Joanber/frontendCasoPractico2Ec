@@ -6,10 +6,10 @@
         <br />
         <h4 class="card-title text-center font-weight-bold">
           INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY <br />
-          TECNOLOGIA <br />
+          {{ validacionSac.convocatoria?.carrera?.nombre }} <br />
           SEGUIMIENTO A ACTIVIDADES SEGUN CRONOGRAMA
         </h4>
-        <br />Estudiante: {{ designacionTA.alumno?.persona?.primer_apellido }}
+        Estudiante: {{ designacionTA.alumno?.persona?.primer_apellido }}
         {{ designacionTA.alumno?.persona?.segundo_apellido }}
         {{ designacionTA.alumno?.persona?.primer_nombre }}
         {{ designacionTA.alumno?.persona?.segundo_nombre }} <br />Empresa:
@@ -18,9 +18,176 @@
         {{ designacionTA.docente?.persona?.primer_apellido }}
         {{ designacionTA.docente?.persona?.segundo_apellido }}
         {{ designacionTA.docente?.persona?.primer_nombre }}
-        {{ designacionTA.docente?.persona?.segundo_apellido }}
+        {{ designacionTA.docente?.persona?.segundo_nombre }}
+        <hr />
+        <div class="dt-buttons">
+          <button
+            class="btn btn-success btn-sm"
+            *ngIf="!abrirDIV"
+            (click)="abrirDiv()"
+          >
+            <i class="mdi mdi-plus"></i>
+            Open Form
+          </button>
+        </div>
+        <div *ngIf="abrirDIV">
+          <form #MyForm="ngForm" (submit)="agregarDetalleSeguimiento(MyForm)">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">No.</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="no"
+                    [(ngModel)]="detalleSeguimiento.no"
+                    #no="ngModel"
+                    required
+                  />
+                  <div class="text-danger" *ngIf="no.invalid && no.touched">
+                    No es requerido
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Fecha Seguimiento</label>
+                  <input
+                    [matDatepicker]="myDatepicker"
+                    class="form-control"
+                    name="fecha"
+                    [(ngModel)]="detalleSeguimiento.fecha"
+                    #fecha="ngModel"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    [for]="myDatepicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                  <div
+                    class="text-danger"
+                    *ngIf="fecha.invalid && fecha.touched"
+                  >
+                    Fecha es requerido
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-7">
+                <div class="form-group">
+                  <label class="control-label">Actividad*</label>
+                  <ng-select
+                    placeholder="Seleccione la activividad"
+                    name="actividadesActasDR"
+                    [(ngModel)]="detalleSeguimiento.actividadesActasDR"
+                    #actividadesActasDR="ngModel"
+                    required
+                  >
+                    <ng-option
+                      *ngFor="let actividad_acta of actividades_actasdr"
+                      [value]="actividad_acta"
+                    >
+                      {{ actividad_acta.actividad }}
+                    </ng-option>
+                  </ng-select>
+                  <div
+                    class="text-danger"
+                    *ngIf="
+                      actividadesActasDR.invalid && actividadesActasDR.touched
+                    "
+                  >
+                    Actividad es requerido!
+                  </div>
+                  <div class="text-danger" *ngIf="this.existeActividadTable">
+                    Esta actividad ya esta en el detalle revise en la tabla por
+                    favor!
+                  </div>
+                </div>
+              </div>
+
+              <!--/span-->
+            </div>
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Porcentaje %</label>
+                  <input
+                    type="number"
+                    class="form-control"
+                    name="porcentaje"
+                    [(ngModel)]="detalleSeguimiento.porcentaje"
+                    #porcentaje="ngModel"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="porcentaje.invalid && porcentaje.touched"
+                  >
+                    Porcentaje es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group">
+                  <label class="control-label">Fecha Finalizacion Pre.</label>
+                  <input
+                    [matDatepicker]="myDatepicker2"
+                    class="form-control"
+                    name="fecha_fin_pre"
+                    [(ngModel)]="detalleSeguimiento.fecha_fin_pre"
+                    #fecha_fin_pre="ngModel"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    [for]="myDatepicker2"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker color="blue" #myDatepicker2></mat-datepicker>
+                  <div
+                    class="text-danger"
+                    *ngIf="fecha_fin_pre.invalid && fecha_fin_pre.touched"
+                  >
+                    Fecha finalizacion prevista es requerido!
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label for="message-text" class="control-label"
+                      >Observacion:</label
+                    >
+                    <textarea
+                      class="form-control"
+                      name="observaciones"
+                      rows="1"
+                      [(ngModel)]="detalleSeguimiento.observaciones"
+                      #observaciones="ngModel"
+                    ></textarea>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label class="control-label">Añadir</label>
+                    <button type="submit" class="btn btn-primary">
+                      <i class="mdi mdi-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+
         <div class="table-responsive">
           <div id="example23_wrapper" class="dataTables_wrapper">
+            <div
+              class="alert alert-primary text-center"
+              *ngIf="seguimiento.detallesSeguimiento.length == 0"
+            >
+              AGREGUE UN DETALLE DE SEGUIMIENTO
+            </div>
             <div class="table-scroll">
               <table
                 class="
@@ -29,93 +196,70 @@
                   table-responsive-sm table-sm
                   dataTable
                 "
+                *ngIf="seguimiento.detallesSeguimiento.length > 0"
               >
                 <thead>
                   <tr>
-                    <th style="width: 21px">Numero</th>
-                    <th style="width: 115px">Fecha de Seg</th>
-                    <th style="width: 250px">Actividades</th>
-                    <th style="width: 115px">Fecha Fin</th>
-                    <th style="width: 31px">Porcentaje</th>
-                    <th style="width: 250px">Observaciones</th>
+                    <th>No.</th>
+                    <th>Fecha de Seg</th>
+                    <th>Actividades</th>
+                    <th>Fecha Fin</th>
+                    <th>Porcentaje</th>
+                    <th>Observaciones</th>
                     <th>Accion</th>
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
-                  <tr *ngFor="let actividad_acta of actividades_actasdr">
+                  <tr *ngFor="let detSegui of seguimiento.detallesSeguimiento">
                     <td>
-                      <div class="row justify-content-center">
-                        <input
-                          type="text"
-                          class="form-control"
-                          style="width: 60px"
-                        />
-                      </div>
+                      {{ detSegui.no }}
                     </td>
+                    <td>{{ detSegui.fecha }}</td>
+                    <td>{{ detSegui.actividadesActasDR?.actividad }}</td>
+                    <td>{{ detSegui.fecha_fin_pre }}</td>
+                    <td>{{ detSegui.porcentaje }} %</td>
+                    <td>{{ detSegui.observaciones }}</td>
                     <td>
-                      <div class="row justify-content-center">
-                        <input
-                          style="width: 110px"
-                          [matDatepicker]="myDatepicker"
-                          class="form-control"
-                          required
-                        />
-                        <mat-datepicker-toggle
-                          [for]="myDatepicker"
-                        ></mat-datepicker-toggle>
-                        <mat-datepicker
-                          color="blue"
-                          #myDatepicker
-                        ></mat-datepicker>
-                      </div>
+                      <a
+                        data-toggle="tooltip"
+                        data-original-title="Eliminar Item"
+                        class="cursor"
+                        title="Eliminar Item"
+                        (click)="
+                          eliminarItemDetalle(detSegui.actividadesActasDR.id)
+                        "
+                      >
+                        <i class="fa fa-close text-danger m-r-10"></i>
+                      </a>
                     </td>
-                    <td>{{ actividad_acta.actividad }}</td>
-                    <td>
-                      <div class="row justify-content-center">
-                        <input
-                          style="width: 110px"
-                          [matDatepicker]="myDatepicker2"
-                          class="form-control"
-                          required
-                        />
-                        <mat-datepicker-toggle
-                          [for]="myDatepicker2"
-                        ></mat-datepicker-toggle>
-                        <mat-datepicker
-                          color="blue"
-                          #myDatepicker2
-                        ></mat-datepicker>
-                      </div>
-                    </td>
-                    <td>
-                      <div class="row justify-content-center">
-                        <input
-                          type="number"
-                          class="form-control"
-                          style="width: 68px"
-                        />
-                      </div>
-                    </td>
-                    <td>
-                      <div class="row justify-content-center">
-                        <textarea
-                          style="width: 240px"
-                          class="form-control"
-                          rows="3"
-                          required
-                        ></textarea>
-                      </div>
-                    </td>
-                    <td></td>
                   </tr>
                 </tbody>
               </table>
+              <div class="form-actions">
+                <button
+                  type="button"
+                  class="btn btn-primary mr-2"
+                  (click)="guardarSeguimiento()"
+                >
+                  <i class="fa fa-check"></i> Guardar
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="irListaSeguimientos()"
+                >
+                  Cancelar
+                </button>
+              </div>
 
               <h4 class="card-title text-center font-weight-bold">
                 <br />
                 ______________________ <br />
-                Nombre Tutor Academico <br />
+                {{ designacionTA.docente?.persona?.primer_apellido }}
+                {{ designacionTA.docente?.persona?.segundo_apellido }}
+                {{ designacionTA.docente?.persona?.primer_nombre }}
+                {{ designacionTA.docente?.persona?.segundo_nombre }} <br />
                 Tutor Academico
               </h4>
             </div>

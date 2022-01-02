@@ -48,6 +48,30 @@ export class ConvocatoriasService {
       );
   }
 
+  getConvocatoriasPageAndEstado(
+    page: string,
+    size: string,
+    estado: string,
+  ): Observable<any> {
+    return this.http
+      .get(
+        `${ bd_url }/page/estado?page=${ page }&size=${ size }&estado=${ estado || ""}`
+      )
+      .pipe(
+        tap((response: any) => {
+          (response.content as Convocatoria[]).forEach((convocatoria) => {
+            return convocatoria;
+          });
+        }),
+        map((response: any) => {
+          (response.content as Convocatoria[]).map((convocatoria) => {
+            return convocatoria;
+          });
+          return response;
+        })
+      );
+  }
+
   //CREAR convocatoria
   crear(convocatoria: Convocatoria): Observable<Convocatoria> {
     return this.http.post<Convocatoria>(`${bd_url}/`, convocatoria).pipe(

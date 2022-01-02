@@ -46,6 +46,7 @@
                   </td>
                   <td class="text-nowrap text-center">
                     <a
+                      *ngIf="!actaDR.alumno?.seg"
                       [routerLink]="[
                         '/dashboard',
                         'nuevo-seguimiento',
@@ -56,7 +57,31 @@
                       class="cursor"
                       title="Nuevo Seguimiento"
                     >
-                      <i class="mdi mdi-format-list-bulleted"></i>
+                      <i class="mdi mdi-format-list-bulleted m-r-10"></i>
+                    </a>
+                    <a
+                      *ngIf="actaDR.alumno?.seg"
+                      [routerLink]="[
+                        '/dashboard',
+                        'actualizar-seguimiento',
+                        actaDR.alumno?.id
+                      ]"
+                      data-toggle="tooltip"
+                      data-original-title="Editar Seguimiento"
+                      class="cursor"
+                      title="Editar Seguimiento"
+                    >
+                      <i class="fa fa-pencil text-inverse m-r-10"> </i>
+                    </a>
+                    <a
+                      *ngIf="actaDR.alumno?.seg"
+                      data-toggle="tooltip"
+                      data-original-title="Borrar"
+                      class="cursor"
+                      title="Eliminar Seguimiento"
+                      (click)="eliminarSeguimiento(actaDR.alumno?.id)"
+                    >
+                      <i class="fa fa-close text-danger m-r-10"></i>
                     </a>
                   </td>
                 </tr>

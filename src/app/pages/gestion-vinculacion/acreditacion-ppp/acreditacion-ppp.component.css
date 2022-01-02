@@ -108,3 +108,176 @@ hr {
 .card-container-left {
   display: inline;
 }
+
+
+/* table */
+.example-container {
+  position: relative;
+}
+
+.example-table-container {
+  position: relative;
+  overflow: auto;
+}
+
+table {
+  width: 100%;
+}
+.example-form-field {
+  width: 200px;
+}
+.table-bordered td, .table-bordered th {
+    border: 0px solid #e9ecef;
+}
+th,
+td {
+  /* padding: 10px !important; */
+  text-align: center !important;
+  font-size: medium;
+}
+
+.flex-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.disp-non {
+  display: none;
+}
+
+div.table-container {
+  margin: auto;
+  margin-top: 20px;
+  display: block;
+  width: 90%;
+  height: 400px;
+  overflow: auto;
+  border: 1px solid;
+}
+
+.top-inertia .prcs {
+  padding: 0px;
+  transition: margin 1s;
+}
+
+#jobs_table_length,
+#jobs_table_filter {
+  display: none;
+}
+
+#jobs_table {
+  border-bottom: none;
+}
+
+/* Loading Spinner CSS Rules Start */
+@keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+@-webkit-keyframes lds-rolling {
+  0% {
+    -webkit-transform: translate(-50%, -50%) rotate(0deg);
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  100% {
+    -webkit-transform: translate(-50%, -50%) rotate(360deg);
+    transform: translate(-50%, -50%) rotate(360deg);
+  }
+}
+
+.lds-rolling {
+  position: relative;
+}
+
+.lds-rolling div,
+.lds-rolling div:after {
+  position: absolute;
+  width: 72px;
+  height: 72px;
+  border: 8px solid #0082bd;
+  border-top-color: transparent;
+  border-radius: 50%;
+}
+
+.lds-rolling div {
+  -webkit-animation: lds-rolling 2s linear infinite;
+  animation: lds-rolling 2s linear infinite;
+  top: 100px;
+  left: 100px;
+}
+
+.lds-rolling div:after {
+  -webkit-transform: rotate(90deg);
+  transform: rotate(90deg);
+}
+
+.lds-rolling {
+  width: 100px !important;
+  height: 100px !important;
+  -webkit-transform: translate(-50px, -50px) scale(0.5) translate(50px, 50px);
+  transform: translate(-50px, -50px) scale(0.5) translate(50px, 50px);
+}
+
+.lds-overlay {
+  width: 100%;
+  height: 100%;
+}
+
+.lds-container {
+  width: 50px;
+  height: 50px;
+}
+
+.alert-info {
+  color: var(--ista-bg-color);
+  background-color: var(--ista-light-color);
+  border-color: var(--ista-special-bg-color);
+}
+
+.alert-info hr {
+  border-top-color: var(--ista-bg-color);
+}
+
+.alert-info .alert-link {
+  color: var(--ista-bg-color);
+}
+
+.prcs {
+  padding: 30px 0;
+}
+.mat-form-field {
+  font-size: 14px;
+  width: 100%;
+}
+
+.mat-icon {
+  vertical-align: middle;
+}
+
+.mat-icon-button {
+  font-size: 20px !important;
+}
+.prcs-lbl-container {
+  margin-left: 12px;
+}
+
+.prcs-lbl {
+  font-size: 14px;
+  font-weight: normal;
+  font-style: normal;
+  font-stretch: normal;
+  line-height: 1;
+  letter-spacing: normal;
+  text-align: left;
+  color: #888888;
+}

@@ -3,4 +3,5 @@ export class ActividadesActasDR {
   area: string;
   actividad: string;
   asignatura: string;
+  check: boolean;
 }

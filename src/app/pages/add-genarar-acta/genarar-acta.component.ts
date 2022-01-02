@@ -15,7 +15,10 @@ import { NgForm } from "@angular/forms";
 import { ActaService } from "src/app/services/services.models/acta.service";
 import Swal from "sweetalert2";
 import autoTable, { UserOptions } from "jspdf-autotable";
-import jsPDF, * as jspdf from 'jspdf';
+import jsPDF, * as jspdf from "jspdf";
+import { SolicitudAlumno } from "src/app/models/solicitudAlumno.model";
+import { SolicitudAlumnoService } from "src/app/services/services.models/solicitudes-alumnos.service";
+import { ActividadesActasDR } from "src/app/models/actividadesActasDR.model";
 interface jsPDFWithPlugin extends jspdf.jsPDF {
   [x: string]: any;
 
@@ -31,6 +34,8 @@ export class GenararActaComponent implements OnInit {
   public designacionta = new DesignacionTA();
   public designacionte = new DesignacionTE();
   public validacionSac = new ValidacionSAC();
+  public solicitudAlumno = new SolicitudAlumno();
+  public actiActa = new ActividadesActasDR();
   public alumno = new Alumno();
   public acta = new ActaDR();
   public formSubmitted = false;
@@ -43,12 +48,16 @@ export class GenararActaComponent implements OnInit {
 
   // Variable para almanecar localmente
   public asistenciaStorage: any[] = [];
+
+  public actividadesActa: ActividadesActasDR[] = [];
+
   constructor(
     private validacionesSacService: ValidacionesSacService,
     private designacionTAService: DesignacionTaService,
     private designacionTeService: DesignacionTEService,
     private actaService: ActaService,
     private alumnoService: AlumnoService,
+    private solicitudAlumnoService: SolicitudAlumnoService,
     private activatedRoute: ActivatedRoute,
     private miDatePipe: DatePipe,
     private router: Router
@@ -70,7 +79,12 @@ export class GenararActaComponent implements OnInit {
       this.getDesignacionByAlumnoId(idd)
     );
     this.activatedRoute.params.subscribe(({ ida }) => this.getTutorE(ida));
+    this.activatedRoute.params.subscribe(({ ida }) =>
+      this.SolicitudAlumno(ida)
+    );
   }
+
+
   private validacion_sacById(id: number) {
     if (!id) {
       return;
@@ -80,6 +94,11 @@ export class GenararActaComponent implements OnInit {
     });
   }
   private getTutorE(ida: number) {
+    this.solicitudAlumnoService.getSolicitudAlumnoById(ida).subscribe((SA) => {
+      this.solicitudAlumno = SA;
+    });
+  }
+  private SolicitudAlumno(ida: number) {
     this.designacionTeService
       .getDesignacionTEByAlumnoId(ida)
       .subscribe((te) => {
@@ -127,22 +146,21 @@ export class GenararActaComponent implements OnInit {
 
     this.actaService.crear(this.acta).subscribe((acta) => {
       Swal.fire("Nueva Acta", `¡ Acta creada con exito!`, "success");
-      this.respuestaEmpresas();
+      this.irListarActas();
     });
   }
-  respuestaEmpresas() {
-    this.router.navigateByUrl("/dashboard/respuestas-empresas");
+  irListarActas() {
+    this.router.navigateByUrl("/dashboard/list-actas");
   }
 
   async exportPdf() {
-
     const dataBody = [];
     const data = await this.asistenciaStorage;
-    const doc = new jsPDF('p', 'pt', 'a4');
+    const doc = new jsPDF("p", "pt", "a4");
     doc.setFontSize(12);
-    doc.text('ANEXO 7: ACTA DE REUNION ', 220, 100);
-    doc.text('Fecha: '+this.acta.fecha_emision,40, 140);
-    doc.text('Asistentes: ', 40, 150);
+    doc.text("ANEXO 7: ACTA DE REUNION ", 220, 100);
+    doc.text("Fecha: " + this.acta.fecha_emision, 40, 140);
+    doc.text("Asistentes: ", 40, 150);
     //doc.text('-	Mgtr.'+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre, 40,180);
     // +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre
     // +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
@@ -166,6 +184,6 @@ export class GenararActaComponent implements OnInit {
       startY: 180,
       body: dataBody,
     });
-    doc.save('ANEXO7.pdf');
+    doc.save("ANEXO7.pdf");
   }
 }

@@ -1,38 +1,78 @@
-<mat-card class="mat-elevation-z8">
-    <div class="row">
-        <div class="col-md-10">
-            <mat-form-field>
-                <mat-label>Filtrar</mat-label>
-                <input matInput #inputFilter placeholder="Ex. Tec" #input>
-            </mat-form-field>
-        </div>
-        <div class="col-md-2">
-            <mat-form-field >
-                <mat-label>Estado de procesos</mat-label>
-                <mat-select  [ngStyle]="currentStatus.styleSelect" (selectionChange)="changeStatus(select.value)" #select [(value)]="selected">
-                    <mat-select-trigger [ngStyle]="currentStatus.styleSelect">
-                        {{currentStatus.name}}
-                    </mat-select-trigger>
-                    <mat-option>Ninguno</mat-option>
-                    <mat-option *ngFor="let estado of status" [ngStyle]="estado.style" [value]='estado'>
-                            <strong>{{estado.name}}</strong>
-                    </mat-option>
-                </mat-select>
-            </mat-form-field>
+<div class="row">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-body">
+                <h4 class="card-title text-center">Listado de Procesos PPP</h4>
+                <div class="table-scroll">
+                    <div class="dataTables_filter">
+                        <mat-form-field>
+                            <mat-label>Estado de procesos</mat-label>
+                            <mat-select [ngStyle]="currentStatus.styleSelect" (selectionChange)="changeStatus(select.value)" #select [(value)]="selected">
+                                <mat-select-trigger [ngStyle]="currentStatus.styleSelect">
+                                    {{currentStatus.name}}
+                                </mat-select-trigger>
+                                <mat-option>Todo</mat-option>
+                                <mat-option *ngFor="let estado of status" [ngStyle]="estado.style" [value]='estado'>
+                                    <strong>{{estado.name}}</strong>
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+                    <table class="
+                        table table-bordered
+                        justify-content-center
+                        table-responsive-sm table-sm
+                        dataTable
+                      ">
+                        <thead>
+                            <tr>
+                                <th>Codigo Proceso</th>
+                                <th>Carrera</th>
+                                <th># Estudiantes</th>
+                                <th>Empresa</th>
+                                <th>Responsable PPP</th>
+                                <th>Fecha Inicio</th>
+                                <th>Fecha Finalizacion</th>
+                                <th>Estado</th>
+                            </tr>
+                        </thead>
 
+                        <tbody class="animated fadeIn fast">
+                            <tr *ngFor="let convocatoria of convocatoria">
+                                <td>{{ convocatoria.id }}</td>
+                                <td>{{ convocatoria.carrera.nombre }}</td>
+                                <td>{{ convocatoria.solicitudEmpresa.numero_alumnos}}</td>
+                                <td>{{ convocatoria.solicitudEmpresa.empresa.nombre }}</td>
+                                <td>{{ convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo}}
+                                    {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}}
+                                    {{ convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}
+                                </td>
+                                <td>{{ convocatoria.fecha_emision}}</td>
+                                <td>{{ convocatoria.fecha_max_recib_solic}}</td>
+                                <td>
+                                    <div *ngFor="let estado of status">
+                                        <ng-template [ngIf]="convocatoria.estado === estado.estado">
+                                            <span class="m-2 rounded " [ngStyle]="estado.style">
+                                                <small class="fs-6 m-2">
+                                                    {{estado.name.toUpperCase()}}
+                                                </small>
+                                            </span>
+                                        </ng-template>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
         </div>
     </div>
-    <mat-card-content>
-        <div class="example-container">
-            <div class="example-table-container">
-            </div>
-            <mat-paginator #paginatorshowFirstLastButtons aria-label="Select page">
-            </mat-paginator>
-        </div>
-    </mat-card-content>
+</div>
+<mat-paginator [length]=" totalRegistros " [pageSize]="totalPorPagina" [pageSizeOptions]="pageSizeOptions" [pageIndex]="paginaActual" (page)="paginar($event)" showFirstLastButtons>
+</mat-paginator>
+<!--
 </mat-card>
 
-<!--
 <ng-container [ngSwitch]="select.value?.name">
     <div *ngFor="let estado of status">
         <span [ngStyle]="estado.style" *ngSwitchCase="estado.name">{{estado.name}}</span>

@@ -11,12 +11,12 @@ export class Alumno {
   promedio_aprobado: boolean;
   te: boolean;
   ta: boolean;
+  seg: boolean;
   persona: Persona;
   carrera: Carrera;
- 
-  constructor (){
-    this.persona=new Persona();
-    this.carrera=new Carrera();
- }
-}
 
+  constructor() {
+    this.persona = new Persona();
+    this.carrera = new Carrera();
+  }
+}

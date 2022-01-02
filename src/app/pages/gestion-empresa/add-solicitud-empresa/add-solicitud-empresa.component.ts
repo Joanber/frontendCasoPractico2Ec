@@ -1,5 +1,5 @@
-import { Component, OnInit } from '@angular/core';
 import { DatePipe, formatDate } from "@angular/common";
+import { Component, OnInit } from "@angular/core";
 import { NgForm } from "@angular/forms";
 import { ActivatedRoute, Router } from "@angular/router";
 import { Empresa } from "src/app/models/empresa.model";
@@ -11,13 +11,12 @@ import { SolicitudEmpresaService } from "src/app/services/services.models/solici
 import Swal from "sweetalert2";
 
 @Component({
-  selector: 'app-add-evaluacion-estudiante-empresa',
-  templateUrl: './add-evaluacion-estudiante-empresa.component.html',
-  styleUrls: ['./add-evaluacion-estudiante-empresa.component.css'],
+  selector: "app-add-solicitud-empresa",
+  templateUrl: "./add-solicitud-empresa.component.html",
+  styleUrls: ["./add-solicitud-empresa.component.css"],
   providers: [DatePipe],
 })
-export class AddEvaluacionEstudianteEmpresaComponent implements OnInit {
-
+export class AddSolicitudEmpresaComponent implements OnInit {
   public solicitudEmpresa = new SolicitudEmpresa();
   public responsablesPPP: ResponsablePPP[] = [];
   public empresas: Empresa[] = [];
