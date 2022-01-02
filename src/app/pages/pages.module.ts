@@ -85,6 +85,7 @@ import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-em
 import { NgModule } from "@angular/core";
 import { ListEvaluacionEstudianteEmpresaComponent } from './list-evaluacion-estudiante-empresa/list-evaluacion-estudiante-empresa.component';
 import { ListCertificadoEstudianteEmpresaComponent } from './list-certificado-estudiante-empresa/list-certificado-estudiante-empresa.component';
+import { DetalleconvocatoriasComponent } from './detalleconvocatorias/detalleconvocatorias.component';
 
 @NgModule({
   declarations: [
@@ -145,6 +146,7 @@ import { ListCertificadoEstudianteEmpresaComponent } from './list-certificado-es
     ListActaComponent,
     ListEvaluacionEstudianteEmpresaComponent,
     ListCertificadoEstudianteEmpresaComponent,
+    DetalleconvocatoriasComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

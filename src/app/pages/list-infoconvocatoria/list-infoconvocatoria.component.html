@@ -44,24 +44,19 @@
                 <p class="card-text">
                   Fecha Maxima:{{ convocatoria.fecha_max_recib_solic }}
                 </p>
-                <p class="card-text">
-                  Estudiantes requeridos:{{convocatoria.solicitudEmpresa.numero_alumnos}}
-                </p>
-                <p class="card-text">
-                  Responsable PPP:
-                                  {{convocatoria.solicitudEmpresa.responsablePPP.docente.abreviatura_titulo}}
-                                  {{convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido}}
-                                  {{convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre}}
-                </p>
-                
-              
-                  
-                  
-              
+
+                <div class="col-md-3 text-right">
+                  <button class="btn btn-primary btn-sm"(click)="Detalle(convocatoria.id)">
+                   Ver
+                  </button>
+
+
+
                   <br>
                   <br>
-        
+
                 </div>
+
               </div>
             </div>
             <!-- Card -->
