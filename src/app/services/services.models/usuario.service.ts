@@ -174,18 +174,18 @@ export class UsuarioService {
   getRoles(): Observable<Rol[]> {
     return this.http.get<Rol[]>(`${bd_url}/usuarios/roles`);
   }
-  // hasRole(rol: Rol) {
-  //   let roles = this.usuario.roles;
-  //   return roles.findIndex((a) => a === rol) > -1;
-  // }
-  // hasAnyRoles(roles: Rol[]): boolean {
-  //   for (let i = 0; i <= roles.length; i++) {
-  //     if (this.hasRole(roles[i])) {
-  //       return true;
-  //     }
-  //   }
-  //   return false;
-  // }
+  hasRole(rol: Rol) {
+    let roles = this.usuario.roles;
+    return roles.findIndex((a) => a === rol) > -1;
+  }
+  hasAnyRoles(roles: Rol[]): boolean {
+    for (let i = 0; i <= roles.length; i++) {
+      if (this.hasRole(roles[i])) {
+        return true;
+      }
+    }
+    return false;
+  }
   hasRoles(roles: Rol[]) {
     return this.usuario && roles.some(r => this.usuario.roles.includes(r));
   }

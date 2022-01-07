@@ -3,6 +3,7 @@ import { Injectable } from "@angular/core";
 import { Router } from "@angular/router";
 import { Observable, throwError } from "rxjs";
 import { catchError } from "rxjs/operators";
+import Swal from "sweetalert2";
 import { UsuarioService } from "../services/services.models/usuario.service";
 
 @Injectable()
@@ -22,14 +23,14 @@ export class AuthInterceptor implements HttpInterceptor {
           this.router.navigate(["/login"]);
         }
 
-        // if (e.status == 500) {
-        //   Swal.fire(
-        //     "Acceso denegado",
-        //     `Hola ${this.usuarioService.usuario.persona.primer_nombre} no tienes acceso a este recurso!`,
-        //     "warning"
-        //   );
-        //   this.router.navigate(["/dashboard"]);
-        // }
+        if (e.status == 500) {
+          Swal.fire(
+            "Acceso denegado",
+            `Hola ${this.usuarioService.usuario.persona.primer_nombre} no tienes acceso a este recurso!`,
+            "warning"
+          );
+          this.router.navigate(["/dashboard"]);
+        }
         return throwError(e);
       })
     );
