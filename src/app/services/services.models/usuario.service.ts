@@ -76,6 +76,7 @@ export class UsuarioService {
     this._usuario.username = response.username;
     this.usuario.id = response.id;
     this.usuario.persona = response.persona;
+    this.usuario.roles = response.roles;
     localStorage.setItem("usuario", JSON.stringify(this._usuario));
   }
 
@@ -173,16 +174,39 @@ export class UsuarioService {
   getRoles(): Observable<Rol[]> {
     return this.http.get<Rol[]>(`${bd_url}/usuarios/roles`);
   }
-  hasRole(rol: Rol) {
-    let roles = this.usuario.roles;
-    return roles.findIndex((a) => a === rol) > -1;
-  }
-  hasAnyRoles(roles: Rol[]): boolean {
-    for (let i = 0; i <= roles.length; i++) {
-      if (this.hasRole(roles[i])) {
-        return true;
-      }
-    }
-    return false;
+  // hasRole(rol: Rol) {
+  //   let roles = this.usuario.roles;
+  //   return roles.findIndex((a) => a === rol) > -1;
+  // }
+  // hasAnyRoles(roles: Rol[]): boolean {
+  //   for (let i = 0; i <= roles.length; i++) {
+  //     if (this.hasRole(roles[i])) {
+  //       return true;
+  //     }
+  //   }
+  //   return false;
+  // }
+  hasRoles(roles: Rol[]) {
+    return this.usuario && roles.some(r => this.usuario.roles.includes(r));
   }
 }
+
+export enum ROLES {
+  ROLE_ADMIN = 'ROLE_ADMIN',
+  ROLE_TACADEMICO = 'ROLE_TACADEMICO',
+  ROLE_VINCULACION = 'ROLE_VINCULACION',
+  ROLE_CARRERA = 'ROLE_CARRERA',
+  ROLE_EMPRESA = 'ROLE_EMPRESA',
+  ROLE_PPP = 'ROLE_PPP',
+  ROLE_ALUMNO= 'ROLE_ALUMNO',
+}
+export const MODULO_ROLES = {
+  MODULO_VINCULACION: [ROLES.ROLE_ADMIN, ROLES.ROLE_VINCULACION],
+  MODULO_CONVOCATORIAS: [ROLES.ROLE_ADMIN, ROLES.ROLE_ALUMNO],
+  MODULO_GESTION_CARRERAS: [ROLES.ROLE_ADMIN, ROLES.ROLE_CARRERA],
+  MODULO_GESTION_EMPRESA: [ROLES.ROLE_ADMIN, ROLES.ROLE_EMPRESA],
+  MODULO_GESTION_PPP: [ROLES.ROLE_ADMIN, ROLES.ROLE_PPP],
+  MODULO_GESTION_TUTOR_ACADEMICO: [ROLES.ROLE_ADMIN, ROLES.ROLE_TACADEMICO],
+  MODULO_GESTION_ALUMNOS: [ROLES.ROLE_ADMIN, ROLES.ROLE_ALUMNO],
+  MODULO_GESTION_PERSONAL: [ROLES.ROLE_ADMIN]
+};
