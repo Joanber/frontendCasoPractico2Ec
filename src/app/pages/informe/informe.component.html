@@ -1,276 +1,272 @@
 <form>
-    <div class="card-body">
-        <div class="card-titulo" style="text-align: center;">
-            ANEXO 13: INFORME DE CULMINACION DE PRACTICAS PREPROFESIONALES
-            <br>
-        </div>
-        <br>
-        <br>
-
-        <div class="card-encabezado">
-            <strong>Fecha: </strong> Cuenca, {{today | date:'dd'}} de {{today | date:'MMMM ':'-0500'}} del {{today |
-            date:'yyyy'}}
-        </div>
-        <div class="card-asistentes">
-
-            <strong>1. INFORMACION GENERAL</strong>
-            <br>A. DATOS GENERALES DE LA EMPRESA.
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre</th>
-                        <th scope="col">Ubicación (Ciudad y Direccion)</th>
-                        <th scope="col">Area o Departamento</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>B. DATOS DEL TUTOR EMPRESARIAL.
-            <br>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre Completo</th>
-                        <th scope="col">Cédula</th>
-                        <th scope="col">Cargo</th>
-                        <th scope="col">Telefono Empresa</th>
-                        <th scope="col">Correo Electrónico</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>C. DATOS DEL ESTUDIANTE.
-            <br>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre Completo</th>
-                        <th scope="col">Cédula de Identidad</th>
-                        <th scope="col">Ultimo Ciclo Aprobado</th>
-                        <th scope="col">Tiempo de Dedicación</th>
-                        <th scope="col">Correo Electrónico</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <br>D. DATOS DEL TUTOR ACADEMICO.
-            <br>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Nombre Completo</th>
-                        <th scope="col">Cédula</th>
-                        <th scope="col">Correo Electrónico</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-
-            <br>E. PERIODO DE DURACION DE LAS PRACTICAS PRE PROFESIONALES
-            <br>
-            <table class="table table-striped">
-                <thead>
-                    <tr>
-                        <th scope="col">Tiempo de Duración (Horas)</th>
-                        <th scope="col">Fecha de Inicio (dd/mm/aaaa)</th>
-                        <th scope="col">Fecha de Finalización</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        <th scope="row">
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </th>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                        <td>
-                            <select class="form-control" style="width: auto;" name="empresa">
-                                <option [ngValue]="undefined"> Seleccione la empresa </option>
-                                <option *ngFor="let empresa of empresas">{{empresa.nombre}}</option>
-                            </select>
-                        </td>
-                    </tr>
-                </tbody>
-            </table>
-            <strong>
-                <br>2. DESCRIPCION DE LA EMPRESA</strong>
-                <br>
-            <strong>Actividad Principal</strong>
-            <br>
-            <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
-
-            <strong>Principios</strong>
-            <br>
-            <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
-
-            <strong>Mision</strong>
-            <br>
-            <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
-
-            <strong>Vision</strong>
-            <br>
-            <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
-                <br>
-            <strong>3. DESCRIPCION DETALLADA DE ACTIVIDADES REALIZADAS</strong>
-            
-            <div class="card-text">
-                <br>
-                <textarea name="varios" style="width: 100%; height:150px;"> </textarea>
-
-                <div class="card-pie" style="text-align: center;">
-                    <br>
-                    <br>
-                    <br>
-                    <div class="row">
-                        <div class="col-sm-6">
-                            <div class="card">
-                                <div class="card-body">
-                                    Mgtr.
-                                    <select class="form-control" style="width: auto;"
-                                        name="Responsable de pr�cticas pre profesionales">
-                                        <option [ngValue]="undefined">Seleccione el responsable de pr�cticas pre
-                                            profesionales</option>
-                                        <option *ngFor="let docente of docentes">
-                                            
-                                        </option>
-                                    </select> <br> Responsable de pr�cticas pre profesionales<br> de la carrera
-
-                                    <select class="form-control" style="width: auto;" name="CombocatoriaCarrera">
-                                        <option [ngValue]="undefined"> Seleccione la carrera </option>
-                                        <option *ngFor="let carrera of carreras">{{carrera.nombre}}</option>
-                                    </select>
-                                    <br> Instituto Superior Tecnol�gico del Azuay <br>
-
-                                    
-            
-                                </div>
-                            </div>
-                        </div>
-                        
-                    </div>
-                </div>
-
-            </div>
-        </div>
+  <div class="card-body">
+    <div class="card-titulo" style="text-align: center">
+      ANEXO 13: INFORME DE CULMINACION DE PRACTICAS PREPROFESIONALES
+      <br />
     </div>
-</form>
-<div class="card-botones" style="text-align: right;">
+    <br />
+    <br />
 
-    <button type="button" class="btn btn-primary">Guardar </button>
-    <button type="button" class="btn btn-success">Generar PDF</button>
+    <div class="card-encabezado">
+      <strong>Fecha: </strong> Cuenca, {{ today | date: "dd" }} de
+      {{ today | date: "MMMM ":"-0500" }} del {{ today | date: "yyyy" }}
+    </div>
+    <div class="card-asistentes">
+      <strong>1. INFORMACION GENERAL</strong>
+      <br />A. DATOS GENERALES DE LA EMPRESA.
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre</th>
+            <th scope="col">Ubicación (Ciudad y Direccion)</th>
+            <th scope="col">Area o Departamento</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </th>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />B. DATOS DEL TUTOR EMPRESARIAL.
+      <br />
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Cargo</th>
+            <th scope="col">Telefono Empresa</th>
+            <th scope="col">Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </th>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />C. DATOS DEL ESTUDIANTE.
+      <br />
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Cédula de Identidad</th>
+            <th scope="col">Ultimo Ciclo Aprobado</th>
+            <th scope="col">Tiempo de Dedicación</th>
+            <th scope="col">Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </th>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la empresa</option>
+                <option></option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <br />D. DATOS DEL TUTOR ACADEMICO.
+      <br />
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Nombre Completo</th>
+            <th scope="col">Cédula</th>
+            <th scope="col">Correo Electrónico</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la em</option>
+              </select>
+            </th>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la em</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la em</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+
+      <br />E. PERIODO DE DURACION DE LAS PRACTICAS PRE PROFESIONALES
+      <br />
+      <table class="table table-striped">
+        <thead>
+          <tr>
+            <th scope="col">Tiempo de Duración (Horas)</th>
+            <th scope="col">Fecha de Inicio (dd/mm/aaaa)</th>
+            <th scope="col">Fecha de Finalización</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <th scope="row">
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la em</option>
+              </select>
+            </th>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la em</option>
+              </select>
+            </td>
+            <td>
+              <select class="form-control" style="width: auto" name="empresa">
+                <option [ngValue]="undefined">Seleccione la em</option>
+              </select>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+      <strong> <br />2. DESCRIPCION DE LA EMPRESA</strong>
+      <br />
+      <strong>Actividad Principal</strong>
+      <br />
+      <textarea name="varios" style="width: 100%; height: 150px"> </textarea>
+
+      <strong>Principios</strong>
+      <br />
+      <textarea name="varios" style="width: 100%; height: 150px"> </textarea>
+
+      <strong>Mision</strong>
+      <br />
+      <textarea name="varios" style="width: 100%; height: 150px"> </textarea>
+
+      <strong>Vision</strong>
+      <br />
+      <textarea name="varios" style="width: 100%; height: 150px"> </textarea>
+      <br />
+      <strong>3. DESCRIPCION DETALLADA DE ACTIVIDADES REALIZADAS</strong>
+
+      <div class="card-text">
+        <br />
+        <textarea name="varios" style="width: 100%; height: 150px"> </textarea>
+
+        <div class="card-pie" style="text-align: center">
+          <br />
+          <br />
+          <br />
+          <div class="row">
+            <div class="col-sm-6">
+              <div class="card">
+                <div class="card-body">
+                  Mgtr.
+                  <select
+                    class="form-control"
+                    style="width: auto"
+                    name="Responsable de pr�cticas pre profesionales"
+                  >
+                    <option [ngValue]="undefined">
+                      Seleccione el responsable de pr�cticas pre profesionales
+                    </option>
+                    <option></option>
+                  </select>
+                  <br />
+                  Responsable de pr�cticas pre profesionales<br />
+                  de la carrera
+
+                  <select
+                    class="form-control"
+                    style="width: auto"
+                    name="CombocatoriaCarrera"
+                  >
+                    <option [ngValue]="undefined">Seleccione la carrera</option>
+                    <option></option>
+                  </select>
+                  <br />
+                  Instituto Superior Tecnol�gico del Azuay <br />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+<div class="card-botones" style="text-align: right">
+  <button type="button" class="btn btn-primary">Guardar</button>
+  <button type="button" class="btn btn-success">Generar PDF</button>
 </div>

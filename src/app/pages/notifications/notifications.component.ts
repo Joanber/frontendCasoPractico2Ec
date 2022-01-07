@@ -9,9 +9,9 @@ import { Subscription } from "rxjs";
   styleUrls: ["./notifications.component.css"],
 })
 export class NotificationsComponent implements OnInit {
-  private routeSub: Subscription;
-  private routeParam: string;
-  private notifications = [];
+  public routeSub: Subscription;
+  public routeParam: string;
+  public notifications = [];
 
   constructor(private route: ActivatedRoute) {}
 

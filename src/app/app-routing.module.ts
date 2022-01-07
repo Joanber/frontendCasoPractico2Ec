@@ -6,8 +6,6 @@ import { NotpagefoundComponent } from "./notpagefound/notpagefound.component";
 import { PagesRoutingModule } from "./pages/pages.routing";
 import { SolicitudComponent } from "./pages/solicitud/solicitud.component";
 
-
-
 const routes: Routes = [
   { path: "", redirectTo: "/dashboard", pathMatch: "full" },
   {
@@ -18,7 +16,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [
-    RouterModule.forRoot(routes),
+    RouterModule.forRoot(routes, { useHash: true }),
     PagesRoutingModule,
     AuthRoutingModule,
   ],

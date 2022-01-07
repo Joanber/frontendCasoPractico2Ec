@@ -13,7 +13,7 @@ import { getNotificationsOfUser } from "./../../utils/api";
 export class HeaderComponent implements OnInit {
   public bd_url = bd_url + "/personas";
   constructor(public usuarioService: UsuarioService, private router: Router) {}
-  private notifications = [];
+  public notifications = [];
 
   ngOnInit() {
     this.setAllNotifications();

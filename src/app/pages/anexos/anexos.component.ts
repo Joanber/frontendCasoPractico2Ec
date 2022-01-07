@@ -8,9 +8,9 @@ import { Subscription } from "rxjs";
   styleUrls: ["./anexos.component.css"],
 })
 export class AnexosComponent implements OnInit {
-  private routeSub: Subscription;
-  private routeParam: string;
-  private students = [
+  public routeSub: Subscription;
+  public routeParam: string;
+  public students = [
     {
       id: "0104640974",
       names: "Michael Anthony",

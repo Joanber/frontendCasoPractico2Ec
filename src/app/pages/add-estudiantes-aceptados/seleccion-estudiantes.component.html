@@ -2,7 +2,7 @@
   <div class="col-12">
     <div class="card">
       <div class="card-body">
-        <form #MyForm="ngForm" (submit)="guardarConvocatoria()">
+        <form #MyForm="ngForm" (submit)="guardarConvocatoria(MyForm)">
           <div class="form-body">
             <div class="card-body">
               <div class="card-titulo" style="text-align: center">
@@ -43,7 +43,6 @@
                   <option value="4">4</option>
                   <option value="5">5</option>
                   <option value="6">6</option>
-
                 </select>
                 <div
                   class="text-danger"

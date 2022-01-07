@@ -1,67 +1,57 @@
-<div class="row" *ngIf="!cargando">
-    <div class="col-12">
-      <div class="card">
-        <div class="card-body">
-          <h4 class="card-title text-center">
-            REGISTRO DE ASISTENCIA Y ACTIVIDADES PRÁCTICAS PRE PROFESIONALES
-          </h4>
-          <br>Estudiante:
-          <br>Empresa:
-          <br>Tutor Empresarial:
-          <div class="table-responsive">
-            <div id="example23_wrapper" class="dataTables_wrapper">
-              
-             
-              <div class="table-scroll">
-                <table class="
-                    table table-bordered
-                    justify-content-center
-                    table-responsive-sm table-sm
-                    dataTable
-                  ">
-                  <thead>
-                    <tr>
-                      <th>Nª </th>
-                      <th>Fecha </th>
-                      <th>Hora de Llegada</th>
-                      <th>Hora de Salida</th>
-                      <th>Actividades Realizadas</th>
-                      <th>Firma (Tutor Empresarial)</th>
-                      <th>Nª de Horas</th>
-                      <th class="text-nowrap">Accion</th>
-                    </tr>
-                  </thead>
-  
-                  <tbody class="animated fadeIn fast">
-                    <tr *ngFor="let solicitudEmpresa of solicitudesEmpresas">
-                      <td>1 </td>
-                      <td>
-                        8
-                      </td>
-                      <td>
-                        
-                      </td>
-                      <td class="text-nowrap text-center">
-                        <a [routerLink]="[
-                            '/dashboard',
-                            'nueva-convocatoria',
-                            solicitudEmpresa.id
-                          ]" data-toggle="tooltip" data-original-title="Crear Convocatoria" class="cursor"
-                          title="Generar Registro">
-                          <i class="mdi mdi-book-open m-r-10"></i>
-                        </a>
-  
-  
-  
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-              </div>
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-center">
+          REGISTRO DE ASISTENCIA Y ACTIVIDADES PRÁCTICAS PRE PROFESIONALES
+        </h4>
+        <br />Estudiante: <br />Empresa: <br />Tutor Empresarial:
+        <div class="table-responsive">
+          <div id="example23_wrapper" class="dataTables_wrapper">
+            <div class="table-scroll">
+              <table
+                class="
+                  table table-bordered
+                  justify-content-center
+                  table-responsive-sm table-sm
+                  dataTable
+                "
+              >
+                <thead>
+                  <tr>
+                    <th>Nª</th>
+                    <th>Fecha</th>
+                    <th>Hora de Llegada</th>
+                    <th>Hora de Salida</th>
+                    <th>Actividades Realizadas</th>
+                    <th>Firma (Tutor Empresarial)</th>
+                    <th>Nª de Horas</th>
+                    <th class="text-nowrap">Accion</th>
+                  </tr>
+                </thead>
+
+                <tbody class="animated fadeIn fast">
+                  <tr>
+                    <td>1</td>
+                    <td>8</td>
+                    <td></td>
+                    <td class="text-nowrap text-center">
+                      <a
+                        data-toggle="tooltip"
+                        data-original-title="Crear Convocatoria"
+                        class="cursor"
+                        title="Generar Registro"
+                      >
+                        <i class="mdi mdi-book-open m-r-10"></i>
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-  
+</div>

@@ -39,7 +39,7 @@ export class GenararActaComponent implements OnInit {
   public alumno = new Alumno();
   public acta = new ActaDR();
   public formSubmitted = false;
-  private newAttribute: any = {};
+  public newAttribute: any = {};
   public identificacion: string = "";
   public nombres: string = "";
 
@@ -83,7 +83,6 @@ export class GenararActaComponent implements OnInit {
     this.activatedRoute.params.subscribe(({ ida }) =>
       this.SolicitudAlumno(ida)
     );
-
   }
   addFieldValue() {
     this.actividadesActa.push(this.newAttribute);

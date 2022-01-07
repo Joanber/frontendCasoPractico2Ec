@@ -87,6 +87,9 @@ import { ValidatorPasswordDirective } from "./personal/validator-password.direct
 import { ListEvaluacionEstudianteEmpresaComponent } from "./list-evaluacion-estudiante-empresa/list-evaluacion-estudiante-empresa.component";
 import { ListCertificadoEstudianteEmpresaComponent } from "./list-certificado-estudiante-empresa/list-certificado-estudiante-empresa.component";
 import { DetalleconvocatoriasComponent } from "./detalleconvocatorias/detalleconvocatorias.component";
+import { AddEmpresaPersonalComponent } from "./add-empresa-personal/add-empresa-personal.component";
+import { LisEmpresaPersonalComponent } from "./lis-empresa-personal/lis-empresa-personal.component";
+import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 
 @NgModule({
   declarations: [
@@ -149,6 +152,10 @@ import { DetalleconvocatoriasComponent } from "./detalleconvocatorias/detallecon
     ListEvaluacionEstudianteEmpresaComponent,
     ListCertificadoEstudianteEmpresaComponent,
     DetalleconvocatoriasComponent,
+    AddEmpresaPersonalComponent,
+    ListEmpresaComponent,
+    LisEmpresaPersonalComponent,
+    SeleccionEstudiantesComponent,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [
