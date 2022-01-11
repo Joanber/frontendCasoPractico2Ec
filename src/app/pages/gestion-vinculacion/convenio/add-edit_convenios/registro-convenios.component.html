@@ -8,18 +8,28 @@
         <form [formGroup]="firstFormGroup" class="mt-3">
             <ng-template matStepLabel>Datos Generales</ng-template>
             <div class="row">
-                <mat-form-field class="col-md-4 ">
+                <mat-form-field class="col-md-2">
                     <input matInput type="text" #numInforme placeholder="No. de Informe" formControlName="numInforme" required maxlength="5">
                     <mat-hint align="start">
-                        <strong>{{nombreInformePrefix}}-{{firstStepFormGroup.numInforme.value}}-{{fechaInformeSubfix}}</strong>
+                        <strong>{{nombreInformePrefix}}-{{formDatosGenerales.numInforme.value}}-{{fechaInformeSubfix}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{numInforme.value.length}} / 5</mat-hint>
                 </mat-form-field>
-                <mat-form-field class="col-md-4 ">
-                    <input matInput type="text" #nombreIST placeholder="Nombre del IST" formControlName="nombreIST" required maxlength="50">
-                    <mat-hint align="end">{{nombreIST.value.length}} / 50</mat-hint>
+                <mat-form-field class="col-md-4">
+                    <input matInput type="text" #nombreIST placeholder="Nombre del IST" formControlName="nombreIST" required maxlength="40">
+                    <mat-hint align="end">{{nombreIST.value.length}} / 40</mat-hint>
                 </mat-form-field>
-                <mat-form-field class="col-md-4 ">
+                <mat-form-field class="col-md-4">
+                    <mat-label>Carrera</mat-label>
+                    <mat-select #carrera disableRipple (selectionChange)="setCordinadorCarrera(carrera.value?.docente.persona)" [errorStateMatcher]="matcher" formControlName="carrera" required>
+                        <mat-option *ngFor="let carrera of carreras$ | async" [value]="carrera">
+                            {{carrera.nombre}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formDatosGenerales.carrera.errors?.required">Por favor escoge una carrera</mat-error>
+                    <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
+                </mat-form-field>
+                <mat-form-field class="col-md-2 ">
                     <mat-label>Fecha</mat-label>
                     <input matInput [matDatepicker]="picker2" [max]="today" formControlName="fecha">
                     <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
@@ -37,21 +47,27 @@
             <div class="row">
                 <mat-form-field class="col-md-6 ">
                     <mat-label>Empresa</mat-label>
-                    <mat-select #emp disableRipple formControlName="empresa" required [errorStateMatcher]="matcher">
+                    <mat-select (selectionChange)="setTutorEmpresarial(emp.value?.empresaPersonal.persona)" #emp disableRipple formControlName="empresa" required [errorStateMatcher]="matcher">
                         <mat-option *ngFor="let empresa of empresas$ | async" [value]="empresa">
                             {{empresa.nombre}}
                         </mat-option>
                     </mat-select>
                     <mat-hint *ngIf="emp.value?.ruc">RUC: {{emp.value?.ruc}}</mat-hint>
+                    <mat-hint align='end' *ngIf="emp.value?.telefono">
+                        Número de Contacto: {{emp.value?.telefono}}
+                    </mat-hint>
                     <mat-error *ngIf="formEmpresa.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
                 </mat-form-field>
                 <mat-form-field class="col-md-6">
                     <input matInput type="text" #personaAutorizada placeholder="Persona autorizada" formControlName="personaAutorizada" required maxlength="60">
-                    <mat-hint>
+                    <mat-hint align="start">
                         <strong>Legalidad para la suscripción.</strong>
                     </mat-hint>
+                    <mat-hint align="end">{{personaAutorizada.value.length}} / 60</mat-hint>
+                    <mat-error *ngIf="formEmpresa.personaAutorizada.errors?.required">Ingrese persona autorizada</mat-error>
+                    <mat-error *ngIf="formEmpresa.personaAutorizada.errors?.pattern">Ingrese solo valores alfabéticos</mat-error>
                 </mat-form-field>
-                <div class="col-md-6 mt-2">
+                <div class="col-md-6 mt-3">
                     <label id="example-radio-group-label">Naturaleza de gestión de la Entidad Receptora</label>
                     <mat-radio-group required class="example-radio-group" aria-labelledby="example-radio-group-label" formControlName="naturaleza">
                         <mat-radio-button required *ngFor="let naturaleza of naturalezaEmpresa" class="example-radio-button" [value]="naturaleza">
@@ -59,7 +75,7 @@
                         </mat-radio-button>
                     </mat-radio-group>
                 </div>
-                <mat-card>
+                <mat-card class="mb-3">
                     <mat-card-title>
                         Actividad económica que consta en el RUC
                     </mat-card-title>
@@ -84,9 +100,126 @@
                             Añadir actividad</button>
                     </mat-card-content>
                 </mat-card>
+
+                <mat-form-field class="col-md-3">
+                    <div matPrefix>Plazo de vigencia del convenio:&ensp;</div>
+                    <strong>
+                        <input matInput type="text" #vigencia formControlName="vigencia" required maxlength="1">
+                    </strong>
+                    <span matSuffix>año(s)</span>
+                    <mat-error *ngIf="formEmpresa.vigencia.errors?.required">Ingrese plazo de vigencia</mat-error>
+                    <mat-error *ngIf="formEmpresa.vigencia.errors?.pattern">Ingrese solo valores numérico</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6">
+                    <div matPrefix>N° de estudiantes que recibiría inicialmente la Entidad Receptora:&ensp;</div>
+                    <strong>
+                        <input matInput type="text" #estudiantesIniciales formControlName="estudiantesIniciales" required maxlength="4">
+                    </strong>
+                    <span matSuffix>estudiante(s)</span>
+                    <mat-error *ngIf="formEmpresa.estudiantesIniciales.errors?.required">Ingrese un número de estudiantes</mat-error>
+                    <mat-error *ngIf="formEmpresa.estudiantesIniciales.errors?.pattern">Ingrese solo valores numérico</mat-error>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-9">
+                    <div matPrefix>Total de estudiantes proyectados que recibirá la Entidad Receptora durante la vigencia del convenio:&ensp;</div>
+                    <strong>
+                        <input matInput type="text" #estudiantesTotales formControlName="estudiantesTotales" required maxlength="4">
+                    </strong>
+                    <span matSuffix>estudiante(s)</span>
+                    <mat-error *ngIf="formEmpresa.estudiantesTotales.errors?.required">Ingrese total de estudiantes</mat-error>
+                    <mat-error *ngIf="formEmpresa.estudiantesTotales.errors?.pattern">Ingrese solo valores numérico</mat-error>
+                </mat-form-field>
+                <mat-divider class="mt-3"></mat-divider>
+
+                <h3 class="mt-3">Datos tutor académico y empresarial</h3>
+                <mat-form-field class="col-md-6 ">
+                    <mat-label>Tutor Académico</mat-label>
+                    <mat-select #tutorAcademico disableRipple formControlName="tutorAcademico" required [errorStateMatcher]="matcher">
+                        <mat-option *ngFor="let docente of docentes$ | async" [value]="docente">
+                            {{docente.persona.primer_nombre}}
+                            {{docente.persona.segundo_nombre}}
+                            {{docente.persona.primer_apellido}}
+                            {{docente.persona.segundo_apellido}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-hint align='end' *ngIf="tutorAcademico.value?.persona.celular"> <strong>
+                            Número de Contacto: {{tutorAcademico.value?.persona.celular}}
+                        </strong>
+                    </mat-hint>
+                    <mat-error *ngIf="formEmpresa.tutorAcademico.errors?.required">Porfavor escoge un tutor académico</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <mat-label>Tutor Empresarial</mat-label>
+                    <input matInput formControlName="tutorEmpresarial" #tutorEmpresarial [readonly]="true" required>
+                    <mat-hint align='end' *ngIf="emp.value?.empresaPersonal.persona.celular">
+                        <strong>
+                            Número de Contacto: {{emp.value?.empresaPersonal.persona.celular}}
+                        </strong>
+                    </mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <mat-label>Correo electrónico de la empresa</mat-label>
+                    <input type="email" matInput formControlName="correoEmpresa" #correoEmpresa placeholder="Ex. miempresa@example.com">
+
+                    <mat-error *ngIf="formEmpresa.correoEmpresa.errors?.email && !formEmpresa.correoEmpresa.errors?.required">
+                        Por favor ingrese un email válido
+                    </mat-error>
+                    <mat-error *ngIf="formEmpresa.correoEmpresa.errors?.required">
+                        Correo de empresa <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-divider></mat-divider>
+                <!-- Direcciones -->
+                <h3 class="mt-3">Dirección Matriz</h3>
+                <mat-form-field class="col-md-3">
+                    <mat-label>Provincia</mat-label>
+                    <mat-select #provinciaMatriz disableRipple (selectionChange)="changeProvincia(provinciaMatriz.value,'matriz')" [errorStateMatcher]="matcher" formControlName="provinciaMatriz" required>
+                        <mat-option *ngFor="let provinciaMatriz of provincias" [value]="provinciaMatriz.provincia">
+                            {{provinciaMatriz.provincia}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formEmpresa.provinciaMatriz.errors?.required">Por favor escoga una Provincia</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3">
+                    <mat-label>Canton</mat-label>
+                    <mat-select #cantonMatriz disableRipple [errorStateMatcher]="matcher" formControlName="cantonMatriz" required>
+                        <mat-option *ngFor="let canton of cantones" [value]="canton.canton">
+                            {{canton.canton}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formEmpresa.cantonMatriz.errors?.required">Por favor escoga un canton</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #direccionMatriz placeholder="Dirección" formControlName="direccionMatriz" required>
+                    <mat-error *ngIf="formEmpresa.direccionMatriz.errors?.required">Ingrese una direccion</mat-error>
+                </mat-form-field>
+                <h3 class="mt-3">Dirección Sucursal</h3>
+                <mat-form-field class="col-md-3">
+                    <mat-label>Provincia</mat-label>
+                    <mat-select #provinciaSucursal disableRipple (selectionChange)="changeProvincia(provinciaSucursal.value)" [errorStateMatcher]="matcher" formControlName="provinciaSucursal" required>
+                        <mat-option *ngFor="let provinciaSucursal of provincias" [value]="provinciaSucursal.provincia">
+                            {{provinciaSucursal.provincia}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formEmpresa.provinciaSucursal.errors?.required">Por favor escoga una Provincia</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3">
+                    <mat-label>Canton</mat-label>
+                    <mat-select #cantonSucursal disableRipple formControlName="cantonSucursal" [errorStateMatcher]="matcher" required>
+                        <mat-option *ngFor="let canton of cantonesSucursal" [value]="canton.canton">
+                            {{canton.canton}}
+                        </mat-option>
+                    </mat-select>
+                    <mat-error *ngIf="formEmpresa.cantonSucursal.errors?.required">Por favor escoga un canton</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #direccionSucursal placeholder="Dirección" formControlName="direccionSucursal" required>
+                    <mat-error *ngIf="formEmpresa.direccionSucursal.errors?.required">Ingrese una direccion</mat-error>
+                </mat-form-field>
                 <!--  Criterios Generales  -->
                 <mat-accordion class="mt-3 p-0">
-                    <mat-expansion-panel (opened)="openCriteriosGenerales()">
+                    <mat-expansion-panel [disabled]='!secondFormGroup.valid ||!firstFormGroup.valid ' (opened)="openCriteriosGenerales()">
                         <mat-expansion-panel-header>
                             <mat-panel-title>
                                 <h3 style="margin-bottom: 0px;">
@@ -125,12 +258,47 @@
                         </div>
                     </mat-expansion-panel>
                 </mat-accordion>
-                <div class="mt-3">
-                    <h3>Administradores del convenio: Incluir únicamente el cargo de los administradores
-                    Por el Instituto:</h3>
-                </div>
+                <!-- Administradores del convenio -->
+                <mat-divider class="mt-3 mb-3"></mat-divider>
+                <h3>Administradores del convenio (Incluir únicamente el cargo de los administradores)</h3>
+                <mat-error class="mb-3 text-center">Nota: Los administradores y/o delegados del convenio no podrán ser los mismos suscribientes</mat-error>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #cargoIST formControlName="cargoIST" [readonly]="true" placeholder="Por el Instituto" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #cargoER formControlName="cargoER" placeholder="Por la Entidad Receptora" required>
+                </mat-form-field>
+
+                <!-- Criterios Académicos -->
+                <mat-divider class="mt-3 mb-3"></mat-divider>
+                <h3>Criterios Académicos</h3>
+                <mat-form-field>
+                    <mat-label>Justificación</mat-label>
+                    <textarea cdkTextareaAutosize placeholder="Explique la pertinencia de la suscripción del Convenio" class="text-justify" matInput #justificacion formControlName='justificacion' required></textarea>
+                    <mat-hint *ngIf="formEmpresa.justificacion.value">Explique la pertinencia de la suscripción del Convenio</mat-hint>
+                    <mat-error *ngIf="formEmpresa.justificacion.errors?.required">Se requiere la pertinencia de la suscripción del Convenio</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #documento formControlName="documento" placeholder="Documento de creación del IST" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #rector formControlName="rector" maxlength="60" placeholder="Nombre del Rector/a del IST" required>
+                    <mat-hint align="end">{{rector.value.length}} / 60</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #accion formControlName="accion" maxlength="80" placeholder="No. De acción de personal del Rector/a del IST" required>
+                    <mat-hint align="end">{{accion.value.length}} / 80</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" [readonly]="true" value={{firstFormGroup.value?.carrera?.nombre}} placeholder="Nombre de la/s carrera/s" required>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" maxlength="30" required>
+                    <span matPrefix>{{firstFormGroup.value?.carrera?.nombre}}:&ensp;</span>
+                    <mat-hint>No. Resolución de aprobación, de cada carrera</mat-hint>
+                </mat-form-field>
             </div>
-            <!-- <pre class="mt-3">{{secondFormGroup.value | json}}</pre> -->
             <div class="mt-3">
                 <button mat-stroked-button matStepperPrevious color="accent">Regresar</button>
                 <button mat-stroked-button matStepperNext color="primary">Siguiente</button>
@@ -146,6 +314,8 @@
         </div>
     </mat-step>
 </mat-vertical-stepper>
+<pre class="mt-3">{{firstFormGroup.value | json}}</pre>
+<pre class="mt-3">{{secondFormGroup.value | json}}</pre>
 <!-- convenio v1 -->
 <mat-card class="mt-3">
     <mat-card-content>
@@ -173,7 +343,6 @@
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="formValues.carrera.errors?.required">Por favor escoge una carrera</mat-error>
-                        <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
                     </mat-form-field>
                     <mat-form-field class="col-md-6">
                         <mat-label>Empresa</mat-label>
@@ -183,7 +352,6 @@
                             </mat-option>
                         </mat-select>
                         <mat-error *ngIf="formValues.empresa.errors?.required">Porfavor escoge una empresa</mat-error>
-                        <!-- <mat-hint>{{formValues.empresa.value?.id}}</mat-hint> -->
                     </mat-form-field>
                 </div>
             </div>
