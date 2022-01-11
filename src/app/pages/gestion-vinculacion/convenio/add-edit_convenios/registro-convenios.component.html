@@ -264,9 +264,6 @@
                 <mat-error class="mb-3 text-center">Nota: Los administradores y/o delegados del convenio no podrán ser los mismos suscribientes</mat-error>
                 <mat-form-field class="col-md-6">
                     <input matInput type="text" #cargoIST formControlName="cargoIST" [readonly]="true" placeholder="Por el Instituto" required>
-                    <mat-hint>
-                        Coordinador(a) de la carrera de {{firstFormGroup.value?.carrera?.nombre}}
-                    </mat-hint>
                 </mat-form-field>
                 <mat-form-field class="col-md-6">
                     <input matInput type="text" #cargoER formControlName="cargoER" placeholder="Por la Entidad Receptora" required>
@@ -279,7 +276,27 @@
                     <mat-label>Justificación</mat-label>
                     <textarea cdkTextareaAutosize placeholder="Explique la pertinencia de la suscripción del Convenio" class="text-justify" matInput #justificacion formControlName='justificacion' required></textarea>
                     <mat-hint *ngIf="formEmpresa.justificacion.value">Explique la pertinencia de la suscripción del Convenio</mat-hint>
-                    <mat-error *ngIf="formEmpresa.justificacion.errors?.required">Explique la pertinencia de la suscripción del Convenio</mat-error>
+                    <mat-error *ngIf="formEmpresa.justificacion.errors?.required">Se requiere la pertinencia de la suscripción del Convenio</mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #documento formControlName="documento" placeholder="Documento de creación del IST" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #rector formControlName="rector" maxlength="60" placeholder="Nombre del Rector/a del IST" required>
+                    <mat-hint align="end">{{rector.value.length}} / 60</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #accion formControlName="accion" maxlength="80" placeholder="No. De acción de personal del Rector/a del IST" required>
+                    <mat-hint align="end">{{accion.value.length}} / 80</mat-hint>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" [readonly]="true" value={{firstFormGroup.value?.carrera?.nombre}} placeholder="Nombre de la/s carrera/s" required>
+                </mat-form-field>
+
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" maxlength="30" required>
+                    <span matPrefix>{{firstFormGroup.value?.carrera?.nombre}}:&ensp;</span>
+                    <mat-hint>No. Resolución de aprobación, de cada carrera</mat-hint>
                 </mat-form-field>
             </div>
             <div class="mt-3">

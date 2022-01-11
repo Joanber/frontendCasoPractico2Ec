@@ -246,6 +246,9 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       cargoER: ['', Validators.required],
       cargoIST: ['', Validators.required],
       justificacion: ['', Validators.required],
+      documento: ['Acuerdo 2996 MINISTERIO DE EDUCACIÓN', Validators.required],
+      rector: ['Mgtr. Marcelo Aguilera Crespo', Validators.required],
+      accion: ['Mgtr. Marcelo Aguilera Crespo', Validators.required],
     });
   }
 
@@ -255,10 +258,9 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     + persona.primer_apellido + ' ' + persona.segundo_apellido);
   }
 
-  setCordinadorCarrera(persona: any) {
+  setCordinadorCarrera() {
     this.formEmpresa.cargoIST.markAsTouched();
-    this.formEmpresa.cargoIST.patchValue(persona.primer_nombre + ' ' + persona.segundo_nombre + ' '
-    + persona.primer_apellido + ' ' + persona.segundo_apellido);
+    this.secondFormGroup.patchValue({ cargoIST: `Coordinador(a) de la carrera de ${ this.firstFormGroup.value.carrera.nombre}`, });
   }
 
   initItemRows() {
