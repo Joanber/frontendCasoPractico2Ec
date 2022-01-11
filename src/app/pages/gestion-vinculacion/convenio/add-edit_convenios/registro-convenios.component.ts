@@ -302,13 +302,14 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
 
     this.changeProvincia(convenio.provinciaMatriz, 'matriz');
     this.changeProvincia(convenio.provinciaSucursal, '');
-
-    convenio.actividadEconomica.forEach((data, index) => {
-      this.formArr.push(this.initItemRows());
-      this.secondFormGroup.markAllAsTouched();
-      this.formArr.controls[index].setValue(data);
-      this.deleteRow(index+1);
-    });
+    if (convenio.actividadEconomica !== null) {
+      convenio.actividadEconomica.forEach((data, index) => {
+        this.formArr.push(this.initItemRows());
+        this.secondFormGroup.markAllAsTouched();
+        this.formArr.controls[index].setValue(data);
+        this.deleteRow(index+1);
+      });
+   }
 
     this.secondFormGroup.patchValue({
       estudiantesIniciales: convenio.estudiantesIniciales,
