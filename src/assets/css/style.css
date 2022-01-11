@@ -46,8 +46,6 @@ File: scss
  *  8. Custom Templates
  */
 
-
-
 @import url("https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700");
 /*******************
 Global Styles
@@ -68,7 +66,6 @@ Global Styles
 /*
 Material custom themes and colors
 */
-
 
 /* end material custom themes an */
 
@@ -105,7 +102,7 @@ Material custom themes and colors
 
 body {
   background: #fff;
- font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   margin: 0;
   overflow-x: hidden;
   color: #67757c;
@@ -158,7 +155,7 @@ h4,
 h5,
 h6 {
   color: #455a64;
- font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-weight: 400;
 }
 
@@ -1053,7 +1050,7 @@ sidebar navigation
 }
 .sidebar-nav ul li a.active {
   font-weight: 500;
-  color: #F4F6F9;
+  color: #f4f6f9;
 }
 .sidebar-nav ul li ul {
   padding-left: 28px;
@@ -1068,25 +1065,25 @@ sidebar navigation
   font-size: 12px;
   margin-bottom: 0px;
   padding: 14px 14px 14px 20px;
-  color: #F4F6F9;
+  color: #f4f6f9;
   font-weight: 500;
 }
 .sidebar-nav ul li.nav-devider {
   height: 1px;
   background: rgba(120, 130, 140, 0.13);
   display: block;
-margin: .25rem !important;
-    margin-top: 0.25rem !important;
-    margin-right: 0.25rem !important;
-    margin-bottom: 0.25rem !important;
-    margin-left: 0.25rem !important;
+  margin: 0.25rem !important;
+  margin-top: 0.25rem !important;
+  margin-right: 0.25rem !important;
+  margin-bottom: 0.25rem !important;
+  margin-left: 0.25rem !important;
 }
 .sidebar-nav > ul > li > a i {
   width: 31px;
   font-size: 24px;
   display: inline-block;
   vertical-align: middle;
-  color: #67757C;
+  color: #67757c;
 }
 .sidebar-nav > ul > li > a .label {
   float: right;
@@ -2012,49 +2009,49 @@ ul#themecolors li a.working:before {
   );
 }
 .ista-yellow-theme {
-  background:  var(--color-warn-main) ;
+  background: var(--color-warn-main);
 }
 .ista-theme {
-  background: #F4F6F9;
+  background: #f4f6f9;
   /* Old browsers */
   background: -moz-linear-gradient(
     left,
-    #F4F6F9 0%,
-    #F4F6F9 23%,
-    #0B2B5D 23%,
-    #0B2B5D 99%
+    #f4f6f9 0%,
+    #f4f6f9 23%,
+    #0b2b5d 23%,
+    #0b2b5d 99%
   );
   /* FF3.6-15 */
   background: -webkit-linear-gradient(
     left,
-    #F4F6F9 0%,
-    #F4F6F9 23%,
-    #0B2B5D 23%,
-    #0B2B5D 99%
+    #f4f6f9 0%,
+    #f4f6f9 23%,
+    #0b2b5d 23%,
+    #0b2b5d 99%
   );
   /* Chrome10-25,Safari5.1-6 */
   background: -webkit-gradient(
     linear,
     left top,
     right top,
-    from(#F4F6F9),
-    color-stop(23%, #F4F6F9),
+    from(#f4f6f9),
+    color-stop(23%, #f4f6f9),
     color-stop(23%, #398bf7),
-    color-stop(99%, #0B2B5D)
+    color-stop(99%, #0b2b5d)
   );
   background: -o-linear-gradient(
     left,
-    #F4F6F9 0%,
-    #F4F6F9 23%,
-    #0B2B5D 23%,
-    #0B2B5D 99%
+    #f4f6f9 0%,
+    #f4f6f9 23%,
+    #0b2b5d 23%,
+    #0b2b5d 99%
   );
   background: linear-gradient(
     to right,
-    #F4F6F9 0%,
-    #F4F6F9 23%,
-    #0B2B5D 23%,
-    #0B2B5D 99%
+    #f4f6f9 0%,
+    #f4f6f9 23%,
+    #0b2b5d 23%,
+    #0b2b5d 99%
   );
 }
 
@@ -6212,7 +6209,7 @@ File: scss
 /*User mail widgets*/
 /*******************/
 .topbar .top-navbar .mailbox {
-  width: 300px;
+  width: 350px;
 }
 .topbar .top-navbar .mailbox ul {
   padding: 0px;

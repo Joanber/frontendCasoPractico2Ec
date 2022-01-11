@@ -1,0 +1,300 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-left">Anexo 11:Registro de visitas</h4>
+        <br />
+        <h4 class="card-title text-center font-weight-bold">
+          INSTITUTO SUPERIOR TECNOLOGICO DEL AZUAY <br />
+          {{ validacionSac.convocatoria?.carrera?.nombre }}
+          <br />
+          REGISTRO DE VISITA A EMPRESA RECEPTORA
+        </h4>
+
+        <hr />
+        <div class="row justify-content-end">
+          <div class="col-md-5">
+            <label class="control-label">Alumno:</label>
+            <ng-select
+              [compareWith]="compararAlumno"
+              name="alumno"
+              placeholder="Seleccione al alumno"
+              [(ngModel)]="visita.alumno"
+              #alumno="ngModel"
+              (change)="getDesignacionTAandTEByAlumnoId(visita.alumno.id)"
+              required
+            >
+              <ng-option *ngFor="let alumno of alumnos" [value]="alumno">
+                {{ alumno.persona?.primer_nombre }}
+                {{ alumno.persona?.primer_apellido }}
+              </ng-option>
+            </ng-select>
+            <div
+              class="text-danger"
+              *ngIf="alumno.hasError('required') && alumno.touched"
+            >
+              Alumno es requerido!
+            </div>
+          </div>
+        </div>
+
+        <h5 class="card-title text-left">1.Datos Informativos:</h5>
+        <div class="row">
+          <div class="col-md-6">
+            Alumno: {{ visita.alumno?.persona?.primer_nombre }}
+            {{ visita.alumno?.persona?.primer_apellido }} <br />
+            Tutor Academico:
+            {{ designacionTA.docente?.abreviatura_titulo }}
+            {{ designacionTA.docente?.persona?.primer_nombre }}
+            {{ designacionTA.docente?.persona?.primer_apellido }}
+            <br />
+            Empresa:{{
+              validacionSac.convocatoria?.solicitudEmpresa?.empresa?.nombre
+            }}
+            <br />
+          </div>
+          <div class="col-md-6">
+            Ciclo:{{ visita.alumno?.ciclo }} <br />
+            Tutor Empresarial:{{
+              designacionTE.empresaPersonal?.persona?.primer_nombre
+            }}
+
+            {{ designacionTE.empresaPersonal?.persona?.primer_apellido }}
+            <br />
+            Periodo Academico: Noviembre-Abril 2022<br />
+          </div>
+        </div>
+        <div class="dt-buttons">
+          <button
+            class="btn btn-success btn-sm"
+            *ngIf="!abrirDIV"
+            (click)="abrirDiv()"
+          >
+            <i class="mdi mdi-plus"></i>
+            Open Form
+          </button>
+        </div>
+        <hr />
+        <div *ngIf="abrirDIV">
+          <form #MyForm="ngForm" (submit)="agregarInformeVisita(MyForm)">
+            <div class="row">
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Fecha:</label>
+                  <input
+                    [matDatepicker]="myDatepicker"
+                    class="form-control"
+                    name="fecha"
+                    [(ngModel)]="informeVisita.fecha"
+                    #fecha="ngModel"
+                    required
+                  />
+                  <mat-datepicker-toggle
+                    [for]="myDatepicker"
+                  ></mat-datepicker-toggle>
+                  <mat-datepicker color="blue" #myDatepicker></mat-datepicker>
+                  <div
+                    class="text-danger"
+                    *ngIf="fecha.invalid && fecha.touched"
+                  >
+                    Fecha es requerido
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <div class="form-group">
+                  <label class="control-label">Hora inicio/Fin:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="hora_inicio_fin"
+                    [(ngModel)]="informeVisita.hora_inicio_fin"
+                    #hora_inicio_fin="ngModel"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="hora_inicio_fin.invalid && hora_inicio_fin.touched"
+                  >
+                    Hora Inicio / Fin es requerido
+                  </div>
+                </div>
+              </div>
+              <!--/span-->
+
+              <div class="col-md-8">
+                <div class="form-group">
+                  <label class="control-label">Asunto:</label>
+                  <input
+                    type="text"
+                    class="form-control"
+                    name="asunto"
+                    [(ngModel)]="informeVisita.asunto"
+                    #asunto="ngModel"
+                    required
+                  />
+                  <div
+                    class="text-danger"
+                    *ngIf="asunto.invalid && hora_inicio_fin.touched"
+                  >
+                    Asunto es requerido
+                  </div>
+                </div>
+              </div>
+
+              <!--/span-->
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="card">
+                  <label class="control-label">Actividades</label>
+                  <ul class="list-group list-group-flush">
+                    <li
+                      class="list-group-item"
+                      *ngFor="let actividad of actividadesvi"
+                    >
+                      <div class="form-check">
+                        <input
+                          class="form-check-input"
+                          type="checkbox"
+                          [checked]="actividad.check"
+                          id="{{ actividad.id! }}"
+                          (change)="onChange($event, actividad)"
+                          required
+                        />
+                        <label
+                          class="form-check-label"
+                          for="{{ actividad.id! }}"
+                        >
+                          {{ actividad.descripcion }}
+                        </label>
+                      </div>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="form-group">
+                  <label for="message-text" class="control-label"
+                    >Observaciones/ Comentarios:</label
+                  >
+                  <textarea
+                    class="form-control"
+                    name="obervaciones"
+                    rows="5"
+                    [(ngModel)]="informeVisita.obervaciones"
+                    #obervaciones="ngModel"
+                  ></textarea>
+                </div>
+              </div>
+              <div class="col-md-1">
+                <div class="form-group">
+                  <div class="form-group">
+                    <label class="control-label">Añadir</label>
+                    <button type="submit" class="btn btn-primary btn-sm">
+                      <i class="mdi mdi-plus"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div
+          class="alert alert-primary text-center"
+          *ngIf="visita.informevisita.length == 0"
+        >
+          AGREGUE UN INFORME DE LA VISITA
+        </div>
+        <div class="table-scroll">
+          <table
+            class="table table-bordered justify-content-center table-responsive-sm table-sm dataTable"
+            *ngIf="visita.informevisita.length > 0"
+          >
+            <thead>
+              <tr>
+                <th>Fecha</th>
+                <th>Hora Inicio/Fin</th>
+                <th>ASUNTO</th>
+                <th>ACTIVIDADES</th>
+                <th>OBSERVACIONES / COMENTARIOS</th>
+                <th>FIRMAS Y SELLOS</th>
+                <th>Accion</th>
+              </tr>
+            </thead>
+
+            <tbody class="animated fadeIn fast">
+              <tr *ngFor="let informevisita of visita.informevisita">
+                <td>
+                  {{ informevisita.fecha }}
+                </td>
+                <td>
+                  {{ informevisita.hora_inicio_fin }}
+                </td>
+                <td>{{ informevisita.asunto }}</td>
+                <td>
+                  <ul class="list-group list-group-flush">
+                    <li
+                      class="list-group-item"
+                      *ngFor="let actividadvi of informevisita.actividadesvi"
+                    >
+                      <label>
+                        {{ actividadvi.descripcion }}
+                      </label>
+                    </li>
+                  </ul>
+                </td>
+                <td>{{ informevisita.obervaciones }}</td>
+                <td></td>
+
+                <td>
+                  <a
+                    data-toggle="tooltip"
+                    data-original-title="Eliminar Item"
+                    class="cursor"
+                    title="Eliminar Item"
+                    (click)="eliminarItemInforme(informevisita.asunto)"
+                  >
+                    <i class="fa fa-close text-danger m-r-10"></i>
+                  </a>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="row">
+          <div class="col-md-12">
+            <div class="form-group">
+              <label for="message-text" class="control-label"
+                >Observaciones Generales:</label
+              >
+              <textarea
+                class="form-control"
+                name="observaciones_generales"
+                rows="3"
+                [(ngModel)]="visita.observaciones_generales"
+                #observaciones_generales="ngModel"
+              ></textarea>
+            </div>
+          </div>
+        </div>
+        <div class="form-actions">
+          <button
+            type="button"
+            class="btn btn-primary mr-2"
+            (click)="guardarVisita()"
+          >
+            <i class="fa fa-check"></i> Guardar
+          </button>
+          <button
+            type="button"
+            class="btn btn-danger"
+            (click)="irListaVisitas()"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -112,7 +112,6 @@ export class AddSeguimientoComponent implements OnInit {
         );
         this.detalleSeguimiento.fecha_fin_pre = fechaFormateadaFin;
         this.seguimiento.detallesSeguimiento.push(this.detalleSeguimiento);
-        console.log(this.seguimiento);
         this.detalleSeguimiento = new DetallesSeguimiento();
         this.abrirDIV = false;
       }
