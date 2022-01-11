@@ -1,8 +1,36 @@
 import { Carrera } from 'src/app/models/carrera.model';
+import { Docente } from './docente.model';
 import { Empresa } from './empresa.model';
 export interface Convenio {
     id?: number;
     nombre: string;
+    numInforme: string;
+    nombreIST: string;
     carrera: Carrera;
+    fecha: string;
+    estudiantesIniciales: string;
+    estudiantesTotales: string;
+    actividadEconomica: Array<any>;
+    personaAutorizada: string;
+    provinciaSucursal: string;
+    direccionSucursal: string;
+    tutorEmpresarial: string;
+    provinciaMatriz: string;
+    direccionMatriz: string;
+    tutorAcademico: Docente;
+    cantonSucursal: string;
+    correoEmpresa: string;
+    justificacion: string;
+    cantonMatriz: string;
+    resolucion: string;
+    naturaleza: string;
+    documento: string;
+    cargoIST: string;
+    vigencia: string;
     empresa: Empresa;
+    cargoER: string;
+    rector: string;
+    accion: string;
+    elaborado: string;
+    aprobado: string;
 }

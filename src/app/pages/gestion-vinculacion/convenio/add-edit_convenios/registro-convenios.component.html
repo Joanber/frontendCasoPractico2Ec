@@ -1,39 +1,52 @@
-<mat-vertical-stepper linear #stepper>
-
+<mat-horizontal-stepper linear #stepper>
     <ng-template matStepperIcon="empresa">
         <mat-icon>business</mat-icon>
+    </ng-template>
+    <ng-template matStepperIcon="check">
+        <mat-icon>check</mat-icon>
     </ng-template>
     <!-- Datos Generales -->
     <mat-step label="Datos Generales" [stepControl]="firstFormGroup" errorMessage="No. de Informe requerido.">
         <form [formGroup]="firstFormGroup" class="mt-3">
             <ng-template matStepLabel>Datos Generales</ng-template>
             <div class="row">
-                <mat-form-field class="col-md-2">
+
+                <mat-form-field class="col-md-3">
                     <input matInput type="text" #numInforme placeholder="No. de Informe" formControlName="numInforme" required maxlength="5">
                     <mat-hint align="start">
                         <strong>{{nombreInformePrefix}}-{{formDatosGenerales.numInforme.value}}-{{fechaInformeSubfix}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{numInforme.value.length}} / 5</mat-hint>
                 </mat-form-field>
-                <mat-form-field class="col-md-4">
+
+                <mat-form-field class="col-md-6">
+                    <mat-label>Nombre convenio</mat-label>
+                    <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
+                    <mat-error *ngIf="formDatosGenerales.nombre.errors?.pattern">
+                        Ingrese solo valores alfabéticos
+                    </mat-error>
+                    <mat-error *ngIf="formDatosGenerales.nombre.hasError('required')">
+                        Nombre de convenio es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker2" [max]="today" formControlName="fecha">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="col-md-6 mt-3">
                     <input matInput type="text" #nombreIST placeholder="Nombre del IST" formControlName="nombreIST" required maxlength="40">
                     <mat-hint align="end">{{nombreIST.value.length}} / 40</mat-hint>
                 </mat-form-field>
-                <mat-form-field class="col-md-4">
+                <mat-form-field class="col-md-6 mt-3">
                     <mat-label>Carrera</mat-label>
-                    <mat-select #carrera disableRipple (selectionChange)="setCordinadorCarrera(carrera.value?.docente.persona)" [errorStateMatcher]="matcher" formControlName="carrera" required>
+                    <mat-select #carrera disableRipple (selectionChange)="setCordinadorCarrera(carrera.value?.docente.persona,carrera.value?.nombre)" [errorStateMatcher]="matcher" formControlName="carrera" required>
                         <mat-option *ngFor="let carrera of carreras$ | async" [value]="carrera">
                             {{carrera.nombre}}
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="formDatosGenerales.carrera.errors?.required">Por favor escoge una carrera</mat-error>
-                    <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
-                </mat-form-field>
-                <mat-form-field class="col-md-2 ">
-                    <mat-label>Fecha</mat-label>
-                    <input matInput [matDatepicker]="picker2" [max]="today" formControlName="fecha">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
             </div>
             <div class="mt-3">
@@ -42,7 +55,7 @@
         </form>
     </mat-step>
     <!-- Datos de la Entidad Receptora -->
-    <mat-step label="Datos de la Entidad Receptora" state="empresa" [stepControl]="secondFormGroup" errorMessage="Address is required.">
+    <mat-step label="Datos de la Entidad Receptora" state="empresa" [stepControl]="secondFormGroup" errorMessage="Datos de la Entidad Receptora.">
         <form [formGroup]="secondFormGroup">
             <div class="row">
                 <mat-form-field class="col-md-6 ">
@@ -100,7 +113,6 @@
                             Añadir actividad</button>
                     </mat-card-content>
                 </mat-card>
-
                 <mat-form-field class="col-md-3">
                     <div matPrefix>Plazo de vigencia del convenio:&ensp;</div>
                     <strong>
@@ -110,7 +122,6 @@
                     <mat-error *ngIf="formEmpresa.vigencia.errors?.required">Ingrese plazo de vigencia</mat-error>
                     <mat-error *ngIf="formEmpresa.vigencia.errors?.pattern">Ingrese solo valores numérico</mat-error>
                 </mat-form-field>
-
                 <mat-form-field class="col-md-6">
                     <div matPrefix>N° de estudiantes que recibiría inicialmente la Entidad Receptora:&ensp;</div>
                     <strong>
@@ -120,7 +131,6 @@
                     <mat-error *ngIf="formEmpresa.estudiantesIniciales.errors?.required">Ingrese un número de estudiantes</mat-error>
                     <mat-error *ngIf="formEmpresa.estudiantesIniciales.errors?.pattern">Ingrese solo valores numérico</mat-error>
                 </mat-form-field>
-
                 <mat-form-field class="col-md-9">
                     <div matPrefix>Total de estudiantes proyectados que recibirá la Entidad Receptora durante la vigencia del convenio:&ensp;</div>
                     <strong>
@@ -131,7 +141,6 @@
                     <mat-error *ngIf="formEmpresa.estudiantesTotales.errors?.pattern">Ingrese solo valores numérico</mat-error>
                 </mat-form-field>
                 <mat-divider class="mt-3"></mat-divider>
-
                 <h3 class="mt-3">Datos tutor académico y empresarial</h3>
                 <mat-form-field class="col-md-6 ">
                     <mat-label>Tutor Académico</mat-label>
@@ -161,7 +170,6 @@
                 <mat-form-field class="col-md-6">
                     <mat-label>Correo electrónico de la empresa</mat-label>
                     <input type="email" matInput formControlName="correoEmpresa" #correoEmpresa placeholder="Ex. miempresa@example.com">
-
                     <mat-error *ngIf="formEmpresa.correoEmpresa.errors?.email && !formEmpresa.correoEmpresa.errors?.required">
                         Por favor ingrese un email válido
                     </mat-error>
@@ -261,14 +269,13 @@
                 <!-- Administradores del convenio -->
                 <mat-divider class="mt-3 mb-3"></mat-divider>
                 <h3>Administradores del convenio (Incluir únicamente el cargo de los administradores)</h3>
-                <mat-error class="mb-3 text-center">Nota: Los administradores y/o delegados del convenio no podrán ser los mismos suscribientes</mat-error>
                 <mat-form-field class="col-md-6">
                     <input matInput type="text" #cargoIST formControlName="cargoIST" [readonly]="true" placeholder="Por el Instituto" required>
                 </mat-form-field>
                 <mat-form-field class="col-md-6">
                     <input matInput type="text" #cargoER formControlName="cargoER" placeholder="Por la Entidad Receptora" required>
                 </mat-form-field>
-
+                <mat-error class="mb-3">Nota: Los administradores y/o delegados del convenio no podrán ser los mismos suscribientes</mat-error>
                 <!-- Criterios Académicos -->
                 <mat-divider class="mt-3 mb-3"></mat-divider>
                 <h3>Criterios Académicos</h3>
@@ -278,10 +285,10 @@
                     <mat-hint *ngIf="formEmpresa.justificacion.value">Explique la pertinencia de la suscripción del Convenio</mat-hint>
                     <mat-error *ngIf="formEmpresa.justificacion.errors?.required">Se requiere la pertinencia de la suscripción del Convenio</mat-error>
                 </mat-form-field>
-                <mat-form-field class="col-md-6">
+                <mat-form-field class="col-md-6 mt-3">
                     <input matInput type="text" #documento formControlName="documento" placeholder="Documento de creación del IST" required>
                 </mat-form-field>
-                <mat-form-field class="col-md-6">
+                <mat-form-field class="col-md-6 mt-3">
                     <input matInput type="text" #rector formControlName="rector" maxlength="60" placeholder="Nombre del Rector/a del IST" required>
                     <mat-hint align="end">{{rector.value.length}} / 60</mat-hint>
                 </mat-form-field>
@@ -292,9 +299,8 @@
                 <mat-form-field class="col-md-6">
                     <input matInput type="text" [readonly]="true" value={{firstFormGroup.value?.carrera?.nombre}} placeholder="Nombre de la/s carrera/s" required>
                 </mat-form-field>
-
                 <mat-form-field class="col-md-6">
-                    <input matInput type="text" maxlength="30" required>
+                    <input matInput type="text" #resolucion formControlName="resolucion" maxlength="30" required>
                     <span matPrefix>{{firstFormGroup.value?.carrera?.nombre}}:&ensp;</span>
                     <mat-hint>No. Resolución de aprobación, de cada carrera</mat-hint>
                 </mat-form-field>
@@ -305,24 +311,51 @@
             </div>
         </form>
     </mat-step>
-    <mat-step>
-        <ng-template matStepLabel>Registrar Convenio</ng-template>
-        Hecho
+    <mat-step label="Conclusiones y Recomendaciones" state="check" [stepControl]="thirdFormGroup">
+        <form [formGroup]="thirdFormGroup">
+            <div class="row">
+                <mat-form-field class="col-md-12">
+                    <mat-label>Conclusiones</mat-label>
+                    <textarea cdkTextareaAutosize placeholder="Conclusiones" class="text-justify" matInput [value]="conclusiones" required></textarea>
+                </mat-form-field>
+                <mat-form-field class="col-md-12">
+                    <mat-label>Recomendaciones</mat-label>
+                    <textarea cdkTextareaAutosize placeholder="Recomendaciones" class="text-justify" matInput [value]="recomendaciones" required></textarea>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #elaborado formControlName='elaborado' placeholder="Elaborado y Revisado por" maxlength="30" required>
+                </mat-form-field>
+                <mat-form-field class="col-md-6">
+                    <input matInput type="text" #aprobado formControlName='aprobado' placeholder="Aprobado por" maxlength="30" required>
+                    <span matSuffix>Rector/a del Instituto</span>
+                </mat-form-field>
+            </div>
+        </form>
         <div>
-            <button mat-button matStepperPrevious>Regresar</button>
-            <!-- <button mat-button (click)="stepper.reset()">Reset</button> -->
+            <button mat-stroked-button matStepperPrevious color="accent">Regresar</button>
         </div>
     </mat-step>
-</mat-vertical-stepper>
-<pre class="mt-3">{{firstFormGroup.value | json}}</pre>
+</mat-horizontal-stepper>
+<mat-card>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!firstFormGroup.valid || !secondFormGroup.valid ||!thirdFormGroup.valid" (click)="onSubmit()">
+            {{btnName}}
+        </button>
+        <button mat-raised-button color="accent" *ngIf="firstFormGroup.touched || secondFormGroup.touched ||thirdFormGroup.touched" type="reset" (click)="loadForm()">Reset</button>
+        <button mat-raised-button color="warn" (click)="returnToList()" type="button">
+            Cancelar
+        </button>
+    </mat-card-actions>
+</mat-card>
+<!-- <pre class="mt-3">{{firstFormGroup.value | json}}</pre>
 <pre class="mt-3">{{secondFormGroup.value | json}}</pre>
+<pre class="mt-3">{{thirdFormGroup.value | json}}</pre> -->
 <!-- convenio v1 -->
-<mat-card class="mt-3">
+<!-- <mat-card class="mt-3">
     <mat-card-content>
         <form *ngIf="convenioForm" [formGroup]="convenioForm">
             <div>
                 <section class="row">
-                    <!-- appearance="outline" -->
                     <mat-form-field class="col-md-12">
                         <mat-label>Nombre convenio</mat-label>
                         <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
@@ -366,4 +399,4 @@
             Cancelar
         </button>
     </mat-card-actions>
-</mat-card>
+</mat-card> -->

@@ -17,7 +17,7 @@ export class EmpresaService {
     return this.http.get<Empresa>(`${bd_url}/${id}`);
   }
 
-  //CARRERAS SIN PAGINACION
+  //EMPRESA SIN PAGINACION
   getEmpresas(): Observable<Empresa[]> {
     return this.http.get<Empresa[]>(`${bd_url}/filtrar`);
   }
@@ -28,7 +28,7 @@ export class EmpresaService {
     );
   }
 
-  //PAGINACION DE CARRERAS
+  //PAGINACION DE EMPRESA
   getEmpresaPage(
     page: string,
     size: string,
@@ -53,7 +53,7 @@ export class EmpresaService {
       );
   }
 
-  //CREAR Empresa
+  //CREAR EMPRESA
   crear(empresa: Empresa): Observable<Empresa> {
     return this.http.post<Empresa>(`${bd_url}/`, empresa).pipe(
       map((response: any) => response.empresa as Empresa),
@@ -67,7 +67,7 @@ export class EmpresaService {
     );
   }
 
-  //EDITAR CARRERA
+  //EDITAR EMPRESA
   editar(empresa: Empresa, id: number): Observable<Empresa> {
     return this.http.put<Empresa>(`${bd_url}/${id}`, empresa).pipe(
       map((response: any) => response.empresa as Empresa),
@@ -81,7 +81,7 @@ export class EmpresaService {
     );
   }
 
-  //ELIMINAR UNA CARRERA
+  //ELIMINAR UNA EMPRESA
   eliminar(id: number): Observable<Empresa> {
     return this.http.delete<Empresa>(`${bd_url}/${id}`).pipe(
       catchError((e) => {

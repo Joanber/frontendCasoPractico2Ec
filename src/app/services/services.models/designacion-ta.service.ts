@@ -50,7 +50,7 @@ export class DesignacionTaService {
       );
   }
 
-  //CREAR Carrera SIN FOTO
+  //CREAR DESIGNACION_TA
   crear(DesignacionTA: DesignacionTA): Observable<DesignacionTA> {
     return this.http.post<DesignacionTA>(`${bd_url}/`, DesignacionTA).pipe(
       map((response: any) => response.DesignacionTA as DesignacionTA),

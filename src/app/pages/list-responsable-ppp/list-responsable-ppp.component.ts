@@ -96,7 +96,7 @@ export class ListResponsablePPPComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar el Responsable de practicas ${responsablePPPP.docente.persona.primer_nombre} ?`,
+        text: `¿Seguro que quieres eliminar el Responsable de practicas ${responsablePPPP.docente.persona.primer_nombre  +' '+   responsablePPPP.docente.persona.primer_apellido } ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -113,7 +113,7 @@ export class ListResponsablePPPComponent implements OnInit {
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Responsable de practicas ${responsablePPPP.docente.persona.primer_nombre} eliminada correctamente!`,
+              `Responsable de practicas ${responsablePPPP.docente.persona.primer_nombre +' '+ responsablePPPP.docente.persona.primer_apellido} eliminada correctamente!`,
               "success"
             );
           });

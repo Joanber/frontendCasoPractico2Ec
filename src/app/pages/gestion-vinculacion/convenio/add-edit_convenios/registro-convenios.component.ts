@@ -52,10 +52,10 @@ export const DATE_FORMATS = {
 })
 export class RegistroConveniosComponent implements OnInit, AfterViewInit {
 
-  constructor(private formbuilder: FormBuilder, private carreraService: CarreraService,
-                private empresaServices: EmpresaService, private convenioService: ConvenioService,
-                private activatedRoute: ActivatedRoute, public loaderService: LoaderService, private docenteService: DocenteService,
-                private router: Router, public dialog: MatDialog, private _formBuilder: FormBuilder) {}
+  constructor(private carreraService: CarreraService,
+    private empresaServices: EmpresaService, private convenioService: ConvenioService,
+    private activatedRoute: ActivatedRoute, public loaderService: LoaderService, private docenteService: DocenteService,
+    private router: Router, public dialog: MatDialog, private _formBuilder: FormBuilder) {}
   get formValues() {
     return this.convenioForm.controls;
   }
@@ -76,6 +76,8 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   });
   firstFormGroup!: FormGroup;
   secondFormGroup!: FormGroup;
+  thirdFormGroup!: FormGroup;
+  convenioForm!: FormGroup;
   nombreInformePrefix = 'SIES-ITS-ISTA';
   fechaInformeSubfix = new Date().getFullYear();
   today = new Date();
@@ -83,13 +85,12 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   naturalezaEmpresa: string[] = ['Pública', 'Privada', 'Mixta'];
   // public secondFormGroup: FormGroup;
   criteriosGenerales: any[];
-
+  rector = 'Mgtr. Marcelo Aguilera Crespo'
   carreras$ = new Observable<Carrera[]>();
   empresas$ = new Observable<Empresa[]>();
   docentes$ = new Observable<Docente[]>();
 
   convenio = {} as Convenio;
-  convenioForm!: FormGroup;
   index = 0;
   cantones: Array<any>;
   cantonesSucursal: Array<any>;
@@ -97,6 +98,7 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   alphabeticPattern = '^[a-zA-ZÀ-ÿÑñ ]+( *[a-zA-ZÀ-ÿÑñ]*)*[a-zA-ZÀ-ÿñÑ ]+$';
   matcher = new MyErrorStateMatcher();
   obligaciones: any[];
+  carrera = '';
 
   ngAfterViewInit(): void {
     this.activatedRoute.params.subscribe(({ id }) => this.retriveConvenio(id));
@@ -113,7 +115,6 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     this.retrieveCarreras();
     this.retrieveEmpresas();
     this.retrieveDocentes();
-    this.formSteps();
   }
 
 
@@ -122,11 +123,52 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       this.patchForm(this.convenio);
       return;
     }
-    this.convenioForm = this.formbuilder.group({
+
+    this.convenioForm = this._formBuilder.group({
       nombre: ['', [Validators.required, Validators.pattern(this.alphabeticPattern)]],
       carrera: ['', Validators.required],
       empresa: ['', Validators.required],
       id: []
+    });
+
+    this.firstFormGroup = this._formBuilder.group({
+      numInforme: ['', [Validators.required, Validators.maxLength(5), Validators.pattern('[0-9]*')]],
+      nombre: ['', [Validators.required, Validators.pattern(this.alphabeticPattern)]],
+      nombreIST: ['INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY', Validators.pattern(this.alphabeticPattern)],
+      carrera: [, Validators.required],
+      fecha: [new Date().toISOString(), Validators.required],
+      id: []
+    });
+
+    this.secondFormGroup = this._formBuilder.group({
+      estudiantesIniciales: ['', [Validators.required, Validators.maxLength(4), Validators.pattern('[0-9]*')]],
+      estudiantesTotales: ['', [Validators.required, Validators.maxLength(4), Validators.pattern('[0-9]*')]],
+      actividadEconomica: this._formBuilder.array([]),
+      personaAutorizada: ['', [Validators.required, Validators.maxLength(60), Validators.pattern(this.alphabeticPattern)]],
+      provinciaSucursal: ['', [Validators.required]],
+      direccionSucursal: ['', [Validators.required]],
+      tutorEmpresarial: ['Seleccione una empresa', [Validators.required]],
+      provinciaMatriz: ['', [Validators.required]],
+      direccionMatriz: ['', [Validators.required]],
+      tutorAcademico: ['', [Validators.required]],
+      cantonSucursal: ['', [Validators.required]],
+      correoEmpresa: ['', [Validators.required, Validators.email]],
+      justificacion: ['', Validators.required],
+      cantonMatriz: ['', [Validators.required]],
+      resolucion: ['', Validators.required],
+      naturaleza: ['', Validators.required],
+      documento: ['Acuerdo 2996 MINISTERIO DE EDUCACIÓN', Validators.required],
+      cargoIST: ['', Validators.required],
+      vigencia: ['', [Validators.required, Validators.maxLength(2), Validators.pattern('[0-9]*')]],
+      empresa: ['', Validators.required],
+      cargoER: ['', Validators.required],
+      rector: [this.rector, Validators.required],
+      accion: ['', Validators.required],
+    });
+
+    this.thirdFormGroup = this._formBuilder.group({
+      elaborado: ['', Validators.required],
+      aprobado: [this.rector, Validators.required],
     });
   }
 
@@ -142,28 +184,61 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
   }
 
   async createConvenio() {
-    this.convenio = this.convenioForm.value;
-    this.convenio.carrera = await this.carreras$.pipe(map(carreras => carreras.find(c =>
-      c.id === this.convenioForm.value.carrera))).toPromise();
-    this.convenio.empresa = await this.empresas$.pipe(map(empresas => empresas.find(e =>
-      e.id === this.convenioForm.value.empresa))).toPromise();
+    // this.convenio = this.convenioForm.value;
+    // this.convenio.carrera = await this.carreras$.pipe(map(carreras => carreras.find(c =>
+    //   c.id === this.convenioForm.value.carrera))).toPromise();
+    // this.convenio.empresa = await this.empresas$.pipe(map(empresas => empresas.find(e =>
+    //   e.id === this.convenioForm.value.empresa))).toPromise();
+    this.convenio.nombre = this.firstFormGroup.value.nombre;
+    this.convenio.carrera = this.firstFormGroup.value.carrera;
+    this.convenio.empresa = this.secondFormGroup.value.empresa;
+    this.convenio.numInforme = this.firstFormGroup.value.numInforme;
+    this.convenio.nombreIST = this.firstFormGroup.value.nombreIST;
+    this.convenio.fecha = this.firstFormGroup.value.fecha;
+    this.convenio.estudiantesIniciales = this.secondFormGroup.value.estudiantesIniciales;
+    this.convenio.estudiantesTotales = this.secondFormGroup.value.estudiantesTotales;
+    this.convenio.actividadEconomica = this.secondFormGroup.value.actividadEconomica;
+    this.convenio.personaAutorizada = this.secondFormGroup.value.personaAutorizada;
+    this.convenio.provinciaSucursal = this.secondFormGroup.value.provinciaSucursal;
+    this.convenio.direccionSucursal = this.secondFormGroup.value.direccionSucursal;
+    this.convenio.tutorEmpresarial = this.secondFormGroup.value.tutorEmpresarial;
+    this.convenio.provinciaMatriz = this.secondFormGroup.value.provinciaMatriz;
+    this.convenio.direccionMatriz = this.secondFormGroup.value.direccionMatriz;
+    this.convenio.tutorAcademico = this.secondFormGroup.value.tutorAcademico;
+    this.convenio.cantonSucursal = this.secondFormGroup.value.cantonSucursal;
+    this.convenio.correoEmpresa = this.secondFormGroup.value.correoEmpresa;
+    this.convenio.justificacion = this.secondFormGroup.value.justificacion;
+    this.convenio.cantonMatriz = this.secondFormGroup.value.cantonMatriz;
+    this.convenio.resolucion = this.secondFormGroup.value.resolucion;
+    this.convenio.naturaleza = this.secondFormGroup.value.naturaleza;
+    this.convenio.documento = this.secondFormGroup.value.documento;
+    this.convenio.elaborado = this.thirdFormGroup.value.elaborado;
+    this.convenio.cargoIST = this.secondFormGroup.value.cargoIST;
+    this.convenio.vigencia = this.secondFormGroup.value.vigencia;
+    this.convenio.cargoER = this.secondFormGroup.value.cargoER;
+    this.convenio.rector = this.secondFormGroup.value.rector;
+    this.convenio.accion = this.secondFormGroup.value.accion;
+    this.convenio.aprobado = this.thirdFormGroup.value.aprobado;
+    // this.convenio = this.secondFormGroup.value;
+    // this.convenio = this.thirdFormGroup.value;
+    console.log('To Submit', this.convenio);
   }
 
   onSubmit() {
-    console.log('To Submit', this.convenioForm.value);
-    if (this.convenioForm.valid && !this.convenio.id) {
+    if (this.firstFormGroup.valid || this.secondFormGroup.valid || this.thirdFormGroup.valid && !this.convenio.id) {
+
       this.createConvenio().finally(() => {
-        this.convenioService.createConvenio(this.convenio).subscribe({
-          next: (convenio) => Swal.fire(
-            'Nueva Convenio',
-            `¡${ convenio.nombre } creado con exito!`,
-            'success'
-          ), complete: () => this.returnToList()
-          , error: (err) => console.error(err)
-        });
+      this.convenioService.createConvenio(this.convenio).subscribe({
+        next: (convenio) => Swal.fire(
+          'Nueva Convenio',
+          `¡${ convenio.nombre } creado con exito!`,
+          'success'
+        ), complete: () => this.returnToList()
+        , error: (err) => console.error(err)
+      });
       });
     }
-    if (this.convenioForm.valid && this.convenio.id) {
+    if ((this.firstFormGroup.valid || this.secondFormGroup.valid || this.thirdFormGroup.valid)  && this.convenio.id) {
       this.createConvenio().finally(() => {
         console.warn('To Update', this.convenioForm.value);
         this.convenioService.updateConvenio(this.convenio, this.convenio.id).subscribe({
@@ -205,12 +280,66 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       });
   }
 
-  patchForm(convenio: Convenio) {
+  async patchForm(convenio: Convenio) {
+    this.firstFormGroup.markAllAsTouched();
+    this.secondFormGroup.markAllAsTouched();
+    this.thirdFormGroup.markAllAsTouched();
+
     this.convenioForm.patchValue({
       id: convenio.id,
       nombre: convenio.nombre,
       carrera: convenio.carrera.id,
       empresa: convenio.empresa.id
+    });
+    this.firstFormGroup.patchValue({
+      numInforme: convenio.numInforme,
+      nombre: convenio.nombre,
+      nombreIST: convenio.nombreIST,
+      carrera: await this.carreras$.pipe(map(carreras => carreras.find(c =>
+        c.id === convenio.carrera.id))).toPromise().finally(),
+      fecha: convenio.fecha,
+    });
+
+    this.changeProvincia(convenio.provinciaMatriz, 'matriz');
+    this.changeProvincia(convenio.provinciaSucursal, '');
+
+    convenio.actividadEconomica.forEach((data, index) => {
+      this.formArr.push(this.initItemRows());
+      this.secondFormGroup.markAllAsTouched();
+      this.formArr.controls[index].setValue(data);
+      this.deleteRow(index+1);
+    });
+
+    this.secondFormGroup.patchValue({
+      estudiantesIniciales: convenio.estudiantesIniciales,
+      estudiantesTotales: convenio.estudiantesTotales,
+      personaAutorizada: convenio.personaAutorizada,
+      provinciaSucursal: convenio.provinciaSucursal,
+      direccionSucursal: convenio.direccionSucursal,
+      tutorEmpresarial: convenio.tutorEmpresarial,
+      provinciaMatriz: convenio.provinciaMatriz,
+      direccionMatriz: convenio.direccionMatriz,
+      tutorAcademico: await this.docentes$.pipe(map(docentes => docentes.find(d =>
+        d.id === convenio.tutorAcademico.id))).toPromise(),
+      cantonSucursal: convenio.cantonSucursal,
+      correoEmpresa: convenio.correoEmpresa,
+      justificacion: convenio.justificacion,
+      cantonMatriz: convenio.cantonMatriz,
+      resolucion: convenio.resolucion,
+      naturaleza: convenio.naturaleza,
+      documento: convenio.documento,
+      cargoIST: convenio.cargoIST,
+      vigencia: convenio.vigencia,
+      cargoER: convenio.cargoER,
+      rector: convenio.rector,
+      accion: convenio.accion,
+      empresa: await this.empresas$.pipe(map(empresas => empresas.find(e =>
+        e.id === convenio.empresa.id))).toPromise() ,
+    });
+
+    this.thirdFormGroup = this._formBuilder.group({
+      elaborado: convenio.elaborado,
+      aprobado: convenio.aprobado,
     });
   }
 
@@ -218,49 +347,25 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     return this.formArr.controls[i][' controls '];
   }
 
-  formSteps() {
-    this.firstFormGroup = this._formBuilder.group({
-      numInforme: ['', [Validators.required, Validators.maxLength(5), Validators.pattern('[0-9]*')]],
-      nombreIST: ['INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY', Validators.pattern(this.alphabeticPattern)],
-      carrera: [, Validators.required],
-      fecha: [new Date().toISOString(), Validators.required],
-    });
+  get conclusiones() {
+    return `Una vez que se han revisado los requerimientos de la carrera de ${ this.carrera }, se concluye que la ${ this.secondFormGroup.value.empresa.nombre }., posee la infraestructura e implementos necesarios para la correcta formación de las prácticas pre profesionales de los y las estudiantes de la carrera en mención, en el ${ this.secondFormGroup!.value.cargoER } de dicha entidad.`;
+  }
 
-    this.secondFormGroup = this._formBuilder.group({
-      personaAutorizada: ['', [Validators.required, Validators.maxLength(60), Validators.pattern(this.alphabeticPattern)]],
-      estudiantesIniciales: ['', [Validators.required, Validators.maxLength(4), Validators.pattern('[0-9]*')]],
-      estudiantesTotales: ['', [Validators.required, Validators.maxLength(4), Validators.pattern('[0-9]*')]],
-      vigencia: ['', [Validators.required, Validators.maxLength(2), Validators.pattern('[0-9]*')]],
-      tutorEmpresarial: ['Seleccione una empresa', [Validators.required]],
-      actividadEconomica: this._formBuilder.array([this.initItemRows()]),
-      correoEmpresa: ['', [Validators.required, Validators.email]],
-      tutorAcademico: ['', [Validators.required]],
-      provinciaMatriz: ['', [Validators.required]],
-      provinciaSucursal: ['', [Validators.required]],
-      direccionMatriz: ['', [Validators.required]],
-      direccionSucursal: ['', [Validators.required]],
-      naturaleza: ['', Validators.required],
-      cantonSucursal: ['', [Validators.required]],
-      cantonMatriz: ['', [Validators.required]],
-      empresa: ['', Validators.required],
-      cargoER: ['', Validators.required],
-      cargoIST: ['', Validators.required],
-      justificacion: ['', Validators.required],
-      documento: ['Acuerdo 2996 MINISTERIO DE EDUCACIÓN', Validators.required],
-      rector: ['Mgtr. Marcelo Aguilera Crespo', Validators.required],
-      accion: ['Mgtr. Marcelo Aguilera Crespo', Validators.required],
-    });
+  get recomendaciones() {
+    return `Con lo antes expuesto se recomienda que se firme el convenio entre ${ this.firstFormGroup.value.nombreIST } y ${ this.secondFormGroup.value.empresa.nombre }.`;
   }
 
   setTutorEmpresarial(persona: any) {
     this.formEmpresa.tutorEmpresarial.markAsTouched();
     this.formEmpresa.tutorEmpresarial.patchValue(persona.primer_nombre + ' ' + persona.segundo_nombre + ' '
-    + persona.primer_apellido + ' ' + persona.segundo_apellido);
+      + persona.primer_apellido + ' ' + persona.segundo_apellido);
   }
+  setCordinadorCarrera(dd: any, carrera: any) {
+    console.log(carrera);
 
-  setCordinadorCarrera() {
+    this.carrera = carrera;
     this.formEmpresa.cargoIST.markAsTouched();
-    this.secondFormGroup.patchValue({ cargoIST: `Coordinador(a) de la carrera de ${ this.firstFormGroup.value.carrera.nombre}`, });
+    this.secondFormGroup.patchValue({ cargoIST: `Coordinador(a) de la carrera de ${ this.firstFormGroup.value.carrera.nombre }`, });
   }
 
   initItemRows() {
