@@ -1,4 +1,4 @@
-<mat-vertical-stepper linear #stepper>
+<mat-horizontal-stepper linear #stepper>
     <ng-template matStepperIcon="empresa">
         <mat-icon>business</mat-icon>
     </ng-template>
@@ -10,18 +10,36 @@
         <form [formGroup]="firstFormGroup" class="mt-3">
             <ng-template matStepLabel>Datos Generales</ng-template>
             <div class="row">
-                <mat-form-field class="col-md-2">
+
+                <mat-form-field class="col-md-3">
                     <input matInput type="text" #numInforme placeholder="No. de Informe" formControlName="numInforme" required maxlength="5">
                     <mat-hint align="start">
                         <strong>{{nombreInformePrefix}}-{{formDatosGenerales.numInforme.value}}-{{fechaInformeSubfix}}</strong>
                     </mat-hint>
                     <mat-hint align="end">{{numInforme.value.length}} / 5</mat-hint>
                 </mat-form-field>
-                <mat-form-field class="col-md-4">
+
+                <mat-form-field class="col-md-6">
+                    <mat-label>Nombre convenio</mat-label>
+                    <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
+                    <mat-error *ngIf="formDatosGenerales.nombre.errors?.pattern">
+                        Ingrese solo valores alfabéticos
+                    </mat-error>
+                    <mat-error *ngIf="formDatosGenerales.nombre.hasError('required')">
+                        Nombre de convenio es <strong>requerido</strong>
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field class="col-md-3">
+                    <mat-label>Fecha</mat-label>
+                    <input matInput [matDatepicker]="picker2" [max]="today" formControlName="fecha">
+                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+                    <mat-datepicker #picker2></mat-datepicker>
+                </mat-form-field>
+                <mat-form-field class="col-md-6 mt-3">
                     <input matInput type="text" #nombreIST placeholder="Nombre del IST" formControlName="nombreIST" required maxlength="40">
                     <mat-hint align="end">{{nombreIST.value.length}} / 40</mat-hint>
                 </mat-form-field>
-                <mat-form-field class="col-md-4">
+                <mat-form-field class="col-md-6 mt-3">
                     <mat-label>Carrera</mat-label>
                     <mat-select #carrera disableRipple (selectionChange)="setCordinadorCarrera(carrera.value?.docente.persona,carrera.value?.nombre)" [errorStateMatcher]="matcher" formControlName="carrera" required>
                         <mat-option *ngFor="let carrera of carreras$ | async" [value]="carrera">
@@ -29,13 +47,6 @@
                         </mat-option>
                     </mat-select>
                     <mat-error *ngIf="formDatosGenerales.carrera.errors?.required">Por favor escoge una carrera</mat-error>
-                    <!-- <mat-hint>{{formValues.carrera.value?.id}}</mat-hint> -->
-                </mat-form-field>
-                <mat-form-field class="col-md-2 ">
-                    <mat-label>Fecha</mat-label>
-                    <input matInput [matDatepicker]="picker2" [max]="today" formControlName="fecha">
-                    <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
-                    <mat-datepicker #picker2></mat-datepicker>
                 </mat-form-field>
             </div>
             <div class="mt-3">
@@ -322,19 +333,29 @@
         </form>
         <div>
             <button mat-stroked-button matStepperPrevious color="accent">Regresar</button>
-            <button mat-stroked-button color="warn" (click)="stepper.reset()">Reset</button>
         </div>
     </mat-step>
-</mat-vertical-stepper>
-<pre class="mt-3">{{firstFormGroup.value | json}}</pre>
+</mat-horizontal-stepper>
+<mat-card>
+    <mat-card-actions>
+        <button mat-raised-button color="primary" [disabled]="!firstFormGroup.valid || !secondFormGroup.valid ||!thirdFormGroup.valid" (click)="onSubmit()">
+            {{btnName}}
+        </button>
+        <button mat-raised-button color="accent" *ngIf="firstFormGroup.touched || secondFormGroup.touched ||thirdFormGroup.touched" type="reset" (click)="loadForm()">Reset</button>
+        <button mat-raised-button color="warn" (click)="returnToList()" type="button">
+            Cancelar
+        </button>
+    </mat-card-actions>
+</mat-card>
+<!-- <pre class="mt-3">{{firstFormGroup.value | json}}</pre>
 <pre class="mt-3">{{secondFormGroup.value | json}}</pre>
+<pre class="mt-3">{{thirdFormGroup.value | json}}</pre> -->
 <!-- convenio v1 -->
-<mat-card class="mt-3">
+<!-- <mat-card class="mt-3">
     <mat-card-content>
         <form *ngIf="convenioForm" [formGroup]="convenioForm">
             <div>
                 <section class="row">
-                    <!-- appearance="outline" -->
                     <mat-form-field class="col-md-12">
                         <mat-label>Nombre convenio</mat-label>
                         <input type="text" matInput formControlName="nombre" [errorStateMatcher]="matcher" placeholder="Ejemplo nombre de convenio" required>
@@ -378,4 +399,4 @@
             Cancelar
         </button>
     </mat-card-actions>
-</mat-card>
+</mat-card> -->
