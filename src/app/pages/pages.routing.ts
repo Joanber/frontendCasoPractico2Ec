@@ -25,7 +25,9 @@ import { AddSolicitudEmpresaComponent } from "./gestion-empresa/add-solicitud-em
 import { ListConvocatoriasValidasComponent } from "./gestion-empresa/list-convocatorias-validas/list-convocatorias-validas.component";
 import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-empresa/list-solicitud-empresa.component";
 import { AddSeguimientoComponent } from "./gestion-tutor-academico/add-seguimiento/add-seguimiento.component";
+import { AddVisitaComponent } from "./gestion-tutor-academico/add-visita/add-visita.component";
 import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguimientos/list-seguimientos.component";
+import { ListVisitasComponent } from "./gestion-tutor-academico/list-visitas/list-visitas.component";
 import { AcreditacionPppComponent } from "./gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component";
 import { RegistroConveniosComponent } from "./gestion-vinculacion/convenio/add-edit_convenios/registro-convenios.component";
 import { ListConveniosComponent } from "./gestion-vinculacion/convenio/list-convenios/list-convenios.component";
@@ -56,7 +58,6 @@ import { ListUsuariosComponent } from "./personal/list-usuarios/list-usuarios.co
 import { ProfileComponent } from "./profile/profile.component";
 import { SolicitudComponent } from "./solicitud/solicitud.component";
 
-
 const routes: Routes = [
   {
     path: "dashboard",
@@ -84,7 +85,7 @@ const routes: Routes = [
         component: ListPersonasComponent,
         data: {
           titulo: "Personas",
-          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL
+          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL,
         },
       },
       {
@@ -92,7 +93,7 @@ const routes: Routes = [
         component: AddPersonaComponent,
         data: {
           titulo: "Nueva Persona",
-          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL
+          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL,
         },
       },
       {
@@ -100,7 +101,7 @@ const routes: Routes = [
         component: AddPersonaComponent,
         data: {
           titulo: "Actualizar Persona",
-          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL
+          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL,
         },
       },
 
@@ -109,7 +110,7 @@ const routes: Routes = [
         component: ListCarrerasComponent,
         data: {
           titulo: "Carreras",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -117,7 +118,7 @@ const routes: Routes = [
         component: AddCarreraComponent,
         data: {
           titulo: "Nueva Carrera",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -125,7 +126,7 @@ const routes: Routes = [
         component: AddCarreraComponent,
         data: {
           titulo: "Actualizar Carrera",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -147,7 +148,7 @@ const routes: Routes = [
         path: "soli/:informacion",
         component: InformacionComponent,
         data: {
-          titulo: "Informacion"
+          titulo: "Informacion",
         },
       },
       {
@@ -168,23 +169,35 @@ const routes: Routes = [
       {
         path: "detalleconvocatorias/:id",
         component: DetalleconvocatoriasComponent,
-        data: { titulo: "Detalle de Convocatorias", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Detalle de Convocatorias",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
 
       {
         path: "nueva-convocatoria/:id",
         component: ConvocatoriaComponent,
-        data: { titulo: "Nueva Convocatoria Practicas Pre Profesionales", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Nueva Convocatoria Practicas Pre Profesionales",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
       {
         path: "actualizar-convocatoria/:idc",
         component: ConvocatoriaComponent,
-        data: { titulo: "Convocatoria Practicas Pre Profesionales", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Convocatoria Practicas Pre Profesionales",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
       {
         path: "convocatorias",
         component: ListConvocatoriasComponent,
-        data: { titulo: "Convocatorias", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Convocatorias",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
       {
         path: "solicitudes-recibidas/:id",
@@ -204,7 +217,10 @@ const routes: Routes = [
       {
         path: "respuestas-empresas",
         component: ListSeleccionEstEmpComponent,
-        data: { titulo: "Respuestas  a Empresas", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Respuestas  a Empresas",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
       {
         path: "nueva-designacion-ta/:id/:ida",
@@ -229,57 +245,64 @@ const routes: Routes = [
       {
         path: "consultas-reportes",
         component: ConsultasReportesPppComponent,
-        data: { titulo: "Consultas Reportes Tutores", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Consultas Reportes Tutores",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
 
       {
-
         path: "convenios",
         component: ListConveniosComponent,
         data: {
-          titulo: "Convenios", roles: MODULO_ROLES.MODULO_VINCULACION
+          titulo: "Convenios",
+          roles: MODULO_ROLES.MODULO_VINCULACION,
         },
       },
       {
         path: "convenios/registro-convenio",
         component: RegistroConveniosComponent,
         data: {
-          titulo: "Registro de Convenio", roles: MODULO_ROLES.MODULO_VINCULACION
+          titulo: "Registro de Convenio",
+          roles: MODULO_ROLES.MODULO_VINCULACION,
         },
       },
       {
         path: "convenio/:id",
         component: RegistroConveniosComponent,
         data: {
-          titulo: "Actualizar convenio", roles: MODULO_ROLES.MODULO_VINCULACION
+          titulo: "Actualizar convenio",
+          roles: MODULO_ROLES.MODULO_VINCULACION,
         },
       },
       {
         path: "acreditacion-ppp",
         component: AcreditacionPppComponent,
         data: {
-          titulo: "Informe de acreditación de PPP", roles: MODULO_ROLES.MODULO_VINCULACION
+          titulo: "Informe de acreditación de PPP",
+          roles: MODULO_ROLES.MODULO_VINCULACION,
         },
       },
       {
         path: "estado-procesos-ppp",
         component: EstadoProcesosPppComponent,
         data: {
-          titulo: "Estado de procesos PPP", roles: MODULO_ROLES.MODULO_VINCULACION
-
+          titulo: "Estado de procesos PPP",
+          roles: MODULO_ROLES.MODULO_VINCULACION,
         },
       },
       {
         path: "historial-procesos-ppp",
         component: HistorialProcesosPppComponent,
         data: {
-          titulo: "Historial de procesos PPP", roles: MODULO_ROLES.MODULO_VINCULACION
+          titulo: "Historial de procesos PPP",
+          roles: MODULO_ROLES.MODULO_VINCULACION,
         },
       },
       {
         path: "solicitud/:id",
         component: SolicitudComponent,
-        data: { titulo: "Crear Solicitud de Estudiantes", },
+        data: { titulo: "Crear Solicitud de Estudiantes" },
       },
 
       {
@@ -292,7 +315,7 @@ const routes: Routes = [
       {
         path: "asistencias",
         component: AsistenciasComponent,
-        data: { titulo: "Registro de Asistencia", },
+        data: { titulo: "Registro de Asistencia" },
       },
       {
         path: "informe",
@@ -304,7 +327,10 @@ const routes: Routes = [
       {
         path: "solicitudes_empresas",
         component: ListSolicitudesEmpresasRespppComponent,
-        data: { titulo: "Lista solicitudes de las empresas", roles: MODULO_ROLES.MODULO_GESTION_PPP },
+        data: {
+          titulo: "Lista solicitudes de las empresas",
+          roles: MODULO_ROLES.MODULO_GESTION_PPP,
+        },
       },
 
       {
@@ -312,7 +338,7 @@ const routes: Routes = [
         component: ListSolicitudesAlumnosComponent,
         data: {
           titulo: "Lista solicitudes de los estudiantes",
-          roles: MODULO_ROLES.MODULO_GESTION_ALUMNOS
+          roles: MODULO_ROLES.MODULO_GESTION_ALUMNOS,
         },
       },
 
@@ -321,7 +347,7 @@ const routes: Routes = [
         component: ListDocenteComponent,
         data: {
           titulo: "Lista de Docentes",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -329,7 +355,7 @@ const routes: Routes = [
         component: AddDocenteComponent,
         data: {
           titulo: "Nuevo Docente",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
 
@@ -338,7 +364,7 @@ const routes: Routes = [
         component: AddDocenteComponent,
         data: {
           titulo: "Actualizar Docente",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
 
@@ -347,7 +373,7 @@ const routes: Routes = [
         component: ListEmpresaComponent,
         data: {
           titulo: "Lista de Empresas",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -355,7 +381,7 @@ const routes: Routes = [
         component: AddEmpresaComponent,
         data: {
           titulo: "Nueva Empresa",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -363,7 +389,7 @@ const routes: Routes = [
         component: AddEmpresaComponent,
         data: {
           titulo: "Actualizar Empresa",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
 
@@ -377,7 +403,7 @@ const routes: Routes = [
         component: ListResponsablePPPComponent,
         data: {
           titulo: "Lista de Responsables de Practicas Preprofesionales",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -385,7 +411,7 @@ const routes: Routes = [
         component: AddResponsablePPPComponent,
         data: {
           titulo: "Nuevo (a) Responsables de Practicas Preprofesionales",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
@@ -393,29 +419,39 @@ const routes: Routes = [
         component: AddResponsablePPPComponent,
         data: {
           titulo: "Actualizar Responsables de Practicas Preprofesionales",
-          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS
+          roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
       {
         path: "nueva-solicitud-empresa",
         component: AddSolicitudEmpresaComponent,
-        data: { titulo: "Nueva Solicitud", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA },
+        data: {
+          titulo: "Nueva Solicitud",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
+        },
       },
       {
         path: "actualizar-solicitud-empresa/:id",
         component: AddSolicitudEmpresaComponent,
-        data: { titulo: "Nueva Solicitud", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA },
+        data: {
+          titulo: "Nueva Solicitud",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
+        },
       },
       {
         path: "list-solicitud-empresa",
         component: ListSolicitudEmpresaComponent,
-        data: { titulo: "Lista Solicitudes Empresas", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA },
+        data: {
+          titulo: "Lista Solicitudes Empresas",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
+        },
       },
       {
         path: "convocatorias-aprobadas",
         component: ListConvocatoriasValidasComponent,
         data: {
-          titulo: "Designación de Tutores Empresariales", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA
+          titulo: "Designación de Tutores Empresariales",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
         },
       },
       {
@@ -431,48 +467,97 @@ const routes: Routes = [
       {
         path: "lista-estudiantes-asignados",
         component: ListEstudiantesAsignadosComponent,
-        data: { titulo: "Estudiantes Asignados", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA },
+        data: {
+          titulo: "Estudiantes Asignados",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
+        },
       },
       {
         path: "evaluacion-estudiante-empresa",
         component: AddEvaluacionEstudianteEmpresaComponent,
-        data: { titulo: "Evaluación a Estudiante", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA },
+        data: {
+          titulo: "Evaluación a Estudiante",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
+        },
       },
       {
         path: "certificado-estudiante-empresa",
         component: AddCertificadoEstudianteEmpresaComponent,
-        data: { titulo: "Certificado de Empresa", roles: MODULO_ROLES.MODULO_GESTION_EMPRESA },
+        data: {
+          titulo: "Certificado de Empresa",
+          roles: MODULO_ROLES.MODULO_GESTION_EMPRESA,
+        },
       },
       {
         path: "nuevo-seguimiento/:ida",
         component: AddSeguimientoComponent,
-        data: { titulo: "Nuevo seguimiento", roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO },
+        data: {
+          titulo: "Nuevo seguimiento",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
+        },
       },
       {
         path: "actualizar-seguimiento/:id",
         component: AddSeguimientoComponent,
-        data: { titulo: "Nuevo seguimiento", roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO },
+        data: {
+          titulo: "Nuevo seguimiento",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
+        },
       },
       {
         path: "seguimientos",
         component: ListSeguimientosComponent,
-        data: { titulo: "Listado de seguimientos", roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO },
+        data: {
+          titulo: "Listado de seguimientos",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
+        },
       },
       {
         path: "usuarios",
         component: ListUsuariosComponent,
-        data: { titulo: "Usuarios", roles: MODULO_ROLES.MODULO_GESTION_PERSONAL }
+        data: {
+          titulo: "Usuarios",
+          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL,
+        },
       },
       {
         path: "nuevo-usuario",
         component: AddUsuarioComponent,
-        data: { titulo: "Nuevo Usuario", roles: MODULO_ROLES.MODULO_GESTION_PERSONAL },
+        data: {
+          titulo: "Nuevo Usuario",
+          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL,
+        },
       },
       {
         path: "actualizar-usuario/:id",
         component: AddUsuarioComponent,
         data: {
-          titulo: "Actualizar Usuario", roles: MODULO_ROLES.MODULO_GESTION_PERSONAL
+          titulo: "Actualizar Usuario",
+          roles: MODULO_ROLES.MODULO_GESTION_PERSONAL,
+        },
+      },
+      {
+        path: "actualizar-visita/:id",
+        component: AddVisitaComponent,
+        data: {
+          titulo: "Actualizar Visita",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
+        },
+      },
+      {
+        path: "nueva-visita",
+        component: AddVisitaComponent,
+        data: {
+          titulo: "Nueva Visita",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
+        },
+      },
+      {
+        path: "visitas",
+        component: ListVisitasComponent,
+        data: {
+          titulo: "Visitas",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
         },
       },
     ],
