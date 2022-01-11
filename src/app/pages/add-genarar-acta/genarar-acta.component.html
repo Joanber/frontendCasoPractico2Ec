@@ -31,7 +31,7 @@
               }}
               {{
                 validacionSac.convocatoria.solicitudEmpresa.responsablePPP
-                  .docente.persona.primer_apellido
+                  .docente.persona.segundo_apellido
               }}
               Responsable de Prácticas Pre Profesionales de la Carrera
               {{
@@ -53,7 +53,7 @@
               {{ alumno.persona.primer_nombre }}
               {{ alumno.persona.segundo_nombre }}
               {{ alumno.persona.primer_apellido }}
-              {{ alumno.persona.primer_apellido }}
+              {{ alumno.persona.segundo_apellido }}
 
               <br />
               Lugar de la reunión: <input />
@@ -397,14 +397,14 @@
                   </div>
 
                   <div class="form-actions" style="text-align: right">
-                    <!-- <button
+                    <button
                       type="button"
                       class="btn btn-danger"
                       (click)="exportPdf()"
                       style="margin-right: 10px"
                     >
                       Generar PDF
-                    </button> -->
+                    </button> 
 
                     <button
                       type="button"
@@ -415,7 +415,7 @@
                       Cancelar
                     </button>
 
-                    <button type="submit" class="btn btn-primary mr-2">
+                    <button type="submit" class="btn btn-primary mr-2" >
                       Guardar
                     </button>
                   </div>

@@ -159,42 +159,78 @@ export class GenararActaComponent implements OnInit {
 
     this.actaService.crear(this.acta).subscribe((acta) => {
       Swal.fire("Nueva Acta", `¡ Acta creada con exito!`, "success");
-      this.irListarActas();
+   //   this.irListarActas();
     });
   }
   irListarActas() {
     this.router.navigateByUrl("/dashboard/list-actas");
   }
- 
+
   async exportPdf() {
     const dataBody = [];
+    const head = [["Area", "Actividad por realizar","Asignaturas relacionadas"]];
     const data = await this.asistenciaStorage;
     const doc = new jsPDF("p", "pt", "a4");
     doc.setFontSize(12);
     doc.text("ANEXO 7: ACTA DE REUNION ", 220, 100);
-    doc.text("Fecha: " + this.acta.fecha_emision, 40, 140);
+    //doc.text("Fecha: " + this.acta.fecha_emision, 40, 140);
     doc.text("Asistentes: ", 40, 150);
-    doc.text('-	Mgtr.'+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre, 40,180);
-     +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre
-     +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
-     +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido+' ,Responsable de Prácticas Pre Profesionales';
-     doc.text('Su Despacho. -', 40, 210);
-     doc.text('De mi consideración: ', 40, 260);
-     doc.text('Luego de expresarle un atento saludo y desearle éxito en las funciones que acertadamente', 40, 280);
-     doc.text('realiza, me permito informarle ha sido designado como TUTOR ACÁDEMICO del estudiante ', 40, 300);
-     doc.text(this.designacionta.alumno.persona.primer_nombre+' '+this.designacionta.alumno.persona.segundo_nombre
-     +' '+this.designacionta.alumno.persona.primer_apellido+' '+this.designacionta.alumno.persona.segundo_apellido+' de las prácticas pre profesionales en la empresa', 40, 320);
-     doc.text(this.validacionSac.convocatoria.solicitudEmpresa.empresa.nombre+'.', 40, 340);
-     doc.text('Agradezco de antemano su valiosa colaboración con esta importante actividad.', 80, 390);
-     doc.text('Atentamente,', 40, 440);
-     doc.text('______________________', 40, 500);
-     doc.text('Responsable de Prácticas Pre Profesionales', 40, 520);
-     doc.text(this.validacionSac.convocatoria.carrera.nombre, 40, 540);
-     doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY', 40, 560);
+    doc.text(this.validacionSac.convocatoria.carrera.docente.abreviatura_titulo+''+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+    .docente.persona.primer_nombre+
+    this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+    .docente.persona.segundo_nombre+
+    this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+    .docente.persona.primer_apellido+
+    this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP
+    .docente.persona.segundo_apellido+' Responsable de Prácticas Pre Profesionales ',40,170);
+  
+    doc.text('de la carrera de: '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre, 40, 190);
+    doc.text('del Instituto Superior Tecnológico del Azuay.',40,210);
+    doc.text(this.designacionte.empresaPersonal.persona.primer_nombre+' '+this.designacionte.empresaPersonal.persona.segundo_nombre+
+    ' '+ this.designacionte.empresaPersonal.persona.primer_apellido+' '+this.designacionte.empresaPersonal.persona.segundo_apellido +' Tutor asignado ',40,230);
+    doc.text('por la empresa: '+this.validacionSac.convocatoria.solicitudEmpresa.empresa.nombre,40,250 );
+    doc.text('Asunto: Actividades a desarrollar en las prácticas pre profesionales por el estudiante :',40, 270);
+    doc.text(this.alumno.persona.primer_nombre+' '+this.alumno.persona.segundo_nombre+' '+ this.alumno.persona.primer_apellido+' '+ this.alumno.persona.segundo_apellido,40,290);
+    doc.text("Desarrollos y acuerdos ", 220, 330);
+    doc.text('-	Planificación de actividades a desarrollar: ', 60, 360);
+    doc.text('Con base en la solicitud realizada por la empresa '+this.validacionSac.convocatoria.solicitudEmpresa.empresa.nombre, 40, 380);
+    doc.text('el/la Sr./Srta./Sra. '+this.alumno.persona.primer_nombre+' '+this.alumno.persona.segundo_nombre+' '+ this.alumno.persona.primer_apellido+' '+ this.alumno.persona.segundo_apellido, 40,400);
+    doc.text('estudiante de '+this.alumno.ciclo +' ciclo de la carrera '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.carrera.nombre,40,420);
+    doc.text('del Instituto Superior Tecnológico del Azuay llevará a cabo las siguientes actividades',40,440);
+    doc.text('para la cumplir con las '+this.solicitudAlumno.numero_horas+'horas de prácticas pre profesionales.',40,460);
+    for (let i = 0; i < this.actividadesActa.length; i++) {
+      const valor_imprimir = (this.actividadesActa[i].area+'         '+this.actividadesActa[i].actividad+'                                '+this.actividadesActa[i].asignatura);
+      doc.text(valor_imprimir,40,530+i*15); 
+  }
+
+    doc.text('- 	Fechas Importantes y horario de prácticas pre profesionales', 60, 600);
+    doc.text('El estudiante comenzará a desarrollar las prácticas pre profesionales a partir del '+this.acta.fecha_inicio_ppp, 40, 620);
+    doc.text('y terminará el '+this.acta.fecha_fin_ppp+' en un horario de '+this.acta.desde+ ' a '+this.acta.hasta,40,640);
+
+    doc.text('-	Acuerdos varios', 60, 680);
+    doc.text('_________________________________________________________________________',40,710);
+    doc.text('_________________________________________________________________________',40,730);
+
+
+
+
+    doc.text('________________',40,770);
+    doc.text(this.validacionSac.convocatoria.carrera.docente.abreviatura_titulo+' '+this.validacionSac.convocatoria.solicitudEmpresa
+    .responsablePPP.docente.persona.primer_nombre+' '+this.validacionSac.convocatoria.solicitudEmpresa
+    .responsablePPP.docente.persona.segundo_nombre+' '+this. validacionSac.convocatoria.solicitudEmpresa
+    .responsablePPP.docente.persona.primer_apellido+' '+this.validacionSac.convocatoria.solicitudEmpresa
+    .responsablePPP.docente.persona.primer_apellido, 40,785);
+    doc.text('Responsable de practicas pre profesionales',40,800);
+
+    doc.text('________________',310,770);
+    doc.text(this.designacionte.empresaPersonal.persona.primer_nombre+' '+this.designacionte.empresaPersonal.persona.segundo_nombre+
+    ' '+ this.designacionte.empresaPersonal.persona.primer_apellido+' '+this.designacionte.empresaPersonal.persona.segundo_apellido, 310, 785);
+    doc.text('Tutor empresarial',310,800);
 
     console.log(dataBody);
     autoTable(doc, {
-      startY: 180,
+      startY: 480,
+      head: head,
       body: dataBody,
     });
     doc.save("ANEXO7.pdf");
