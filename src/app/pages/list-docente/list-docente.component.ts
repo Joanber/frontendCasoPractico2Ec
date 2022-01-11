@@ -30,7 +30,7 @@ export class ListDocenteComponent implements OnInit {
   constructor(private docenteService: DocenteService) {}
 
   ngOnInit() {
-    this.getDocentesPage(
+    this.getDocentePage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.busqueda
@@ -40,14 +40,14 @@ export class ListDocenteComponent implements OnInit {
   public paginar(event: PageEvent): void {
     this.paginaActual = event.pageIndex;
     this.totalPorPagina = event.pageSize;
-    this.getDocentesPage(
+    this.getDocentePage(
       this.paginaActual.toString(),
       this.totalPorPagina.toString(),
       this.busqueda
     );
   }
 
-  private getDocentesPage(page: string, size: string, busqueda: string) {
+  private getDocentePage(page: string, size: string, busqueda: string) {
     this.cargando = true;
     this.docenteService.getDocentesPage(page, size, busqueda).subscribe((p) => {
       this.docentes = p.content as Docente[];
@@ -62,16 +62,16 @@ export class ListDocenteComponent implements OnInit {
   }
   buscar(txtBusqueda: string) {
     if (txtBusqueda.length > 0) {
-      this.getDocentesPage(
+      this.getDocentePage(
         this.paginaActual.toString(),
         this.totalPorPagina.toString(),
         txtBusqueda
       );
     }
   }
-  cargarDocenteDefault(txtBusqueda: string) {
+  cargarDocenteSDefault(txtBusqueda: string) {
     if (txtBusqueda.length === 0) {
-      return this.getDocentesPage(
+      return this.getDocentePage(
         this.paginaActual.toString(),
         this.totalPorPagina.toString(),
         this.busqueda
@@ -90,7 +90,7 @@ export class ListDocenteComponent implements OnInit {
     swalWithBootstrapButtons
       .fire({
         title: "¿Estas  seguro?",
-        text: `¿Seguro que quieres eliminar al Docente ${docente.persona.primer_nombre} ?`,
+        text: `¿Seguro que quieres eliminar al Docente ${ docente.persona.primer_nombre +' '+  docente.persona.primer_apellido} ?`,
         icon: "warning",
         showCancelButton: true,
         confirmButtonText: "Si, eliminar!",
@@ -100,14 +100,14 @@ export class ListDocenteComponent implements OnInit {
       .then((result) => {
         if (result.value) {
           this.docenteService.eliminar(docente.id).subscribe((resp) => {
-            this.getDocentesPage(
+            this.getDocentePage(
               this.paginaActual.toString(),
               this.totalPorPagina.toString(),
               this.busqueda
             );
             swalWithBootstrapButtons.fire(
               "Eliminada!",
-              `Carrera ${docente.persona.primer_nombre} eliminado (a) correctamente!`,
+              `Docente ${docente.persona.primer_nombre +' '+  docente.persona.primer_apellido} eliminado (a) correctamente!`,
               "success"
             );
           });

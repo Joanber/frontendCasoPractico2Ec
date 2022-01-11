@@ -64,7 +64,7 @@ export class AddDocenteComponent implements OnInit {
       this.docenteService.crear(this.docente).subscribe((docente) => {
         Swal.fire(
           "Nuevo (a) Docente",
-          `¡${this.docente.persona.primer_nombre +' '+   docente.persona.primer_apellido} creada con exito!`,
+          `¡${this.docente.persona.primer_nombre +' '+   this.docente.persona.primer_apellido} creada con exito!`,
           "success"
         );
         this.irListaDocentes();
