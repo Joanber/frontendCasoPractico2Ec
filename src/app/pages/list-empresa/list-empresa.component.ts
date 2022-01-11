@@ -105,7 +105,7 @@ export class ListEmpresaComponent implements OnInit {
               this.busqueda
             );
             swalWithBootstrapButtons.fire(
-              "Eliminada!",
+              "Eliminada! la",
               `Empresa ${empresa.nombre} eliminada correctamente!`,
               "success"
             );

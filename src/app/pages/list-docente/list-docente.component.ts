@@ -106,7 +106,7 @@ export class ListDocenteComponent implements OnInit {
               this.busqueda
             );
             swalWithBootstrapButtons.fire(
-              "Eliminada!",
+              "Eliminado (a)!",
               `Docente ${docente.persona.primer_nombre +' '+  docente.persona.primer_apellido} eliminado (a) correctamente!`,
               "success"
             );
