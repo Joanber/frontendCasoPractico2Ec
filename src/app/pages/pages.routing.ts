@@ -26,6 +26,7 @@ import { ListConvocatoriasValidasComponent } from "./gestion-empresa/list-convoc
 import { ListSolicitudEmpresaComponent } from "./gestion-empresa/list-solicitud-empresa/list-solicitud-empresa.component";
 import { AddSeguimientoComponent } from "./gestion-tutor-academico/add-seguimiento/add-seguimiento.component";
 import { AddVisitaComponent } from "./gestion-tutor-academico/add-visita/add-visita.component";
+import { Anexo8Component } from "./gestion-tutor-academico/anexo8/anexo8.component";
 import { ListSeguimientosComponent } from "./gestion-tutor-academico/list-seguimientos/list-seguimientos.component";
 import { ListVisitasComponent } from "./gestion-tutor-academico/list-visitas/list-visitas.component";
 import { AcreditacionPppComponent } from "./gestion-vinculacion/acreditacion-ppp/acreditacion-ppp.component";
@@ -557,6 +558,15 @@ const routes: Routes = [
         component: ListVisitasComponent,
         data: {
           titulo: "Visitas",
+          roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
+        },
+      },
+      {
+        path: "anexo8/:id",
+        component: Anexo8Component,
+        data: {
+          titulo:
+            "Anexo 8.1 Notificacion de Cronograma y Planificacion de Actividades",
           roles: MODULO_ROLES.MODULO_GESTION_TUTOR_ACADEMICO,
         },
       },

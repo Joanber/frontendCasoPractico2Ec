@@ -1,6 +1,8 @@
 import { Component, OnInit } from "@angular/core";
 import { Router } from "@angular/router";
+import { ActaDR } from "src/app/models/actaDR.model";
 import { DesignacionTA } from "src/app/models/designacionta.model";
+import { ActaService } from "src/app/services/services.models/acta.service";
 import { DesignacionTaService } from "src/app/services/services.models/designacion-ta.service";
 import { UsuarioService } from "src/app/services/services.models/usuario.service";
 import { environment } from "src/environments/environment";
@@ -15,17 +17,19 @@ import { getNotificationsOfUser } from "./../../utils/api";
 export class HeaderComponent implements OnInit {
   public bd_url = bd_url + "/personas";
   public designacionesTA: DesignacionTA[] = [];
+  public actasDr: ActaDR[] = [];
   public roles: any = ["ROLE_ADMIN", "ROLE_TACADEMICO"];
   constructor(
     public usuarioService: UsuarioService,
     private router: Router,
-    private designacionTAService: DesignacionTaService
+    private designacionTAService: DesignacionTaService,
+    private actasDrService: ActaService
   ) {}
   public notifications = [];
 
   ngOnInit() {
     this.cargarDesignacionesTA();
-    this.setAllNotifications();
+    this.cargarActas();
   }
 
   logout() {
@@ -49,5 +53,11 @@ export class HeaderComponent implements OnInit {
       .subscribe((designacionTA) => {
         this.designacionesTA = designacionTA;
       });
+  }
+
+  cargarActas() {
+    this.actasDrService
+      .getActas()
+      .subscribe((actasDr) => (this.actasDr = actasDr));
   }
 }

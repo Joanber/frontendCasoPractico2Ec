@@ -92,6 +92,7 @@ import { LisEmpresaPersonalComponent } from "./lis-empresa-personal/lis-empresa-
 import { SeleccionEstudiantesComponent } from "./add-estudiantes-aceptados/seleccion-estudiantes.component";
 import { ListVisitasComponent } from './gestion-tutor-academico/list-visitas/list-visitas.component';
 import { AddVisitaComponent } from './gestion-tutor-academico/add-visita/add-visita.component';
+import { Anexo8Component } from './gestion-tutor-academico/anexo8/anexo8.component';
 
 @NgModule({
   declarations: [
@@ -160,6 +161,7 @@ import { AddVisitaComponent } from './gestion-tutor-academico/add-visita/add-vis
     SeleccionEstudiantesComponent,
     ListVisitasComponent,
     AddVisitaComponent,
+    Anexo8Component,
   ],
   exports: [DashboardComponent, PagesComponent],
   imports: [

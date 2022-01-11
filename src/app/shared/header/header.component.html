@@ -98,6 +98,28 @@
                       </div>
                     </a>
                   </div>
+                  <div
+                    class="text-left"
+                    *ngIf="usuarioService.hasAnyRoles(roles)"
+                  >
+                    <a *ngFor="let actadr of actasDr">
+                      <div
+                        class="mail-contnet cursor"
+                        [routerLink]="[
+                          '/dashboard',
+                          'anexo8',
+                          actadr.alumno.id
+                        ]"
+                      >
+                        <h5>Cronograma y Planificacion de Actividades</h5>
+                        <span class="mail-desc"
+                          >Alumno:
+                          {{ actadr.alumno?.persona?.primer_apellido }}
+                          {{ actadr.alumno?.persona?.primer_nombre }}
+                        </span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
               </li>
             </ul>

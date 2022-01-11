@@ -1,0 +1,74 @@
+<div class="row">
+  <div class="col-12">
+    <div class="card">
+      <div class="card-body">
+        <h4 class="card-title text-left">
+          Anexo 8.1:Notificación de cronograma y planificación de actividades a
+          tutor académico
+        </h4>
+        <hr />
+        <br />
+        {{ designacionTA.docente?.abreviatura_titulo }}
+        {{ designacionTA.docente?.persona?.primer_apellido }}
+        {{ designacionTA.docente?.persona?.primer_nombre }}
+        <br />
+        Tutor Academico <br />
+        Instituto Superior Tecnológico del Azuay <br />
+        <br />
+        De mi consideración: <br />
+        <br />
+        Reciba un cordial saludo, por medio del presente se le informa de la
+        planificación de actividades y el cronograma que el/la Sr./Srta./Sra.
+        {{ designacionTA.alumno?.persona?.primer_apellido }}
+        {{ designacionTA.alumno?.persona?.primer_nombre }}
+        debe realizar en la empresa
+        {{ validacion_sac.convocatoria?.solicitudEmpresa?.empresa?.nombre }}.
+        <br />
+        <br />
+        Adjunto a este oficio encontrará una copia del Acta de Reunión mantenida
+        con el tutor empresarial en la cual encontrá las actividades a realizar
+        así como el cronograma, horario y fecha de inicio y finalización
+        establecidas de las prácticas pre profesionales del estudiante.
+
+        <br />
+        <br />
+        Al momento de que el estudiante termine las prácticas pre profesionales,
+        Ud. deberá entregar la siguiente documentación: <br />
+        1. Documentación entregada por el estudiante (Anexos: 9, 12, 12.1 y 13)
+        <br />
+        2. Seguimiento al cronograma de actividades. (Anexo 10) <br />
+        3. Registro de visitas realizadas a la empresa para seguimiento de
+        actividades realizadas por los estudiantes. (Anexo 11) <br />
+        4. Evaluación al estudiante realizada por el tutor académico. (Anexo 14)
+        <br />
+        5. Informe final de prácticas pre profesionales. (Anexo 15) <br />
+        <br />
+        <br />
+
+        Sin otro particular, suscribo de usted. <br />
+        <br />
+        <br />
+
+        Atentamente, <br />
+        <br />
+        <br />
+        {{
+          validacion_sac.convocatoria?.solicitudEmpresa?.responsablePPP?.docente
+            ?.abreviatura_titulo
+        }}
+        {{
+          validacion_sac.convocatoria?.solicitudEmpresa?.responsablePPP?.docente
+            ?.persona?.primer_apellido
+        }}
+        {{
+          validacion_sac.convocatoria?.solicitudEmpresa?.responsablePPP?.docente
+            ?.persona?.primer_nombre
+        }}
+        <br />
+        Responsable de prácticas preprofesionales <br />
+        Carrera de {{ validacion_sac.convocatoria?.carrera?.nombre }} <br />
+        Instituto Superior Tecnológico del Azuay
+      </div>
+    </div>
+  </div>
+</div>
