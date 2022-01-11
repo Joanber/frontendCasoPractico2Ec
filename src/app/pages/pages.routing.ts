@@ -354,7 +354,7 @@ const routes: Routes = [
         path: "nuevo-docentes",
         component: AddDocenteComponent,
         data: {
-          titulo: "Nuevo Docentes",
+          titulo: "Nuevo Docente",
           roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
@@ -380,7 +380,7 @@ const routes: Routes = [
         path: "nueva-empresas",
         component: AddEmpresaComponent,
         data: {
-          titulo: "Nuevo Empresas",
+          titulo: "Nueva Empresa",
           roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
@@ -410,7 +410,7 @@ const routes: Routes = [
         path: "nuevo-responsablesppp",
         component: AddResponsablePPPComponent,
         data: {
-          titulo: "Nuevo responsablesppp",
+          titulo: "Nuevo (a) Responsables de Practicas Preprofesionales",
           roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },
@@ -418,7 +418,7 @@ const routes: Routes = [
         path: "actualizar-responsablesppp/:id",
         component: AddResponsablePPPComponent,
         data: {
-          titulo: "Actualizar responsablesppp",
+          titulo: "Actualizar Responsables de Practicas Preprofesionales",
           roles: MODULO_ROLES.MODULO_GESTION_CARRERAS,
         },
       },

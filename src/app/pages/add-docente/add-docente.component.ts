@@ -54,8 +54,8 @@ export class AddDocenteComponent implements OnInit {
         .editar(this.docente, this.docente.id)
         .subscribe((docente) => {
           Swal.fire(
-            "Actualizar Carrera",
-            `¡${docente.persona.primer_apellido} actualizado con exito!`,
+            "Actualizar Docente",
+            `¡${ this.docente.persona.primer_nombre +' '+   docente.persona.primer_apellido} actualizado con exito!`,
             "success"
           );
           this.irListaDocentes();
@@ -63,8 +63,8 @@ export class AddDocenteComponent implements OnInit {
       }else {
       this.docenteService.crear(this.docente).subscribe((docente) => {
         Swal.fire(
-          "Nueva Docente",
-          `¡${docente.titulo_docente} creada con exito!`,
+          "Nuevo (a) Docente",
+          `¡${this.docente.persona.primer_nombre +' '+   this.docente.persona.primer_apellido} creada con exito!`,
           "success"
         );
         this.irListaDocentes();

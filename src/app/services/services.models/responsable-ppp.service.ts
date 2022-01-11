@@ -17,7 +17,7 @@ export class ResponsablePPPService {
     return this.http.get<ResponsablePPP>(`${bd_url}/${id}`);
   }
 
-  //CARRERAS SIN PAGINACION
+  //RESPONSABLEPPP SIN PAGINACION
   getResponsablePPP(): Observable<ResponsablePPP[]> {
     return this.http.get<ResponsablePPP[]>(`${bd_url}/filtrar`);
   }
@@ -47,7 +47,7 @@ export class ResponsablePPPService {
       );
   }
 
-  //CREAR ResponsablePPP
+  //CREAR RESPONSABLEPPP 
   crear(responsablePPP: ResponsablePPP): Observable<ResponsablePPP> {
     return this.http.post<ResponsablePPP>(`${bd_url}/`, responsablePPP).pipe(
       map((response: any) => response.responsablePPP as ResponsablePPP),
@@ -61,7 +61,7 @@ export class ResponsablePPPService {
     );
   }
 
-  //EDITAR responsablePPP
+  //EDITAR RESPONSABLEPPP 
   editar(responsablePPP: ResponsablePPP, id: number): Observable<ResponsablePPP> {
     return this.http.put<ResponsablePPP>(`${bd_url}/${id}`, responsablePPP).pipe(
       map((response: any) => response.responsablePPP as ResponsablePPP),
@@ -74,7 +74,7 @@ export class ResponsablePPPService {
       })
     );
   }
-  //ELIMINAR UN Docente
+  //ELIMINAR UN RESPONSABLEPPP 
   eliminar(id: number): Observable<ResponsablePPP> {
     return this.http.delete<ResponsablePPP>(`${bd_url}/${id}`).pipe(
       catchError((e) => {

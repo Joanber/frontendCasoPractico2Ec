@@ -52,8 +52,18 @@ export class AddEmpresaComponent implements OnInit {
     this.formSubmitted = true;
     if (form.invalid) {
       return;
-    }
-    else {
+    } if (this.empresa.id) {
+      this.empresaService
+        .editar(this.empresa, this.empresa.id)
+        .subscribe((empresa) => {
+          Swal.fire(
+            "Actualizar Empresa",
+            `¡${ this.empresa.nombre} actualizado con exito!`,
+            "success"
+          );
+          this.irListaEmpresa();
+        });
+      } else {
       
       this.empresaService.crear(this.empresa).subscribe((empresa) => {
         Swal.fire(

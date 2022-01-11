@@ -26,7 +26,7 @@ getEmpresaPersonal(): Observable<EmpresaPersonal[]> {
   return this.http.get<EmpresaPersonal[]>(`${bd_url}/filtrar`);
 }
 
-//PAGINACION DE CARRERAS
+//PAGINACION DE EmpresaPersonal
 getEmpresaPersonalPage(
   page: string,
   size: string,
