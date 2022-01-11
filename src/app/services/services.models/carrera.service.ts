@@ -50,7 +50,7 @@ export class CarreraService {
         })
       );
   }
-  //CREAR Carrera SIN FOTO
+  //CREAR Carrera 
   crear(carrera: Carrera): Observable<Carrera> {
     return this.http.post<Carrera>(`${bd_url}/`, carrera).pipe(
       map((response: any) => response.carrera as Carrera),
