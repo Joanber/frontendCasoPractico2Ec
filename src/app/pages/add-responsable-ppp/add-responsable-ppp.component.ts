@@ -77,7 +77,8 @@ export class AddResponsablePPPComponent implements OnInit {
    
           Swal.fire(
             "Actualizado (a) Responsable de las practicas",
-            `¡${ this.responsableppp.docente.persona.primer_nombre +' '+  this.responsableppp.docente.persona.segundo_apellido +'  '+ this.responsableppp.carrera.nombre  } actualizada con exito!`,
+            `¡${ this.responsableppp.docente.persona.primer_nombre +' '+  this.responsableppp.docente.persona.primer_apellido +'  '+ this.responsableppp.carrera.nombre  
+          } actualizada con exito!`,
             "success"
 
           );
@@ -89,7 +90,7 @@ export class AddResponsablePPPComponent implements OnInit {
       this.responsableService.crear(this.responsableppp).subscribe((responsableppp) => {
         Swal.fire(
           "Nuevo (a) responsable de Practicas PreProfesionales",
-          `¡${this.responsableppp.docente.persona.primer_nombre 
+          `¡${this.responsableppp.docente.persona.primer_nombre  +' '+  this.responsableppp.docente.persona.primer_apellido
             } creada con exito!`,
           "success"
         );

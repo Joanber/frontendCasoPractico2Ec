@@ -26,7 +26,7 @@ export class DesignacionTEService {
     return this.http.get<DesignacionTE[]>(`${bd_url}/filtrar`);
   }
 
-  //CREAR Carrera SIN FOTO
+  //CREAR DESIGNACION_TE
   crear(designacionTE: DesignacionTE): Observable<DesignacionTE> {
     return this.http.post<DesignacionTE>(`${bd_url}/`, designacionTE).pipe(
       map((response: any) => response.designacionTE as DesignacionTE),
