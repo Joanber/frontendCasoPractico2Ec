@@ -1,37 +1,37 @@
 <div class="col-12">
   <div class="card">
     <div class="card-body">
-      <h4 class="card-title text-center">Listado de Respuestas a Empresas </h4>
+     
       <div class="table-responsive">
         <div id="example23_wrapper" class="dataTables_wrapper">
           <div class="row">
             <div class="col-md-2">
-
-
-
             </div>
-            <div class="col-md-5">
-              <select style="width: auto; align-items: right;" class="form-control" [(ngModel)]="carreraFiltro">
+            <div class="col-md-6">
+              Buscar por carrera<br>
+              <select class="form-control" [(ngModel)]="carreraFiltro">
                 <option [ngValue]="undefined">CARRERA (TODAS)</option>
                 <option *ngFor="let carreras of carreras" [ngValue]="carreras.nombre">
                   {{ carreras.nombre }}
                 </option>
               </select>
             </div>
-
+            <br>
+            <br><br>
             <div class="col-md-1">
+              <br>
               <button class="boton" mat-raised-button color="primary" (click)="filtrarValidacionesSACCarrera()">
                 <i class="mdi mdi-magnify"></i>
                 Buscar
               </button>
             </div>
-            <div class="col-md-2 text-right">
+            <div class="col-md-2 text-right"><br>
               <button class="btn " (click)="cargarConvocatoriasDefault()">
                 Mostrar Todas
               </button>
             </div>
-
           </div>
+           
           <br />
           <div class="alert alert-primary text-center" *ngIf="solicitudesEmpresas.length == 0">
             NO HAY DATOS DISPONIBLES

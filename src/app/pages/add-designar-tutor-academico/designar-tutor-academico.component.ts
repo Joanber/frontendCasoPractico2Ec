@@ -136,7 +136,7 @@ export class DesignarTutorAcademicoComponent implements OnInit {
     const doc = new jsPDF("p", "pt", "a4");
     doc.setFontSize(12);
     doc.text("ANEXO 6: Designación tutor académico ", 20, 80);
-    doc.text(this.designacionta.fecha_emision, 490, 120);
+   // doc.text(this.designacionta.fecha_emision, 490, 120);
     doc.text("Magister", 40, 150);
     doc.text(
       this.designacionta.docente.persona.primer_nombre +
@@ -163,13 +163,13 @@ export class DesignarTutorAcademicoComponent implements OnInit {
       300
     );
     doc.text(
-      this.designacionta.alumno.persona.primer_nombre +
+      this.alumno.persona.primer_nombre +
         " " +
-        this.designacionta.alumno.persona.segundo_nombre +
+        this.alumno.persona.segundo_nombre +
         " " +
-        this.designacionta.alumno.persona.primer_apellido +
+        this.alumno.persona.primer_apellido +
         " " +
-        this.designacionta.alumno.persona.segundo_apellido +
+        this.alumno.persona.segundo_apellido +
         " de las prácticas pre profesionales en la empresa",
       40,
       320

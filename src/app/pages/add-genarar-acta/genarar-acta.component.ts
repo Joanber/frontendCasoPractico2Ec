@@ -165,7 +165,7 @@ export class GenararActaComponent implements OnInit {
   irListarActas() {
     this.router.navigateByUrl("/dashboard/list-actas");
   }
-
+ 
   async exportPdf() {
     const dataBody = [];
     const data = await this.asistenciaStorage;
@@ -174,23 +174,23 @@ export class GenararActaComponent implements OnInit {
     doc.text("ANEXO 7: ACTA DE REUNION ", 220, 100);
     doc.text("Fecha: " + this.acta.fecha_emision, 40, 140);
     doc.text("Asistentes: ", 40, 150);
-    //doc.text('-	Mgtr.'+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre, 40,180);
-    // +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre
-    // +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
-    // +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido+' ,Responsable de Prácticas Pre Profesionales', 40, 180);
-    // doc.text('Su Despacho. -', 40, 210);
-    // doc.text('De mi consideración: ', 40, 260);
-    // doc.text('Luego de expresarle un atento saludo y desearle éxito en las funciones que acertadamente', 40, 280);
-    // doc.text('realiza, me permito informarle ha sido designado como TUTOR ACÁDEMICO del estudiante ', 40, 300);
-    // doc.text(this.designacionta.alumno.persona.primer_nombre+' '+this.designacionta.alumno.persona.segundo_nombre
-    // +' '+this.designacionta.alumno.persona.primer_apellido+' '+this.designacionta.alumno.persona.segundo_apellido+' de las prácticas pre profesionales en la empresa', 40, 320);
-    // doc.text(this.validacionSac.convocatoria.solicitudEmpresa.empresa.nombre+'.', 40, 340);
-    // doc.text('Agradezco de antemano su valiosa colaboración con esta importante actividad.', 80, 390);
-    // doc.text('Atentamente,', 40, 440);
-    // doc.text('______________________', 40, 500);
-    // doc.text('Responsable de Prácticas Pre Profesionales', 40, 520);
-    // doc.text(this.validacionSac.convocatoria.carrera.nombre, 40, 540);
-    // doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY', 40, 560);
+    doc.text('-	Mgtr.'+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_nombre, 40,180);
+     +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.segundo_nombre
+     +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido
+     +' '+this.validacionSac.convocatoria.solicitudEmpresa.responsablePPP.docente.persona.primer_apellido+' ,Responsable de Prácticas Pre Profesionales';
+     doc.text('Su Despacho. -', 40, 210);
+     doc.text('De mi consideración: ', 40, 260);
+     doc.text('Luego de expresarle un atento saludo y desearle éxito en las funciones que acertadamente', 40, 280);
+     doc.text('realiza, me permito informarle ha sido designado como TUTOR ACÁDEMICO del estudiante ', 40, 300);
+     doc.text(this.designacionta.alumno.persona.primer_nombre+' '+this.designacionta.alumno.persona.segundo_nombre
+     +' '+this.designacionta.alumno.persona.primer_apellido+' '+this.designacionta.alumno.persona.segundo_apellido+' de las prácticas pre profesionales en la empresa', 40, 320);
+     doc.text(this.validacionSac.convocatoria.solicitudEmpresa.empresa.nombre+'.', 40, 340);
+     doc.text('Agradezco de antemano su valiosa colaboración con esta importante actividad.', 80, 390);
+     doc.text('Atentamente,', 40, 440);
+     doc.text('______________________', 40, 500);
+     doc.text('Responsable de Prácticas Pre Profesionales', 40, 520);
+     doc.text(this.validacionSac.convocatoria.carrera.nombre, 40, 540);
+     doc.text('INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY', 40, 560);
 
     console.log(dataBody);
     autoTable(doc, {

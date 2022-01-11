@@ -174,11 +174,8 @@ export class AddValidacionSeleccionComponent implements OnInit {
     const data = await this.asistenciaStorage;
     const head = [["Cedula", "Estudiante"]];
     const doc = new jsPDF("p", "pt", "a4");
-    //var logo = new Image();
     doc.setFontSize(12);
-    // logo.src = 'src\assets\images\ista2.jpg';
-    // doc.addImage(logo, 'JPEG', 20, 10, 50, 70);
-    //doc.text('LOGO', 540, 15);
+
     doc.text("ANEXO 4: Respuesta positiva a entidad receptora ", 20, 80);
     //doc.text(this.solicitudEmpresa.fecha_emision,490,120); PENDIENTE SACAR FECHA
     doc.text(
@@ -222,6 +219,12 @@ export class AddValidacionSeleccionComponent implements OnInit {
       350
     );
     doc.text("prácticas pre profesionales en su prestigiosa empresa:", 40, 370);
+
+    for (let i = 0; i < this.listaAlumnos.length; i++) {
+      const valor_imprimir = (this.listaAlumnos[i].persona.identificacion+'                          '+this.listaAlumnos[i].persona.primer_nombre+' '+this.listaAlumnos[i].persona.segundo_nombre
+      +' '+this.listaAlumnos[i].persona.primer_apellido+' '+this.listaAlumnos[i].persona.segundo_apellido);
+      doc.text(valor_imprimir,40,430+i*15); 
+  }
     doc.text(
       "Solicito de la manera más comedida realizar la designación del tutor empresarial",
       40,
@@ -248,20 +251,7 @@ export class AddValidacionSeleccionComponent implements OnInit {
     doc.text("CARRERA DE ", 40, 730);
     doc.text(this.convocatoria.carrera.nombre, 40, 750);
     doc.text("INSTITUTO SUPERIOR TECNOLÓGICO DEL AZUAY", 40, 770);
-    data.forEach((data) => {
-      let row = [
-        //  data.solicitudesAlumnos.alumno.persona.identificacion,
-        //  data.solicitudesAlumnos.alumno.persona.primer_nombre,
-        //  (data.identificacion)
-        //     this.formatoFecha(data.fechaActual),
-        //     this.formatoHora(data.horaInicio),
-        //     this.formatoHora(data.horaFin),
-        //     data.actividadRealizada,
-        //     '',
-        //     data.numeroHoras,
-      ];
-      dataBody.push(row);
-    });
+  
 
     console.log(dataBody);
     autoTable(doc, {
