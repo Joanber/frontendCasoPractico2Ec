@@ -245,11 +245,19 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
       empresa: ['', Validators.required],
       cargoER: ['', Validators.required],
       cargoIST: ['', Validators.required],
+      resolucion: ['', Validators.required],
       justificacion: ['', Validators.required],
       documento: ['Acuerdo 2996 MINISTERIO DE EDUCACIÓN', Validators.required],
       rector: ['Mgtr. Marcelo Aguilera Crespo', Validators.required],
-      accion: ['Mgtr. Marcelo Aguilera Crespo', Validators.required],
+      accion: ['', Validators.required],
     });
+  }
+  get conclusiones() {
+    return `Una vez que se han revisado los requerimientos de la carrera de ${ this.carrera}, se concluye que la ${ this.secondFormGroup.value.empresa.nombre }., posee la infraestructura e implementos necesarios para la correcta formación de las prácticas pre profesionales de los y las estudiantes de la carrera en mención, en el ${ this.secondFormGroup!.value.cargoER} de dicha entidad.`;
+  }
+
+  get recomendaciones() {
+    return `Con lo antes expuesto se recomienda que se firme el convenio entre ${ this.firstFormGroup.value.nombreIST } y ${ this.secondFormGroup.value.empresa.nombre}.`;
   }
 
   setTutorEmpresarial(persona: any) {
@@ -257,8 +265,11 @@ export class RegistroConveniosComponent implements OnInit, AfterViewInit {
     this.formEmpresa.tutorEmpresarial.patchValue(persona.primer_nombre + ' ' + persona.segundo_nombre + ' '
     + persona.primer_apellido + ' ' + persona.segundo_apellido);
   }
+  carrera = '';
+  setCordinadorCarrera(dd:any,carrera: any) {
+    console.log(carrera);
 
-  setCordinadorCarrera() {
+    this.carrera = carrera;
     this.formEmpresa.cargoIST.markAsTouched();
     this.secondFormGroup.patchValue({ cargoIST: `Coordinador(a) de la carrera de ${ this.firstFormGroup.value.carrera.nombre}`, });
   }
