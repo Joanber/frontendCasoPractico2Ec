@@ -25,16 +25,19 @@
               >
                 <thead>
                   <tr>
+                    <th>Abreviatura</th>
                     <th>Carrera</th>
                     <th>Modalidad</th>
                     <th>Coordinador</th>
                     <th>Responsable PPP</th>
+                    
                    
                   </tr>
                 </thead>
 
                 <tbody class="animated fadeIn fast">
                   <tr *ngFor="let responsablePPP of responsablesPPP">
+                    <td>{{ responsablePPP.carrera.abreviatura }}</td>
                     <td>{{ responsablePPP.carrera.nombre }}</td>
                     <td>{{ responsablePPP.carrera.modalidad }}</td>
                     <td>
